@@ -27,6 +27,8 @@ Identify the client and their contact details
 
 One sentence describing the purpose of the system (9.5.1)
 
+To create a D&D map generator containing a well weighted list of monsters which can be displayed on a large table screen for figures to be put on top of and be controlled by a secondary screen.
+
 ### 1.2 Scope
 
 One paragraph describing the scope of the system (9.5.2)
