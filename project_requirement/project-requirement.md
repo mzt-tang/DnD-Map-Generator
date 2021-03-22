@@ -120,7 +120,7 @@ There will need to be at least two simultaneous users being supported. One user 
 
 There will need to be information about each room that will be displayed to the dungeon master. The information that is given to the dungeon master will be room name, monster details and the treasure for each room. The monster details are the type of monster, their hit-points, their armour and what weapon they are using. This information will not need to be transferred between the two terminals, it will just be seen by the dungeon master. The information given to the players terminal will be the layout of the dungeon itself, displaying each room and how they connect.
 
-We will be using Google Firebase to store the information about the map in an online database. This database will be accessed by the terminals to gather the information they need to display.
+The information that will be sent to the terminals will be persistent. It will need to be stored somewhere that the two devices can access.
 
 On startup, the maps should not take a long time to generate. The maps will only be generated when the players are entering them. For example, when the game starts it will only randomly generate the first level. The map generation should only take about 1-2 seconds to generate a map and display it on the screen. It should then take less time to display the information for the dungeon master.
 
