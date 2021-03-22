@@ -172,10 +172,22 @@ Identify dates for key project deliverables:
 Present a budget for the project (table), and justify each budget item (one paragraph per item, one page overall). 
 
 ### 5.3 Risks 
-
 Identify the ten most important project risks to achieving project goals: their type, likelihood, impact, and mitigation strategies (3 pages).
 
 If the project will involve any work outside the ECS laboratories, i.e. off-campus activities, these should be included in the following section.
+
+| # | Risk | Risk Type | Likelihood | Severity | 
+| --- | :-----------------------------------------------------------------------------------: |  --------------- | ------------ | ---------------- |
+| 1 | COVID-19 levels increase, restricting access to laboratories and equipment | Performance | Likely | Severe |
+| 2 | Client removes budget | Risk Type | Likelihood | Severity |
+| 3 | Incompabitibility of services or equipment | Risk Type | Likelihood | Severity |
+| 4 | Risk | Risk Type | Likelihood | Severity |
+| 5 | Risk | Risk Type | Likelihood | Severity |
+| 6 | Risk | Risk Type | Likelihood | Severity |
+| 7 | Risk | Risk Type | Likelihood | Severity |
+| 8 | Risk | Risk Type | Likelihood | Severity |
+| 9 | Risk | Risk Type | Likelihood | Severity |
+| 10 | Risk | Risk Type | Likelihood | Severity |
 
 ### 5.4 Health and Safety
 
