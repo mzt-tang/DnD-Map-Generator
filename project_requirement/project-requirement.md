@@ -58,6 +58,13 @@ h) Site adaptation requirements.
 
 #### 1.3.2 Product functions
 
+##### 1.3.2.1 Minimum Viable Product
+
+The minimum viable product is a software solution that allows a dungeon master to automatically generate a random playable underground level for a game of dungeons and dragons. The generated dungeon will populate the level with monsters that are appropriate for the level of the generated level. The level will link to further harder levels and have both an entrance and exit. The level must have a measure or scale of distance for movement.
+
+The dungeon master will have a separate display to the players that will allow them to see additional information and control map visability. The additional information in the minimum viable product is monster stats for the generated monsters (hp,armor,etc). The players will be playing on a large display (projector or large TV) that allows them to move figurines around the dungeon. The level has optional line of sight and map hiding functions. Room sizes will be appropriate for the monsters in the rooms. 
+
+
 One page summary of the main functions of the product (9.5.4), briefly characterising the minimum viable product.
 
 #### 1.3.3 User characteristics   
