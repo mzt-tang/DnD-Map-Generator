@@ -76,30 +76,6 @@ According to the client, the system is to be faciliated in a digital manner, usi
 
 The client has also outlined that the system is to be used in conjuction with real-life figures that are completely separate from the system. Therefore, users are expected to have such figures for use with the system. Thus, the system will not be designed with the need to track players. Rather, the Dungeon Master will manually track each Players' positions, and use the system to adjust the appearance of the map accordingly.
 
---------------------------------------------
-Bullet Points:
-
-Main Users expected to use this system:
-- The client (Craig Watterson)
-- Users with at least some knowledge of DnD. They may or may not have used a DnD Map Generator application before
-
-Design usability priorities:
-- Because Map-generation applications are not widely-used, system functions should still be somewhat intuitive to use. Therefore, the system needs to be intuitive to use in order to:
--> Allow a game to be set up quickly and easily
--> Allow new users to quickly understand the core functions of the system
-- However, it is not a priority to be friendly to those new/learning how to play Dungeons and Dragons.
--> Therefore, less priory on tutorials on the game of DnD specificaly, but more priority on more advanced mechanics, shortcuts, customisation, and displaying more information and metadata
-
-Users are expeted to have experiece with:
-- Using Technology
-- Playing Dugeons and Dragons
-- Has access to some kind of figure to represent Player characteris
-- DM is assumed to have ample knowledge of DnD - this is a safe assumption, as a DM is the one in control of DnD games, so must have ample knowledge
-
-Accessibility
-- Upon completion, this system will be available to only the client (Craig Watterson).
--> Therefore, there is a large priority and emphasis on designing the system around Craig's particular wants, needs. This also puts a lower priority on 
-
 #### 1.3.4 Limitations
 
 One page on the limitations on the product (9.5.6)
