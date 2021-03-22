@@ -18,11 +18,11 @@ All team members are expected to contribute equally to the document and list the
 ## 1. Introduction
 One page overall introduction including sections 1.1 and 1.2.
 
-Dungeons and Dragons (D&D) is a co-operative tabletop fantasy role-playing game. Most players play as adventurers/heroes that explore the the world through going on quests, fighting monsters and hunting fo rewards. One player is the Dungeon Master who facilitates the game, controls the non-player characters and monsters, and narrates the story. The players traverse the world as figures moving on top of a set-up map, which may contain the non-playable characters that the players interact with.
+Dungeons and Dragons (D&D) is a co-operative tabletop fantasy role-playing game. Most players play as adventurers/heroes that explore the the world through going on quests, fighting monsters and hunting for rewards. One player is the Dungeon Master who facilitates the game, controls the non-player characters and monsters, and narrates the story. The players traverse the world as figures moving on top of a set-up map, which may contain the non-playable characters that the players interact with.
 
 There are enemies that the dungeon master controls (often a type of monster). Each enemy has statistics on its hit points, armor class and speed, which allow the players to interact and do battle with the adversary. They may also contain extra information on their challenge rating, armor type, race, size, alignment and other specific data that could affect the nature of battle.
 
-D&D includes a specific type of map called dungeons. Which is an dangerous enclosed space (often underground) that might contain many dangerous monsters and traps, presenting a large risk/rewards to the players. A dungeon may contain multiple layers that the players can traverse between. The dungeon should get progressively more dangerous the deeper it is.
+D&D includes a specific type of map called dungeons. Which is an dangerous enclosed space (often underground) that might contain many dangerous monsters and traps. A dungeon should present a large risk to the players, but they are rewarded heavily if they're triumphant in their dungeon run. A dungeon may contain multiple layers that the players can traverse between. The dungeon should get progressively more dangerous the deeper it is.
 
 ### Client
 
