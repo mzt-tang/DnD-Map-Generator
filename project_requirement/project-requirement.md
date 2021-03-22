@@ -60,10 +60,31 @@ h) Site adaptation requirements.
 
 ##### 1.3.2.1 Minimum Viable Product
 
-The minimum viable product is a software solution that allows a dungeon master to automatically generate a random playable underground level for a game of dungeons and dragons. The generated dungeon will populate the level with monsters that are appropriate for the level of the generated level. The level will link to further harder levels and have both an entrance and exit. The level must have a measure or scale of distance for movement.
+The minimum viable product is a software solution that allows a dungeon master to automatically generate a random playable underground level for a game of dungeons and dragons. The generated dungeon will populate the level with monsters that are appropriate for the level and context of the generated level. The level will link to further harder levels and have both an entrance and exit. The level must have a measure or scale of distance for movement.
 
-The dungeon master will have a separate display to the players that will allow them to see additional information and control map visability. The additional information in the minimum viable product is monster stats for the generated monsters (hp,armor,etc). The players will be playing on a large display (projector or large TV) that allows them to move figurines around the dungeon. The level has optional line of sight and map hiding functions. Room sizes will be appropriate for the monsters in the rooms. 
+The dungeon master will have a separate display to the players that will allow them to see additional information and control map visability. The additional information in the minimum viable product is monster stats for the generated monsters (hp,armor,etc). The players will be playing on a large display (projector or large TV) that allows them to move figurines around the dungeon. The level has optional line of sight and map hiding functions. Room sizes will be appropriate for the monsters in the rooms.
 
+The software solution will run locally and is not expected to run over the internet.
+
+##### 1.3.2.2 Dungeon Generation Package
+
+The main functions of the dungeon generation package are outlined below:
+
+- **Entry and Exit** The generated level must have a clear entry and exit point. These must be clearly connected and the exit point will lead to the next generated level.
+
+- **Monster Population** The generated level must be auto populated with monsters that are level appropriate. This means in levels 1-3 you would expect to find monsters that are very close to level 1-3. The monsters are expected to be context appropriate (In an underground level you would not expect to find horse riding knights)
+
+- **Room sizing** Rooms are expected to be appropriately sized for the monsters that populate them. A room with an ogre should have entrances that allow the movement of that orgre based on size.
+
+- **Level Scale** Levels have a scale that ties them to distance. 
+
+##### 1.3.2.3 Dungeon Master View
+
+The main functions of the dungeon master view are outlined below:
+
+- **Level overview** The dungeon master can see the entire map and the monsters on it. They are able to view individual monster stats of the monsters inside the level.
+
+- **Line of sight** The dungeon master can change the line of sight of the players using the dungeon master view. This updates the player view immediately.
 
 One page summary of the main functions of the product (9.5.4), briefly characterising the minimum viable product.
 
