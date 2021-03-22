@@ -16,8 +16,13 @@ All team members are expected to contribute equally to the document and list the
 #### Author list, a comma-separated list of the names of each member of the team.
 
 ## 1. Introduction
-
 One page overall introduction including sections 1.1 and 1.2.
+
+Dungeons and Dragons (D&D) is a co-operative tabletop fantasy role-playing game. Most players play as adventurers/heroes that explore the the world through going on quests, fighting monsters and hunting fo rewards. One player is the Dungeon Master who facilitates the game, controls the non-player characters and monsters, and narrates the story. The players traverse the world as figures moving on top of a set-up map, which may contain the non-playable characters that the players interact with.
+
+Monsters are the non-playable characters that the dungeon master controls and the players do battle with. Each monster has statistics on its hit points, armor class and speed. They may also contain information on its challenge rating, armor type, race, size, alignment and other specific data.
+
+D&D includes a specific type of map called dungeons. Which is an dangerous enclosed space (often underground) that might contain many dangerous monsters and traps, presenting a large risk/rewards to the players. A dungeon may contain multiple layers that the players can traverse between and often get progressively more dangerous the deeper it is.
 
 ### Client
 
