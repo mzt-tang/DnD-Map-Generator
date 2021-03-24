@@ -209,6 +209,16 @@ Identify dates for key project deliverables:
 
 (1 page).
 
+#### Architectural prototype
+07/06/2021
+
+#### Minimum viable product
+07/09/2021
+
+#### Further releases
+07/10/2021
+
+
 ### 5.2 Budget
 
 Present a budget for the project (table), and justify each budget item (one paragraph per item, one page overall). 
