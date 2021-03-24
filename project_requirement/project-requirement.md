@@ -27,7 +27,7 @@ Identify the client and their contact details
 
 One sentence describing the purpose of the system (9.5.1)
 
-To create a D&D map generator that also generates a well weighted list of monsters within the map. The generated map can be displayed on a large table screen, and be able to be controlled/edited via a secondary screen.
+To create a D&D map generator that also generates a well weighted list of monsters within the map. The generated map can be displayed on a large table screen, and be able to be controlled via a secondary screen.
 
 ### 1.2 Scope
 
