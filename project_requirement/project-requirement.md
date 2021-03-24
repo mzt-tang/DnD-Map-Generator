@@ -271,6 +271,7 @@ Elijah Guarina<br>
 Jeremiah Choi<br>
 Connor de Bruyn<br>
 Michael Tang<br>
+Did section 1.0, 1.1, 1.2
 
 ---
 
