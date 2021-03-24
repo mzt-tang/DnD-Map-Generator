@@ -86,11 +86,6 @@ This is typically the longest subsection in the document. List up to fifty use c
 
 ### 3.3 Usability Requirements
 
-See 9.5.12. for most systems this will be around one page.
-
-> **9.5.12 Usability requirements**<br>
-> Define usability (quality in use) requirements. Usability requirements and objectives for the software system include measurable effectiveness, efficiency, and satisfaction criteria in specific contexts of use.
-
 In order to create a fully functional Dungeons and Dragons tabletop, the following usability requirements needs to be met: 
 * Measurable **effectiveness** of the application: The application needs to operate at a desired level of functionality without failure.
 * **Efficiency** of the application: The application has to manage functions inputted by the user without inefficiencies.
@@ -108,7 +103,8 @@ In order to create a fully functional Dungeons and Dragons tabletop, the followi
 * Map generation should be efficient and not take too long to be created.
 
 **Satisfaction Criteria:**
-* A web-based application should be used so that the application can be run from any operating system.
+* A web-based application must be used so that the application can be run from any operating system.
+* The application must be able to be run from the two different sized devices specified by the client (An IPad and the touch table).
 * The application contains a "fog of war", only displaying sections of the map that the user can currently see.
 * The seperate device from the touch table should contain functionality only the dungeon-master can use.
 * The application should contain a scale or grid to determine size of characters and scenery.
