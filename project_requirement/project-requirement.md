@@ -108,7 +108,7 @@ In order to create a fully functional Dungeons and Dragons tabletop, the followi
 * Map generation should be efficient and not take too long to be created.
 
 **Satisfaction Criteria:**
-* A web-based application should be used so that the application can be run from any device.
+* A web-based application should be used so that the application can be run from any operating system.
 * The application contains a "fog of war", only displaying sections of the map that the user can currently see.
 * The seperate device from the touch table should contain functionality only the dungeon-master can use.
 * The application should contain a scale or grid to determine size of characters and scenery.
