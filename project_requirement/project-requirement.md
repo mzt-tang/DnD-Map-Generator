@@ -66,14 +66,6 @@ One page identifying the main classes of users and their characteristics (9.5.5)
 
 #### 1.3.4 Limitations
 
-One page on the limitations on the product (9.5.6)
-
-"Define usability and quality in use requirements and objectives for the system that can include
-measurable effectiveness, efficiency, satisfaction criteria and avoidance of harm that could arise from
-use in specific contexts of use." - the book.
-
-DM uses this to generate a random map, and manage npc's on screen. On a much larger screen (wall mounted TV) his map is on display for the players to see. 
-
 ##### 1.3.4.1 Software Limitations
 * The software will be written using the React framework. The system will be running on a web application such as "chrome", or something similar like "Node.js".  A standalone executable application will not be released.
 
