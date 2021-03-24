@@ -16,7 +16,6 @@ All team members are expected to contribute equally to the document and list the
 #### Author list, a comma-separated list of the names of each member of the team.
 
 ## 1. Introduction
-One page overall introduction including sections 1.1 and 1.2.
 
 Dungeons and Dragons (D&D) is a co-operative tabletop fantasy role-playing game. Most players play as adventurers/heroes that explore the the world through going on quests, fighting monsters and hunting for rewards. One player is the Dungeon Master (DM) who facilitates the game, controls the non-player characters and monsters, and narrates the story. The players traverse the world as figures moving on top of a set-up map, which may contain the non-playable characters that the players interact with.
 
