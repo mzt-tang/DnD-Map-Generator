@@ -169,7 +169,9 @@ Identify dates for key project deliverables:
 
 ### 5.2 Budget
 
-Present a budget for the project (table), and justify each budget item (one paragraph per item, one page overall). 
+No paid items have been outlined to be required for the purpose of constructing the system. Because no purchases, and therefore expenses have been outlined, no budget has been explicitly allocated for this project.
+
+However, a potential expense is the use of paid/non-free assets (e.g. map textures, monster/item icons/textures, or any other assets to be outlined in the future). There is no plan to purchase such assets, and instead there is a bias towards the use of free assets. However, if a paid asset is decided to be used in the project, then a budget for purchasing paid assets will be set.
 
 ### 5.3 Risks 
 
