@@ -40,10 +40,6 @@ The system will generate a map as well as populate the map with enemies of varyi
 
 The system would display information to the players using a similar system to Kahoot[2], a system that allows the host (the Dungeon Master in our system) to host a game that the players can connect to on their devices. Our system would be different from Kahoot's system as the Dungeon Master would need to be able to choose what image the players see on their device. This system would have no direct relationship with any other products or systems similar to Kahoot, but will instead be inspired by the design and functions of other products such as Kahoot. Whereas Kahoot is hosted via the internet, therefore anyone can connect to a given game, our system will use a local area network to connect between devices.
 
-This system requires two devices to be able to communicate with each other, from the Dungeon Master's device choosing what to display on the player's device. The way this will be implemented will be using Google Firebase[3], a free to use system that allows apps to be created with online and offline features. This will be useful for our system as it allows the system to store and transmit data using this service to other devices.
-
-The system will communicate between devices locally, using Google Firebase as a means of communication between the devices.
-
 For our system to appear as a Dungeons and Dragons system, we will need to either create or use artwork. The artwork we use will either be created by ourselves, or will be free to use images.
 
 > **9.5.3 Product perspective** <br>
@@ -81,7 +77,6 @@ One page on the limitations on the product (9.5.6)
 
 [1] Name of Software: ProDnD Publisher: Gray Lake Studios Date Accessed: 23/3/2021 Type of Medium: Mobile App Avaiable: https://play.google.com/store/apps/details?id=com.GrayLake.ProDnD_1&hl=en&gl=US 
 [2] Name of Software: Kahoot! Publisher: Morten Versvik, Johan Brand, and Jamie Brooker Date Accessed: 25/3/2021 Type of Medium Website. Available: https://kahoot.com/
-[3] Name of Software: Google Firebase. Publisher: Google Date Accessed: 25/3/2021 Type of Medium: Website. Available: https://firebase.google.com/
 
 References to other documents or standards. Follow the IEEE Citation  Reference scheme, available from the [IEEE website](https://www.ieee.org/) (please use the search box). (1 page, longer if required)
 
