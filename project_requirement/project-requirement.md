@@ -122,12 +122,12 @@ You should use right tools, preferabley PlantUML, to draw your URL diagrams whic
 ### 3.6 Design constraints
 
 #### Copyright And Legal Constraints:
-> Dungeons and dragons is owned by Wizards Of The Coast and they have a copyright and/or licence agreement on all their assets relating to the game. We need to ensure we do not violate any of their terms and conditions associated with their assets. This includes monster information/names, dungeons and dragons images, game assets.
+> Dungeons and dragons is owned by Wizards Of The Coast and they have a copyright and/or licence agreement on all their assets relating to the game. We need to ensure we do not violate any of their terms and conditions associated with their assets. This includes monster information/names, dungeons and dragons images, game assets, and any other assets implemented into the game.
 
 > Any other assets we use for this project that are free or paid will have terms of use associated with the assets. We must ensure we adhere to these requirements to avoid legal issues.
 
 #### Data and Privacy
-> The program will not collect or store any personal data
+> The program will not collect or store any personal data to avoid privacy laws.
 
 #### Time limitation
 > Time is limited to about 7 hours a week working on this project. There is a hard deadline of October to finish the project. Because of this time constraint there are no guarantees that any work outside the scope of this requirements document can be completed before the deadline. Any stretch targets could be left unfinished, however these will be in a feature branch and will not affect the functionality of the main program.
