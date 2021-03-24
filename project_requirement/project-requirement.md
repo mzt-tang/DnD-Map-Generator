@@ -190,9 +190,9 @@ If the project will involve any work outside the ECS laboratories, i.e. off-camp
 | 10 | Team members lack required skills to complete the project | Performance | Low | Tolerable |
 
 | # | Risk | Mitigation Strategy |
-| --- | :---------------------------------------------------------------------: |  :------------------------------------------------------------: |
+| --- | :--------------------------------------------------------------------------------: |  ------------------------------------------------ |
 | 1 | COVID-19 levels increase, restricting access to laboratories and equipment | Frequent usage of online resources to keep in-contact and productive until covid levels decrease or the project finalizes.  |
-| 2 | Client removes budget or online resources become unavailable | Utilisation of offline resources, if we are using any assets we will need to produce them ourselves.  |
+| 2 | Client removes budget or online resources become unavailable | Utilisation of offline resources, if we are using any online assets (or planning to) we will need to produce them ourselves.  |
 | 3 | Incompabitibility of services or equipment | Research alternative services and equipment to use incase the current ones fail or become unavailable for usage. |
 | 4 | Minimal requirements will not be met by the end of the project (Scope creep) | We could invest in buying components to fulfill the remaining requirements or focus all members efforts into accomplishing the minimum requirements before attempting stretch goals. |
 | 5 | Team members are unable to work on the project (Illness, lack of internet, etc) | Divide the absent members workload evenly amongst all remaining members to keep workflow consistent and to not overwhelm one member. |
