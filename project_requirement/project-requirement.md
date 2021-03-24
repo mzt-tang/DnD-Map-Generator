@@ -25,7 +25,7 @@ Identify the client and their contact details
 
 ### 1.1 Purpose
 
-One sentence describing the purpose of the system (9.5.1)
+To create a D&D map generator that also generates a well weighted list of monsters within the map. The generated map can be displayed on a large table screen, and be able to be controlled via a secondary screen.
 
 ### 1.2 Scope
 
@@ -58,11 +58,53 @@ h) Site adaptation requirements.
 
 #### 1.3.2 Product functions
 
-One page summary of the main functions of the product (9.5.4), briefly characterising the minimum viable product.
+##### 1.3.2.1 Minimum Viable Product
+
+The minimum viable product is a software solution that allows a dungeon master to automatically generate a random playable underground level for a game of dungeons and dragons. The generated dungeon will populate the level with monsters that are appropriate for the level and context of the generated level. The level will have both an entrance and exit with the exit leading to further harder generated levels. The level must have a measure or scale of distance for movement. We are not expected to make assets, we are expected to find assets online that we are able to use legally.
+
+The dungeon master will have a separate display to the players that will allow them to see additional information and control map visability. The additional information in the minimum viable product is monster stats for the generated monsters (hp,armor,etc). The players will be playing on a large display (projector or large TV) that allows them to move figurines around the dungeon. The level has optional line of sight and map hiding functions. Room sizes will be appropriate for the monsters in the rooms.
+
+The software solution will run locally and is not expected to run over the internet.
+
+##### 1.3.2.2 Dungeon Generation Package
+
+- **Entry and Exit** The generated level must have a clear entry and exit point. These must be clearly connected and the exit point will lead to the next generated level.
+
+- **Monster Population** The generated level must be auto populated with monsters that are level appropriate. This means in levels 1-3 you would expect to find monsters that are very close to level 1-3. The monsters are expected to be context appropriate (In an underground level you would not expect to find horse riding knights)
+
+- **Room sizing** Rooms are expected to be appropriately sized for the monsters that populate them. A room with an ogre should have entrances that allow the movement of that orge based on size.
+
+- **Level Scale** Levels have a scale that ties them to distance. This is done using tile sizes.
+
+##### 1.3.2.3 Dungeon Master View
+
+- **Level overview** The dungeon master can see the entire map and the monsters on it.
+
+- **Line of sight** The dungeon master can change the line of sight of the players using the dungeon master view. Changes are reflected immediately inside the player view.
+
+- **Monster Stats** The dungeon master is able to see the monster stats of monsters inside the level. This includes stats such as health points, armour, size, speed etc.
+
+#### 1.3.2.4 Player View
+
+- **Display** The players are able to see the sections of the map that have line of sight (as controlled by the dungeon master)
+
+- **Tile Size** The display has the tiles large enough that the players are able to move physical figurines around on the map. This will require a minimum projector/TV size for the players to use.
 
 #### 1.3.3 User characteristics   
 
 One page identifying the main classes of users and their characteristics (9.5.5) 
+
+The client (Craig Watterson) has outlined that the system will initially be for his personal use, and releasing the system commercially is a potential goal after the completion of the minimum viable product. Therefore, there is a priority on designing the system around the client's characteristics and attributes. These characteristics and attributes are thus assumed to be that of a typical user of the system.
+
+One characteristic the client has is that they are experienced with the premise of a Dungeons and Dragons game, as well as the process of how a game plays out. Therefore, the system will be designed with an assumption that users already have knowledge of how a game of Dungeons and Dragons works. Thus, the system will not prioritise teaching newer Dungeons and Dragons players how to play, but rather facilitate, digitise, and streamline the mechanics, information retrieval, and actions of a Dungeons and Dragons game that experienced players are familiar with.
+
+While the system is aimed more towards experienced Dungeons and Dragons players, the system is still aimed to be intuitive to use. This is because the client's main goal with the system is to create a map for a Dungeons and Dragons game in a short time and with little effort from the user. This is also supported by the fact that Dungeons and Dragons map-generator systems/applications are not widely used. Therefore, processes, functions, and actions the system supports should employ conventions and designs most people are familiar with.
+
+According to the client, the system is to be faciliated in a digital manner, using web browser(s) to host the system on multiple devices simultaneously for a single Dungeons and Dragons game. Therefore, the users are expected to:
+- Have basic experience with using technologies such as computers and/or mobile devices
+- Have basic experience with using a web browser
+
+The client has also outlined that the system is to be used in conjuction with real-life figures that are completely separate from the system. Therefore, users are expected to have such figures for use with the system. Thus, the system will not be designed with the need to track players. Rather, the Dungeon Master will manually track each Players' positions, and use the system to adjust the appearance of the map accordingly.
 
 #### 1.3.4 Limitations
 
