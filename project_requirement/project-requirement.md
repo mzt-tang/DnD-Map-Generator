@@ -86,11 +86,7 @@ The dungeon master must be able to see a different view from the players. The du
 
 #### 3.1.2 Player's View
 
-The player's view must display what the dungeon master chooses to display. This means that the player's view interface and the dungeon master interface must be connected so that the dungeon master can change the display for the players, but not the other way around. This will be accomplished via the third interface, the database.
-
-#### 3.1.3 Database
-
-The database view will be a medium where the dungeon master and the player can be connected, using a local area network.
+The player's view must display what the dungeon master chooses to display. This means that the player's view interface and the dungeon master interface must be connected so that the dungeon master can change the display for the players, but not the other way around.
 
 ### 3.2 Functions
 
