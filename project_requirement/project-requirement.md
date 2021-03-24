@@ -169,9 +169,9 @@ Identify dates for key project deliverables:
 
 ### 5.2 Budget
 
-No paid items have been outlined to be required for the purpose of constructing the system. Because no purchases, and therefore expenses have been outlined, no budget has been explicitly allocated for this project.
+No paid items to be purchased have been outlined to be required for the purpose of constructing the system. Because no purchases have been outlined, and therefore no expenses have been outlined, no budget has been explicitly allocated for this project.
 
-However, a potential expense is the use of paid/non-free assets (e.g. map textures, monster/item icons/textures, or any other assets to be outlined in the future). There is no plan to purchase such assets, and instead there is a bias towards the use of free assets. However, if a paid asset is decided to be used in the project, then a budget for purchasing paid assets will be set.
+However, a potential expense is the use of paid/non-free assets (e.g. map textures, monster item icons/textures, or any other assets to be outlined in the future). There is no plan to purchase such assets, as instead there is a bias towards the use of free assets. However, if paid assets are decided to be used in the project, then a budget for purchasing paid assets will be set.
 
 ### 5.3 Risks 
 
