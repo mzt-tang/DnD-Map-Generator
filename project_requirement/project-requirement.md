@@ -75,24 +75,25 @@ use in specific contexts of use." - the book.
 DM uses this to generate a random map, and manage npc's on screen. On a much larger screen (wall mounted TV) his map is on display for the players to see. 
 
 ##### 1.3.4.1 Software Limitations
-* The software will be written using the React framework. In system will be running on a web application, or on Node.js, or something similar.  A standalone executable application will not be released.
+* The software will be written using the React framework. The system will be running on a web application such as "chrome", or something similar like "Node.js".  A standalone executable application will not be released.
 
+* No server hosting. Without server hosting available to us as a resource, the system won't be designed to run on a server. Devices will have to communicate with each other via peer-to-peer connection. The software will utilize Local Area Networking (assuming it is available, see next subsection).
 
-* It is assumed no middleman server will be hosting. Therefore, using Local Area Network connections, the devices involved will be using peer-to-peer connection with each other. One device must act as a host.
-* No remote connection capabilities.
+* Persistence of any kind is not supported. The DM will not be able to save and reload dungeons.
+
+* Use of copyright material is (under any circumstances) not permitted.
 
 ##### 1.3.4.2 Hardware Limitations
-* The system will REQUIRE a server host!!! (there'll either be a middle man server host OR one of the user's devices will host the connection for the both of them.)
+* No 24 hour remote connections. An extension to software limitations, the lack of server hosting also means any sort of remote connection is impossible without a host computer portforwarding the program through their modem. Any remote connection features will not be supported.
 
-* The system will not work without the use of a LAN Modem. The system does not require connection to the internet, but connection to the same local network is a necessity. 
+* Connectivity between devices will not work without a Local Area Network. The system does not require connection to the internet, but all devices must be connected to the same network. 
 
 ##### 1.3.4.3 Usage Assumptions
-* Assuming the two devices will be used in the same room. The user(s) will be in the same room as the two devices that'll be using the program.
-The design of the system is specified to have a player screen and a DM screen. The DM screen will be on a personal device (ie: a tablet) and the players will be witnessing their map on a bigger device (ie: a project or a TV). Any use of remote connection is unsupported.
+* It is assumed that there'll only be two devices involved. A network of more than 2 devices will be not be supported.
+
+* It will be assumed that the devices will be used in the same room. Any UX features involving the display of information, curcial for online play, will not be implemented. The user of the software will be able to see both devices and their separate displays.
 
 * Assuming the DM will only rely on this for dungeon generation and nothing more. any more dm support (such as calculating player stats, health modificers, speed modifiers inventory space, etc) will not be included. Custom Dungeon creation of any sort will not be included.
-* The two devices will communicate to each other via the internet. It is assumed both devices will have connection to the same internet, as they use Local area networking.
-* Persistence of any kind is not supported. The DM will not be able to save and reload dungeons.
 
 ## 2. References
 
