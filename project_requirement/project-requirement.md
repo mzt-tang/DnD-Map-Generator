@@ -243,10 +243,35 @@ Identify dates for key project deliverables:
 Present a budget for the project (table), and justify each budget item (one paragraph per item, one page overall). 
 
 ### 5.3 Risks 
-
 Identify the ten most important project risks to achieving project goals: their type, likelihood, impact, and mitigation strategies (3 pages).
 
 If the project will involve any work outside the ECS laboratories, i.e. off-campus activities, these should be included in the following section.
+
+| # | Risk | Risk Type | Likelihood | Severity | 
+| --- | :--------------------------------------------------------------------------------: |  --------------- | ------------ | ---------------- |
+| 1 | COVID-19 levels increase, restricting access to laboratories and equipment | Performance | High | Tolerable |
+| 2 | Client removes budget or online resources become unavailable | Financial / Availability | Low | Tolerable |
+| 3 | Incompabitibility of services or equipment | Availability / Performance | Medium | Severe |
+| 4 | Minimal requirements will not be met by the end of the project (Scope creep) | Operational | Medium | Extreme |
+| 5 | Team members are unable to work on the project (Illness, lack of internet, etc) | Health and Saftey / Performance | Medium | Extreme |
+| 6 | Customer alters the requirements during development | Strategic | Low | Tolerable |
+| 7 | The products do not align with stakeholder expectations | Strategic | Medium | Tolerable |
+| 8 | Lack of communication amongst team members and stakeholders | Performance | Low | Severe |
+| 9 | Product has underlying bugs that impact the products functionality | Operational | Low | Tolerable |
+| 10 | Team members lack required skills to complete the project | Performance | Low | Tolerable |
+
+| # | Risk | Mitigation Strategy |
+| --- | :--------------------------------------------------------------------------------: |  ------------------------------------------------ |
+| 1 | COVID-19 levels increase, restricting access to laboratories and equipment | Frequent usage of online resources to keep in-contact and productive until covid levels decrease or the project finalizes.  |
+| 2 | Client removes budget or online resources become unavailable | Utilisation of offline resources, if we are using any online assets (or planning to) we will need to produce them ourselves.  |
+| 3 | Incompabitibility of services or equipment | Research alternative services and equipment to use incase the current ones fail or become unavailable for usage. |
+| 4 | Minimal requirements will not be met by the end of the project (Scope creep) | We could invest in buying components to fulfill the remaining requirements or focus all members efforts into accomplishing the minimum requirements before attempting stretch goals. |
+| 5 | Team members are unable to work on the project (Illness, lack of internet, etc) | Divide the absent members workload evenly amongst all remaining members to keep workflow consistent and to not overwhelm one member. |
+| 6 | Customer alters the requirements during development | As the client did not specify these requirements during the proposition, we may decline the additional requirements if we deem them to be unachievable during the remaining time given.  |
+| 7 | The products do not align with stakeholder expectations | Create frequent meetings with the client to ensure that each feature added is to specification. This will provide clarity if we are missing features or misinterpreted requirements. |
+| 8 | Lack of communication amongst team members and stakeholders | We will conduct frequent weekly meetups and utilize online social media platforms (Mattermost) to ensure each member understands the given situation and tasks needed to be completed for project completion.  |
+| 9 | Product has underlying bugs that impact the products functionality | We can create tests to identify and fix bugs occuring during development of each function. Ensuring each function remains bug-free before advancing to new tasks. |
+| 10 | Team members lack required skills to complete the project | Create sessions to learn the required information needed to progress through the project. If one member knows the skills necessary, they can tutor the remaining members until all members are fully capable to continue. |
 
 ### 5.4 Health and Safety
 
