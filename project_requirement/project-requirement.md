@@ -297,20 +297,25 @@ Continue the game [User Intention] <br>
 #### 3.2.7 Pick Map theme
 JC
 **What is the Goal of the use case?**  
-The goal of the "Initial Testing Sequence" use case is to ensure that the rocket functionality works when the system is powered on.
-For clarification, this is different to the launching sequence, since this is an "automated" process, rather than the manual process from the "Launch Sequence" use case.
+Map themes are the type of dungeon the game takes place in. They determine monster population. The Dungeon Master shall be able to pick what themed dungeon they would like to play in before map generation.
 
 **Who benefits from the result of this use case?**  
-This use case benefits the Rocket Technicians the most, since it allows them to immediately know if anything is wrong with the system without the need to go through a test or an actual launch.
+This use case benefits the DM in the sense that they'll be able to choose what sort of experience they want the game session to have.
 
 **How will this use case be achieved?**  
-This use case will be achieved through having the system automatically go into this test sequence once the system initialises itself.
+The Dungeon master shall choose the theme of the dungeon before map generation.
 
 **How will we judge/measure that this use case has been taken into account?**  
-We can judge that this use case has been taken to account if the initial test sequence runs on system initialisation.
+Map themes are a pre-requisite for monster population. If successfully implemented, the types of monsters within the dungeon should be consistent to the theme (for instance, undead shouldn't be spawning in an bandit hideout).
 
-**What limitations are there to achieving the use case?**  
-The main limitation to this use case being implemented is that all the other functions of the rocket (eg. GPS data collection, barometer data collection, data processing) needs to be functioning correctly.
+**What limitations are there to achieving the use case?**
+- This use case is used after the Dungeon Master role is assigned. 
+- When implementing, this feature must be implemented after "populate monsters".
+
+**Use Case Flow**
+-User Intention:
+-System Responsibilities:
+-User Interface:
 
 #### 3.2.8 Remove monsters
 
