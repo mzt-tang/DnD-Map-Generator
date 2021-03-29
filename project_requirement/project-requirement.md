@@ -220,16 +220,21 @@ JC
 The goal of "Change visability" is to allow the dm to manually select tiles that are visible on the "player's display" screen. This keeps unexplored parts of the dungeon hidden from the player, allowing the dungeon master to show the player's what they'll see directly.
 
 **Who benefits from the result of this use case?**  
-This use case benefits everyone. The Dungeon Master will get to control the narrative by controlling what the player's know and don't know. The Players will benefit from this by keeping the gaming experience genuine.
+This use case benefits Dungeon Master. He will gain the ability to control the narrative by controlling what the player's know. This maintains the experience for the players.
 
 **How will this use case be achieved?**  
-This use case will be achieved through having the system automatically go into this test sequence once the system initialises itself.
+This use case will be consistently available to the dm once the dungeon map has generated. When first generated, the entire dungeon is not visible to the players. The dm will be free to reveal which parts of the map are visible to the player there onwards; at his own discretion.
 
 **How will we judge/measure that this use case has been taken into account?**  
-We can judge that this use case has been taken to account if the initial test sequence runs on system initialisation.
+This use case is essential to gameplay. We can judge it's success via playtesting. A successful implementation will make the tiles selected by the dm visible on the player's screen should update once selection is completed.
 
 **What limitations are there to achieving the use case?**  
-The main limitation to this use case being implemented is that all the other functions of the rocket (eg. GPS data collection, barometer data collection, data processing) needs to be functioning correctly.
+The two primary limitations to this use case is the server and the generation of map. Connection to the server must be stable for the dm to update the player's vision. The map must be generated inorder for this use case to function.
+
+**Use Case Flow**
+-User Intention:
+-System Responsibilities:
+-User Interface: 
 
 #### 3.2.4 Change Maps
 
