@@ -199,7 +199,55 @@ See 9.5.10. for most systems this will be around one page.
 
 #### 3.2.8 Remove monsters
 
+**What is the Goal of the use case?**  
+The goal of the "Remove Monsters" use case is to ensure the monsters can be removed by the DM in the DM view to ensure that what is displayed on the DM view is still relevent.
+
+**Who benefits from the result of this use case?**  
+The DM benefits from the use case. By removing monsters that are no longer relevent to the dungeon map (they have been defeated for instance, or the DM removed them for other reasons) it ensures that the DM view displays the current state of the board. This reduces noise to the DM and the need to remember which monsters have been defeated or removed.
+
+**How will this use case be achieved?**  
+The DM has a view that shows monsters on the map. When the DM clicks on monsters there will be an option to delete that monster from the board and remove them from the map.
+
+**How will we judge/measure that this use case has been taken into account?**  
+We can ensure that this use case has been taken into account if the monster is no longer displayed on the map when the DM clicks the delete button for that monster.
+
+**What limitations are there to achieving the use case?**
+
+- This requires input from the DM, and so a button will need to be implemented that the DM can click that will remove the monster from the map.
+- The dungeon must be populated with monsters for this to work. Hence if the monster population function does not work this will not be able to work.
+
+**Use Case Flow**
+- DM clicks monster delete button [user intention]
+- Button sends request to delete monster [system responsibility]
+- Monster is removed from monster list [system responsibility]
+- View updates with monster removed [user interface]
+
+
 #### 3.2.9 Populate monsters
+
+**What is the Goal of the use case?**  
+The goal of the use case is to allow the DM to automatically populate monsters in the dungeon.
+
+**Who benefits from the result of this use case?**  
+Both the players and the DM benefit from this use case. This is because there is less time in setup of the game given the monsters have been already populated. It allows the game to get up and running quicker than if it had not been implemented.
+
+**How will this use case be achieved?**  
+This will be achieved by implementing an algorithm that takes in a dungeon map and a list of monsters to pick from. It will then automatically populate the map with appropriately leveled and themed monsters.  
+
+**How will we judge/measure that this use case has been taken into account?**  
+We can ensure that this use case has been taken into account if when the DM presses the generate monsters button the dungeon is automatically populated with appropriately leveled and themed monsters.
+
+**What limitations are there to achieving the use case?**  
+
+- This requires some list or store of monsters to use. It requires the list to contain monsters of the appropriate level and style that the map is generated in.
+- Requires the dungeon map to generate so that monsters can be placed inside it.
+
+**Use Case Flow**
+- DM pushes button to generate monsters [user intention]
+- Button sends request to server [system responsibility]
+- server runs monster generation algorithm [system responsibility]
+- server returns generated monster list [system responsibility]
+- view updates display to show monsters [user interface]
 
 #### 3.2.10 Change Monster health
 
