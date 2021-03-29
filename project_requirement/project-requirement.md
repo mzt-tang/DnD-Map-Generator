@@ -36,18 +36,18 @@ To create a D&D map generator that also generates a well-weighted list of monste
 
 ### 1.2 Scope
 
-##The Map Generation of the Program should meet the Following Goals
+## The Map Generation of the Program should meet the Following Goals
  - Maps generated should be different each time
  - Maps should adhere to at least 1 theme
  - The location that enemies are placed should make sense in relation to the place/theme on the map
  - The enemies should be weighted so that the amount of enemies at any given location is well balanced
 
-##The Primary Map Displaying Screen of the Program should meet the Following Goals
+## The Primary Map Displaying Screen of the Program should meet the Following Goals
  - The map should be scalable and resizable to the screen that its displayed on
  - Locations on the map should be covered in fog of war unless specified by the dungeon master
  - The map should have some form of scale, allowing players to gauge distance
 
-##The Secondary Screen Map Controller of the Program should meet the Following Goals
+## The Secondary Screen Map Controller of the Program should meet the Following Goals
  - The screen should be able to display any/all enemies' stats
  - The dungeon master should be able to see the full map
  - The dungeon master should be able to control where to uncover the fog of war on using the screen
