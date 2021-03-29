@@ -210,7 +210,8 @@ Identify dates for key project deliverables:
 (1 page).
 
 #### Architectural prototype
-07/06/2021
+07/05/2021
+- The architectural prototype is to be completed by Monday 7th May 2021
 
 #### Minimum viable product
 07/09/2021
