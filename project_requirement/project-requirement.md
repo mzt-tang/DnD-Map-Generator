@@ -184,6 +184,7 @@ See 9.5.10. for most systems this will be around one page.
 -User Interface:
 
 #### 3.2.1 Generate Maps
+
 **What is the Goal of the use case?**  
 To create a map of tiles to act as the board for the Dungeons and Dragons tabletop game.
 
@@ -210,25 +211,190 @@ Once a map has been generated with a new set of tiles we can ensure that this us
 
 #### 3.2.2 View Player Maps
 
+**What is the Goal of the use case?** <br>
+
+For the player to be able to view their view of the map and for the Dungeon Master to be able to work with 3.2.3 Change Visability in order to do so.
+
+**Who benefits from the result of this use case?** <br>
+
+The players benefit directly as the players will be able to see what is going on directly on their screen. The Dungeon Master benefits indirectly as the players are able to play, therefore the Dungeon Master is able to play. 
+
+**How will this use case be achieved?** <br>
+
+This use case will be acheived by the system taking the display chosen by the Dungeon Master and displaying it on the players screen. 
+
+**How will we judge/measure that this use case has been taken into account?** <br> 
+
+We will measure that this has been taken into account if the players are able to see a view of the board.
+
+**What limitations are there to achieving the use case?** <br>
+
+The limitations of this use case are the implementations of 3.2.3 change visibility as the player view relies on the Dungeon Master's choice of the view.
+
+**Use Case Flow** <br>
+
+View the map from player's perspective [User Intention] <br>
+Get the player view [System Responsibilities] <br>
+Display the view [User Interface] <br>
+
 #### 3.2.3 Change visability
+JC
+**What is the Goal of the use case?**  
+The goal of "Change visability" is to allow the dm to manually select tiles that are visible on the "player's display" screen. This keeps unexplored parts of the dungeon hidden from the player, allowing the dungeon master to show the player's what they'll see directly.
+
+**Who benefits from the result of this use case?**  
+This use case benefits Dungeon Master. He will gain the ability to control the narrative by controlling what the player's know. This maintains the experience for the players.
+
+**How will this use case be achieved?**  
+This use case will be consistently available to the dm once the dungeon map has generated. When first generated, the entire dungeon is not visible to the players. The dm will be free to reveal which parts of the map are visible to the player there onwards; at his own discretion.
+
+**How will we judge/measure that this use case has been taken into account?**  
+This use case is essential to gameplay. We can judge it's success via playtesting. A successful implementation will make the tiles selected by the dm visible on the player's screen should update once selection is completed.
+
+**What limitations are there to achieving the use case?**  
+The two primary limitations to this use case is the server and the generation of map. Connection to the server must be stable for the dm to update the player's vision. The map must be generated inorder for this use case to function.
+
+**Use Case Flow**
+-User Intention:
+-System Responsibilities:
+-User Interface: 
 
 #### 3.2.4 Change Maps
+
+**What is the goal of this use case** <br>
+
+The goal of the use case "Change Maps" is for the Dungeon Master to be able to change maps between levels.
+
+**Who benefits from the result of this use case?** <br>
+
+The beneficiaries of this use case are the players, who will be able to play another level on a new map at higher levels, and the Dungeon Master, whos campaign continues on. 
+
+**How will this use case be achieved?** <br>
+
+This use case will be acheived through the system generating a map and populating the map with higher leveled monsters than the previous map.
+
+**How will we judge/measure that this use case has been taken into account?** <br>
+
+We will be able to measure this use case being taken into account by seeing if the system is able to generate and move onto another map after the current map the players are on has been completed.
+
+**What are the limitations of acheiving this use case?** <br>
+
+The limitations of acheiving this use case are generating maps. This is because the map must be generated before displaying anything to the users.
+
+**Use Case Flow** <br>
+
+Change maps between levels [User Intention] <br>
+Generate a new level [System Responsibilities] <br>
+Generate monsters [System Responsibilities] <br>
+Display to Dungeon Master Map information [System Responsibilities] <br>
+Dungeon Master sees map information [User Interface] <br>
+Continue the game [User Intention] <br>
 
 #### 3.2.5 View Monster data
 
 #### 3.2.6 See Full Maps
 
 #### 3.2.7 Pick Map theme
+JC
+**What is the Goal of the use case?**  
+The goal of the "Initial Testing Sequence" use case is to ensure that the rocket functionality works when the system is powered on.
+For clarification, this is different to the launching sequence, since this is an "automated" process, rather than the manual process from the "Launch Sequence" use case.
+
+**Who benefits from the result of this use case?**  
+This use case benefits the Rocket Technicians the most, since it allows them to immediately know if anything is wrong with the system without the need to go through a test or an actual launch.
+
+**How will this use case be achieved?**  
+This use case will be achieved through having the system automatically go into this test sequence once the system initialises itself.
+
+**How will we judge/measure that this use case has been taken into account?**  
+We can judge that this use case has been taken to account if the initial test sequence runs on system initialisation.
+
+**What limitations are there to achieving the use case?**  
+The main limitation to this use case being implemented is that all the other functions of the rocket (eg. GPS data collection, barometer data collection, data processing) needs to be functioning correctly.
 
 #### 3.2.8 Remove monsters
 
+**What is the Goal of the use case?**  
+The goal of the "Remove Monsters" use case is to ensure the monsters can be removed by the DM in the DM view to ensure that what is displayed on the DM view is still relevent.
+
+**Who benefits from the result of this use case?**  
+The DM benefits from the use case. By removing monsters that are no longer relevent to the dungeon map (they have been defeated for instance, or the DM removed them for other reasons) it ensures that the DM view displays the current state of the board. This reduces noise to the DM and the need to remember which monsters have been defeated or removed.
+
+**How will this use case be achieved?**  
+The DM has a view that shows monsters on the map. When the DM clicks on monsters there will be an option to delete that monster from the board and remove them from the map.
+
+**How will we judge/measure that this use case has been taken into account?**  
+We can ensure that this use case has been taken into account if the monster is no longer displayed on the map when the DM clicks the delete button for that monster.
+
+**What limitations are there to achieving the use case?**
+
+- This requires input from the DM, and so a button will need to be implemented that the DM can click that will remove the monster from the map.
+- The dungeon must be populated with monsters for this to work. Hence if the monster population function does not work this will not be able to work.
+
+**Use Case Flow**
+- DM clicks monster delete button [user intention]
+- Button sends request to delete monster [system responsibility]
+- Monster is removed from monster list [system responsibility]
+- View updates with monster removed [user interface]
+
+
 #### 3.2.9 Populate monsters
+
+**What is the Goal of the use case?**  
+The goal of the use case is to allow the DM to automatically populate monsters in the dungeon.
+
+**Who benefits from the result of this use case?**  
+Both the players and the DM benefit from this use case. This is because there is less time in setup of the game given the monsters have been already populated. It allows the game to get up and running quicker than if it had not been implemented.
+
+**How will this use case be achieved?**  
+This will be achieved by implementing an algorithm that takes in a dungeon map and a list of monsters to pick from. It will then automatically populate the map with appropriately leveled and themed monsters.  
+
+**How will we judge/measure that this use case has been taken into account?**  
+We can ensure that this use case has been taken into account if when the DM presses the generate monsters button the dungeon is automatically populated with appropriately leveled and themed monsters.
+
+**What limitations are there to achieving the use case?**  
+
+- This requires some list or store of monsters to use. It requires the list to contain monsters of the appropriate level and style that the map is generated in.
+- Requires the dungeon map to generate so that monsters can be placed inside it.
+
+**Use Case Flow**
+- DM pushes button to generate monsters [user intention]
+- Button sends request to server [system responsibility]
+- server runs monster generation algorithm [system responsibility]
+- server returns generated monster list [system responsibility]
+- view updates display to show monsters [user interface]
 
 #### 3.2.10 Change Monster health
 
 #### 3.2.11 Exit Game/server
 
 #### 3.2.12 Choose View (DM Or Player)
+
+**What is the Goal of the use case?** <br>
+The goal is to categorise users into the Dungeon Master and the Player(s) by allowing users to choose to view either the DM's view and the players' view.
+
+**Who benefits from the result of this use case?** <br>
+Choosing which view allows users to clearly choose what responsibilities they have during a DnD game.
+
+**How will this use case be achieved?** <br>
+This function will be achieved by prompting a user that visits the DnD Map Generation website with buttons to choose whether they wish to view the map from the Dungeon Master's (DM) perspective, or though the Player's perspective.
+
+**How will we judge/measure that this use case has been taken into account?** <br>
+This is judged by whether choosing the view actually shows the correct view to the user.
+
+**What limitations are there to achieving the use case?** <br>
+A limitation of achieving this function include:
+ - An inability to access the website/launch the application (no internet access, application does not launch properly)
+ - Being able to provide two different views to the user requires there to be two different views of the application in the first place
+
+**Use Case Flow** <br>
+Open/Go to the DnD Map Generator website [User intention] <br>
+Launch application [System responsibility] <br>
+Ask User to choose between viewing the Dm's view or the Player's view [System responsibility] <br>
+Choose a view [User intention] <br>
+Display the view that the player selected, including all functionalities associated with that view [System responsibility] <br>
+
+
 
 This is typically the longest subsection in the document. List up to fifty use cases (in order of priority for development), and for at least top ten focal use cases, write a short goal statement and use case body (up to seven pages).  Identify the use cases that comprise a minimum viable product.
 
