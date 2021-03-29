@@ -293,6 +293,32 @@ The main limitation to this use case being implemented is that all the other fun
 
 #### 3.2.12 Choose View (DM Or Player)
 
+**What is the Goal of the use case?** <br>
+The goal is to categorise users into the Dungeon Master and the Player(s) by allowing users to choose to view either the DM's view and the players' view.
+
+**Who benefits from the result of this use case?** <br>
+Choosing which view allows users to clearly choose what responsibilities they have during a DnD game.
+
+**How will this use case be achieved?** <br>
+This function will be achieved by prompting a user that visits the DnD Map Generation website with buttons to choose whether they wish to view the map from the Dungeon Master's (DM) perspective, or though the Player's perspective.
+
+**How will we judge/measure that this use case has been taken into account?** <br>
+This is judged by whether choosing the view actually shows the correct view to the user.
+
+**What limitations are there to achieving the use case?** <br>
+A limitation of achieving this function include:
+ - An inability to access the website/launch the application (no internet access, application does not launch properly)
+ - Being able to provide two different views to the user requires there to be two different views of the application in the first place
+
+**Use Case Flow** <br>
+Open/Go to the DnD Map Generator website [User intention] <br>
+Launch application [System responsibility] <br>
+Ask User to choose between viewing the Dm's view or the Player's view [System responsibility] <br>
+Choose a view [User intention] <br>
+Display the view that the player selected, including all functionalities associated with that view [System responsibility] <br>
+
+
+
 This is typically the longest subsection in the document. List up to fifty use cases (in order of priority for development), and for at least top ten focal use cases, write a short goal statement and use case body (up to seven pages).  Identify the use cases that comprise a minimum viable product.
 
 ### 3.3 Usability Requirements
