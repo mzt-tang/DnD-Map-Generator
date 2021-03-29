@@ -384,6 +384,37 @@ We can ensure that this use case has been taken into account if when the DM pres
 
 #### 3.2.10 Change Monster health
 
+**What is the Goal of the use case?** <br>
+To be able to update and therefore keep track of the health of monsters on the map with the DnD Map Generation application, therefore assigning the system with this responsibility rather than assigning it to the DM.
+
+**Who benefits from the result of this use case?**  <br>
+Since the system has the responsibility of recording and updating the health of monsters (which would traditionally be a responsibility of the DM), the DM has less responsibilities to manage. The DM can therefore focus on managing their other responsibilities.
+
+**How will this use case be achieved?** <br>
+This is achieved by assigning a health value to each existing monster in the map/dungeon, and allowing the DM to view and change it at will.
+
+**How will we judge/measure that this use case has been taken into account?** <br>
+This is judged whether the monsters correctly show and keep track of each monsters' health as intended by the DM. It is also judged on whether it successfully relieves the DM from this responsibility.
+
+**What limitations are there to achieving the use case?**  <br>
+Limitations to achieving this function include:
+ - An inability to attempt to change the health of monsters (e.g. they cannot click on a monster to change its health)
+ - If the health is not correctly adjusted as intended by the DM, then it would be confusing to change and keep track of monster health
+ - If any other functions that are performed in order to be able to change a monster's health
+
+**Use Case Flow** <br>
+Open/Go to the DnD Map Generator website <User intention>
+Launch application <System responsibility>
+Ask User to choose between viewing the Dm's view or the Player's view <System responsibility>
+Choose the DM view <User intention>
+Display the DM view and all of its functionalities <System responsibility>
+Choose a dungeon theme and find a map to use in a DnD game <User intention>
+Generate maps according to the theme until the user is satisfied with one map <System responsibility>
+Add monsters to the map <User Intention>
+Populate the generated map with monsters that each have their own details and health amounts <System responsibility>
+While playing the game, a monster's health changes. The DM changes that monster's current health <User intention>
+Change the corresponding monster's health to a new value, and record it <System responsibility>
+
 #### 3.2.11 Exit Game/server
 
 #### 3.2.12 Choose View (DM Or Player)
