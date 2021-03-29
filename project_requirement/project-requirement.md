@@ -187,15 +187,101 @@ See 9.5.10. for most systems this will be around one page.
 
 #### 3.2.2 View Player Maps
 
+P
+
+**What is the Goal of the use case?**  
+
+For the player to be able to view their view of the map and for the Dungeon Master to be able to work with 3.2.3 Change Visability in order to do so.
+
+**Who benefits from the result of this use case?**  
+
+The players benefit directly as the players will be able to see what is going on directly on their screen. The Dungeon Master benefits indirectly as the players are able to play, therefore the Dungeon Master is able to play. 
+
+**How will this use case be achieved?**  
+
+This use case will be acheived by the system taking the display chosen by the Dungeon Master and displaying it on the players screen.
+
+**How will we judge/measure that this use case has been taken into account?**  
+
+We will measure that this has been taken into account if the players are able to see a view of the board.
+
+**What limitations are there to achieving the use case?**  
+
+The limitatios of this use case are the implementations of 3.2.3 change visibility as the player view relies on the Dungeon Master's choice of the view.
+
+**Use Case Flow**
+- User Intention:
+- System Responsibilities:
+- User Interface:
+
 #### 3.2.3 Change visability
+JC
+**What is the Goal of the use case?**  
+The goal of "Change visability" is to allow the dm to manually select tiles that are visible on the "player's display" screen. This keeps unexplored parts of the dungeon hidden from the player, allowing the dungeon master to show the player's what they'll see directly.
+
+**Who benefits from the result of this use case?**  
+This use case benefits everyone. The Dungeon Master will get to control the narrative by controlling what the player's know and don't know. The Players will benefit from this by keeping the gaming experience genuine.
+
+**How will this use case be achieved?**  
+This use case will be achieved through having the system automatically go into this test sequence once the system initialises itself.
+
+**How will we judge/measure that this use case has been taken into account?**  
+We can judge that this use case has been taken to account if the initial test sequence runs on system initialisation.
+
+**What limitations are there to achieving the use case?**  
+The main limitation to this use case being implemented is that all the other functions of the rocket (eg. GPS data collection, barometer data collection, data processing) needs to be functioning correctly.
 
 #### 3.2.4 Change Maps
+
+P
+
+**What is the goal of this use case**
+
+The goal of the use case "Change Maps" is for the Dungeon Master to be able to change maps between levels.
+
+**Who benefits from the result of this use case?**
+
+The beneficiaries of this use case are the players, who will be able to play another level on a new map at higher levels, and the Dungeon Master, whos campaign continues on. 
+
+**How will this use case be achieved?**
+
+This use case will be acheived through the system generating a map and populating the map with higher leveled monsters than the previous map.
+
+**How will we judge/measure that this use case has been taken into account?**
+
+We will be able to measure this use case being taken into account by seeing if the system is able to generate and move onto another map after the current map the players are on has been completed.
+
+**What are the limitations of acheiving this use case?**
+
+The limitations of acheiving this use case are generating maps. This is because the map must be generated before displaying anything to the users.
+
+**Use Case Flow**
+
+- User Intention
+- System Responsibilities
+- User Interface
 
 #### 3.2.5 View Monster data
 
 #### 3.2.6 See Full Maps
 
 #### 3.2.7 Pick Map theme
+JC
+**What is the Goal of the use case?**  
+The goal of the "Initial Testing Sequence" use case is to ensure that the rocket functionality works when the system is powered on.
+For clarification, this is different to the launching sequence, since this is an "automated" process, rather than the manual process from the "Launch Sequence" use case.
+
+**Who benefits from the result of this use case?**  
+This use case benefits the Rocket Technicians the most, since it allows them to immediately know if anything is wrong with the system without the need to go through a test or an actual launch.
+
+**How will this use case be achieved?**  
+This use case will be achieved through having the system automatically go into this test sequence once the system initialises itself.
+
+**How will we judge/measure that this use case has been taken into account?**  
+We can judge that this use case has been taken to account if the initial test sequence runs on system initialisation.
+
+**What limitations are there to achieving the use case?**  
+The main limitation to this use case being implemented is that all the other functions of the rocket (eg. GPS data collection, barometer data collection, data processing) needs to be functioning correctly.
 
 #### 3.2.8 Remove monsters
 
@@ -254,6 +340,32 @@ We can ensure that this use case has been taken into account if when the DM pres
 #### 3.2.11 Exit Game/server
 
 #### 3.2.12 Choose View (DM Or Player)
+
+**What is the Goal of the use case?** <br>
+The goal is to categorise users into the Dungeon Master and the Player(s) by allowing users to choose to view either the DM's view and the players' view.
+
+**Who benefits from the result of this use case?** <br>
+Choosing which view allows users to clearly choose what responsibilities they have during a DnD game.
+
+**How will this use case be achieved?** <br>
+This function will be achieved by prompting a user that visits the DnD Map Generation website with buttons to choose whether they wish to view the map from the Dungeon Master's (DM) perspective, or though the Player's perspective.
+
+**How will we judge/measure that this use case has been taken into account?** <br>
+This is judged by whether choosing the view actually shows the correct view to the user.
+
+**What limitations are there to achieving the use case?** <br>
+A limitation of achieving this function include:
+ - An inability to access the website/launch the application (no internet access, application does not launch properly)
+ - Being able to provide two different views to the user requires there to be two different views of the application in the first place
+
+**Use Case Flow** <br>
+Open/Go to the DnD Map Generator website [User intention] <br>
+Launch application [System responsibility] <br>
+Ask User to choose between viewing the Dm's view or the Player's view [System responsibility] <br>
+Choose a view [User intention] <br>
+Display the view that the player selected, including all functionalities associated with that view [System responsibility] <br>
+
+
 
 This is typically the longest subsection in the document. List up to fifty use cases (in order of priority for development), and for at least top ten focal use cases, write a short goal statement and use case body (up to seven pages).  Identify the use cases that comprise a minimum viable product.
 
