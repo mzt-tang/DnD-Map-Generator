@@ -173,6 +173,14 @@ References to other documents or standards. Follow the IEEE Citation  Reference 
 
 See 9.5.10. for most systems this will be around one page. 
 
+#### 3.1.1 Dungeon Master's View
+
+The dungeon master must be able to see a different view from the players. The dungeon master's view must be controllable by the dungeon master and must include features such as changing the player's view and viewing enemy statistics. This view includes displaying individual rooms as well as the dungeon as a whole.
+
+#### 3.1.2 Player's View
+
+The player's view must display what the dungeon master chooses to display. This means that the player's view interface and the dungeon master interface must be connected so that the dungeon master can change the display for the players, but not the other way around.
+
 ### 3.2 Functions
 
 This is typically the longest subsection in the document. List up to fifty use cases (in order of priority for development), and for at least top ten focal use cases, write a short goal statement and use case body (up to seven pages).  Identify the use cases that comprise a minimum viable product.
