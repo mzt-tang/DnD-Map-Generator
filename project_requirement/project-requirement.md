@@ -252,7 +252,8 @@ This use case will be consistently available to the dm once the dungeon map has 
 This use case is essential to gameplay. We can judge it's success via playtesting. A successful implementation will make the tiles selected by the dm visible on the player's screen should update once selection is completed.
 
 **What limitations are there to achieving the use case?**  
-The two primary limitations to this use case is the server and the generation of map. Connection to the server must be stable for the dm to update the player's vision. The map must be generated inorder for this use case to function.
+- Connection to the server must be stable for the dm to update the player's vision. 
+- The map must be generated before in order for this use case to function.
 
 **Use Case Flow**
 -User Intention:
