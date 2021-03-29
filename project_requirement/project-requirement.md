@@ -188,6 +188,21 @@ See 9.5.10. for most systems this will be around one page.
 #### 3.2.2 View Player Maps
 
 #### 3.2.3 Change visability
+JC
+**What is the Goal of the use case?**  
+The goal of "Change visability" is to allow the dm to manually select tiles that are visible on the "player's display" screen. This keeps unexplored parts of the dungeon hidden from the player, allowing the dungeon master to show the player's what they'll see directly.
+
+**Who benefits from the result of this use case?**  
+This use case benefits everyone. The Dungeon Master will get to control the narrative by controlling what the player's know and don't know. The Players will benefit from this by keeping the gaming experience genuine.
+
+**How will this use case be achieved?**  
+This use case will be achieved through having the system automatically go into this test sequence once the system initialises itself.
+
+**How will we judge/measure that this use case has been taken into account?**  
+We can judge that this use case has been taken to account if the initial test sequence runs on system initialisation.
+
+**What limitations are there to achieving the use case?**  
+The main limitation to this use case being implemented is that all the other functions of the rocket (eg. GPS data collection, barometer data collection, data processing) needs to be functioning correctly.
 
 #### 3.2.4 Change Maps
 
@@ -196,6 +211,22 @@ See 9.5.10. for most systems this will be around one page.
 #### 3.2.6 See Full Maps
 
 #### 3.2.7 Pick Map theme
+JC
+**What is the Goal of the use case?**  
+The goal of the "Initial Testing Sequence" use case is to ensure that the rocket functionality works when the system is powered on.
+For clarification, this is different to the launching sequence, since this is an "automated" process, rather than the manual process from the "Launch Sequence" use case.
+
+**Who benefits from the result of this use case?**  
+This use case benefits the Rocket Technicians the most, since it allows them to immediately know if anything is wrong with the system without the need to go through a test or an actual launch.
+
+**How will this use case be achieved?**  
+This use case will be achieved through having the system automatically go into this test sequence once the system initialises itself.
+
+**How will we judge/measure that this use case has been taken into account?**  
+We can judge that this use case has been taken to account if the initial test sequence runs on system initialisation.
+
+**What limitations are there to achieving the use case?**  
+The main limitation to this use case being implemented is that all the other functions of the rocket (eg. GPS data collection, barometer data collection, data processing) needs to be functioning correctly.
 
 #### 3.2.8 Remove monsters
 
