@@ -187,6 +187,33 @@ See 9.5.10. for most systems this will be around one page.
 
 #### 3.2.2 View Player Maps
 
+P
+
+**What is the Goal of the use case?**  
+
+For the player to be able to view their view of the map and for the Dungeon Master to be able to work with 3.2.3 Change Visability in order to do so.
+
+**Who benefits from the result of this use case?**  
+
+The players benefit directly as the players will be able to see what is going on directly on their screen. The Dungeon Master benefits indirectly as the players are able to play, therefore the Dungeon Master is able to play. 
+
+**How will this use case be achieved?**  
+
+This use case will be acheived by the system taking the display chosen by the Dungeon Master and displaying it on the players screen.
+
+**How will we judge/measure that this use case has been taken into account?**  
+
+We will measure that this has been taken into account if the players are able to see a view of the board.
+
+**What limitations are there to achieving the use case?**  
+
+The limitatios of this use case are the implementations of 3.2.3 change visibility as the player view relies on the Dungeon Master's choice of the view.
+
+**Use Case Flow**
+-User Intention:
+-System Responsibilities:
+-User Interface:
+
 #### 3.2.3 Change visability
 JC
 **What is the Goal of the use case?**  
@@ -205,6 +232,8 @@ We can judge that this use case has been taken to account if the initial test se
 The main limitation to this use case being implemented is that all the other functions of the rocket (eg. GPS data collection, barometer data collection, data processing) needs to be functioning correctly.
 
 #### 3.2.4 Change Maps
+
+P
 
 **What is the goal of this use case**
 
