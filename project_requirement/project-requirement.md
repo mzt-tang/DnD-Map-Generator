@@ -148,7 +148,10 @@ Write a short natural language description of the top nonfunctional requirements
 For systems with hardware components, identify the physical characteristics of that hardware (9.4.10) and environment conditions in which it must operate (9.4.11).  Depending on the project, this section may be from one page up to 5 pages.
 
 Requirements for the map display:
-- It must be faced upwards, so that the players can put the figures on it
+- It must either
+    - Be a screen facing upwards or
+    - Be a projector projecting the image onto a table
+    - This is necessary because the players will need to be able to place their figures on the map
 - It must be big enough so that the figures all fit on the map, and are to the correct scale (an ogre taking up more tiles than a human, for example)
 - It must be able to at least connect to the local network
 Requirements for the dungeon master device:
