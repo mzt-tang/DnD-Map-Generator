@@ -206,6 +206,32 @@ The main limitation to this use case being implemented is that all the other fun
 
 #### 3.2.4 Change Maps
 
+**What is the goal of this use case**
+
+The goal of the use case "Change Maps" is for the Dungeon Master to be able to change maps between levels.
+
+**Who benefits from the result of this use case?**
+
+The beneficiaries of this use case are the players, who will be able to play another level on a new map at higher levels, and the Dungeon Master, whos campaign continues on. 
+
+**How will this use case be achieved?**
+
+This use case will be acheived through the system generating a map and populating the map with higher leveled monsters than the previous map.
+
+**How will we judge/measure that this use case has been taken into account?**
+
+We will be able to measure this use case being taken into account by seeing if the system is able to generate and move onto another map after the current map the players are on has been completed.
+
+**What are the limitations of acheiving this use case?**
+
+The limitations of acheiving this use case are generating maps. This is because the map must be generated before displaying anything to the users.
+
+**Use Case Flow**
+
+- User Intention
+- System Responsibilities
+- User Interface
+
 #### 3.2.5 View Monster data
 
 #### 3.2.6 See Full Maps
