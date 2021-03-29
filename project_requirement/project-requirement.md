@@ -210,9 +210,9 @@ We will measure that this has been taken into account if the players are able to
 The limitatios of this use case are the implementations of 3.2.3 change visibility as the player view relies on the Dungeon Master's choice of the view.
 
 **Use Case Flow**
--User Intention:
--System Responsibilities:
--User Interface:
+- User Intention:
+- System Responsibilities:
+- User Interface:
 
 #### 3.2.3 Change visability
 JC
