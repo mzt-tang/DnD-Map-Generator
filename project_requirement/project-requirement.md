@@ -417,6 +417,27 @@ Change the corresponding monster's health to a new value, and record it <System 
 
 #### 3.2.11 Exit Game/server
 
+**What is the Goal of the use case?**  
+Close the dungeons and dragons application and server.
+
+**Who benefits from the result of this use case?** 
+The dungeon master will benefit from this function as they are able to close the application after usage of the game, instead of using system resources to keep the application up when they are no longer using it.
+
+**How will this use case be achieved?**  
+By pressing an exit application button, the system will close all processes that are being used. This should close the server that displays the board for the players device as well as the GUI for the dungeon master.
+
+**How will we judge/measure that this use case has been taken into account?**  
+If we are unable to see the application or server running, as well as no longer being able to see system resources being used from the device's manager then we know the function is working as intended.
+
+**What limitations are there to achieving the use case?**  
+* This use-case requires the board and server to be implemented and operational.
+
+**Use Case Flow**
+* Close the application [User Intention]
+* Stop all running processes [System Responsibilities]
+* Dungeon masters view is no longer being displayed [User Interface]
+* Players view is no longer being displayed [User Interface]
+
 #### 3.2.12 Choose View (DM Or Player)
 
 **What is the Goal of the use case?** <br>
