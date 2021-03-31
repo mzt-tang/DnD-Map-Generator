@@ -787,7 +787,13 @@ One page on assumptions and dependencies (9.5.7).
 
 ### 6.2 Acronyms and abbreviations
 
-One page glossary _as required_.
+**Risk Acronyms and Abbreviations:**
+* Performance Risk: 
+* Financial Risk:
+* Availability Risk:
+* Operational Risk:
+* Health and Safety Risk:
+* Strategic Risk:
 
 ## 7. Contributions
 
