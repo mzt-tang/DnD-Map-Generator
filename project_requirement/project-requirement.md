@@ -122,7 +122,7 @@ There will need to be information about each room that will be displayed to the 
 
 The information that will be sent to the terminals will be persistent. It will need to be stored somewhere that the two devices can access.
 
-On startup, the maps should not take a long time to generate. The maps will only be generated when the players are entering them. For example, when the game starts it will only randomly generate the first level. The map generation should only take about 1-2 seconds to generate a map and display it on the screen. It should then take less time to display the information for the dungeon master.
+On startup, the maps should not take a long time to generate. The maps will only be generated when the players are entering them. For example, when the game starts it will only randomly generate the first level. The map generation should take less than 10-20 seconds to generate a map and display it on the screen. It should then take less time to display the information for the dungeon master.
 
 Since the game will be played in real time, the game will need to react to changes made quickly. Each time the players progress to the next level of the dungeon a new map will be generated. If the players want to go back to a previous level, it should take less than 1 second to load, since the map had already been generated previously. The only other aspect that will need to be changed dynamically is the Fog of War system. When the players go to each room the dungeon master should be able to make the room visible on the map display. This will need to take less than a second to change, since waiting for a while for the rooms visibility to load may ruin the immersion of the players.
 
