@@ -398,10 +398,12 @@ We can ensure that this use case has been taken into account if the monster is n
 - The dungeon must be populated with monsters for this to work. Hence if the monster population function does not work this will not be able to work.
 
 **Use Case Flow**
-- DM clicks monster delete button [user intention]
-- Button sends request to delete monster [system responsibility]
-- Monster is removed from monster list [system responsibility]
-- View updates with monster removed [user interface]
+| Action | Type |
+| ---------------- | ------------------ |
+|DM clicks monster delete button | [user intention] |
+|Button sends request to delete monster | [system responsibility] |
+|Monster is removed from monster list | [system responsibility] |
+|View updates with monster removed | [user interface] |
 
 
 #### 3.2.9 Populate monsters
@@ -424,11 +426,13 @@ We can ensure that this use case has been taken into account if when the DM pres
 - Requires the dungeon map to generate so that monsters can be placed inside it.
 
 **Use Case Flow**
-- DM pushes button to generate monsters [user intention]
-- Button sends request to server [system responsibility]
-- server runs monster generation algorithm [system responsibility]
-- server returns generated monster list [system responsibility]
-- view updates display to show monsters [user interface]
+| Action | Type |
+| ---------------- | ------------------ |
+| DM pushes button to generate monsters | [user intention] |
+| Button sends request to server | [system responsibility] |
+| server runs monster generation algorithm | [system responsibility] |
+| server returns generated monster list | [system responsibility] |
+| view updates display to show monsters | [user interface] |
 
 #### 3.2.10 Change Monster health
 
