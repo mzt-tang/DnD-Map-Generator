@@ -237,8 +237,7 @@ View the map from player's perspective [User Intention] <br>
 Get the player view [System Responsibilities] <br>
 Display the view [User Interface] <br>
 
-#### 3.2.3 Change visability
-JC
+#### 3.2.3 Change Visability
 
 **What is the Goal of the use case?**  
 The goal of "Change visability" is to allow the dm to manually select tiles that are visible on the "player's display" screen. This keeps unexplored parts of the dungeon hidden from the player, allowing the dungeon master to show the player's what they'll see directly.
@@ -257,17 +256,17 @@ This use case is essential to gameplay. We can judge it's success via playtestin
 - The map must be generated before in order for this use case to function.
 
 **Use Case Flow**
--User Intention: Player characters move to different room. 
--User Intention: Add fog of war. 
--System Responsibilities: Allow/Register controls on DM device.
--System Responsibilities: Flag tiles invisible.
--System Responsibilities: Update player's vision screen.
--User Intention: Make new room visible. 
--System Responsibilities: Allow/Register controls on DM device.
--System Responsibilities: Flag tiles visible.
--System Responsibilities: Update player's vision screen.
--User Interface: Player's and DM able to see new screen.
--User Intention: Game continues.
+- User Intention: Player characters move to different room. 
+- User Intention: Add fog of war. 
+- System Responsibilities: Allow/Register controls on DM device.
+- System Responsibilities: Flag tiles invisible.
+- System Responsibilities: Update player's vision screen.
+- User Intention: Make new room visible. 
+- System Responsibilities: Allow/Register controls on DM device.
+- System Responsibilities: Flag tiles visible.
+- System Responsibilities: Update player's vision screen.
+- User Interface: Player's and DM able to see new screen.
+- User Intention: Game continues.
 
 #### 3.2.4 Change Maps
 
@@ -371,8 +370,6 @@ The user should be able to press the generate map button and see the full map
 The user should be able to press the see map button and see the full map
 
 #### 3.2.7 Pick Map theme
-JC
-
 **What is the Goal of the use case?**  
 Map themes are the type of dungeon the game takes place in. They determine monster population. The Dungeon Master shall be able to pick what themed dungeon they would like to play in before map generation.
 
@@ -390,11 +387,11 @@ Map themes are a pre-requisite for monster population. If successfully implement
 - When implementing, this feature must be implemented after "populate monsters".
 
 **Use Case Flow**
--User Intention: Select map theme.
--System Responsibilities: Display options, 
--User Intention: Dungeon Master makes selection.
--System Responsibilities: Store selection in public variable.
--System Responsibilities: Populate dungeon with monsters according to the theme.
+- User Intention: Select map theme.
+- System Responsibilities: Display options, 
+- User Intention: Dungeon Master makes selection.
+- System Responsibilities: Store selection in public variable.
+- System Responsibilities: Populate dungeon with monsters according to the theme.
 
 #### 3.2.8 Remove monsters
 
