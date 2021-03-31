@@ -741,12 +741,12 @@ Map themes are a pre-requisite for monster population. If successfully implement
 #### 4.8 Remove monsters
 
 **How will we verify this specific requirement?**  
-We can ensure that this use case has been taken into account if the monster is no longer displayed on the map when the DM clicks the delete button for that monster.
+When the DM clicks the monster and clicks to remove the monster it will no longer be displayed.
 
 #### 4.9 Populate monsters
 
 **How will we verify this specific requirement?**  
-We can ensure that this use case has been taken into account if when the DM presses the generate monsters button the dungeon is automatically populated with appropriately leveled and themed monsters.
+When the DM pushes a button to populate monseters the dungeon will automatically populate the map with monseters that are appropriate levels and in context. While we can verify that monsters are generated and are the correct level we will have to have the client or other players judge if the monsters are of the correct context.
 
 #### 4.10 Change Monster health
 
