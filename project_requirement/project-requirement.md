@@ -17,25 +17,54 @@ All team members are expected to contribute equally to the document and list the
 
 ## 1. Introduction
 
-One page overall introduction including sections 1.1 and 1.2.
+Dungeons and Dragons (D&D) is a co-operative tabletop fantasy role-playing game. Most players play as adventurers/heroes that explore the world by going on quests, fighting monsters and hunting for rewards. One player is the Dungeon Master (DM) who facilitates the game, controls the non-player characters and monsters, and narrates the story. The players traverse the world as figures moving on top of a set-up map, which contains non-playable characters that the players interact with.
+
+There are enemies that the DM controls (often a type of monster). Each enemy has statistics on its hit points, armour class and speed. This allows the players to interact and do battle with the adversary. The enemies may also contain additional information on their challenge rating, armour type, race, size, alignment and other specific data that could affect the nature of the battle.
+
+D&D includes a specific type of map called dungeons. Which is a dangerous enclosed space (E.g. basement of a haunted mansion, an underground dark elven city, a monster-filled treasure cave) that might contain many dangerous monsters and traps. A dungeon should present a large risk to the players, but they are rewarded heavily if they're triumphant in their dungeon run. A dungeon may contain multiple layers that the players can traverse between. The dungeon should get progressively more dangerous the deeper it is. The players' view is also restricted, meaning they can only see a certain portion of the dungeon and what enemies are within their view at any time (except for the DM, who can see/knows the whole map). This creates uncertainty and allows for interesting decisions/outcomes for the players.
 
 ### Client
 
-Identify the client and their contact details
+**Craig Watterson**
+Victoria University of Wellington, Cotton Building, Room 253
+**Phone:** +64 4 886 5333
+**Email:** craig.watterson@vuw.ac.nz
 
 ### 1.1 Purpose
 
-To create a D&D map generator that also generates a well weighted list of monsters within the map. The generated map can be displayed on a large table screen, and be able to be controlled via a secondary screen.
+To create a D&D map generator that also generates a well-weighted list of monsters within the map. The generated map can be displayed on a large table screen, and be able be controlled via a secondary screen.
 
 ### 1.2 Scope
 
-One paragraph describing the scope of the system (9.5.2)
+#### The Map Generation of the Program should meet the Following Goals
+ - Maps generated should be different each time
+ - Maps should adhere to at least 1 theme
+ - The location that enemies are placed should make sense in relation to the place/theme on the map
+ - The enemies should be weighted so that the amount of enemies at any given location is well balanced
+
+#### The Primary Map Displaying Screen of the Program should meet the Following Goals
+ - The map should be scalable and resizable to the screen that its displayed on
+ - Locations on the map should be covered in fog of war unless specified by the dungeon master
+ - The map should have some form of scale, allowing players to gauge distance
+
+#### The Secondary Screen Map Controller of the Program should meet the Following Goals
+ - The screen should be able to display any/all enemies' stats
+ - The dungeon master should be able to see the full map
+ - The dungeon master should be able to control where to uncover the fog of war on using the screen
+ - The dungeon master should be able to generate a new map with the selected theme
+ - The dungeon master should be able to change any monster's stats
+
 
 ### 1.3 Product overview 
 #### 1.3.1 Product perspective
 
-One page defining the system's relationship to other related products
-(9.5.3. but not the subsections in the standard.)
+This system generates maps to be used for a Dungeons and Dragons game, while also allowing the Dungeon Master to manage the game and choose what the players see. This system is similar to other systems such as ProDnD[1], an app available on the app store that allows users to input map sizes, complexity, and other information to generate a dungeon. Our system would not be as complex but will still be inspired in part by the ProDnD system and other systems similar to it.
+ 
+The system will generate a map as well as populate the map with enemies of varying levels and types. The Dungeon Master would then calculate any damage to the enemies and players and manage the player’s information off-screen and input the hit points lost to the enemies on their device. The system would also generate information about the enemy such as the armour level. The levels of the generated enemies would depend on the level of the Dungeon.
+ 
+The system would display information to the players using a similar system to Kahoot[2], a system that allows the host (the Dungeon Master in our system) to host a game that the players can connect to on their devices. Our system would be different from Kahoot's system as the Dungeon Master would need to be able to choose what image the players see on their device. This system would have no direct relationship with any other products or systems similar to Kahoot, but will instead be inspired by the design and functions of other products such as Kahoot. Whereas Kahoot is hosted via the internet, therefore anyone can connect to a given game, our system will use a local area network to connect between devices.
+ 
+For our system to appear as a Dungeons and Dragons system, we will need to either create or use the artwork. The artwork we use will either be created by ourselves or will be free to use images.
 
 > **9.5.3 Product perspective** <br>
 > Define the system's relationship to other related products. 
@@ -108,9 +137,31 @@ The client has also outlined that the system is to be used in conjuction with re
 
 #### 1.3.4 Limitations
 
-One page on the limitations on the product (9.5.6)
+##### 1.3.4.1 Software Limitations
+* The software will be written using the React framework. The system will be running on a web application such as "chrome", or something similar like "Node.js".  A standalone executable application will not be released.
+
+* No server hosting. Without server hosting available to us as a resource, the system won't be designed to run on a server. Devices will have to communicate with each other via peer-to-peer connection. The software will utilize Local Area Networking (assuming it is available, see next subsection).
+
+* Persistence of any kind is not supported. The DM will not be able to save and reload dungeons.
+
+* Use of copyright material is (under any circumstances) not permitted.
+
+##### 1.3.4.2 Hardware Limitations
+* No 24 hour remote connections. An extension to software limitations, the lack of server hosting also means any sort of remote connection is impossible without a host computer portforwarding the program through their modem. Any remote connection features will not be supported.
+
+* Connectivity between devices will not work without a Local Area Network. The system does not require connection to the internet, but all devices must be connected to the same network. 
+
+##### 1.3.4.3 Usage Assumptions
+* It is assumed that there'll only be two devices involved. A network of more than 2 devices will be not be supported.
+
+* It will be assumed that the devices will be used in the same room. Any UX features involving the display of information, curcial for online play, will not be implemented. The user of the software will be able to see both devices and their separate displays.
+
+* Assuming the DM will only rely on this for dungeon generation and nothing more. any more dm support (such as calculating player stats, health modificers, speed modifiers inventory space, etc) will not be included. Custom Dungeon creation of any sort will not be included.
 
 ## 2. References
+
+[1] Name of Software: ProDnD Publisher: Gray Lake Studios Date Accessed: 23/3/2021 Type of Medium: Mobile App Avaiable: https://play.google.com/store/apps/details?id=com.GrayLake.ProDnD_1&hl=en&gl=US 
+[2] Name of Software: Kahoot! Publisher: Morten Versvik, Johan Brand, and Jamie Brooker Date Accessed: 25/3/2021 Type of Medium Website. Available: https://kahoot.com/
 
 References to other documents or standards. Follow the IEEE Citation  Reference scheme, available from the [IEEE website](https://www.ieee.org/) (please use the search box). (1 page, longer if required)
 
@@ -122,16 +173,46 @@ References to other documents or standards. Follow the IEEE Citation  Reference 
 
 See 9.5.10. for most systems this will be around one page. 
 
+#### 3.1.1 Dungeon Master's View
+
+The dungeon master must be able to see a different view from the players. The dungeon master's view must be controllable by the dungeon master and must include features such as changing the player's view and viewing enemy statistics. This view includes displaying individual rooms as well as the dungeon as a whole.
+
+#### 3.1.2 Player's View
+
+The player's view must display what the dungeon master chooses to display. This means that the player's view interface and the dungeon master interface must be connected so that the dungeon master can change the display for the players, but not the other way around.
+
 ### 3.2 Functions
 
 This is typically the longest subsection in the document. List up to fifty use cases (in order of priority for development), and for at least top ten focal use cases, write a short goal statement and use case body (up to seven pages).  Identify the use cases that comprise a minimum viable product.
 
 ### 3.3 Usability Requirements
 
-See 9.5.12. for most systems this will be around one page.
+In order to create a fully functional Dungeons and Dragons tabletop, the following usability requirements needs to be met: 
+* Measurable **effectiveness** of the application: The application needs to operate at a desired level of functionality without failure.
+* **Efficiency** of the application: The application has to manage functions inputted by the user without inefficiencies.
+* Client specified **criteria for satisfaction**: The application needs to portray desired functions specified by the client.
 
-> **9.5.12 Usability requirements**<br>
-> Define usability (quality in use) requirements. Usability requirements and objectives for the software system include measurable effectiveness, efficiency, and satisfaction criteria in specific contexts of use.
+**Effectiveness:**
+* The touch table must take in touch functionality from the user to perform various defined tasks.
+* The touch table needs to communicate to another device and take in inputs from that device.
+* The application must generate a dungeons and dragons map for player usage and be displayed on the touch table.
+* The application should switch between multiple states (maps).
+
+**Efficiency:**
+* There should be no latency issues between the two devices.
+* The application should be booted up from devices and run from the get-go.
+* Map generation should be efficient and not take too long to be created.
+
+**Satisfaction Criteria:**
+* A web-based application must be used so that the application can be run from any operating system.
+* The application must be able to be run from the two different sized devices specified by the client (An IPad and the touch table).
+* The application contains a "fog of war", only displaying sections of the map that the user can currently see.
+* The seperate device from the touch table should contain functionality only the dungeon-master can use.
+* The application should contain a scale or grid to determine size of characters and scenery.
+* Size of tiles should be large enough to fit physical pieces ontop.
+
+The application as the result of this project should contain no obscurities that could offend any of the users whilst using the application. The application must avoid any risks of usage that could arise from specific context of use. 
+
 
 ### 3.4 Performance requirements
 
@@ -180,10 +261,50 @@ Present the systemic (aka nonfunctional) requirements of the product (see ISO/IE
 List up to twenty systemic requirements / attributes.
 Write a short natural language description of the top nonfunctional requirements (approx. five pages).
 
+- Performance
+- Usability
+- Scalability
+- Testing
+- Extensibility
+
+Operability
+It is expected that the application is able to successfully generate a random map without any errors. It is also expected to display the map correctly using the assets provided, and correctly update the map whenever the Dungeon Master makes an update on his device.
+
+Performance
+It is expected that the system is able to perform the inputs in an efficient amount of time. It shouldn't take
+longer than 2-3 seconds to generate a new random dungeon level. It should take less time than that to display a previously generated level.
+
+Scalability
+It is expected that the display is able to be scaled to the different devices it is used on. A table with a screen displaying the map may not be the same size as the image shown with a projector, so the display should be able to scale. This is the same with the Dungeon Masters application, since this should be able to be used on multiple different devices.
+
+Usability
+It is expected that the application is intuitive to use for the user. The map should be displayed in a clear way, the information that is displayed on the map should be clear to the users. The Dungeon Masters application should also be easy to use
+
+Testing
+All aspects of the application are expected to be extensively tested, so that it can randomly generate a map, establish a connection between the map display device and Dungeon Master device, and update the map when the Dungeon Master performs an input.
+
+Extensibility
+Since the client has ideas for stretch goals that could be achieved once the minimum requirements have been reached, it is important that adding new features is possible to achieve without majorly overhauling the program.
+
+Compliance
+It is expected that the application conforms to the values of the client. It is also important that if the decision is made to release the application to the public, that any names/terms that are copyrighted by Wizards of the Coast are not used.
 
 ### 3.8 Physical and Environmental Requirements 
 
 For systems with hardware components, identify the physical characteristics of that hardware (9.4.10) and environment conditions in which it must operate (9.4.11).  Depending on the project, this section may be from one page up to 5 pages.
+
+Requirements for the map display:
+- It must either
+    - Be a screen facing upwards or
+    - Be a projector projecting the image onto a table
+    - This is necessary because the players will need to be able to place their figures on the map
+- It must be big enough so that the figures all fit on the map, and are to the correct scale (an ogre taking up more tiles than a human, for example)
+- It must be able to at least connect to the local network
+Requirements for the dungeon master device:
+- It must be able to at least connect to the local network
+- It must be able to get input from the dungeon master (e.g when they want to change levels)
+Requirements for room:
+- Must be big enough for the players to comfortably play the game
 
 ### 3.9 Supporting information
 
@@ -207,13 +328,40 @@ Identify dates for key project deliverables:
 
 ### 5.2 Budget
 
-Present a budget for the project (table), and justify each budget item (one paragraph per item, one page overall). 
+No paid items to be purchased have been outlined to be required for the purpose of constructing the system. Because no purchases have been outlined, and therefore no expenses have been outlined, no budget has been explicitly allocated for this project.
+
+However, a potential expense is the use of paid/non-free assets (e.g. map textures, monster item icons/textures, or any other assets to be outlined in the future). There is no plan to purchase such assets, as instead there is a bias towards the use of free assets. However, if paid assets are decided to be used in the project, then a budget for purchasing paid assets will be set.
 
 ### 5.3 Risks 
-
 Identify the ten most important project risks to achieving project goals: their type, likelihood, impact, and mitigation strategies (3 pages).
 
 If the project will involve any work outside the ECS laboratories, i.e. off-campus activities, these should be included in the following section.
+
+| # | Risk | Risk Type | Likelihood | Severity | 
+| --- | :--------------------------------------------------------------------------------: |  --------------- | ------------ | ---------------- |
+| 1 | COVID-19 levels increase, restricting access to laboratories and equipment | Performance | High | Tolerable |
+| 2 | Client removes budget or online resources become unavailable | Financial / Availability | Low | Tolerable |
+| 3 | Incompabitibility of services or equipment | Availability / Performance | Medium | Severe |
+| 4 | Minimal requirements will not be met by the end of the project (Scope creep) | Operational | Medium | Extreme |
+| 5 | Team members are unable to work on the project (Illness, lack of internet, etc) | Health and Saftey / Performance | Medium | Extreme |
+| 6 | Customer alters the requirements during development | Strategic | Low | Tolerable |
+| 7 | The products do not align with stakeholder expectations | Strategic | Medium | Tolerable |
+| 8 | Lack of communication amongst team members and stakeholders | Performance | Low | Severe |
+| 9 | Product has underlying bugs that impact the products functionality | Operational | Low | Tolerable |
+| 10 | Team members lack required skills to complete the project | Performance | Low | Tolerable |
+
+| # | Risk | Mitigation Strategy |
+| --- | :--------------------------------------------------------------------------------: |  ------------------------------------------------ |
+| 1 | COVID-19 levels increase, restricting access to laboratories and equipment | Frequent usage of online resources to keep in-contact and productive until covid levels decrease or the project finalizes.  |
+| 2 | Client removes budget or online resources become unavailable | Utilisation of offline resources, if we are using any online assets (or planning to) we will need to produce them ourselves.  |
+| 3 | Incompabitibility of services or equipment | Research alternative services and equipment to use incase the current ones fail or become unavailable for usage. |
+| 4 | Minimal requirements will not be met by the end of the project (Scope creep) | We could invest in buying components to fulfill the remaining requirements or focus all members efforts into accomplishing the minimum requirements before attempting stretch goals. |
+| 5 | Team members are unable to work on the project (Illness, lack of internet, etc) | Divide the absent members workload evenly amongst all remaining members to keep workflow consistent and to not overwhelm one member. |
+| 6 | Customer alters the requirements during development | As the client did not specify these requirements during the proposition, we may decline the additional requirements if we deem them to be unachievable during the remaining time given.  |
+| 7 | The products do not align with stakeholder expectations | Create frequent meetings with the client to ensure that each feature added is to specification. This will provide clarity if we are missing features or misinterpreted requirements. |
+| 8 | Lack of communication amongst team members and stakeholders | We will conduct frequent weekly meetups and utilize online social media platforms (Mattermost) to ensure each member understands the given situation and tasks needed to be completed for project completion.  |
+| 9 | Product has underlying bugs that impact the products functionality | We can create tests to identify and fix bugs occuring during development of each function. Ensuring each function remains bug-free before advancing to new tasks. |
+| 10 | Team members lack required skills to complete the project | Create sessions to learn the required information needed to progress through the project. If one member knows the skills necessary, they can tutor the remaining members until all members are fully capable to continue. |
 
 ### 5.4 Health and Safety
 
