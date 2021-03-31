@@ -525,6 +525,21 @@ Ask User to choose between viewing the Dm's view or the Player's view [System re
 Choose a view [User intention] <br>
 Display the view that the player selected, including all functionalities associated with that view [System responsibility] <br>
 
+#### 3.2.13 Save Game (DM)
+
+**What is the Goal of the use case?**<br>
+The goal is to allow the DM to save the generated map, so that they are able to load the map for another game.
+
+**Who benefits from the result of this use case?**<br>
+The dungeon master and the players will benefit from this use case. If they don't finish the game in one session, it is useful to all the users that they can save their progress.
+
+**How will this use case be achieved?**<br>
+This use case could be achieved by writing the data of the game to a local file, that is able to be downloaded.
+
+**How will we judge/measure that this use case has been taken into account?**<br>
+This will be judged by checking that the file is generated and possible to download.
+
+**What limitation are there to achieving the use case?**<br>
 
 
 This is typically the longest subsection in the document. List up to fifty use cases (in order of priority for development), and for at least top ten focal use cases, write a short goal statement and use case body (up to seven pages).  Identify the use cases that comprise a minimum viable product.
