@@ -2,9 +2,9 @@
 
 The aim of this document is to specify the requirements of the system your group is to build. The focus of a requirements document is the problem you are attempting to solve:  not a first attempt at a solution to that problem. This document should communicate clearly to the supervisor, client and course coordinator what the system you build is going to do, and what constraints it must meet while doing so.
 
-The document should also demonstrate your understanding of the main analysis principles and quality guidelines, and applicable standards, using tools and notations as necessary to communicate the requirements precisely, unambiguously and clearly in a written technical document. Page specifications below are *limits not targets* and refer to the pages in the PDF generated from the markdown. Because the size of your document is necessarily limited, you should ensure that you focus your efforts on those requirements that are most important to completing a successful system: if sections are at their page limit, indicate how many items would be expected in a complete specification. 
+The document should also demonstrate your understanding of the main analysis principles and quality guidelines, and applicable standards, using tools and notations as necessary to communicate the requirements precisely, unambiguously and clearly in a written technical document. Page specifications below are *limits not targets* and refer to the pages in the PDF generated from the markdown. Because the size of your document is necessarily limited, you should ensure that you focus your efforts on those requirements that are most important to completing a successful system: if sections are at their page limit, indicate how many items would be expected in a complete specification.
 
-The ENGR 301 project proposal and requirements document should be based on the standard ISO/IEC/IEEE 29148:2011(E), primarily sections 8.4 and 9.5, plus section 9.4 for projects involving hardware and ISO 25010 SQuaRE for systemic requirements. While excerpts from the standard have been quoted within the template, to understand what is required it will be necessary to read earlier sections of the standards themselves. A supplementary treatment of requirements gathering in engineering projects may be found in [Requirements in Engineering Projects](https://victoria.rl.talis.com/items/F166DA94-DAD8-FBDB-0785-7A63C9BA3603.html?referrer=%2Flists%2F5886F297-2506-1F17-45D9-7F04CEE284EE.html%23item-F166DA94-DAD8-FBDB-0785-7A63C9BA3603) (Talis). The requirements document should contain the sections listed below, and conform to the formatting rules listed at the end of this brief. 
+The ENGR 301 project proposal and requirements document should be based on the standard ISO/IEC/IEEE 29148:2011(E), primarily sections 8.4 and 9.5, plus section 9.4 for projects involving hardware and ISO 25010 SQuaRE for systemic requirements. While excerpts from the standard have been quoted within the template, to understand what is required it will be necessary to read earlier sections of the standards themselves. A supplementary treatment of requirements gathering in engineering projects may be found in [Requirements in Engineering Projects](https://victoria.rl.talis.com/items/F166DA94-DAD8-FBDB-0785-7A63C9BA3603.html?referrer=%2Flists%2F5886F297-2506-1F17-45D9-7F04CEE284EE.html%23item-F166DA94-DAD8-FBDB-0785-7A63C9BA3603) (Talis). The requirements document should contain the sections listed below, and conform to the formatting rules listed at the end of this brief.
 
 All team members are expected to contribute equally to the document and list their contributions in section 6 of the document. You should work on your document in your team's GitLab repository. While collective contributions are expected to be the exception rather than the rule, if more than one team member has contributed to a particular commit then all those team member IDs should be included in the first line of the git commit message. `git blame`, `git diff`, file histories, etc. will be tools used to assess individual contributions, so everyone is encouraged to contribute individually, commit early and commit often. Any team wishing to separate individually contributed sections into a single file before collation into the single proposal document for submission is welcome to do so.
 
@@ -55,7 +55,7 @@ To create a D&D map generator that also generates a well-weighted list of monste
  - The dungeon master should be able to change any monster's stats
 
 
-### 1.3 Product overview 
+### 1.3 Product overview
 #### 1.3.1 Product perspective
 
 This system generates maps to be used for a Dungeons and Dragons game, while also allowing the Dungeon Master to manage the game and choose what the players see. This system is similar to other systems such as ProDnD[1], an app available on the app store that allows users to input map sizes, complexity, and other information to generate a dungeon. Our system would not be as complex but will still be inspired in part by the ProDnD system and other systems similar to it.
@@ -67,14 +67,14 @@ The system would display information to the players using a similar system to Ka
 For our system to appear as a Dungeons and Dragons system, we will need to either create or use the artwork. The artwork we use will either be created by ourselves or will be free to use images.
 
 > **9.5.3 Product perspective** <br>
-> Define the system's relationship to other related products. 
-> 
+> Define the system's relationship to other related products.
+>
 > If the product is an element of a larger system, then relate the requirements of that larger system to the functionality of the product covered by the software requirements specification.
-> 
-> If the product is an element of a larger system, then identify the interfaces between the product covered by the software requirements specification and the larger system of which the product is an element. 
+>
+> If the product is an element of a larger system, then identify the interfaces between the product covered by the software requirements specification and the larger system of which the product is an element.
 >
 > A block diagram showing the major elements of the larger system, interconnections, and external interfaces can be helpful.
-> 
+>
 > Describe how the software operates within the following constraints:  
 a) System interfaces;  
 b) User interfaces;  
@@ -121,7 +121,7 @@ The software solution will run locally and is not expected to run over the inter
 
 #### 1.3.3 User characteristics   
 
-One page identifying the main classes of users and their characteristics (9.5.5) 
+One page identifying the main classes of users and their characteristics (9.5.5)
 
 The client (Craig Watterson) has outlined that the system will initially be for his personal use, and releasing the system commercially is a potential goal after the completion of the minimum viable product. Therefore, there is a priority on designing the system around the client's characteristics and attributes. These characteristics and attributes are thus assumed to be that of a typical user of the system.
 
@@ -149,7 +149,7 @@ The client has also outlined that the system is to be used in conjuction with re
 ##### 1.3.4.2 Hardware Limitations
 * No 24 hour remote connections. An extension to software limitations, the lack of server hosting also means any sort of remote connection is impossible without a host computer portforwarding the program through their modem. Any remote connection features will not be supported.
 
-* Connectivity between devices will not work without a Local Area Network. The system does not require connection to the internet, but all devices must be connected to the same network. 
+* Connectivity between devices will not work without a Local Area Network. The system does not require connection to the internet, but all devices must be connected to the same network.
 
 ##### 1.3.4.3 Usage Assumptions
 * It is assumed that there'll only be two devices involved. A network of more than 2 devices will be not be supported.
@@ -172,7 +172,7 @@ References to other documents or standards. Follow the IEEE Citation  Reference 
 
 ### 3.1 External interfaces
 
-See 9.5.10. for most systems this will be around one page. 
+See 9.5.10. for most systems this will be around one page.
 
 #### 3.1.1 Dungeon Master's View
 
@@ -184,11 +184,373 @@ The player's view must display what the dungeon master chooses to display. This 
 
 ### 3.2 Functions
 
+#### 3.2.1 Template Use case
+**What is the Goal of the use case?**  
+
+**Who benefits from the result of this use case?**  
+
+**How will this use case be achieved?**  
+
+**How will we judge/measure that this use case has been taken into account?**  
+
+**What limitations are there to achieving the use case?**  
+
+**Use Case Flow**
+-User Intention:
+-System Responsibilities:
+-User Interface:
+
+#### 3.2.1 Generate Maps
+
+**What is the Goal of the use case?**  
+To create a map of tiles to act as the board for the Dungeons and Dragons tabletop game.
+
+**Who benefits from the result of this use case?**  
+The dungeon master will benefit from this use case by reducing the time taken to create a playable board and have an automatic tool to create dungeons for them. 
+
+**How will this use case be achieved?**  
+This can be achieved by generating a map in two stages after the user presses a generate map button:
+* The function will randomly assign a random amount prefab "features" to an empty space. These prefab features will be a predetermined set of tiles which emulate more realistic map characteristics that random tilesets cannot replicate (I.e. creating caves with rounded edges or underground rooms). 
+* The function will then conduct a path finding algorithm to join these prefab features generated in the first stage. Creating random paths between the map features, allowing overlaps to keep everything more random.
+
+**How will we judge/measure that this use case has been taken into account?**  
+Once a map has been generated with a new set of tiles we can ensure that this use case has functioned as intended.
+
+**What limitations are there to achieving the use case?**  
+* The dungeon master will no longer be allowed to select a desired map, but will only be able to generate random maps for usage.
+* If there arent enough prefab rooms, or if the user is really unlucky, they may experience very similar maps being generated if duplicate prefabs are being used.
+
+**Use Case Flow**
+* Pressing the Generate maps button [User Intention]
+* Construct a map of prefabs [System Responsibilities]
+* Joins prefabs in map [System Responsibilities]
+* Displays the generated Board [User Interface]
+
+#### 3.2.2 View Player Maps
+
+**What is the Goal of the use case?** <br>
+
+For the player to be able to view their view of the map and for the Dungeon Master to be able to work with 3.2.3 Change Visability in order to do so.
+
+**Who benefits from the result of this use case?** <br>
+
+The players benefit directly as the players will be able to see what is going on directly on their screen. The Dungeon Master benefits indirectly as the players are able to play, therefore the Dungeon Master is able to play. 
+
+**How will this use case be achieved?** <br>
+
+This use case will be acheived by the system taking the display chosen by the Dungeon Master and displaying it on the players screen. 
+
+**How will we judge/measure that this use case has been taken into account?** <br> 
+
+We will measure that this has been taken into account if the players are able to see a view of the board.
+
+**What limitations are there to achieving the use case?** <br>
+
+The limitations of this use case are the implementations of 3.2.3 change visibility as the player view relies on the Dungeon Master's choice of the view.
+
+**Use Case Flow** <br>
+
+View the map from player's perspective [User Intention] <br>
+Get the player view [System Responsibilities] <br>
+Display the view [User Interface] <br>
+
+#### 3.2.3 Change Visability
+
+**What is the Goal of the use case?**  
+The goal of "Change visability" is to allow the dm to manually select tiles that are visible on the "player's display" screen. This keeps unexplored parts of the dungeon hidden from the player, allowing the dungeon master to show the player's what they'll see directly.
+
+**Who benefits from the result of this use case?**  
+This use case benefits Dungeon Master. He will gain the ability to control the narrative by controlling what the player's know. This maintains the experience for the players.
+
+**How will this use case be achieved?**  
+This use case will be consistently available to the dm once the dungeon map has generated. When first generated, the entire dungeon is not visible to the players. The dm will be free to reveal which parts of the map are visible to the player there onwards; at his own discretion.
+
+**How will we judge/measure that this use case has been taken into account?**  
+This use case is essential to gameplay. We can judge it's success via playtesting. A successful implementation will make the tiles selected by the dm visible on the player's screen should update once selection is completed.
+
+**What limitations are there to achieving the use case?**  
+- Connection to the server must be stable for the dm to update the player's vision. 
+- The map must be generated before in order for this use case to function.
+
+**Use Case Flow**
+- User Intention: Player characters move to different room. 
+- User Intention: Add fog of war. 
+- System Responsibilities: Allow/Register controls on DM device.
+- System Responsibilities: Flag tiles invisible.
+- System Responsibilities: Update player's vision screen.
+- User Intention: Make new room visible. 
+- System Responsibilities: Allow/Register controls on DM device.
+- System Responsibilities: Flag tiles visible.
+- System Responsibilities: Update player's vision screen.
+- User Interface: Player's and DM able to see new screen.
+- User Intention: Game continues.
+
+#### 3.2.4 Change Maps
+
+**What is the goal of this use case** <br>
+
+The goal of the use case "Change Maps" is for the Dungeon Master to be able to change maps between levels.
+
+**Who benefits from the result of this use case?** <br>
+
+The beneficiaries of this use case are the players, who will be able to play another level on a new map at higher levels, and the Dungeon Master, whos campaign continues on. 
+
+**How will this use case be achieved?** <br>
+
+This use case will be acheived through the system generating a map and populating the map with higher leveled monsters than the previous map.
+
+**How will we judge/measure that this use case has been taken into account?** <br>
+
+We will be able to measure this use case being taken into account by seeing if the system is able to generate and move onto another map after the current map the players are on has been completed.
+
+**What are the limitations of acheiving this use case?** <br>
+
+The limitations of acheiving this use case are generating maps. This is because the map must be generated before displaying anything to the users.
+
+**Use Case Flow** <br>
+
+Change maps between levels [User Intention] <br>
+Generate a new level [System Responsibilities] <br>
+Generate monsters [System Responsibilities] <br>
+Display to Dungeon Master Map information [System Responsibilities] <br>
+Dungeon Master sees map information [User Interface] <br>
+Continue the game [User Intention] <br>
+
+#### 3.2.5 View Monster data
+MT
+
+**What is the Goal of the use case?**
+
+The goal of this use case is to display the monster data of any specific monster on the map.
+
+**Who benefits from the result of this use case?**  
+
+The DM and players benefits from this use case, seeing the monster data allows the DM to know its stats. This means when the players are battling a monster the DM knows how much health, damage, etc. the monster deals and takes.
+
+**How will this use case be achieved?**  
+
+The system will store the monsters' data. The generated map will have generated monsters that are on certain locations on the map. The DM should be able to at minimum select a specific monster from a list of monsters through a button that displays the monsters data. 
+
+**How will we judge/measure that this use case has been taken into account?**  
+
+We can see that the use case has been taken into the account when the system generates a map, the user chooses the map and is able to select a specific monster from a list of monster names that displays its stats. This use case is successful if the DM selects the monster to see its stats to calculate how much damage it takes and deals when facing the players.  
+
+**What limitations are there to achieving the use case?**  
+ - The system must have a predefined set of monsters stored inside
+ - There must be a screen to display the monsters' stats
+
+
+**Use Case Flow**
+-User Intention:
+The user can see any selected monster's stats
+
+-System Responsibilities:
+The system must have a stored set of monsters and their stats
+The system must display any specific monster's stats on a screen
+
+-User Interface:
+The user should be able to pick a monster's name from a list of monsters and see its stats
+
+#### 3.2.6 See Full Maps
+MT
+
+**What is the Goal of the use case?**  
+
+The goal of this use case is to display the full generated map on to a screen.
+
+**Who benefits from the result of this use case?**  
+
+The dungeon master benefits from this use case by being to see the full map and plan for the game/players or choose another map. This means it also indirectly helps the players by allowing them to have a better experience playing because of the DM's benefits. Displaying the full map also allows the user to decide whether they like the map, or want to generate a different one for their needs.
+
+**How will this use case be achieved?**  
+
+The DM should be able to hit the generate map button, and the system will generate the map, and display the full map that is generated. 
+
+**How will we judge/measure that this use case has been taken into account?**  
+
+We will be able to see that this use case has been taken in to account when the system generate the map, and the user can see it. It is essential to the program, so we can judge its success when we can see the full map once the program has been implemented.
+
+**What limitations are there to achieving the use case?**  
+ - The system must generate the map before it can be displayed
+ - There must be a screen to display the full map on
+
+**Use Case Flow**
+-User Intention:
+The user can see the full generated map
+
+-System Responsibilities:
+The system must generate the map
+The system myst display the generated map on to a screen
+
+-User Interface:
+The user should be able to press the generate map button and see the full map
+The user should be able to press the see map button and see the full map
+
+#### 3.2.7 Pick Map theme
+**What is the Goal of the use case?**  
+Map themes are the type of dungeon the game takes place in. They determine monster population. The Dungeon Master shall be able to pick what themed dungeon they would like to play in before map generation.
+
+**Who benefits from the result of this use case?**  
+This use case benefits the DM in the sense that they'll be able to choose what sort of experience they want the game session to have.
+
+**How will this use case be achieved?**  
+The Dungeon master shall choose the theme of the dungeon before map generation.
+
+**How will we judge/measure that this use case has been taken into account?**  
+Map themes are a pre-requisite for monster population. If successfully implemented, the types of monsters within the dungeon should be consistent to the theme (for instance, undead shouldn't be spawning in an bandit hideout).
+
+**What limitations are there to achieving the use case?**
+- This use case is used after the Dungeon Master role is assigned. 
+- When implementing, this feature must be implemented after "populate monsters".
+
+**Use Case Flow**
+- User Intention: Select map theme.
+- System Responsibilities: Display options, 
+- User Intention: Dungeon Master makes selection.
+- System Responsibilities: Store selection in public variable.
+- System Responsibilities: Populate dungeon with monsters according to the theme.
+
+#### 3.2.8 Remove monsters
+
+**What is the Goal of the use case?**  
+The goal of the "Remove Monsters" use case is to ensure the monsters can be removed by the DM in the DM view to ensure that what is displayed on the DM view is still relevent.
+
+**Who benefits from the result of this use case?**  
+The DM benefits from the use case. By removing monsters that are no longer relevent to the dungeon map (they have been defeated for instance, or the DM removed them for other reasons) it ensures that the DM view displays the current state of the board. This reduces noise to the DM and the need to remember which monsters have been defeated or removed.
+
+**How will this use case be achieved?**  
+The DM has a view that shows monsters on the map. When the DM clicks on monsters there will be an option to delete that monster from the board and remove them from the map.
+
+**How will we judge/measure that this use case has been taken into account?**  
+We can ensure that this use case has been taken into account if the monster is no longer displayed on the map when the DM clicks the delete button for that monster.
+
+**What limitations are there to achieving the use case?**
+
+- This requires input from the DM, and so a button will need to be implemented that the DM can click that will remove the monster from the map.
+- The dungeon must be populated with monsters for this to work. Hence if the monster population function does not work this will not be able to work.
+
+**Use Case Flow**
+- DM clicks monster delete button [user intention]
+- Button sends request to delete monster [system responsibility]
+- Monster is removed from monster list [system responsibility]
+- View updates with monster removed [user interface]
+
+
+#### 3.2.9 Populate monsters
+
+**What is the Goal of the use case?**  
+The goal of the use case is to allow the DM to automatically populate monsters in the dungeon.
+
+**Who benefits from the result of this use case?**  
+Both the players and the DM benefit from this use case. This is because there is less time in setup of the game given the monsters have been already populated. It allows the game to get up and running quicker than if it had not been implemented.
+
+**How will this use case be achieved?**  
+This will be achieved by implementing an algorithm that takes in a dungeon map and a list of monsters to pick from. It will then automatically populate the map with appropriately leveled and themed monsters.  
+
+**How will we judge/measure that this use case has been taken into account?**  
+We can ensure that this use case has been taken into account if when the DM presses the generate monsters button the dungeon is automatically populated with appropriately leveled and themed monsters.
+
+**What limitations are there to achieving the use case?**  
+
+- This requires some list or store of monsters to use. It requires the list to contain monsters of the appropriate level and style that the map is generated in.
+- Requires the dungeon map to generate so that monsters can be placed inside it.
+
+**Use Case Flow**
+- DM pushes button to generate monsters [user intention]
+- Button sends request to server [system responsibility]
+- server runs monster generation algorithm [system responsibility]
+- server returns generated monster list [system responsibility]
+- view updates display to show monsters [user interface]
+
+#### 3.2.10 Change Monster health
+
+**What is the Goal of the use case?** <br>
+To be able to update and therefore keep track of the health of monsters on the map with the DnD Map Generation application, therefore assigning the system with this responsibility rather than assigning it to the DM.
+
+**Who benefits from the result of this use case?**  <br>
+Since the system has the responsibility of recording and updating the health of monsters (which would traditionally be a responsibility of the DM), the DM has less responsibilities to manage. The DM can therefore focus on managing their other responsibilities.
+
+**How will this use case be achieved?** <br>
+This is achieved by assigning a health value to each existing monster in the map/dungeon, and allowing the DM to view and change it at will.
+
+**How will we judge/measure that this use case has been taken into account?** <br>
+This is judged whether the monsters correctly show and keep track of each monsters' health as intended by the DM. It is also judged on whether it successfully relieves the DM from this responsibility.
+
+**What limitations are there to achieving the use case?**  <br>
+Limitations to achieving this function include:
+ - An inability to attempt to change the health of monsters (e.g. they cannot click on a monster to change its health)
+ - If the health is not correctly adjusted as intended by the DM, then it would be confusing to change and keep track of monster health
+ - If any other functions that are performed in order to be able to change a monster's health
+
+**Use Case Flow** <br>
+Open/Go to the DnD Map Generator website <User intention>
+Launch application <System responsibility>
+Ask User to choose between viewing the Dm's view or the Player's view <System responsibility>
+Choose the DM view <User intention>
+Display the DM view and all of its functionalities <System responsibility>
+Choose a dungeon theme and find a map to use in a DnD game <User intention>
+Generate maps according to the theme until the user is satisfied with one map <System responsibility>
+Add monsters to the map <User Intention>
+Populate the generated map with monsters that each have their own details and health amounts <System responsibility>
+While playing the game, a monster's health changes. The DM changes that monster's current health <User intention>
+Change the corresponding monster's health to a new value, and record it <System responsibility>
+
+#### 3.2.11 Exit Game/server
+
+**What is the Goal of the use case?**  
+Close the dungeons and dragons application and server.
+
+**Who benefits from the result of this use case?** 
+The dungeon master will benefit from this function as they are able to close the application after usage of the game, instead of using system resources to keep the application up when they are no longer using it.
+
+**How will this use case be achieved?**  
+By pressing an exit application button, the system will close all processes that are being used. This should close the server that displays the board for the players device as well as the GUI for the dungeon master.
+
+**How will we judge/measure that this use case has been taken into account?**  
+If we are unable to see the application or server running, as well as no longer being able to see system resources being used from the device's manager then we know the function is working as intended.
+
+**What limitations are there to achieving the use case?**  
+* This use-case requires the board and server to be implemented and operational.
+
+**Use Case Flow**
+* Close the application [User Intention]
+* Stop all running processes [System Responsibilities]
+* Dungeon masters view is no longer being displayed [User Interface]
+* Players view is no longer being displayed [User Interface]
+
+#### 3.2.12 Choose View (DM Or Player)
+
+**What is the Goal of the use case?** <br>
+The goal is to categorise users into the Dungeon Master and the Player(s) by allowing users to choose to view either the DM's view and the players' view.
+
+**Who benefits from the result of this use case?** <br>
+Choosing which view allows users to clearly choose what responsibilities they have during a DnD game.
+
+**How will this use case be achieved?** <br>
+This function will be achieved by prompting a user that visits the DnD Map Generation website with buttons to choose whether they wish to view the map from the Dungeon Master's (DM) perspective, or though the Player's perspective.
+
+**How will we judge/measure that this use case has been taken into account?** <br>
+This is judged by whether choosing the view actually shows the correct view to the user.
+
+**What limitations are there to achieving the use case?** <br>
+A limitation of achieving this function include:
+ - An inability to access the website/launch the application (no internet access, application does not launch properly)
+ - Being able to provide two different views to the user requires there to be two different views of the application in the first place
+
+**Use Case Flow** <br>
+Open/Go to the DnD Map Generator website [User intention] <br>
+Launch application [System responsibility] <br>
+Ask User to choose between viewing the Dm's view or the Player's view [System responsibility] <br>
+Choose a view [User intention] <br>
+Display the view that the player selected, including all functionalities associated with that view [System responsibility] <br>
+
+
+
 This is typically the longest subsection in the document. List up to fifty use cases (in order of priority for development), and for at least top ten focal use cases, write a short goal statement and use case body (up to seven pages).  Identify the use cases that comprise a minimum viable product.
 
 ### 3.3 Usability Requirements
 
-In order to create a fully functional Dungeons and Dragons tabletop, the following usability requirements needs to be met: 
+In order to create a fully functional Dungeons and Dragons tabletop, the following usability requirements needs to be met:
 * Measurable **effectiveness** of the application: The application needs to operate at a desired level of functionality without failure.
 * **Efficiency** of the application: The application has to manage functions inputted by the user without inefficiencies.
 * Client specified **criteria for satisfaction**: The application needs to portray desired functions specified by the client.
@@ -212,7 +574,7 @@ In order to create a fully functional Dungeons and Dragons tabletop, the followi
 * The application should contain a scale or grid to determine size of characters and scenery.
 * Size of tiles should be large enough to fit physical pieces ontop.
 
-The application as the result of this project should contain no obscurities that could offend any of the users whilst using the application. The application must avoid any risks of usage that could arise from specific context of use. 
+The application as the result of this project should contain no obscurities that could offend any of the users whilst using the application. The application must avoid any risks of usage that could arise from specific context of use.
 
 
 ### 3.4 Performance requirements
@@ -220,20 +582,20 @@ The application as the result of this project should contain no obscurities that
 See 9.5.13. for most systems this will be around one page. Hardware projects also see section 9.4.6.
 
 > **9.5.13 Performance requirements** <br>
-> Specify both the static and the dynamic numerical requirements placed on the software or on human interaction with the software as a whole. 
-> 
+> Specify both the static and the dynamic numerical requirements placed on the software or on human interaction with the software as a whole.
+>
 > Static numerical requirements may include the following:
-> 
+>
 > a) The number of terminals to be supported;  
 > b) The number of simultaneous users to be supported;  
 > c) Amount and type of information to be handled.
-> 
+>
 > Static numerical requirements are sometimes identified under a separate section entitled Capacity.
-> 
+>
 > Dynamic numerical requirements may include, for example, the numbers of transactions and tasks and the amount of data to be processed within certain time periods for both normal and peak workload conditions. The performance requirements should be stated in measurable terms.
-> 
+>
 >  For example, "_95 % of the transactions shall be processed in less than 1 second._" rather than, "An operator shall not have to wait for the transaction to complete."
-> 
+>
 > NOTE Numerical limits applied to one specific function are normally specified as part of the processing subparagraph description of that function.
 
 
@@ -310,7 +672,7 @@ Compliance
 
 It is expected that the application conforms to the values of the client. It is also important that if the decision is made to release the application to the public, that any names/terms that are copyrighted by Wizards of the Coast are not used.
 
-### 3.8 Physical and Environmental Requirements 
+### 3.8 Physical and Environmental Requirements
 
 For systems with hardware components, identify the physical characteristics of that hardware (9.4.10) and environment conditions in which it must operate (9.4.11).  Depending on the project, this section may be from one page up to 5 pages.
 
@@ -331,7 +693,7 @@ Requirements for room:
 
 ### 3.9 Supporting information
 
-see 9.5.19. 
+see 9.5.19.
 
 ## 4. Verification
 
@@ -341,7 +703,7 @@ see 9.5.19.
 
 ### 5.1 Schedule
 
-Identify dates for key project deliverables: 
+Identify dates for key project deliverables:
 
 1. architectural prototype
 1. minimum viable product
@@ -355,12 +717,12 @@ No paid items to be purchased have been outlined to be required for the purpose 
 
 However, a potential expense is the use of paid/non-free assets (e.g. map textures, monster item icons/textures, or any other assets to be outlined in the future). There is no plan to purchase such assets, as instead there is a bias towards the use of free assets. However, if paid assets are decided to be used in the project, then a budget for purchasing paid assets will be set.
 
-### 5.3 Risks 
+### 5.3 Risks
 Identify the ten most important project risks to achieving project goals: their type, likelihood, impact, and mitigation strategies (3 pages).
 
 If the project will involve any work outside the ECS laboratories, i.e. off-campus activities, these should be included in the following section.
 
-| # | Risk | Risk Type | Likelihood | Severity | 
+| # | Risk | Risk Type | Likelihood | Severity |
 | --- | :--------------------------------------------------------------------------------: |  --------------- | ------------ | ---------------- |
 | 1 | COVID-19 levels increase, restricting access to laboratories and equipment | Performance | High | Tolerable |
 | 2 | Client removes budget or online resources become unavailable | Financial / Availability | Low | Tolerable |
@@ -392,7 +754,7 @@ Document here project requirements for Health and Safety. All teams must state i
 
 1. How teams will manage computer-related risks such as Occupational Over Use, Cable management, etc.  
 
-2. Whether project work requires work or testing at any external (off-campus) workplaces/sites. If so, state the team's plans for receiving a Health and Safety induction for the external workplaces/sites. If the team has already received such an induction, state the date it was received. 
+2. Whether project work requires work or testing at any external (off-campus) workplaces/sites. If so, state the team's plans for receiving a Health and Safety induction for the external workplaces/sites. If the team has already received such an induction, state the date it was received.
 
 3. Whether project work requires the team test with human or animal subjects? If so, explain why there is no option but for the team to perform this testing, and state the team's plans for receiving Ethics Approval _prior_ to testing.
 
@@ -419,7 +781,7 @@ _If the project is purely software and requires no contact risks involving physi
 
 
 ## 6. Appendices
-### 6.1 Assumptions and dependencies 
+### 6.1 Assumptions and dependencies
 
 One page on assumptions and dependencies (9.5.7).
 
@@ -433,7 +795,7 @@ A one page statement of contributions, including a list of each member of the gr
 
 ---
 
-## Formatting Rules 
+## Formatting Rules
 
  * Write your document using [Markdown](https://gitlab.ecs.vuw.ac.nz/help/user/markdown#gitlab-flavored-markdown-gfm) and ensure you commit your work to your team's GitLab repository.
  * Major sections should be separated by a horizontal rule.
@@ -441,7 +803,7 @@ A one page statement of contributions, including a list of each member of the gr
 
 ## Assessment  
 
-The goal of a requirements document is the problem you are attempting to solve:  not a first attempt at a solution to that problem. The most important factor in the assessmernt of the document is how will it meet that goal. The document will be assessed for both presentation and content. 
+The goal of a requirements document is the problem you are attempting to solve:  not a first attempt at a solution to that problem. The most important factor in the assessmernt of the document is how will it meet that goal. The document will be assessed for both presentation and content.
 
 The presentation will be based on how easy it is to read, correct spelling, grammar, punctuation, clear diagrams, and so on.
 
