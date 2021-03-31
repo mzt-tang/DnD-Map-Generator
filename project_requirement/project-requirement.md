@@ -36,18 +36,18 @@ To create a D&D map generator that also generates a well-weighted list of monste
 
 ### 1.2 Scope
 
-##The Map Generation of the Program should meet the Following Goals
+#### The Map Generation of the Program should meet the Following Goals
  - Maps generated should be different each time
  - Maps should adhere to at least 1 theme
  - The location that enemies are placed should make sense in relation to the place/theme on the map
  - The enemies should be weighted so that the amount of enemies at any given location is well balanced
 
-##The Primary Map Displaying Screen of the Program should meet the Following Goals
+#### The Primary Map Displaying Screen of the Program should meet the Following Goals
  - The map should be scalable and resizable to the screen that its displayed on
  - Locations on the map should be covered in fog of war unless specified by the dungeon master
  - The map should have some form of scale, allowing players to gauge distance
 
-##The Secondary Screen Map Controller of the Program should meet the Following Goals
+#### The Secondary Screen Map Controller of the Program should meet the Following Goals
  - The screen should be able to display any/all enemies' stats
  - The dungeon master should be able to see the full map
  - The dungeon master should be able to control where to uncover the fog of war on using the screen
@@ -58,8 +58,13 @@ To create a D&D map generator that also generates a well-weighted list of monste
 ### 1.3 Product overview
 #### 1.3.1 Product perspective
 
-One page defining the system's relationship to other related products
-(9.5.3. but not the subsections in the standard.)
+This system generates maps to be used for a Dungeons and Dragons game, while also allowing the Dungeon Master to manage the game and choose what the players see. This system is similar to other systems such as ProDnD[1], an app available on the app store that allows users to input map sizes, complexity, and other information to generate a dungeon. Our system would not be as complex but will still be inspired in part by the ProDnD system and other systems similar to it.
+ 
+The system will generate a map as well as populate the map with enemies of varying levels and types. The Dungeon Master would then calculate any damage to the enemies and players and manage the player’s information off-screen and input the hit points lost to the enemies on their device. The system would also generate information about the enemy such as the armour level. The levels of the generated enemies would depend on the level of the Dungeon.
+ 
+The system would display information to the players using a similar system to Kahoot[2], a system that allows the host (the Dungeon Master in our system) to host a game that the players can connect to on their devices. Our system would be different from Kahoot's system as the Dungeon Master would need to be able to choose what image the players see on their device. This system would have no direct relationship with any other products or systems similar to Kahoot, but will instead be inspired by the design and functions of other products such as Kahoot. Whereas Kahoot is hosted via the internet, therefore anyone can connect to a given game, our system will use a local area network to connect between devices.
+ 
+For our system to appear as a Dungeons and Dragons system, we will need to either create or use the artwork. The artwork we use will either be created by ourselves or will be free to use images.
 
 > **9.5.3 Product perspective** <br>
 > Define the system's relationship to other related products.
@@ -155,6 +160,10 @@ The client has also outlined that the system is to be used in conjuction with re
 
 ## 2. References
 
+[1] Name of Software: ProDnD Publisher: Gray Lake Studios Date Accessed: 23/3/2021 Type of Medium: Mobile App Avaiable: http://prodnd.blogspot.com/
+
+[2] Name of Software: Kahoot! Publisher: Morten Versvik, Johan Brand, and Jamie Brooker Date Accessed: 25/3/2021 Type of Medium Website. Available: https://kahoot.com/
+
 References to other documents or standards. Follow the IEEE Citation  Reference scheme, available from the [IEEE website](https://www.ieee.org/) (please use the search box). (1 page, longer if required)
 
 ## 3. Specific requirements  
@@ -164,6 +173,14 @@ References to other documents or standards. Follow the IEEE Citation  Reference 
 ### 3.1 External interfaces
 
 See 9.5.10. for most systems this will be around one page.
+
+#### 3.1.1 Dungeon Master's View
+
+The dungeon master must be able to see a different view from the players. The dungeon master's view must be controllable by the dungeon master and must include features such as changing the player's view and viewing enemy statistics. This view includes displaying individual rooms as well as the dungeon as a whole.
+
+#### 3.1.2 Player's View
+
+The player's view must display what the dungeon master chooses to display. This means that the player's view interface and the dungeon master interface must be connected so that the dungeon master can change the display for the players, but not the other way around.
 
 ### 3.2 Functions
 
@@ -582,6 +599,19 @@ See 9.5.13. for most systems this will be around one page. Hardware projects als
 > NOTE Numerical limits applied to one specific function are normally specified as part of the processing subparagraph description of that function.
 
 
+The program will need to support two terminals. One terminal will be used to display the randomly generated map, which will be used by the players to
+view the game map. The second terminal will be used to display the information about each room in the map, this will be used by the dungeon master. The first terminal will need to be large enough to display a map that will display the player character's positions (using physical figures supplied by the players). The physical objects will not interact with the board. The second terminal will need to be compatible with a smart device, or a laptop.
+
+There will need to be at least two simultaneous users being supported. One user will be using the second terminal (they are the dungeon master) and the other users will be using the first terminal.
+
+There will need to be information about each room that will be displayed to the dungeon master. The information that is given to the dungeon master will be room name, monster details and the treasure for each room. The monster details are the type of monster, their hit-points, their armour and what weapon they are using. This information will not need to be transferred between the two terminals, it will just be seen by the dungeon master. The information given to the players terminal will be the layout of the dungeon itself, displaying each room and how they connect.
+
+The information that will be sent to the terminals will be persistent. It will need to be stored somewhere that the two devices can access.
+
+On startup, the maps should not take a long time to generate. The maps will only be generated when the players are entering them. For example, when the game starts it will only randomly generate the first level. The map generation should take less than 10-20 seconds to generate a map and display it on the screen. It should then take less time to display the information for the dungeon master.
+
+Since the game will be played in real time, the game will need to react to changes made quickly. Each time the players progress to the next level of the dungeon a new map will be generated. If the players want to go back to a previous level, it should take less than 1 second to load, since the map had already been generated previously. The only other aspect that will need to be changed dynamically is the Fog of War system. When the players go to each room the dungeon master should be able to make the room visible on the map display. This will need to take less than a second to change, since waiting for a while for the rooms visibility to load may ruin the immersion of the players.
+
 ### 3.5 Logical database requirements
 
 See 9.5.14. for most systems, a focus on d) and e) is appropriate, such as an object-oriented domain analysis. You should provide an overview domain model (e.g.  a UML class diagram of approximately ten classes) and write a brief description of the responsibilities of each class in the model (3 pages).
@@ -590,20 +620,16 @@ You should use right tools, preferabley PlantUML, to draw your URL diagrams whic
 
 ### 3.6 Design constraints
 
-see 9.5.15 and 9.5.16. for most systems, this will be around one page.
+#### Copyright And Legal Constraints:
+> Dungeons and dragons is owned by Wizards Of The Coast and they have a copyright and/or licence agreement on all their assets relating to the game. We need to ensure we do not violate any of their terms and conditions associated with their assets. This includes monster information/names, dungeons and dragons images, game assets, and any other assets implemented into the game.
 
-> 9.5.15 Design constraints<br>
-> Specify constraints on the system design imposed by external standards, regulatory requirements, or project limitations.
->
-> 9.5.16 Standards compliance<br>
-> Specify the requirements derived from existing standards or regulations, including:
->
-> a) Report format;<br>
-> b) Data naming;<br>
-> c) Accounting procedures;<br>
-> d) Audit tracing.
->
-> For example, this could specify the requirement for software to trace processing activity. Such traces are needed for some applications to meet minimum regulatory or financial standards. An audit trace requirement may, for example, state that all changes to a payroll database shall be recorded in a trace file with before and after values.
+> Any other assets we use for this project that are free or paid will have terms of use associated with the assets. We must ensure we adhere to these requirements to avoid legal issues.
+
+#### Data and Privacy
+> The program will not collect or store any personal data to avoid privacy laws.
+
+#### Time limitation
+> Time is limited to about 7 hours a week working on this project. There is a hard deadline of October to finish the project. Because of this time constraint there are no guarantees that any work outside the scope of this requirements document can be completed before the deadline. Any stretch targets could be left unfinished, however these will be in a feature branch and will not affect the functionality of the main program.
 
 ### 3.7 Nonfunctional system attributes
 
@@ -611,10 +637,59 @@ Present the systemic (aka nonfunctional) requirements of the product (see ISO/IE
 List up to twenty systemic requirements / attributes.
 Write a short natural language description of the top nonfunctional requirements (approx. five pages).
 
+- Performance
+- Usability
+- Scalability
+- Testing
+- Extensibility
+
+Operability
+
+It is expected that the application is able to successfully generate a random map without any errors. It is also expected to display the map correctly using the assets provided, and correctly update the map whenever the Dungeon Master makes an update on his device.
+
+Performance
+
+It is expected that the system is able to perform the inputs in an efficient amount of time. It shouldn't take
+longer than 2-3 seconds to generate a new random dungeon level. It should take less time than that to display a previously generated level.
+
+Scalability
+
+It is expected that the display is able to be scaled to the different devices it is used on. A table with a screen displaying the map may not be the same size as the image shown with a projector, so the display should be able to scale. This is the same with the Dungeon Masters application, since this should be able to be used on multiple different devices.
+
+Usability
+
+It is expected that the application is intuitive to use for the user. The map should be displayed in a clear way, the information that is displayed on the map should be clear to the users. The Dungeon Masters application should also be easy to use
+
+Testing
+
+All aspects of the application are expected to be extensively tested, so that it can randomly generate a map, establish a connection between the map display device and Dungeon Master device, and update the map when the Dungeon Master performs an input.
+
+Extensibility
+
+Since the client has ideas for stretch goals that could be achieved once the minimum requirements have been reached, it is important that adding new features is possible to achieve without majorly overhauling the program.
+
+Compliance
+
+It is expected that the application conforms to the values of the client. It is also important that if the decision is made to release the application to the public, that any names/terms that are copyrighted by Wizards of the Coast are not used.
 
 ### 3.8 Physical and Environmental Requirements
 
 For systems with hardware components, identify the physical characteristics of that hardware (9.4.10) and environment conditions in which it must operate (9.4.11).  Depending on the project, this section may be from one page up to 5 pages.
+
+Requirements for the map display:
+- It must either
+    - Be a screen facing upwards or
+    - Be a projector projecting the image onto a table
+    - This is necessary because the players will need to be able to place their figures on the map
+- It must be big enough so that the figures all fit on the map, and are to the correct scale (an ogre taking up more tiles than a human, for example)
+- It must be able to at least connect to the local network
+
+Requirements for the dungeon master device:
+- It must be able to at least connect to the local network
+- It must be able to get input from the dungeon master (e.g when they want to change levels)
+
+Requirements for room:
+- Must be big enough for the players to comfortably play the game
 
 ### 3.9 Supporting information
 
@@ -638,7 +713,9 @@ Identify dates for key project deliverables:
 
 ### 5.2 Budget
 
-Present a budget for the project (table), and justify each budget item (one paragraph per item, one page overall).
+No paid items to be purchased have been outlined to be required for the purpose of constructing the system. Because no purchases have been outlined, and therefore no expenses have been outlined, no budget has been explicitly allocated for this project.
+
+However, a potential expense is the use of paid/non-free assets (e.g. map textures, monster item icons/textures, or any other assets to be outlined in the future). There is no plan to purchase such assets, as instead there is a bias towards the use of free assets. However, if paid assets are decided to be used in the project, then a budget for purchasing paid assets will be set.
 
 ### 5.3 Risks
 Identify the ten most important project risks to achieving project goals: their type, likelihood, impact, and mitigation strategies (3 pages).
