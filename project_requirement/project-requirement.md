@@ -319,72 +319,53 @@ Continue the game [User Intention] <br>
 #### 3.2.5 View Monster data
 MT
 
-**What is the Goal of the use case?**
-
+**What is the Goal of the use case?**<br>
 The goal of this use case is to display the monster data of any specific monster on the map.
 
-**Who benefits from the result of this use case?**  
-
+**Who benefits from the result of this use case?**<br>
 The DM and players benefits from this use case, seeing the monster data allows the DM to know its stats. This means when the players are battling a monster the DM knows how much health, damage, etc. the monster deals and takes.
 
-**How will this use case be achieved?**  
-
+**How will this use case be achieved?**<br>
 The system will store the monsters' data. The generated map will have generated monsters that are on certain locations on the map. The DM should be able to at minimum select a specific monster from a list of monsters through a button that displays the monsters data. 
 
-**How will we judge/measure that this use case has been taken into account?**  
-
+**How will we judge/measure that this use case has been taken into account?**<br>
 We can see that the use case has been taken into the account when the system generates a map, the user chooses the map and is able to select a specific monster from a list of monster names that displays its stats. This use case is successful if the DM selects the monster to see its stats to calculate how much damage it takes and deals when facing the players.  
 
-**What limitations are there to achieving the use case?**  
+**What limitations are there to achieving the use case?**<br>
  - The system must have a predefined set of monsters stored inside
  - There must be a screen to display the monsters' stats
 
 
-**Use Case Flow**
--User Intention:
-The user can see any selected monster's stats
-
--System Responsibilities:
-The system must have a stored set of monsters and their stats
-The system must display any specific monster's stats on a screen
-
--User Interface:
-The user should be able to pick a monster's name from a list of monsters and see its stats
+**Use Case Flow**<br>
+ - The user can see any selected monster's stats [user intention]
+ - The system must have a stored set of monsters and their stats [system responsibilities]
+ - The system must display any specific monster's stats on a screen [system responsibilites]
+ - The user should be able to pick a monster's name from a list of monsters and see its stats [user interface]
 
 #### 3.2.6 See Full Maps
-MT
 
-**What is the Goal of the use case?**  
-
+**What is the Goal of the use case?**<br>
 The goal of this use case is to display the full generated map on to a screen.
 
-**Who benefits from the result of this use case?**  
-
+**Who benefits from the result of this use case?**<br>
 The dungeon master benefits from this use case by being to see the full map and plan for the game/players or choose another map. This means it also indirectly helps the players by allowing them to have a better experience playing because of the DM's benefits. Displaying the full map also allows the user to decide whether they like the map, or want to generate a different one for their needs.
 
-**How will this use case be achieved?**  
-
+**How will this use case be achieved?**<br>
 The DM should be able to hit the generate map button, and the system will generate the map, and display the full map that is generated. 
 
-**How will we judge/measure that this use case has been taken into account?**  
-
+**How will we judge/measure that this use case has been taken into account?** <br>
 We will be able to see that this use case has been taken in to account when the system generate the map, and the user can see it. It is essential to the program, so we can judge its success when we can see the full map once the program has been implemented.
 
-**What limitations are there to achieving the use case?**  
+**What limitations are there to achieving the use case?**  <br>
  - The system must generate the map before it can be displayed
  - There must be a screen to display the full map on
 
-**Use Case Flow**
--User Intention:
-The user can see the full generated map
-
--System Responsibilities:
-The system must generate the map
-The system myst display the generated map on to a screen
-
--User Interface:
-The user should be able to press the generate map button and see the full map
-The user should be able to press the see map button and see the full map
+**Use Case Flow**<br>
+ - The user can see the full generated map [user intention]
+ - The system must generate the map [system responsibility]
+ - The system myst display the generated map on to a screen [system responsibility]
+ - The user should be able to press the generate map button and see the full map [user interface]
+ - The user should be able to press the see map button and see the full map [user interface]
 
 #### 3.2.7 Pick Map theme
 **What is the Goal of the use case?**  
