@@ -114,7 +114,7 @@ See 9.5.13. for most systems this will be around one page. Hardware projects als
 
 
 The program will need to support two terminals. One terminal will be used to display the randomly generated map, which will be used by the players to
-view the game map. The second terminal will be used to display the information about each room in the map, this will be used by the dungeon master. The first terminal will need to be large enough to display a map that will have enough space for the players' physical figures. The second terminal will need to be compatible with a smart device, or a laptop.
+view the game map. The second terminal will be used to display the information about each room in the map, this will be used by the dungeon master. The first terminal will need to be large enough to display a map that will display the player character's positions (using physical figures supplied by the players). The physical objects will not interact with the board. The second terminal will need to be compatible with a smart device, or a laptop.
 
 There will need to be at least two simultaneous users being supported. One user will be using the second terminal (they are the dungeon master) and the other users will be using the first terminal.
 
