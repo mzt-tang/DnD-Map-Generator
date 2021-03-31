@@ -701,7 +701,7 @@ see 9.5.19.
 
 #### 4.1 Generate Maps
 
-**How will we ?**  
+**How will we verify this specific requirement?**  
 Once a map has been generated with a new set of tiles we can ensure that this use case has functioned as intended.
 
 #### 4.2 View Player Maps
