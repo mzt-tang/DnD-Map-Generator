@@ -250,9 +250,10 @@ The limitations of this use case are the implementations of 3.2.3 change visibil
 
 **Use Case Flow** <br>
 | Action | Type |
-| View the map from player's perspective | [User Intention] | <br>
-| Get the player view | [System Responsibilities] | <br>
-| Display the view | [User Interface] | <br>
+| ---------------- | ------------------ |
+| View the map from player's perspective | [User Intention] |
+| Get the player view | [System Responsibilities] |
+| Display the view | [User Interface] |
 
 #### 3.2.3 Change Visability
 
@@ -309,13 +310,14 @@ The limitations of acheiving this use case are generating maps. This is because 
 
 **Use Case Flow** <br>
 
-| Change maps between levels | [User Intention] | <br>
-| --------- | ---------- |
-| Generate a new level | [System Responsibilities] | <br>
-| Generate monsters | [System Responsibilities] | <br>
-| Display to Dungeon Master Map information | [System Responsibilities] | <br>
-| Dungeon Master sees map information | [User Interface] | <br>
-| Continue the game | [User Intention] | <br>
+| Action | Type |
+| ------------------ | ------------------ |
+| Change maps between levels | [User Intention] |
+| Generate a new level | [System Responsibilities] |
+| Generate monsters | [System Responsibilities] |
+| Display to Dungeon Master Map information | [System Responsibilities] |
+| Dungeon Master sees map information | [User Interface] |
+| Continue the game | [User Intention] |
 
 #### 3.2.5 View Monster data
 MT
