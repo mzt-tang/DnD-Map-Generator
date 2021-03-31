@@ -788,12 +788,12 @@ One page on assumptions and dependencies (9.5.7).
 ### 6.2 Acronyms and abbreviations
 
 **Risk Acronyms and Abbreviations:**
-* Performance Risk: 
-* Financial Risk:
-* Availability Risk:
-* Operational Risk:
-* Health and Safety Risk:
-* Strategic Risk:
+* Performance Risk: A risk that impacts the efficiency of project operations.
+* Financial Risk: A risk that impacts the budget of the product, affecting bought items and assets.
+* Availability Risk: A risk that halts or reduces the amount of work team-members can contribute.
+* Operational Risk: A risk that alters the functionality of the product.
+* Health and Safety Risk: A risk that impacts the health and well-being of team members.
+* Strategic Risk: A risk that alters requirements of the project.
 
 ## 7. Contributions
 
