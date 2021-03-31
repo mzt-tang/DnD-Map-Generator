@@ -184,22 +184,6 @@ The player's view must display what the dungeon master chooses to display. This 
 
 ### 3.2 Functions
 
-#### 3.2.1 Template Use case
-**What is the Goal of the use case?**  
-
-**Who benefits from the result of this use case?**  
-
-**How will this use case be achieved?**  
-
-**How will we judge/measure that this use case has been taken into account?**  
-
-**What limitations are there to achieving the use case?**  
-
-**Use Case Flow**
--User Intention:
--System Responsibilities:
--User Interface:
-
 #### 3.2.1 Generate Maps
 
 **What is the Goal of the use case?**  
