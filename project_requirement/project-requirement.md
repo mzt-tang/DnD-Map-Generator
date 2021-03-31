@@ -25,10 +25,10 @@ D&D includes a specific type of map called dungeons. Which is a dangerous enclos
 
 ### Client
 
-**Craig Watterson**
-Victoria University of Wellington, Cotton Building, Room 253
-**Phone:** +64 4 886 5333
-**Email:** craig.watterson@vuw.ac.nz
+**Craig Watterson**  
+Victoria University of Wellington, Cotton Building, Room 253  
+**Phone:** +64 4 886 5333  
+**Email:** craig.watterson@vuw.ac.nz  
 
 ### 1.1 Purpose
 
