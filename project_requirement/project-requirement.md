@@ -282,25 +282,32 @@ Write a short natural language description of the top nonfunctional requirements
 - Extensibility
 
 Operability
+
 It is expected that the application is able to successfully generate a random map without any errors. It is also expected to display the map correctly using the assets provided, and correctly update the map whenever the Dungeon Master makes an update on his device.
 
 Performance
+
 It is expected that the system is able to perform the inputs in an efficient amount of time. It shouldn't take
 longer than 2-3 seconds to generate a new random dungeon level. It should take less time than that to display a previously generated level.
 
 Scalability
+
 It is expected that the display is able to be scaled to the different devices it is used on. A table with a screen displaying the map may not be the same size as the image shown with a projector, so the display should be able to scale. This is the same with the Dungeon Masters application, since this should be able to be used on multiple different devices.
 
 Usability
+
 It is expected that the application is intuitive to use for the user. The map should be displayed in a clear way, the information that is displayed on the map should be clear to the users. The Dungeon Masters application should also be easy to use
 
 Testing
+
 All aspects of the application are expected to be extensively tested, so that it can randomly generate a map, establish a connection between the map display device and Dungeon Master device, and update the map when the Dungeon Master performs an input.
 
 Extensibility
+
 Since the client has ideas for stretch goals that could be achieved once the minimum requirements have been reached, it is important that adding new features is possible to achieve without majorly overhauling the program.
 
 Compliance
+
 It is expected that the application conforms to the values of the client. It is also important that if the decision is made to release the application to the public, that any names/terms that are copyrighted by Wizards of the Coast are not used.
 
 ### 3.8 Physical and Environmental Requirements 
