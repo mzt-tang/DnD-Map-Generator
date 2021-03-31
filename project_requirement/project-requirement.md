@@ -340,11 +340,11 @@ MT
 
 **What is the Goal of the use case?**  
 
-The goal of this use case is to give the Dungeon Master what the full map looks like to help give ideas on how to form the narrative based on the map, as well as being able to give the players choices that help lead them traverse the map. Seeing the full map lets the DM decide whether they like the map and allow them to choose to use it or not
+The goal of this use case is to display the full generated map on to a screen.
 
 **Who benefits from the result of this use case?**  
 
-The dungeon master benefits from this use case by being to see the full map and plan for the game/players or choose another map. This means it also indirectly helps the players by allowing them to have a better experience playing because of the DM's benefit.
+The dungeon master benefits from this use case by being to see the full map and plan for the game/players or choose another map. This means it also indirectly helps the players by allowing them to have a better experience playing because of the DM's benefits. Displaying the full map also allows the user to decide whether they like the map, or want to generate a different one for their needs.
 
 **How will this use case be achieved?**  
 
