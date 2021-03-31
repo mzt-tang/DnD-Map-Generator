@@ -483,17 +483,17 @@ Limitations to achieving this function include:
  - If any other functions that are performed in order to be able to change a monster's health
 
 **Use Case Flow** <br>
-Open/Go to the DnD Map Generator website <User intention>
-Launch application <System responsibility>
-Ask User to choose between viewing the Dm's view or the Player's view <System responsibility>
-Choose the DM view <User intention>
-Display the DM view and all of its functionalities <System responsibility>
-Choose a dungeon theme and find a map to use in a DnD game <User intention>
-Generate maps according to the theme until the user is satisfied with one map <System responsibility>
-Add monsters to the map <User Intention>
-Populate the generated map with monsters that each have their own details and health amounts <System responsibility>
-While playing the game, a monster's health changes. The DM changes that monster's current health <User intention>
-Change the corresponding monster's health to a new value, and record it <System responsibility>
+Open/Go to the DnD Map Generator website [User intention] <br>
+Launch application [System responsibility] <br>
+Ask User to choose between viewing the Dm's view or the Player's view [System responsibility] <br>
+Choose the DM view [User intention] <br>
+Display the DM view and all of its functionalities [System responsibility]  <br>
+Choose a dungeon theme and find a map to use in a DnD game [User intention]
+Generate maps according to the theme until the user is satisfied with one map [System responsibility] <br>
+Add monsters to the map [User Intention]  <br>
+Populate the generated map with monsters that each have their own details and health amounts [System responsibility]  <br>
+While playing the game, a monster's health changes. The DM changes that monster's current health [User intention]  <br>
+Change the corresponding monster's health to a new value, and record it [System responsibility]  <br>
 
 #### 3.2.11 Exit Game/server
 
