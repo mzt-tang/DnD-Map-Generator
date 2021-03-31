@@ -710,6 +710,8 @@ Once a map has been generated with a new set of tiles we can ensure that this us
 
 We will measure that this has been taken into account if the players are able to see a view of the board.
 
+We will test that this feature is working by checking manually that what the Dungeon Master wants the player to see is visible on the player's device. We will test this feature's software is working by checking if information has been sent by the Dungeon Master's device and received by the player's device. If both tests work, the function will be deemed to be working.
+
 #### 4.3 Change Visability
 
 **How will we verify this specific requirement?**  
@@ -720,6 +722,8 @@ This use case is essential to gameplay. We can judge it's success via playtestin
 **How will we verify this specific requirement?** <br>
 
 We will be able to measure this use case being taken into account by seeing if the system is able to generate and move onto another map after the current map the players are on has been completed.
+
+We will test if this is working by having the Dungeon Master advance the players on to the next map. If the level of the dungeon is higher with a new map generated, then the function works and the test is deemed successful.
 
 #### 4.5 View Monster data
 
@@ -741,12 +745,12 @@ Map themes are a pre-requisite for monster population. If successfully implement
 #### 4.8 Remove monsters
 
 **How will we verify this specific requirement?**  
-When the DM clicks the monster and clicks to remove the monster it will no longer be displayed.
+We can ensure that this use case has been taken into account if the monster is no longer displayed on the map when the DM clicks the delete button for that monster.
 
 #### 4.9 Populate monsters
 
 **How will we verify this specific requirement?**  
-When the DM pushes a button to populate monseters the dungeon will automatically populate the map with monseters that are appropriate levels and in context. While we can verify that monsters are generated and are the correct level we will have to have the client or other players judge if the monsters are of the correct context.
+We can ensure that this use case has been taken into account if when the DM presses the generate monsters button the dungeon is automatically populated with appropriately leveled and themed monsters.
 
 #### 4.10 Change Monster health
 
