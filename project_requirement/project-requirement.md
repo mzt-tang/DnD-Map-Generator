@@ -264,16 +264,16 @@ One page glossary _as required_.
 
 A one page statement of contributions, including a list of each member of the group and what they contributed to this document.
 
-Adam Sinclair<br>
-Oliver Badrick<br>
-Patrick Laing<br>
-Elijah Guarina<br>
-Jeremiah Choi<br>
-Connor de Bruyn<br>
-Michael Tang<br>
-Did section 1.0, 1.1, 1.2
+| User | Sections Done | 
+| --------------- | :--------------------------------------------------------------------------------: |
+| Adam Sinclair |  |
+| Oliver Badrick |  |
+| Patrick Laing |  |
+| Elijah Guarina |  |
+| Jeremiah Choi |  |
+| Connor de Bruyn | 3.3, 5.3, 3.2.1, 3.2.11 |
+| Michael Tang | 1.0, 1.1, 1.2 |
 
----
 
 ## Formatting Rules 
 
