@@ -191,7 +191,7 @@ The player's view must display what the dungeon master chooses to display. This 
 
 **How will this use case be achieved?**  
 
-**How will we judge/measure that this use case has been taken into account?**  
+**How will we verify this specific requirement?**  
 
 **What limitations are there to achieving the use case?**  
 
@@ -213,7 +213,7 @@ This can be achieved by generating a map in two stages after the user presses a 
 * The function will randomly assign a random amount prefab "features" to an empty space. These prefab features will be a predetermined set of tiles which emulate more realistic map characteristics that random tilesets cannot replicate (I.e. creating caves with rounded edges or underground rooms).
 * The function will then conduct a path finding algorithm to join these prefab features generated in the first stage. Creating random paths between the map features, allowing overlaps to keep everything more random.
 
-**How will we judge/measure that this use case has been taken into account?**  
+**How will we verify this specific requirement?**  
 Once a map has been generated with a new set of tiles we can ensure that this use case has functioned as intended.
 
 **What limitations are there to achieving the use case?**  
@@ -240,7 +240,7 @@ The players benefit directly as the players will be able to see what is going on
 
 This use case will be acheived by the system taking the display chosen by the Dungeon Master and displaying it on the players screen.
 
-**How will we judge/measure that this use case has been taken into account?** <br>
+**How will we verify this specific requirement?** <br>
 
 We will measure that this has been taken into account if the players are able to see a view of the board.
 
@@ -265,7 +265,7 @@ This use case benefits Dungeon Master. He will gain the ability to control the n
 **How will this use case be achieved?**  
 This use case will be consistently available to the dm once the dungeon map has generated. When first generated, the entire dungeon is not visible to the players. The dm will be free to reveal which parts of the map are visible to the player there onwards; at his own discretion.
 
-**How will we judge/measure that this use case has been taken into account?**  
+**How will we verify this specific requirement?**  
 This use case is essential to gameplay. We can judge it's success via playtesting. A successful implementation will make the tiles selected by the dm visible on the player's screen should update once selection is completed.
 
 **What limitations are there to achieving the use case?**  
@@ -299,7 +299,7 @@ The beneficiaries of this use case are the players, who will be able to play ano
 
 This use case will be acheived through the system generating a map and populating the map with higher leveled monsters than the previous map.
 
-**How will we judge/measure that this use case has been taken into account?** <br>
+**How will we verify this specific requirement?** <br>
 
 We will be able to measure this use case being taken into account by seeing if the system is able to generate and move onto another map after the current map the players are on has been completed.
 
@@ -331,7 +331,7 @@ The DM and players benefits from this use case, seeing the monster data allows t
 
 The system will store the monsters' data. The generated map will have generated monsters that are on certain locations on the map. The DM should be able to at minimum select a specific monster from a list of monsters through a button that displays the monsters data.
 
-**How will we judge/measure that this use case has been taken into account?**  
+**How will we verify this specific requirement?**  
 
 We can see that the use case has been taken into the account when the system generates a map, the user chooses the map and is able to select a specific monster from a list of monster names that displays its stats. This use case is successful if the DM selects the monster to see its stats to calculate how much damage it takes and deals when facing the players.  
 
@@ -366,7 +366,7 @@ The dungeon master benefits from this use case by being to see the full map and 
 
 The DM should be able to hit the generate map button, and the system will generate the map, and display the full map that is generated.
 
-**How will we judge/measure that this use case has been taken into account?**  
+**How will we verify this specific requirement?**  
 
 We will be able to see that this use case has been taken in to account when the system generate the map, and the user can see it. It is essential to the program, so we can judge its success when we can see the full map once the program has been implemented.
 
@@ -396,7 +396,7 @@ This use case benefits the DM in the sense that they'll be able to choose what s
 **How will this use case be achieved?**  
 The Dungeon master shall choose the theme of the dungeon before map generation.
 
-**How will we judge/measure that this use case has been taken into account?**  
+**How will we verify this specific requirement?**  
 Map themes are a pre-requisite for monster population. If successfully implemented, the types of monsters within the dungeon should be consistent to the theme (for instance, undead shouldn't be spawning in an bandit hideout).
 
 **What limitations are there to achieving the use case?**
@@ -421,7 +421,7 @@ The DM benefits from the use case. By removing monsters that are no longer relev
 **How will this use case be achieved?**  
 The DM has a view that shows monsters on the map. When the DM clicks on monsters there will be an option to delete that monster from the board and remove them from the map.
 
-**How will we judge/measure that this use case has been taken into account?**  
+**How will we verify this specific requirement?**  
 We can ensure that this use case has been taken into account if the monster is no longer displayed on the map when the DM clicks the delete button for that monster.
 
 **What limitations are there to achieving the use case?**
@@ -447,7 +447,7 @@ Both the players and the DM benefit from this use case. This is because there is
 **How will this use case be achieved?**  
 This will be achieved by implementing an algorithm that takes in a dungeon map and a list of monsters to pick from. It will then automatically populate the map with appropriately leveled and themed monsters.  
 
-**How will we judge/measure that this use case has been taken into account?**  
+**How will we verify this specific requirement?**  
 We can ensure that this use case has been taken into account if when the DM presses the generate monsters button the dungeon is automatically populated with appropriately leveled and themed monsters.
 
 **What limitations are there to achieving the use case?**  
@@ -473,7 +473,7 @@ Since the system has the responsibility of recording and updating the health of 
 **How will this use case be achieved?** <br>
 This is achieved by assigning a health value to each existing monster in the map/dungeon, and allowing the DM to view and change it at will.
 
-**How will we judge/measure that this use case has been taken into account?** <br>
+**How will we verify this specific requirement?** <br>
 This is judged whether the monsters correctly show and keep track of each monsters' health as intended by the DM. It is also judged on whether it successfully relieves the DM from this responsibility.
 
 **What limitations are there to achieving the use case?**  <br>
@@ -506,7 +506,7 @@ The dungeon master will benefit from this function as they are able to close the
 **How will this use case be achieved?**  
 By pressing an exit application button, the system will close all processes that are being used. This should close the server that displays the board for the players device as well as the GUI for the dungeon master.
 
-**How will we judge/measure that this use case has been taken into account?**  
+**How will we verify this specific requirement?**  
 If we are unable to see the application or server running, as well as no longer being able to see system resources being used from the device's manager then we know the function is working as intended.
 
 **What limitations are there to achieving the use case?**  
@@ -529,7 +529,7 @@ Choosing which view allows users to clearly choose what responsibilities they ha
 **How will this use case be achieved?** <br>
 This function will be achieved by prompting a user that visits the DnD Map Generation website with buttons to choose whether they wish to view the map from the Dungeon Master's (DM) perspective, or though the Player's perspective.
 
-**How will we judge/measure that this use case has been taken into account?** <br>
+**How will we verify this specific requirement?** <br>
 This is judged by whether choosing the view actually shows the correct view to the user.
 
 **What limitations are there to achieving the use case?** <br>
@@ -701,56 +701,56 @@ see 9.5.19.
 
 #### 4.1 Generate Maps
 
-**How will we judge/measure that this use case has been taken into account?**  
+**How will we ?**  
 Once a map has been generated with a new set of tiles we can ensure that this use case has functioned as intended.
 
 #### 4.2 View Player Maps
 
-**How will we judge/measure that this use case has been taken into account?** <br>
+**How will we verify this specific requirement?** <br>
 
 We will measure that this has been taken into account if the players are able to see a view of the board.
 
 #### 4.3 Change Visability
 
-**How will we judge/measure that this use case has been taken into account?**  
+**How will we verify this specific requirement?**  
 This use case is essential to gameplay. We can judge it's success via playtesting. A successful implementation will make the tiles selected by the dm visible on the player's screen should update once selection is completed.
 
 #### 4.4 Change Maps
 
-**How will we judge/measure that this use case has been taken into account?** <br>
+**How will we verify this specific requirement?** <br>
 
 We will be able to measure this use case being taken into account by seeing if the system is able to generate and move onto another map after the current map the players are on has been completed.
 
 #### 4.5 View Monster data
 
-**How will we judge/measure that this use case has been taken into account?**  
+**How will we verify this specific requirement?**  
 
 We can see that the use case has been taken into the account when the system generates a map, the user chooses the map and is able to select a specific monster from a list of monster names that displays its stats. This use case is successful if the DM selects the monster to see its stats to calculate how much damage it takes and deals when facing the players.  
 
 #### 4.6 See Full Maps
 
-**How will we judge/measure that this use case has been taken into account?**  
+**How will we verify this specific requirement?**  
 
 We will be able to see that this use case has been taken in to account when the system generate the map, and the user can see it. It is essential to the program, so we can judge its success when we can see the full map once the program has been implemented.
 
 #### 4.7 Pick Map theme
 
-**How will we judge/measure that this use case has been taken into account?**  
+**How will we verify this specific requirement?**  
 Map themes are a pre-requisite for monster population. If successfully implemented, the types of monsters within the dungeon should be consistent to the theme (for instance, undead shouldn't be spawning in an bandit hideout).
 
 #### 4.8 Remove monsters
 
-**How will we judge/measure that this use case has been taken into account?**  
+**How will we verify this specific requirement?**  
 We can ensure that this use case has been taken into account if the monster is no longer displayed on the map when the DM clicks the delete button for that monster.
 
 #### 4.9 Populate monsters
 
-**How will we judge/measure that this use case has been taken into account?**  
+**How will we verify this specific requirement?**  
 We can ensure that this use case has been taken into account if when the DM presses the generate monsters button the dungeon is automatically populated with appropriately leveled and themed monsters.
 
 #### 4.10 Change Monster health
 
-**How will we judge/measure that this use case has been taken into account?** <br>
+**How will we verify this specific requirement?** <br>
 This is judged whether the monsters correctly show and keep track of each monsters' health as intended by the DM. It is also judged on whether it successfully relieves the DM from this responsibility.
 stem responsibility>
 While playing the game, a monster's health changes. The DM changes that monster's current health <User intention>
@@ -758,7 +758,7 @@ Change the corresponding monster's health to a new value, and record it <System 
 
 #### 4.11 Exit Game/server
 
-**How will we judge/measure that this use case has been taken into account?**  
+**How will we verify this specific requirement?**  
 If we are unable to see the application or server running, as well as no longer being able to see system resources being used from the device's manager then we know the function is working as intended.
 
 ## 5. Development schedule.
