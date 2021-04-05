@@ -603,6 +603,8 @@ On startup, the maps should not take a long time to generate. The maps will only
 
 Since the game will be played in real time, the game will need to react to changes made quickly. Each time the players progress to the next level of the dungeon a new map will be generated. If the players want to go back to a previous level, it should take less than 1 second to load, since the map had already been generated previously. The only other aspect that will need to be changed dynamically is the Fog of War system. When the players go to each room the dungeon master should be able to make the room visible on the map display. This will need to take less than a second to change, since waiting for a while for the rooms visibility to load may ruin the immersion of the players.
 
+When saving the game, this should not take too long. It is expected that it takes less than approximately 10-20 seconds. The players don't want to spend a long time saving the game, since they may be in a rush to finish the session. When loading the game, this will be dependent on how strong the device's connection to the database is.
+
 ### 3.5 Logical database requirements
 
 See 9.5.14. for most systems, a focus on d) and e) is appropriate, such as an object-oriented domain analysis. You should provide an overview domain model (e.g.  a UML class diagram of approximately ten classes) and write a brief description of the responsibilities of each class in the model (3 pages).
