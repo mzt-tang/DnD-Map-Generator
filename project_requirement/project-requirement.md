@@ -893,7 +893,13 @@ The assumptions we are making when designing the application are:
 
 ### 6.2 Acronyms and abbreviations
 
-One page glossary _as required_.
+**Risk Acronyms and Abbreviations:**
+* Performance Risk: A risk that impacts the efficiency of project operations.
+* Financial Risk: A risk that impacts the budget of the product, affecting bought items and assets.
+* Availability Risk: A risk that halts or reduces the amount of work team-members can contribute.
+* Operational Risk: A risk that alters the functionality of the product.
+* Health and Safety Risk: A risk that impacts the health and well-being of the team members.
+* Strategic Risk: A risk that alters requirements of the project or client specifications.
 
 ## 7. Contributions
 
