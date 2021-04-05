@@ -184,8 +184,6 @@ The player's view must display what the dungeon master chooses to display. This 
 
 ### 3.2 Functions
 
-<<<<<<< HEAD
-=======
 #### 3.2.1 Template Use case
 **What is the Goal of the use case?**  
 
@@ -202,7 +200,6 @@ The player's view must display what the dungeon master chooses to display. This 
 -System Responsibilities:
 -User Interface:
 
->>>>>>> origin/master
 #### 3.2.1 Generate Maps
 
 **What is the Goal of the use case?**  
@@ -243,11 +240,7 @@ The players benefit directly as the players will be able to see what is going on
 
 This use case will be acheived by the system taking the display chosen by the Dungeon Master and displaying it on the players screen.
 
-<<<<<<< HEAD
-**How will we judge/measure that this use case has been taken into account?** <br>
-=======
 **How will we verify this specific requirement?** <br>
->>>>>>> origin/master
 
 We will measure that this has been taken into account if the players are able to see a view of the board.
 
@@ -335,16 +328,11 @@ The goal of this use case is to display the monster data of any specific monster
 **Who benefits from the result of this use case?**<br>
 The DM and players benefits from this use case, seeing the monster data allows the DM to know its stats. This means when the players are battling a monster the DM knows how much health, damage, etc. the monster deals and takes.
 
-<<<<<<< HEAD
-**How will this use case be achieved?**<br>
-The system will store the monsters' data. The generated map will have generated monsters that are on certain locations on the map. The DM should be able to at minimum select a specific monster from a list of monsters through a button that displays the monsters data.
-=======
 **How will this use case be achieved?**  
 
 The system will store the monsters' data. The generated map will have generated monsters that are on certain locations on the map. The DM should be able to at minimum select a specific monster from a list of monsters through a button that displays the monsters data.
 
 **How will we verify this specific requirement?**  
->>>>>>> origin/master
 
 We can see that the use case has been taken into the account when the system generates a map, the user chooses the map and is able to select a specific monster from a list of monster names that displays its stats. This use case is successful if the DM selects the monster to see its stats to calculate how much damage it takes and deals when facing the players.  
 
@@ -367,16 +355,11 @@ The goal of this use case is to display the full generated map on to a screen.
 **Who benefits from the result of this use case?**<br>
 The dungeon master benefits from this use case by being to see the full map and plan for the game/players or choose another map. This means it also indirectly helps the players by allowing them to have a better experience playing because of the DM's benefits. Displaying the full map also allows the user to decide whether they like the map, or want to generate a different one for their needs.
 
-<<<<<<< HEAD
-**How will this use case be achieved?**<br>
-The DM should be able to hit the generate map button, and the system will generate the map, and display the full map that is generated.
-=======
 **How will this use case be achieved?**  
 
 The DM should be able to hit the generate map button, and the system will generate the map, and display the full map that is generated.
 
 **How will we verify this specific requirement?**  
->>>>>>> origin/master
 
 We will be able to see that this use case has been taken in to account when the system generate the map, and the user can see it. It is essential to the program, so we can judge its success when we can see the full map once the program has been implemented.
 
