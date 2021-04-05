@@ -517,10 +517,11 @@ This will be judged by checking that when the save game is loaded, it is the sam
 **What limitations are there to achieving the use case?**<br>
 If the JSON file is stored on an online database, it is very difficult to retrieve the information from the file.
 
-
-| User Intention | System Responsibility | User Interface |
-| -------------- | --------------------- | -------------- |
-| User clicks the save button | The JSON file is saved to an online database | Display a 'Saved Game' message |
+| Action | Type |
+| ------ | ---- |
+| User clicks the save button | [User Intention] |
+| The JSON file is saved to an online database | [System Requirements] |
+| Display a 'Saved Game' message | [User Interface] |
 
 #### 3.2.13 Load Game (DM)
 
@@ -540,11 +541,12 @@ This will be judged by checking that all information about the game when loaded 
 **What limitations are there to achieving the use case?**<br>
 It is very difficult to store JSON files in a relational database.
 
-| User Intention | System Responsibility | User Interface |
-| -------------- | --------------------- | -------------- |
-| User clicks the load game button | The JSON file is retrieved from the online database | Displays the map in the same way as it was when saved |
-| | | If saved game cannot be found, display a 'cannot find game' message |
-
+| Action | Type |
+| ------ | ---- |
+| User clicks the load game button | [User Intention] |
+| The JSON file is retrieved from the online database | [System Responsibility] |
+| Displays the map in the same way as it was when saved | [User Interface] |
+| If saved game cannot be found, display a 'cannot find game' message | [User Interface] |
 
 This is typically the longest subsection in the document. List up to fifty use cases (in order of priority for development), and for at least top ten focal use cases, write a short goal statement and use case body (up to seven pages).  Identify the use cases that comprise a minimum viable product.
 
