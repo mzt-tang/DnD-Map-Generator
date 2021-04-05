@@ -269,7 +269,7 @@ A one page statement of contributions, including a list of each member of the gr
 | Adam Sinclair |  1.3.2 3.2.8 3.2.9 3.6 |
 | Oliver Badrick | 3.4, 3.7, 3.8, 3.2.12, 3.2.13 |
 | Patrick Laing | 3.1, 1.3.1, 3.2.2, 3.2.4 |
-| Elijah Guarina |  |
+| Elijah Guarina | 1.3.3, 3.2.10, 5.2 |
 | Jeremiah Choi |  |
 | Connor de Bruyn | 3.3, 5.3, 3.2.1, 3.2.11 |
 | Michael Tang | 1.0, 1.1, 1.2 |
