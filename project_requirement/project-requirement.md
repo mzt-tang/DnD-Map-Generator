@@ -509,7 +509,9 @@ This will be judged by checking that when the save game is loaded, it is the sam
 **What limitation are there to achieving the use case?**<br>
 If the JSON file is stored on an online databse, it is very difficult to retrieve the information from the file.
 
+
 | User Intention | System Responsibility | User Interface |
+| -------------- | --------------------- | -------------- |
 | User clicks the save button | The JSON file is saved to an online database | Display a 'Saved Game' message |
 
 #### 3.2.13 Load Game (DM)
@@ -531,6 +533,7 @@ This will be judged by checking that all information about the game when loaded 
 It is very difficult to store JSON files in a relational database.
 
 | User Intention | System Responsibility | User Interface |
+| -------------- | --------------------- | -------------- |
 | User clicks the load game button | The JSON file is retrieved from the online database | Displays the map in the same way as it was when saved|
 
 
