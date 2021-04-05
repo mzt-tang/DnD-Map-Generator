@@ -702,7 +702,11 @@ see 9.5.19.
 #### 4.1 Generate Maps
 
 **How will we verify this specific requirement?**  
+To ensure this requirement has been met we can manually test by observing the board after generation. 
 Once a map has been generated with a new set of tiles we can ensure that this use case has functioned as intended.
+For a further test we can run a not-null test of the generated tiles in the 2d array after the map generation function,
+to ensure objects have been constructed correctly. In addition, we can also compare hashes before and after each
+generation to ensure uniqueness of the maps.
 
 #### 4.2 View Player Maps
 
@@ -763,7 +767,10 @@ Change the corresponding monster's health to a new value, and record it <System 
 #### 4.11 Exit Game/server
 
 **How will we verify this specific requirement?**  
-If we are unable to see the application or server running, as well as no longer being able to see system resources being used from the device's manager then we know the function is working as intended.
+This requirement can be manually tested by viewing the application and server after running the function. 
+If the board is no longer displaying on either device, and the application has closed on the dungeon masters device.
+Then we can assume this requirement has been fulfilled. For a further test we may check the system resource usage
+on the dungeon masters device and server, to ensure no background processes are pursuing after exiting. 
 
 ## 5. Development schedule.
 
