@@ -93,7 +93,7 @@ The minimum viable product is a software solution that allows a dungeon master t
 
 The dungeon master will have a separate display to the players that will allow them to see additional information and control map visability. The additional information in the minimum viable product is monster stats for the generated monsters (hp,armor,etc). The players will be playing on a large display (projector or large TV) that allows them to move figurines around the dungeon. The level has optional line of sight and map hiding functions. Room sizes will be appropriate for the monsters in the rooms.
 
-The software solution will run locally and is not expected to run over the internet.
+The software solution will allow multiple games to run concurrently and for the games to be loaded and saved.
 
 ##### 1.3.2.2 Dungeon Generation Package
 
@@ -103,7 +103,7 @@ The software solution will run locally and is not expected to run over the inter
 
 - **Room sizing** Rooms are expected to be appropriately sized for the monsters that populate them. A room with an ogre should have entrances that allow the movement of that orge based on size.
 
-- **Level Scale** Levels have a scale that ties them to distance. This is done using tile sizes.
+- **Level Scale** Levels have a scale that ties them to distance.
 
 ##### 1.3.2.3 Dungeon Master View
 
@@ -118,6 +118,12 @@ The software solution will run locally and is not expected to run over the inter
 - **Display** The players are able to see the sections of the map that have line of sight (as controlled by the dungeon master)
 
 - **Tile Size** The display has the tiles large enough that the players are able to move physical figurines around on the map. This will require a minimum projector/TV size for the players to use.
+
+#### 1.3.2.5 Server Specific
+
+- **Save and Load** The server is able to save and load games
+
+- **Concurrent Games** The server supports concurrent games
 
 #### 1.3.3 User characteristics   
 
