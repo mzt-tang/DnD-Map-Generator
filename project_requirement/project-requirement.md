@@ -41,6 +41,8 @@ To create a D&D map generator that also generates a well-weighted list of monste
  - Maps should adhere to at least 1 theme
  - The location that enemies are placed should make sense in relation to the place/theme on the map
  - The enemies should be weighted so that the amount of enemies at any given location is well balanced
+ - Multiple maps should be able to be generated concurrently on different machines
+ - Maps generated should be able to be saved and loaded
 
 #### The Primary Map Displaying Screen of the Program should meet the Following Goals
  - The map should be scalable and resizable to the screen that its displayed on
@@ -509,18 +511,18 @@ The goal is to allow the DM to save the generated map, so that they are able to 
 The dungeon master and the players will benefit from this use case. If they don't finish the game in one session, it is useful to all the users that they can save their progress.
 
 **How will this use case be achieved?**<br>
-It could store the saved game in a JSON file, which is then stored on a server.
+It could store the saved game in a JSON file, which is then stored on an online database
 
 **How will we judge/measure that this use case has been taken into account?**<br>
 This will be judged by checking that when the save game is loaded, it is the same as it was when it was saved.
 
 **What limitations are there to achieving the use case?**<br>
-We cannot use a database to store the JSON file, since it is a very difficult file to read in that way.
+If the JSON file is stored on an online database, it is very difficult to retrieve the information from the file.
 
 | Action | Type |
 | ------ | ---- |
 | User clicks the save button | [User Intention] |
-| The JSON file is saved to a server  | [System Requirements] |
+| The JSON file is saved to an online database | [System Requirements] |
 | Display a 'Saved Game' message | [User Interface] |
 
 #### 3.2.13 Load Game (DM)
@@ -533,18 +535,18 @@ The dungeon master and the players will benefit from this use case. It is import
 had left off in a previous session, since DnD games can sometimes take a long time to complete.
 
 **How will this use case be achieved?**<br>
-It can be achieved by accessing a server where the saved JSON file is stored, then loading the JSON file in the game.
+It can be achieved by accessing an online database where the saved JSON file is stored, then loading the JSON file in the game.
 
 **How will we judge/measure that this use case has been taken into account?**<br>
 This will be judged by checking that all information about the game when loaded is identical to what it was when saved. 
 
 **What limitations are there to achieving the use case?**<br>
-We cannot use a database to store the JSON file, since it is a very difficult file to read in that way.
+It is very difficult to store JSON files in a relational database.
 
 | Action | Type |
 | ------ | ---- |
 | User clicks the load game button | [User Intention] |
-| The JSON file is retrieved from the server | [System Responsibility] |
+| The JSON file is retrieved from the online database | [System Responsibility] |
 | Displays the map in the same way as it was when saved | [User Interface] |
 | If saved game cannot be found, display a 'cannot find game' message | [User Interface] |
 
@@ -885,7 +887,7 @@ The assumptions we are making when designing the application are:
 
 - That the devices used have access to the internet
 - That the devices used have enough computing power to run the application
-- That the server can store the file
+- That the online database used to store the saved game has enough space to store the file
 - That the device that displays the map has a large enough display for the player's physical figures to fit on the map 
 - That the device that the DM uses has some way to get input
 
