@@ -266,7 +266,7 @@ A one page statement of contributions, including a list of each member of the gr
 
 | User | Sections Done | 
 | --------------- | :--------------------------------------------------------------------------------: |
-| Adam Sinclair |  |
+| Adam Sinclair |  1.3.2 3.2.8 3.2.9 3.6 |
 | Oliver Badrick | 3.4, 3.7, 3.8 |
 | Patrick Laing | 3.1, 1.3.1, 3.2.2, 3.2.4 |
 | Elijah Guarina |  |
