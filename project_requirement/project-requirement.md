@@ -447,40 +447,7 @@ We can ensure that this use case has been taken into account if when the DM pres
 - server returns generated monster list [system responsibility]
 - view updates display to show monsters [user interface]
 
-#### 3.2.10 Change Monster health
-
-**What is the Goal of the use case?** <br>
-To be able to update and therefore keep track of the health of monsters on the map with the DnD Map Generation application, therefore assigning the system with this responsibility rather than assigning it to the DM.
-
-**Who benefits from the result of this use case?**  <br>
-Since the system has the responsibility of recording and updating the health of monsters (which would traditionally be a responsibility of the DM), the DM has less responsibilities to manage. The DM can therefore focus on managing their other responsibilities.
-
-**How will this use case be achieved?** <br>
-This is achieved by assigning a health value to each existing monster in the map/dungeon, and allowing the DM to view and change it at will.
-
-**How will we verify this specific requirement?** <br>
-This is judged whether the monsters correctly show and keep track of each monsters' health as intended by the DM. It is also judged on whether it successfully relieves the DM from this responsibility.
-
-**What limitations are there to achieving the use case?**  <br>
-Limitations to achieving this function include:
- - An inability to attempt to change the health of monsters (e.g. they cannot click on a monster to change its health)
- - If the health is not correctly adjusted as intended by the DM, then it would be confusing to change and keep track of monster health
- - If any other functions that are performed in order to be able to change a monster's health
-
-**Use Case Flow** <br>
-Open/Go to the DnD Map Generator website [User intention] <br>
-Launch application [System responsibility] <br>
-Ask User to choose between viewing the Dm's view or the Player's view [System responsibility] <br>
-Choose the DM view [User intention] <br>
-Display the DM view and all of its functionalities [System responsibility]  <br>
-Choose a dungeon theme and find a map to use in a DnD game [User intention]
-Generate maps according to the theme until the user is satisfied with one map [System responsibility] <br>
-Add monsters to the map [User Intention]  <br>
-Populate the generated map with monsters that each have their own details and health amounts [System responsibility]  <br>
-While playing the game, a monster's health changes. The DM changes that monster's current health [User intention]  <br>
-Change the corresponding monster's health to a new value, and record it [System responsibility]  <br>
-
-#### 3.2.11 Exit Game/server
+#### 3.2.10 Exit Game/server
 
 **What is the Goal of the use case?**  
 Close the dungeons and dragons application and server.
@@ -503,7 +470,7 @@ If we are unable to see the application or server running, as well as no longer 
 * Dungeon masters view is no longer being displayed [User Interface]
 * Players view is no longer being displayed [User Interface]
 
-#### 3.2.12 Choose View (DM Or Player)
+#### 3.2.11 Choose View (DM Or Player)
 
 **What is the Goal of the use case?** <br>
 The goal is to categorise users into the Dungeon Master and the Player(s) by allowing users to choose to view either the DM's view and the players' view.
@@ -529,6 +496,50 @@ Ask User to choose between viewing the Dm's view or the Player's view [System re
 Choose a view [User intention] <br>
 Display the view that the player selected, including all functionalities associated with that view [System responsibility] <br>
 
+#### 3.2.12 Save Game (DM)
+
+**What is the Goal of the use case?**<br>
+The goal is to allow the DM to save the generated map, so that they are able to load the map for another game.
+
+**Who benefits from the result of this use case?**<br>
+The dungeon master and the players will benefit from this use case. If they don't finish the game in one session, it is useful to all the users that they can save their progress.
+
+**How will this use case be achieved?**<br>
+It could store the saved game in a JSON file, which is then stored on an online database
+
+**How will we judge/measure that this use case has been taken into account?**<br>
+This will be judged by checking that when the save game is loaded, it is the same as it was when it was saved.
+
+**What limitations are there to achieving the use case?**<br>
+If the JSON file is stored on an online database, it is very difficult to retrieve the information from the file.
+
+
+| User Intention | System Responsibility | User Interface |
+| -------------- | --------------------- | -------------- |
+| User clicks the save button | The JSON file is saved to an online database | Display a 'Saved Game' message |
+
+#### 3.2.13 Load Game (DM)
+
+**What is the goal of the use case?**<br>
+The goal is to allow the DM to load a previously saved game, so that the players can continue where they left off.
+
+**Who benefits from the result of this use case?**<br>
+The dungeon master and the players will benefit from this use case. It is important for the players to be able to continue a game from where they
+had left off in a previous session, since DnD games can sometimes take a long time to complete.
+
+**How will this use case be achieved?**<br>
+It can be achieved by accessing an online database where the saved JSON file is stored, then loading the JSON file in the game.
+
+**How will we judge/measure that this use case has been taken into account?**<br>
+This will be judged by checking that all information about the game when loaded is identical to what it was when saved. 
+
+**What limitations are there to achieving the use case?**<br>
+It is very difficult to store JSON files in a relational database.
+
+| User Intention | System Responsibility | User Interface |
+| -------------- | --------------------- | -------------- |
+| User clicks the load game button | The JSON file is retrieved from the online database | Displays the map in the same way as it was when saved |
+| | | If saved game cannot be found, display a 'cannot find game' message |
 
 
 This is typically the longest subsection in the document. List up to fifty use cases (in order of priority for development), and for at least top ten focal use cases, write a short goal statement and use case body (up to seven pages).  Identify the use cases that comprise a minimum viable product.
@@ -756,6 +767,27 @@ This requirement can be manually tested by viewing the application and server af
 If the board is no longer displaying on either device, and the application has closed on the dungeon masters device.
 Then we can assume this requirement has been fulfilled. For a further test we may check the system resource usage
 on the dungeon masters device and server, to ensure no background processes are pursuing after exiting. 
+
+
+#### 4.11 Save Game
+
+**How will we verify this specific requirement?**
+This requirement can be tested by saving the game to the JSON file, then going through the file and checking that it includes the aspects of the dungeon that need to be saved. The parts of the map that need to be checked are:
+
+- The room layout of the levels
+- The amount and type of monsters in each room
+- Which rooms are the entrance and exit rooms
+- The visual theme of the dungeon
+
+#### 4.12 Load Game
+
+**How will we verify this specific requirement?**
+This requirement can be tested by loading a saved game and comparing it to when it was saved. The parts of the map that need to be compared are:
+
+- The room layout of the levels
+- The amount and type of monsters in each room
+- Which rooms are the entrance and exit rooms
+- The visual theme of the dungeon
 
 ## 5. Development schedule.
 
