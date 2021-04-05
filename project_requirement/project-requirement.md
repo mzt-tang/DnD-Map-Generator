@@ -348,11 +348,11 @@ The dungeon master benefits from this use case by being to see the full map and 
 
 **How will this use case be achieved?**  
 
-The DM should be able to hit the generate map button, and the system will generate the map, and display the full map that is generated.
+The DM should be able to hit the generate map button or load a map save, and the system will generate/load the map, and display that  full map.
 
 **How will we verify this specific requirement?**  
 
-We will be able to see that this use case has been taken in to account when the system generate the map, and the user can see it. It is essential to the program, so we can judge its success when we can see the full map once the program has been implemented.
+We will be able to see that this use case has been taken in to account when the system generate/load the map, and the user can see the map in its entirety. It is essential to the program, so we can judge its success when we can see the full map once the program has been implemented.
 
 **What limitations are there to achieving the use case?**  <br>
  - The system must generate the map before it can be displayed
