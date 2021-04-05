@@ -184,22 +184,6 @@ The player's view must display what the dungeon master chooses to display. This 
 
 ### 3.2 Functions
 
-#### 3.2.1 Template Use case
-**What is the Goal of the use case?**  
-
-**Who benefits from the result of this use case?**  
-
-**How will this use case be achieved?**  
-
-**How will we verify this specific requirement?**  
-
-**What limitations are there to achieving the use case?**  
-
-**Use Case Flow**
--User Intention:
--System Responsibilities:
--User Interface:
-
 #### 3.2.1 Generate Maps
 
 **What is the Goal of the use case?**  
@@ -221,10 +205,12 @@ Once a map has been generated with a new set of tiles we can ensure that this us
 * If there arent enough prefab rooms, or if the user is really unlucky, they may experience very similar maps being generated if duplicate prefabs are being used.
 
 **Use Case Flow**
-* Pressing the Generate maps button [User Intention]
-* Construct a map of prefabs [System Responsibilities]
-* Joins prefabs in map [System Responsibilities]
-* Displays the generated Board [User Interface]
+| Action | Type |
+| ---------------- | ------------------ |
+| Pressing the Generate maps button | [User Intention] |
+| Construct a map of prefabs | [System Responsibilities] |
+| Joins prefabs in map | [System Responsibilities] |
+| Displays the generated Board | [User Interface] |
 
 #### 3.2.2 View Player Maps
 
@@ -249,10 +235,11 @@ We will measure that this has been taken into account if the players are able to
 The limitations of this use case are the implementations of 3.2.3 change visibility as the player view relies on the Dungeon Master's choice of the view.
 
 **Use Case Flow** <br>
-
-View the map from player's perspective [User Intention] <br>
-Get the player view [System Responsibilities] <br>
-Display the view [User Interface] <br>
+| Action | Type |
+| ---------------- | ------------------ |
+| View the map from player's perspective | [User Intention] |
+| Get the player view | [System Responsibilities] |
+| Display the view | [User Interface] |
 
 #### 3.2.3 Change Visability
 
@@ -273,17 +260,19 @@ This use case is essential to gameplay. We can judge it's success via playtestin
 - The map must be generated before in order for this use case to function.
 
 **Use Case Flow**
-- User Intention: Player characters move to different room.
-- User Intention: Add fog of war.
-- System Responsibilities: Allow/Register controls on DM device.
-- System Responsibilities: Flag tiles invisible.
-- System Responsibilities: Update player's vision screen.
-- User Intention: Make new room visible.
-- System Responsibilities: Allow/Register controls on DM device.
-- System Responsibilities: Flag tiles visible.
-- System Responsibilities: Update player's vision screen.
-- User Interface: Player's and DM able to see new screen.
-- User Intention: Game continues.
+| Action | Type |
+| ---------------- | ------------------ |
+| Player characters move to different room. | [User Intention] | 
+| Add fog of war. | [User Intention] | 
+| Allow/Register controls on DM device. | [System Responsibilities] | 
+| Flag tiles invisible. | [System Responsibilities] |
+| Update player's vision screen. | [System Responsibilities] | 
+| Make new room visible. | [User Intention] |
+| Allow/Register controls on DM device. | [System Responsibilities] | 
+| Flag tiles visible. | [System Responsibilities] | 
+| Update player's vision screen. | [System Responsibilities] | 
+| Player's and DM able to see new screen. | [User Interface] | 
+| Game continues. | [User Intention] | 
 
 #### 3.2.4 Change Maps
 
@@ -309,15 +298,16 @@ The limitations of acheiving this use case are generating maps. This is because 
 
 **Use Case Flow** <br>
 
-Change maps between levels [User Intention] <br>
-Generate a new level [System Responsibilities] <br>
-Generate monsters [System Responsibilities] <br>
-Display to Dungeon Master Map information [System Responsibilities] <br>
-Dungeon Master sees map information [User Interface] <br>
-Continue the game [User Intention] <br>
+| Action | Type |
+| ------------------ | ------------------ |
+| Change maps between levels | [User Intention] |
+| Generate a new level | [System Responsibilities] |
+| Generate monsters | [System Responsibilities] |
+| Display to Dungeon Master Map information | [System Responsibilities] |
+| Dungeon Master sees map information | [User Interface] |
+| Continue the game | [User Intention] |
 
 #### 3.2.5 View Monster data
-MT
 
 **What is the Goal of the use case?**<br>
 The goal of this use case is to display the monster data of any specific monster on the map.
@@ -339,10 +329,12 @@ We can see that the use case has been taken into the account when the system gen
 
 
 **Use Case Flow**<br>
- - The user can see any selected monster's stats [user intention]
- - The system must have a stored set of monsters and their stats [system responsibilities]
- - The system must display any specific monster's stats on a screen [system responsibilites]
- - The user should be able to pick a monster's name from a list of monsters and see its stats [user interface]
+| Action | Type |
+| ---------------- | ------------------ |
+ | The user can see any selected monster's stats | [user intention] |
+ | The system must have a stored set of monsters and their stats | [system responsibilities] |
+ | The system must display any specific monster's stats on a screen | [system responsibilites] |
+ | The user should be able to pick a monster's name from a list of monsters and see its stats | [user interface] |
 
 #### 3.2.6 See Full Maps
 
@@ -364,12 +356,14 @@ We will be able to see that this use case has been taken in to account when the 
  - The system must generate the map before it can be displayed
  - There must be a screen to display the full map on
 
-**Use Case Flow**<br>
- - The user can see the full generated map [user intention]
- - The system must generate the map [system responsibility]
- - The system myst display the generated map on to a screen [system responsibility]
- - The user should be able to press the generate map button and see the full map [user interface]
- - The user should be able to press the see map button and see the full map [user interface]
+**Use Case Flow**  
+| Action | Type |
+| ---------------- | ------------------ |
+| The user can see the full generated map | [user intention] |
+| The system must generate the map | [system responsibility] |
+| The system myst display the generated map on to a screen | [system responsibility] |
+| The user should be able to press the generate map button and see the full map | [user interface] |
+| The user should be able to press the see map button and see the full map | [user interface] |
 
 #### 3.2.7 Pick Map theme
 **What is the Goal of the use case?**  
@@ -389,11 +383,13 @@ Map themes are a pre-requisite for monster population. If successfully implement
 - When implementing, this feature must be implemented after "populate monsters".
 
 **Use Case Flow**
-- User Intention: Select map theme.
-- System Responsibilities: Display options,
-- User Intention: Dungeon Master makes selection.
-- System Responsibilities: Store selection in public variable.
-- System Responsibilities: Populate dungeon with monsters according to the theme.
+| Action | Type |
+| ---------------- | ------------------ |
+| Select map theme. | [User Intention] | 
+| Display options | [System Responsibilities] | 
+| Dungeon Master makes selection. | [User Intention] | 
+| Store selection in public variable. | [System Responsibilities] | 
+| Populate dungeon with monsters according to the theme. | [System Responsibilities] | 
 
 #### 3.2.8 Remove monsters
 
@@ -415,10 +411,12 @@ We can ensure that this use case has been taken into account if the monster is n
 - The dungeon must be populated with monsters for this to work. Hence if the monster population function does not work this will not be able to work.
 
 **Use Case Flow**
-- DM clicks monster delete button [user intention]
-- Button sends request to delete monster [system responsibility]
-- Monster is removed from monster list [system responsibility]
-- View updates with monster removed [user interface]
+| Action | Type |
+| ---------------- | ------------------ |
+| DM clicks monster delete button | [user intention] |
+| Button sends request to delete monster | [system responsibility] |
+| Monster is removed from monster list | [system responsibility] |
+| View updates with monster removed | [user interface] |
 
 
 #### 3.2.9 Populate monsters
@@ -441,11 +439,13 @@ We can ensure that this use case has been taken into account if when the DM pres
 - Requires the dungeon map to generate so that monsters can be placed inside it.
 
 **Use Case Flow**
-- DM pushes button to generate monsters [user intention]
-- Button sends request to server [system responsibility]
-- server runs monster generation algorithm [system responsibility]
-- server returns generated monster list [system responsibility]
-- view updates display to show monsters [user interface]
+| Action | Type |
+| ---------------- | ------------------ |
+| DM pushes button to generate monsters | [user intention] |
+| Button sends request to server | [system responsibility] |
+| server runs monster generation algorithm | [system responsibility] |
+| server returns generated monster list | [system responsibility] |
+| view updates display to show monsters | [user interface] |
 
 #### 3.2.10 Exit Game/server
 
@@ -465,10 +465,12 @@ If we are unable to see the application or server running, as well as no longer 
 * This use-case requires the board and server to be implemented and operational.
 
 **Use Case Flow**
-* Close the application [User Intention]
-* Stop all running processes [System Responsibilities]
-* Dungeon masters view is no longer being displayed [User Interface]
-* Players view is no longer being displayed [User Interface]
+| Action | Type |
+| ---------------- | ------------------ |
+| Close the application | [User Intention] |
+| Stop all running processes | [System Responsibilities] |
+| Dungeon masters view is no longer being displayed | [User Interface] |
+| Players view is no longer being displayed | [User Interface] |
 
 #### 3.2.11 Choose View (DM Or Player)
 
@@ -489,12 +491,14 @@ A limitation of achieving this function include:
  - An inability to access the website/launch the application (no internet access, application does not launch properly)
  - Being able to provide two different views to the user requires there to be two different views of the application in the first place
 
-**Use Case Flow** <br>
-Open/Go to the DnD Map Generator website [User intention] <br>
-Launch application [System responsibility] <br>
-Ask User to choose between viewing the Dm's view or the Player's view [System responsibility] <br>
-Choose a view [User intention] <br>
-Display the view that the player selected, including all functionalities associated with that view [System responsibility] <br>
+**Use Case Flow**  
+| Action | Type |
+| ---------------- | ------------------ |
+| Open/Go to the DnD Map Generator website | [User intention] |
+| Launch application | [System responsibility] |
+| Ask User to choose between viewing the Dm's view or the Player's view | [System responsibility] |
+| Choose a view | [User intention] |
+| Display the view that the player selected, including all functionalities associated with that view | [System responsibility] |
 
 #### 3.2.12 Save Game (DM)
 
@@ -513,10 +517,11 @@ This will be judged by checking that when the save game is loaded, it is the sam
 **What limitations are there to achieving the use case?**<br>
 If the JSON file is stored on an online database, it is very difficult to retrieve the information from the file.
 
-
-| User Intention | System Responsibility | User Interface |
-| -------------- | --------------------- | -------------- |
-| User clicks the save button | The JSON file is saved to an online database | Display a 'Saved Game' message |
+| Action | Type |
+| ------ | ---- |
+| User clicks the save button | [User Intention] |
+| The JSON file is saved to an online database | [System Requirements] |
+| Display a 'Saved Game' message | [User Interface] |
 
 #### 3.2.13 Load Game (DM)
 
@@ -536,11 +541,12 @@ This will be judged by checking that all information about the game when loaded 
 **What limitations are there to achieving the use case?**<br>
 It is very difficult to store JSON files in a relational database.
 
-| User Intention | System Responsibility | User Interface |
-| -------------- | --------------------- | -------------- |
-| User clicks the load game button | The JSON file is retrieved from the online database | Displays the map in the same way as it was when saved |
-| | | If saved game cannot be found, display a 'cannot find game' message |
-
+| Action | Type |
+| ------ | ---- |
+| User clicks the load game button | [User Intention] |
+| The JSON file is retrieved from the online database | [System Responsibility] |
+| Displays the map in the same way as it was when saved | [User Interface] |
+| If saved game cannot be found, display a 'cannot find game' message | [User Interface] |
 
 This is typically the longest subsection in the document. List up to fifty use cases (in order of priority for development), and for at least top ten focal use cases, write a short goal statement and use case body (up to seven pages).  Identify the use cases that comprise a minimum viable product.
 
@@ -617,15 +623,15 @@ You should use right tools, preferabley PlantUML, to draw your URL diagrams whic
 ### 3.6 Design constraints
 
 #### Copyright And Legal Constraints:
-> Dungeons and dragons is owned by Wizards Of The Coast and they have a copyright and/or licence agreement on all their assets relating to the game. We need to ensure we do not violate any of their terms and conditions associated with their assets. This includes monster information/names, dungeons and dragons images, game assets, and any other assets implemented into the game.
+Dungeons and dragons is owned by Wizards Of The Coast and they have a copyright and/or licence agreement on all their assets relating to the game. We need to ensure we do not violate any of their terms and conditions associated with their assets. This includes monster information/names, dungeons and dragons images, game assets, and any other assets implemented into the game.
 
-> Any other assets we use for this project that are free or paid will have terms of use associated with the assets. We must ensure we adhere to these requirements to avoid legal issues.
+Any other assets we use for this project that are free or paid will have terms of use associated with the assets. We must ensure we adhere to these requirements to avoid legal issues.
 
 #### Data and Privacy
-> The program will not collect or store any personal data to avoid privacy laws.
+The program will not collect or store any personal data to avoid privacy laws.
 
 #### Time limitation
-> Time is limited to about 7 hours a week working on this project. There is a hard deadline of October to finish the project. Because of this time constraint there are no guarantees that any work outside the scope of this requirements document can be completed before the deadline. Any stretch targets could be left unfinished, however these will be in a feature branch and will not affect the functionality of the main program.
+Time is limited to about 7 hours a week working on this project. There is a hard deadline of October to finish the project. Because of this time constraint there are no guarantees that any work outside the scope of this requirements document can be completed before the deadline. Any stretch targets could be left unfinished, however these will be in a feature branch and will not affect the functionality of the main program.
 
 ### 3.7 Nonfunctional system attributes
 
