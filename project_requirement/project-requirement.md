@@ -691,6 +691,100 @@ see 9.5.19.
 
 3 pages outlining how you will verify that the product meets the most important specific requirements. The format of this section should parallel section 3 of your document (see 9.5.18). Wherever possible (especially systemic requirements) you should indicate testable acceptance criteria.
 
+#### 4.1 Generate Maps
+
+**How will we verify this specific requirement?**  
+To ensure this requirement has been met we can manually test by observing the board after generation. 
+Once a map has been generated with a new set of tiles we can ensure that this use case has functioned as intended.
+For a further test we can run a not-null test of the generated tiles in the 2d array after the map generation function,
+to ensure objects have been constructed correctly. In addition, we can also compare hashes before and after each
+generation to ensure uniqueness of the maps.
+
+#### 4.2 View Player Maps
+
+**How will we verify this specific requirement?** <br>
+
+We will measure that this has been taken into account if the players are able to see a view of the board.
+
+We will test that this feature is working by checking manually that what the Dungeon Master wants the player to see is visible on the player's device. We will test this feature's software is working by checking if information has been sent by the Dungeon Master's device and received by the player's device. If both tests work, the function will be deemed to be working.
+
+#### 4.3 Change Visability
+
+**How will we verify this specific requirement?**  
+This use case is essential to gameplay. We can judge it's success via playtesting. A successful implementation will make the tiles selected by the dm visible on the player's screen should update once selection is completed.
+
+#### 4.4 Change Maps
+
+**How will we verify this specific requirement?** <br>
+
+We will be able to measure this use case being taken into account by seeing if the system is able to generate and move onto another map after the current map the players are on has been completed.
+
+We will test if this is working by having the Dungeon Master advance the players on to the next map. If the level of the dungeon is higher with a new map generated, then the function works and the test is deemed successful.
+
+#### 4.5 View Monster data
+
+**How will we verify this specific requirement?**  
+
+We can see that the use case has been taken into the account when the system generates a map, the user chooses the map and is able to select a specific monster from a list of monster names that displays its stats. This use case is successful if the DM selects the monster to see its stats to calculate how much damage it takes and deals when facing the players.  
+
+#### 4.6 See Full Maps
+
+**How will we verify this specific requirement?**  
+
+We will be able to see that this use case has been taken in to account when the system generate the map, and the user can see it. It is essential to the program, so we can judge its success when we can see the full map once the program has been implemented.
+
+#### 4.7 Pick Map theme
+
+**How will we verify this specific requirement?**  
+Map themes are a pre-requisite for monster population. If successfully implemented, the types of monsters within the dungeon should be consistent to the theme (for instance, undead shouldn't be spawning in an bandit hideout).
+
+#### 4.8 Remove monsters
+
+**How will we verify this specific requirement?**  
+We can ensure that this use case has been taken into account if the monster is no longer displayed on the map when the DM clicks the delete button for that monster.
+
+#### 4.9 Populate monsters
+
+**How will we verify this specific requirement?**  
+We can ensure that this use case has been taken into account if when the DM presses the generate monsters button the dungeon is automatically populated with appropriately leveled and themed monsters.
+
+#### 4.10 Change Monster health
+
+**How will we verify this specific requirement?** <br>
+This is judged whether the monsters correctly show and keep track of each monsters' health as intended by the DM. It is also judged on whether it successfully relieves the DM from this responsibility.
+stem responsibility>
+While playing the game, a monster's health changes. The DM changes that monster's current health <User intention>
+Change the corresponding monster's health to a new value, and record it <System responsibility>
+
+#### 4.11 Exit Game/server
+
+**How will we verify this specific requirement?**  
+This requirement can be manually tested by viewing the application and server after running the function. 
+If the board is no longer displaying on either device, and the application has closed on the dungeon masters device.
+Then we can assume this requirement has been fulfilled. For a further test we may check the system resource usage
+on the dungeon masters device and server, to ensure no background processes are pursuing after exiting. 
+
+
+#### 4.11 Save Game
+
+**How will we verify this specific requirement?**
+This requirement can be tested by saving the game to the JSON file, then going through the file and checking that it includes the aspects of the dungeon that need to be saved. The parts of the map that need to be checked are:
+
+- The room layout of the levels
+- The amount and type of monsters in each room
+- Which rooms are the entrance and exit rooms
+- The visual theme of the dungeon
+
+#### 4.12 Load Game
+
+**How will we verify this specific requirement?**
+This requirement can be tested by loading a saved game and comparing it to when it was saved. The parts of the map that need to be compared are:
+
+- The room layout of the levels
+- The amount and type of monsters in each room
+- Which rooms are the entrance and exit rooms
+- The visual theme of the dungeon
+
 ## 5. Development schedule.
 
 ### 5.1 Schedule
