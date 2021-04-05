@@ -59,11 +59,11 @@ To create a D&D map generator that also generates a well-weighted list of monste
 #### 1.3.1 Product perspective
 
 This system generates maps to be used for a Dungeons and Dragons game, while also allowing the Dungeon Master to manage the game and choose what the players see. This system is similar to other systems such as ProDnD[1], an app available on the app store that allows users to input map sizes, complexity, and other information to generate a dungeon. Our system would not be as complex but will still be inspired in part by the ProDnD system and other systems similar to it.
- 
+
 The system will generate a map as well as populate the map with enemies of varying levels and types. The Dungeon Master would then calculate any damage to the enemies and players and manage the player’s information off-screen and input the hit points lost to the enemies on their device. The system would also generate information about the enemy such as the armour level. The levels of the generated enemies would depend on the level of the Dungeon.
- 
+
 The system would display information to the players using a similar system to Kahoot[2], a system that allows the host (the Dungeon Master in our system) to host a game that the players can connect to on their devices. Our system would be different from Kahoot's system as the Dungeon Master would need to be able to choose what image the players see on their device. This system would have no direct relationship with any other products or systems similar to Kahoot, but will instead be inspired by the design and functions of other products such as Kahoot. Whereas Kahoot is hosted via the internet, therefore anyone can connect to a given game, our system will use a local area network to connect between devices.
- 
+
 For our system to appear as a Dungeons and Dragons system, we will need to either create or use the artwork. The artwork we use will either be created by ourselves or will be free to use images.
 
 > **9.5.3 Product perspective** <br>
@@ -191,7 +191,7 @@ The player's view must display what the dungeon master chooses to display. This 
 
 **How will this use case be achieved?**  
 
-**How will we judge/measure that this use case has been taken into account?**  
+**How will we verify this specific requirement?**  
 
 **What limitations are there to achieving the use case?**  
 
@@ -206,14 +206,14 @@ The player's view must display what the dungeon master chooses to display. This 
 To create a map of tiles to act as the board for the Dungeons and Dragons tabletop game.
 
 **Who benefits from the result of this use case?**  
-The dungeon master will benefit from this use case by reducing the time taken to create a playable board and have an automatic tool to create dungeons for them. 
+The dungeon master will benefit from this use case by reducing the time taken to create a playable board and have an automatic tool to create dungeons for them.
 
 **How will this use case be achieved?**  
 This can be achieved by generating a map in two stages after the user presses a generate map button:
-* The function will randomly assign a random amount prefab "features" to an empty space. These prefab features will be a predetermined set of tiles which emulate more realistic map characteristics that random tilesets cannot replicate (I.e. creating caves with rounded edges or underground rooms). 
+* The function will randomly assign a random amount prefab "features" to an empty space. These prefab features will be a predetermined set of tiles which emulate more realistic map characteristics that random tilesets cannot replicate (I.e. creating caves with rounded edges or underground rooms).
 * The function will then conduct a path finding algorithm to join these prefab features generated in the first stage. Creating random paths between the map features, allowing overlaps to keep everything more random.
 
-**How will we judge/measure that this use case has been taken into account?**  
+**How will we verify this specific requirement?**  
 Once a map has been generated with a new set of tiles we can ensure that this use case has functioned as intended.
 
 **What limitations are there to achieving the use case?**  
@@ -234,13 +234,13 @@ For the player to be able to view their view of the map and for the Dungeon Mast
 
 **Who benefits from the result of this use case?** <br>
 
-The players benefit directly as the players will be able to see what is going on directly on their screen. The Dungeon Master benefits indirectly as the players are able to play, therefore the Dungeon Master is able to play. 
+The players benefit directly as the players will be able to see what is going on directly on their screen. The Dungeon Master benefits indirectly as the players are able to play, therefore the Dungeon Master is able to play.
 
 **How will this use case be achieved?** <br>
 
-This use case will be acheived by the system taking the display chosen by the Dungeon Master and displaying it on the players screen. 
+This use case will be acheived by the system taking the display chosen by the Dungeon Master and displaying it on the players screen.
 
-**How will we judge/measure that this use case has been taken into account?** <br> 
+**How will we verify this specific requirement?** <br>
 
 We will measure that this has been taken into account if the players are able to see a view of the board.
 
@@ -265,20 +265,20 @@ This use case benefits Dungeon Master. He will gain the ability to control the n
 **How will this use case be achieved?**  
 This use case will be consistently available to the dm once the dungeon map has generated. When first generated, the entire dungeon is not visible to the players. The dm will be free to reveal which parts of the map are visible to the player there onwards; at his own discretion.
 
-**How will we judge/measure that this use case has been taken into account?**  
+**How will we verify this specific requirement?**  
 This use case is essential to gameplay. We can judge it's success via playtesting. A successful implementation will make the tiles selected by the dm visible on the player's screen should update once selection is completed.
 
 **What limitations are there to achieving the use case?**  
-- Connection to the server must be stable for the dm to update the player's vision. 
+- Connection to the server must be stable for the dm to update the player's vision.
 - The map must be generated before in order for this use case to function.
 
 **Use Case Flow**
-- User Intention: Player characters move to different room. 
-- User Intention: Add fog of war. 
+- User Intention: Player characters move to different room.
+- User Intention: Add fog of war.
 - System Responsibilities: Allow/Register controls on DM device.
 - System Responsibilities: Flag tiles invisible.
 - System Responsibilities: Update player's vision screen.
-- User Intention: Make new room visible. 
+- User Intention: Make new room visible.
 - System Responsibilities: Allow/Register controls on DM device.
 - System Responsibilities: Flag tiles visible.
 - System Responsibilities: Update player's vision screen.
@@ -293,13 +293,13 @@ The goal of the use case "Change Maps" is for the Dungeon Master to be able to c
 
 **Who benefits from the result of this use case?** <br>
 
-The beneficiaries of this use case are the players, who will be able to play another level on a new map at higher levels, and the Dungeon Master, whos campaign continues on. 
+The beneficiaries of this use case are the players, who will be able to play another level on a new map at higher levels, and the Dungeon Master, whos campaign continues on.
 
 **How will this use case be achieved?** <br>
 
 This use case will be acheived through the system generating a map and populating the map with higher leveled monsters than the previous map.
 
-**How will we judge/measure that this use case has been taken into account?** <br>
+**How will we verify this specific requirement?** <br>
 
 We will be able to measure this use case being taken into account by seeing if the system is able to generate and move onto another map after the current map the players are on has been completed.
 
@@ -325,10 +325,12 @@ The goal of this use case is to display the monster data of any specific monster
 **Who benefits from the result of this use case?**<br>
 The DM and players benefits from this use case, seeing the monster data allows the DM to know its stats. This means when the players are battling a monster the DM knows how much health, damage, etc. the monster deals and takes.
 
-**How will this use case be achieved?**<br>
-The system will store the monsters' data. The generated map will have generated monsters that are on certain locations on the map. The DM should be able to at minimum select a specific monster from a list of monsters through a button that displays the monsters data. 
+**How will this use case be achieved?**  
 
-**How will we judge/measure that this use case has been taken into account?**<br>
+The system will store the monsters' data. The generated map will have generated monsters that are on certain locations on the map. The DM should be able to at minimum select a specific monster from a list of monsters through a button that displays the monsters data.
+
+**How will we verify this specific requirement?**  
+
 We can see that the use case has been taken into the account when the system generates a map, the user chooses the map and is able to select a specific monster from a list of monster names that displays its stats. This use case is successful if the DM selects the monster to see its stats to calculate how much damage it takes and deals when facing the players.  
 
 **What limitations are there to achieving the use case?**<br>
@@ -350,10 +352,12 @@ The goal of this use case is to display the full generated map on to a screen.
 **Who benefits from the result of this use case?**<br>
 The dungeon master benefits from this use case by being to see the full map and plan for the game/players or choose another map. This means it also indirectly helps the players by allowing them to have a better experience playing because of the DM's benefits. Displaying the full map also allows the user to decide whether they like the map, or want to generate a different one for their needs.
 
-**How will this use case be achieved?**<br>
-The DM should be able to hit the generate map button, and the system will generate the map, and display the full map that is generated. 
+**How will this use case be achieved?**  
 
-**How will we judge/measure that this use case has been taken into account?** <br>
+The DM should be able to hit the generate map button, and the system will generate the map, and display the full map that is generated.
+
+**How will we verify this specific requirement?**  
+
 We will be able to see that this use case has been taken in to account when the system generate the map, and the user can see it. It is essential to the program, so we can judge its success when we can see the full map once the program has been implemented.
 
 **What limitations are there to achieving the use case?**  <br>
@@ -377,16 +381,16 @@ This use case benefits the DM in the sense that they'll be able to choose what s
 **How will this use case be achieved?**  
 The Dungeon master shall choose the theme of the dungeon before map generation.
 
-**How will we judge/measure that this use case has been taken into account?**  
+**How will we verify this specific requirement?**  
 Map themes are a pre-requisite for monster population. If successfully implemented, the types of monsters within the dungeon should be consistent to the theme (for instance, undead shouldn't be spawning in an bandit hideout).
 
 **What limitations are there to achieving the use case?**
-- This use case is used after the Dungeon Master role is assigned. 
+- This use case is used after the Dungeon Master role is assigned.
 - When implementing, this feature must be implemented after "populate monsters".
 
 **Use Case Flow**
 - User Intention: Select map theme.
-- System Responsibilities: Display options, 
+- System Responsibilities: Display options,
 - User Intention: Dungeon Master makes selection.
 - System Responsibilities: Store selection in public variable.
 - System Responsibilities: Populate dungeon with monsters according to the theme.
@@ -402,7 +406,7 @@ The DM benefits from the use case. By removing monsters that are no longer relev
 **How will this use case be achieved?**  
 The DM has a view that shows monsters on the map. When the DM clicks on monsters there will be an option to delete that monster from the board and remove them from the map.
 
-**How will we judge/measure that this use case has been taken into account?**  
+**How will we verify this specific requirement?**  
 We can ensure that this use case has been taken into account if the monster is no longer displayed on the map when the DM clicks the delete button for that monster.
 
 **What limitations are there to achieving the use case?**
@@ -428,7 +432,7 @@ Both the players and the DM benefit from this use case. This is because there is
 **How will this use case be achieved?**  
 This will be achieved by implementing an algorithm that takes in a dungeon map and a list of monsters to pick from. It will then automatically populate the map with appropriately leveled and themed monsters.  
 
-**How will we judge/measure that this use case has been taken into account?**  
+**How will we verify this specific requirement?**  
 We can ensure that this use case has been taken into account if when the DM presses the generate monsters button the dungeon is automatically populated with appropriately leveled and themed monsters.
 
 **What limitations are there to achieving the use case?**  
@@ -448,13 +452,13 @@ We can ensure that this use case has been taken into account if when the DM pres
 **What is the Goal of the use case?**  
 Close the dungeons and dragons application and server.
 
-**Who benefits from the result of this use case?** 
+**Who benefits from the result of this use case?**
 The dungeon master will benefit from this function as they are able to close the application after usage of the game, instead of using system resources to keep the application up when they are no longer using it.
 
 **How will this use case be achieved?**  
 By pressing an exit application button, the system will close all processes that are being used. This should close the server that displays the board for the players device as well as the GUI for the dungeon master.
 
-**How will we judge/measure that this use case has been taken into account?**  
+**How will we verify this specific requirement?**  
 If we are unable to see the application or server running, as well as no longer being able to see system resources being used from the device's manager then we know the function is working as intended.
 
 **What limitations are there to achieving the use case?**  
@@ -477,7 +481,7 @@ Choosing which view allows users to clearly choose what responsibilities they ha
 **How will this use case be achieved?** <br>
 This function will be achieved by prompting a user that visits the DnD Map Generation website with buttons to choose whether they wish to view the map from the Dungeon Master's (DM) perspective, or though the Player's perspective.
 
-**How will we judge/measure that this use case has been taken into account?** <br>
+**How will we verify this specific requirement?** <br>
 This is judged by whether choosing the view actually shows the correct view to the user.
 
 **What limitations are there to achieving the use case?** <br>
