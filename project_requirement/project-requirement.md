@@ -506,8 +506,8 @@ It could store the saved game in a JSON file, which is then stored on an online 
 **How will we judge/measure that this use case has been taken into account?**<br>
 This will be judged by checking that when the save game is loaded, it is the same as it was when it was saved.
 
-**What limitation are there to achieving the use case?**<br>
-If the JSON file is stored on an online databse, it is very difficult to retrieve the information from the file.
+**What limitations are there to achieving the use case?**<br>
+If the JSON file is stored on an online database, it is very difficult to retrieve the information from the file.
 
 
 | User Intention | System Responsibility | User Interface |
@@ -524,7 +524,7 @@ The dungeon master and the players will benefit from this use case. It is import
 had left off in a previous session, since DnD games can sometimes take a long time to complete.
 
 **How will this use case be achieved?**<br>
-It can be acieved by accessing an online database where the saved JSON file is stored, then load the JSON file in the game.
+It can be achieved by accessing an online database where the saved JSON file is stored, then loading the JSON file in the game.
 
 **How will we judge/measure that this use case has been taken into account?**<br>
 This will be judged by checking that all information about the game when loaded is identical to what it was when saved. 
@@ -534,7 +534,8 @@ It is very difficult to store JSON files in a relational database.
 
 | User Intention | System Responsibility | User Interface |
 | -------------- | --------------------- | -------------- |
-| User clicks the load game button | The JSON file is retrieved from the online database | Displays the map in the same way as it was when saved|
+| User clicks the load game button | The JSON file is retrieved from the online database | Displays the map in the same way as it was when saved |
+| | | If saved game cannot be found, display a 'cannot find game' message |
 
 
 This is typically the longest subsection in the document. List up to fifty use cases (in order of priority for development), and for at least top ten focal use cases, write a short goal statement and use case body (up to seven pages).  Identify the use cases that comprise a minimum viable product.
