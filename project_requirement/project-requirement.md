@@ -785,6 +785,14 @@ _If the project is purely software and requires no contact risks involving physi
 
 One page on assumptions and dependencies (9.5.7).
 
+The assumptions we are making when designing the application are:
+
+- That the devices used have access to the internet
+- That the devices used have enough computing power to run the application
+- That the online database used to store the saved game has enough space to store the file
+- That the device that displays the map has a large enough display for the player's physical figures to fit on the map 
+- That the device that the DM uses has some way to get input
+
 ### 6.2 Acronyms and abbreviations
 
 One page glossary _as required_.
