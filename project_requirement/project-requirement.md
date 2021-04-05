@@ -777,7 +777,7 @@ Then we can assume this requirement has been fulfilled. For a further test we ma
 on the dungeon masters device and server, to ensure no background processes are pursuing after exiting. 
 
 
-#### 4.11 Save Game
+#### 4.12 Save Game
 
 **How will we verify this specific requirement?**
 This requirement can be tested by saving the game to the JSON file, then going through the file and checking that it includes the aspects of the dungeon that need to be saved. The parts of the map that need to be checked are:
@@ -787,7 +787,7 @@ This requirement can be tested by saving the game to the JSON file, then going t
 - Which rooms are the entrance and exit rooms
 - The visual theme of the dungeon
 
-#### 4.12 Load Game
+#### 4.13 Load Game
 
 **How will we verify this specific requirement?**
 This requirement can be tested by loading a saved game and comparing it to when it was saved. The parts of the map that need to be compared are:
