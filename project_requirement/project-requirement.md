@@ -266,13 +266,13 @@ A one page statement of contributions, including a list of each member of the gr
 
 | User | Sections Done | 
 | --------------- | :--------------------------------------------------------------------------------: |
-| Adam Sinclair |  1.3.2 3.2.8 3.2.9 3.6, 3.5 |
-| Oliver Badrick | 3.4, 3.7, 3.8, 3.2.12, 3.2.13, 3.5 |
-| Patrick Laing | 3.1, 1.3.1, 3.2.2, 3.2.4, 4.2, 4.4, 3.5 |
-| Elijah Guarina | 1.3.3, 3.2.10, 5.2, 3.5 |
-| Jeremiah Choi | 3.5 |
-| Connor de Bruyn | 3.3, 5.3, 3.2.1, 3.2.10, 4.1, 4.10, 3.5  |
-| Michael Tang | 1.0, 1.1, 1.2, 3.5 |
+| Adam Sinclair |  1.3.2 3.2.8 3.2.9 3.6 4.8 4.9 |
+| Oliver Badrick | 3.4, 3.7, 3.8, 3.2.12, 3.2.13, 6.1, 4.12, 4.13 |
+| Patrick Laing | 3.1, 1.3.1, 3.2.2, 3.2.4, 4.2, 4.4 |
+| Elijah Guarina | 1.3.3, 3.2.10, 5.2 |
+| Jeremiah Choi |  |
+| Connor de Bruyn | 3.3, 5.3, 3.2.1, 3.2.11 |
+| Michael Tang | 1.0, 1.1, 1.2 |
 
 
 ## Formatting Rules 
