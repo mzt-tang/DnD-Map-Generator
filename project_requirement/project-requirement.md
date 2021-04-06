@@ -488,7 +488,10 @@ Allowing users to choose between the two views provides them the option decide w
 This function will be achieved by prompting a user that visits the Dungeons and Dragons Map Generator website with buttons to choose whether they wish to view the map from the Dungeon Master's (DM) perspective, or though the Player's perspective.
 
 **How will we verify this specific requirement?**  
-We can judge this by observing whether choosing a view provides the user with the correct view.
+We can judge this by observing whether choosing a view provides the user with the correct view. Specifically:
+
+- Choosing to view the Player view instructs the system to present the Player view to the user
+- Choosing to view the DM view instructs the system to present the DM view instead
 
 **What limitations are there to achieving the use case?**   
 Limitations of achieving this function include:
@@ -764,15 +767,7 @@ We can ensure that this use case has been taken into account if the monster is n
 **How will we verify this specific requirement?**  
 We can ensure that this use case has been taken into account if when the DM presses the generate monsters button the dungeon is automatically populated with appropriately leveled and themed monsters.
 
-#### 4.10 Change Monster health
-
-**How will we verify this specific requirement?** <br>
-This is judged whether the monsters correctly show and keep track of each monsters' health as intended by the DM. It is also judged on whether it successfully relieves the DM from this responsibility.
-stem responsibility>
-While playing the game, a monster's health changes. The DM changes that monster's current health <User intention>
-Change the corresponding monster's health to a new value, and record it <System responsibility>
-
-#### 4.11 Exit Game/server
+#### 4.10 Exit Game/server
 
 **How will we verify this specific requirement?**  
 This requirement can be manually tested by viewing the application and server after running the function. 
@@ -780,6 +775,13 @@ If the board is no longer displaying on either device, and the application has c
 Then we can assume this requirement has been fulfilled. For a further test we may check the system resource usage
 on the dungeon masters device and server, to ensure no background processes are pursuing after exiting. 
 
+#### 4.11 Choose View (DM Or Player)
+
+**How will we verify this specific requirement?**  
+We can judge this by observing whether choosing a view provides the user with the correct view. Specifically:
+
+- Choosing to view the Player view instructs the system to present the Player view to the user
+- Choosing to view the DM view instructs the system to present the DM view instead
 
 #### 4.12 Save Game
 
