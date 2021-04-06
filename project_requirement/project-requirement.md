@@ -95,7 +95,7 @@ The minimum viable product is a software solution that allows a dungeon master t
 
 The dungeon master will have a separate display to the players that will allow them to see additional information and control map visability. The additional information in the minimum viable product is monster stats for the generated monsters (hp,armor,etc). The players will be playing on a large display (projector or large TV) that allows them to move figurines around the dungeon. The level has optional line of sight and map hiding functions. Room sizes will be appropriate for the monsters in the rooms.
 
-The software solution will run locally and is not expected to run over the internet.
+The software solution will allow multiple games to run concurrently and for the games to be loaded and saved.
 
 ##### 1.3.2.2 Dungeon Generation Package
 
@@ -105,7 +105,7 @@ The software solution will run locally and is not expected to run over the inter
 
 - **Room sizing** Rooms are expected to be appropriately sized for the monsters that populate them. A room with an ogre should have entrances that allow the movement of that orge based on size.
 
-- **Level Scale** Levels have a scale that ties them to distance. This is done using tile sizes.
+- **Level Scale** Levels have a scale that ties them to distance.
 
 ##### 1.3.2.3 Dungeon Master View
 
@@ -120,6 +120,12 @@ The software solution will run locally and is not expected to run over the inter
 - **Display** The players are able to see the sections of the map that have line of sight (as controlled by the dungeon master)
 
 - **Tile Size** The display has the tiles large enough that the players are able to move physical figurines around on the map. This will require a minimum projector/TV size for the players to use.
+
+#### 1.3.2.5 Server Specific
+
+- **Save and Load** The server is able to save and load games
+
+- **Concurrent Games** The server supports concurrent games
 
 #### 1.3.3 User characteristics   
 
@@ -476,31 +482,36 @@ If we are unable to see the application or server running, as well as no longer 
 
 #### 3.2.11 Choose View (DM Or Player)
 
-**What is the Goal of the use case?** <br>
+**What is the Goal of the use case?**  
 The goal is to categorise users into the Dungeon Master and the Player(s) by allowing users to choose to view either the DM's view and the players' view.
 
-**Who benefits from the result of this use case?** <br>
-Choosing which view allows users to clearly choose what responsibilities they have during a DnD game.
+**Who benefits from the result of this use case?**  
+Allowing users to choose between the two views provides them the option decide what responsibilities they have during a Dungeons and Dragons game.
 
-**How will this use case be achieved?** <br>
-This function will be achieved by prompting a user that visits the DnD Map Generation website with buttons to choose whether they wish to view the map from the Dungeon Master's (DM) perspective, or though the Player's perspective.
+**How will this use case be achieved?**  
+This function will be achieved by prompting a user that visits the Dungeons and Dragons Map Generator website with buttons to choose whether they wish to view the map from the Dungeon Master's (DM) perspective, or though the Player's perspective.
 
-**How will we verify this specific requirement?** <br>
-This is judged by whether choosing the view actually shows the correct view to the user.
+**How will we verify this specific requirement?**  
+We can judge this by observing whether choosing a view provides the user with the correct view. Specifically:
 
-**What limitations are there to achieving the use case?** <br>
-A limitation of achieving this function include:
+- Choosing to view the Player view instructs the system to present the Player view to the user
+- Choosing to view the DM view instructs the system to present the DM view instead
+
+**What limitations are there to achieving the use case?**   
+Limitations of achieving this function include:
  - An inability to access the website/launch the application (no internet access, application does not launch properly)
  - Being able to provide two different views to the user requires there to be two different views of the application in the first place
 
-**Use Case Flow**  
+**Use Case Flow**
 | Action | Type |
 | ---------------- | ------------------ |
-| Open/Go to the DnD Map Generator website | [User intention] |
-| Launch application | [System responsibility] |
-| Ask User to choose between viewing the Dm's view or the Player's view | [System responsibility] |
-| Choose a view | [User intention] |
-| Display the view that the player selected, including all functionalities associated with that view | [System responsibility] |
+| Open/Go to the DnD Map Generator website | [user interface] |
+| Launch application | [system responsibility] |
+| Ask user to start a new game or load an existing game | [system responsibility] |
+| Start a new game or load an existing game | [user interface] |
+| Ask user to choose between viewing the DM's view or the Player's view | [system responsibility] |
+| Choose a view | [user interface] |
+| Display the view that the player selected, including all functionalities associated with that view | [system responsibility] |
 
 #### 3.2.12 Save Game (DM)
 
@@ -615,6 +626,8 @@ The information that will be sent to the terminals will be persistent. It will n
 On startup, the maps should not take a long time to generate. The maps will only be generated when the players are entering them. For example, when the game starts it will only randomly generate the first level. The map generation should take less than 10-20 seconds to generate a map and display it on the screen. It should then take less time to display the information for the dungeon master.
 
 Since the game will be played in real time, the game will need to react to changes made quickly. Each time the players progress to the next level of the dungeon a new map will be generated. If the players want to go back to a previous level, it should take less than 1 second to load, since the map had already been generated previously. The only other aspect that will need to be changed dynamically is the Fog of War system. When the players go to each room the dungeon master should be able to make the room visible on the map display. This will need to take less than a second to change, since waiting for a while for the rooms visibility to load may ruin the immersion of the players.
+
+When saving the game, this should not take too long. It is expected that it takes less than approximately 10-20 seconds. The players don't want to spend a long time saving the game, since they may be in a rush to finish the session. When loading the game, this will be dependent on how strong the device's connection to the database is.
 
 ### 3.5 Logical database requirements
 
@@ -760,15 +773,7 @@ We can ensure that this use case has been taken into account if the monster is n
 **How will we verify this specific requirement?**  
 We can ensure that this use case has been taken into account if when the DM presses the generate monsters button the dungeon is automatically populated with appropriately leveled and themed monsters.
 
-#### 4.10 Change Monster health
-
-**How will we verify this specific requirement?** <br>
-This is judged whether the monsters correctly show and keep track of each monsters' health as intended by the DM. It is also judged on whether it successfully relieves the DM from this responsibility.
-stem responsibility>
-While playing the game, a monster's health changes. The DM changes that monster's current health <User intention>
-Change the corresponding monster's health to a new value, and record it <System responsibility>
-
-#### 4.11 Exit Game/server
+#### 4.10 Exit Game/server
 
 **How will we verify this specific requirement?**  
 This requirement can be manually tested by viewing the application and server after running the function. 
@@ -776,6 +781,13 @@ If the board is no longer displaying on either device, and the application has c
 Then we can assume this requirement has been fulfilled. For a further test we may check the system resource usage
 on the dungeon masters device and server, to ensure no background processes are pursuing after exiting. 
 
+#### 4.11 Choose View (DM Or Player)
+
+**How will we verify this specific requirement?**  
+We can judge this by observing whether choosing a view provides the user with the correct view. Specifically:
+
+- Choosing to view the Player view instructs the system to present the Player view to the user
+- Choosing to view the DM view instructs the system to present the DM view instead
 
 #### 4.12 Save Game
 
