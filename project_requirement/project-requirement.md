@@ -271,7 +271,7 @@ A one page statement of contributions, including a list of each member of the gr
 | Patrick Laing | 3.1, 1.3.1, 3.2.2, 3.2.4, 4.2, 4.4, 3.5 |
 | Elijah Guarina | 1.3.3, 3.2.10, 5.2, 3.5 |
 | Jeremiah Choi |  3.5 |
-| Connor de Bruyn | 3.3, 5.3, 3.2.1, 3.2.11, 4.1, 4.11, 3.5 |
+| Connor de Bruyn | 3.3, 5.3, 3.2.1, 3.2.11, 4.1, 4.11, 3.5, 6.2 |
 | Michael Tang | 1.0, 1.1, 1.2, 3.5 |
 
 
