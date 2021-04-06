@@ -213,11 +213,21 @@ Identify dates for key project deliverables:
 07/05/2021
 - The architectural prototype is to be completed by Monday 7th May 2021
 
+#### Map Generation Demo
+01/06/2021
+- The map generation will be demoed to get client feedback
+
+#### Monster Generation Demo
+26/07/2021
+- Monsters incorporated into map generation to be demoed for client feedback
+
+#### Saving and Loading
+09/08/2021
+- Saving and loading functionality to be demoed for client feedback
+
 #### Minimum viable product
 07/09/2021
-
-#### Further releases
-07/10/2021
+- Minimum viable product to be demoed for client feedback.
 
 
 ### 5.2 Budget
