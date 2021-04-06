@@ -478,29 +478,33 @@ If we are unable to see the application or server running, as well as no longer 
 
 #### 3.2.11 Choose View (DM Or Player)
 
-**What is the Goal of the use case?** <br>
+**What is the Goal of the use case?**  
 The goal is to categorise users into the Dungeon Master and the Player(s) by allowing users to choose to view either the DM's view and the players' view.
 
-**Who benefits from the result of this use case?** <br>
-Choosing which view allows users to clearly choose what responsibilities they have during a DnD game.
+**Who benefits from the result of this use case?**  
+Allowing users to choose between the two views provides them the option decide what responsibilities they have during a Dungeons and Dragons game.
 
-**How will this use case be achieved?** <br>
-This function will be achieved by prompting a user that visits the DnD Map Generation website with buttons to choose whether they wish to view the map from the Dungeon Master's (DM) perspective, or though the Player's perspective.
+**How will this use case be achieved?**  
+This function will be achieved by prompting a user that visits the Dungeons and Dragons Map Generator website with buttons to choose whether they wish to view the map from the Dungeon Master's (DM) perspective, or though the Player's perspective.
 
-**How will we verify this specific requirement?** <br>
-This is judged by whether choosing the view actually shows the correct view to the user.
+**How will we verify this specific requirement?**  
+We can judge this by observing whether choosing a view provides the user with the correct view.
 
-**What limitations are there to achieving the use case?** <br>
-A limitation of achieving this function include:
+**What limitations are there to achieving the use case?**   
+Limitations of achieving this function include:
  - An inability to access the website/launch the application (no internet access, application does not launch properly)
  - Being able to provide two different views to the user requires there to be two different views of the application in the first place
 
-**Use Case Flow** <br>
-Open/Go to the DnD Map Generator website [User intention] <br>
-Launch application [System responsibility] <br>
-Ask User to choose between viewing the Dm's view or the Player's view [System responsibility] <br>
-Choose a view [User intention] <br>
-Display the view that the player selected, including all functionalities associated with that view [System responsibility] <br>
+**Use Case Flow**
+| Action | Type |
+| ---------------- | ------------------ |
+| Open/Go to the DnD Map Generator website | [user interface] |
+| Launch application | [system responsibility] |
+| Ask user to start a new game or load an existing game | [system responsibility] |
+| Start a new game or load an existing game | [user interface] |
+| Ask user to choose between viewing the DM's view or the Player's view | [system responsibility] |
+| Choose a view | [user interface] |
+| Display the view that the player selected, including all functionalities associated with that view | [system responsibility] |
 
 #### 3.2.12 Save Game (DM)
 
