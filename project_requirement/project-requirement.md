@@ -697,10 +697,12 @@ Requirements for the map display:
     - This is necessary because the players will need to be able to place their figures on the map
 - It must be big enough so that the figures all fit on the map, and are to the correct scale (an ogre taking up more tiles than a human, for example)
 - It must be able to connect to a server
+- It must support a modern web browser.
 
 Requirements for the dungeon master device:
 - It must be able to connect to a server
 - It must be able to get input from the dungeon master (e.g when they want to change levels)
+- It must support a modern web browser.
 
 Requirements for room:
 - Must be big enough for the players to comfortably play the game
