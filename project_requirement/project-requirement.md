@@ -146,25 +146,24 @@ The client has also outlined that the system is to be used in conjuction with re
 #### 1.3.4 Limitations
 
 ##### 1.3.4.1 Software Limitations
-* The software will be written using the React framework. The system will be running on a web application such as "chrome", or something similar like "Node.js".  A standalone executable application will not be released.
-
-* No server hosting. Without server hosting available to us as a resource, the system won't be designed to run on a server. Devices will have to communicate with each other via peer-to-peer connection. The software will utilize Local Area Networking (assuming it is available, see next subsection).
-
-* Persistence of any kind is not supported. The DM will not be able to save and reload dungeons.
+* A modern web browser will be needed to display the application to the DM and users.
 
 * Use of copyright material is (under any circumstances) not permitted.
 
 ##### 1.3.4.2 Hardware Limitations
-* No 24 hour remote connections. An extension to software limitations, the lack of server hosting also means any sort of remote connection is impossible without a host computer portforwarding the program through their modem. Any remote connection features will not be supported.
+* An internet connection will be required to use the program. A loss of internet connection will mean the game cannot continue to work unless it is hosted locally.
 
-* Connectivity between devices will not work without a Local Area Network. The system does not require connection to the internet, but all devices must be connected to the same network.
+* A computer will be required to host the server (locally or online).
+
+* Players will need a large enough screen or projector to use the program.
+
 
 ##### 1.3.4.3 Usage Assumptions
-* It is assumed that there'll only be two devices involved. A network of more than 2 devices will be not be supported.
+* It is assumed that there'll only be two devices involved per game.
 
 * It will be assumed that the devices will be used in the same room. Any UX features involving the display of information, curcial for online play, will not be implemented. The user of the software will be able to see both devices and their separate displays.
 
-* Assuming the DM will only rely on this for dungeon generation and nothing more. any more dm support (such as calculating player stats, health modificers, speed modifiers inventory space, etc) will not be included. Custom Dungeon creation of any sort will not be included.
+* Assuming the DM will only rely on this for dungeon generation and nothing more. Any other dm support (such as calculating player stats, health modificers, speed modifiers inventory space, etc) will not be included. Custom dungeon creation of any sort will not be included.
 
 ## 2. References
 
