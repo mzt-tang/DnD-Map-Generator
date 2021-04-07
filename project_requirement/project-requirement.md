@@ -115,13 +115,13 @@ The software solution will allow multiple games to run concurrently and for the 
 
 - **Monster Stats** The dungeon master is able to see the monster stats of monsters inside the level. This includes stats such as health points, armour, size, speed etc.
 
-#### 1.3.2.4 Player View
+##### 1.3.2.4 Player View
 
 - **Display** The players are able to see the sections of the map that have line of sight (as controlled by the dungeon master)
 
 - **Tile Size** The display has the tiles large enough that the players are able to move physical figurines around on the map. This will require a minimum projector/TV size for the players to use.
 
-#### 1.3.2.5 Server Specific
+##### 1.3.2.5 Server Specific
 
 - **Save and Load** The server is able to save and load games
 
