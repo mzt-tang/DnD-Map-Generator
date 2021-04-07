@@ -147,7 +147,7 @@ The client has also outlined that the system is to be used in conjuction with re
 ##### 1.3.4.3 Usage Assumptions
 * It is assumed that there'll only be two devices involved per game.
 
-* It will be assumed that the devices will be used in the same room. Any UX features involving the display of information, curcial for online play, will not be implemented. The user of the software will be able to see both devices and their separate displays.
+* It will be assumed that the devices will be used in the same room. Any UX features involving the display of information, crucial for online play, will not be implemented.
 
 * Assuming the DM will only rely on this for dungeon generation and nothing more. Any other dm support (such as calculating player stats, health modificers, speed modifiers inventory space, etc) will not be included. Custom dungeon creation of any sort will not be included.
 
