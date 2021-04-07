@@ -561,8 +561,6 @@ It is very difficult to store JSON files in a relational database.
 | Displays the map in the same way as it was when saved | [User Interface] |
 | If saved game cannot be found, display a 'cannot find game' message | [User Interface] |
 
-This is typically the longest subsection in the document. List up to fifty use cases (in order of priority for development), and for at least top ten focal use cases, write a short goal statement and use case body (up to seven pages).  Identify the use cases that comprise a minimum viable product.
-
 ### 3.3 Usability Requirements
 
 In order to create a fully functional Dungeons and Dragons tabletop, the following usability requirements needs to be met:
