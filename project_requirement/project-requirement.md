@@ -157,8 +157,6 @@ The client has also outlined that the system is to be used in conjuction with re
 
 ## 3. Specific requirements  
 
-20 pages outlining the requirements of the system. You should apportion these pages across the following subsections to focus on the most important parts of your product.
-
 ### 3.1 External interfaces
 
 See 9.5.10. for most systems this will be around one page.
