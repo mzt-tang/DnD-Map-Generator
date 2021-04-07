@@ -79,7 +79,7 @@ h) Site adaptation requirements.
 
 The minimum viable product is a software solution that allows a dungeon master to automatically generate a random playable underground level for a game of dungeons and dragons. The generated dungeon will populate the level with monsters that are appropriate for the level and context of the generated level. The level will have both an entrance and exit with the exit leading to further harder generated levels. The level must have a measure or scale of distance for movement. We are not expected to make assets, we are expected to find assets online that we are able to use legally.
 
-The dungeon master will have a separate display to the players that will allow them to see additional information and control map visibility. The additional information in the minimum viable product is monster stats for the generated monsters (hp,armor,etc). The players will be playing on a large display (projector or large TV) that allows them to move figurines around the dungeon. The level has optional line of sight and map hiding functions. Room sizes will be appropriate for the monsters in the rooms.
+The dungeon master will have a separate display to the players that will allow them to see additional information and control map visibility. The additional information in the minimum viable product is monster stats for the generated monsters (hp, armour, etc). The players will be playing on a large display (projector or large TV) that allows them to move figurines around the dungeon. The level has optional line of sight and map hiding functions. Room sizes will be appropriate for the monsters in the rooms.
 
 The software solution will allow multiple games to run concurrently and for the games to be loaded and saved.
 
@@ -121,11 +121,11 @@ One characteristic the client has is that they are experienced with the premise 
 
 While the system is aimed more towards experienced Dungeons and Dragons players, the system is still aimed to be intuitive to use. This is because the client's main goal with the system is to create a map for a Dungeons and Dragons game in a short time and with little effort from the user. This is also supported by the fact that Dungeons and Dragons map-generator systems/applications are not widely used. Therefore, processes, functions, and actions the system supports should employ conventions and designs most people are familiar with.
 
-According to the client, the system is to be faciliated in a digital manner, using web browser(s) to host the system on multiple devices simultaneously for a single Dungeons and Dragons game. Therefore, the users are expected to:
+According to the client, the system is to be facilitated in a digital manner, using web browser(s) to host the system on multiple devices simultaneously for a single Dungeons and Dragons game. Therefore, the users are expected to:
 - Have basic experience with using technologies such as computers and/or mobile devices
 - Have basic experience with using a web browser
 
-The client has also outlined that the system is to be used in conjuction with real-life figures that are completely separate from the system. Therefore, users are expected to have such figures for use with the system. Thus, the system will not be designed with the need to track players. Rather, the Dungeon Master will manually track each Players' positions, and use the system to adjust the appearance of the map accordingly.
+The client has also outlined that the system is to be used in conjunction with real-life figures that are completely separate from the system. Therefore, users are expected to have such figures for use with the system. Thus, the system will not be designed with the need to track players. Rather, the Dungeon Master will manually track each Players' positions, and use the system to adjust the appearance of the map accordingly.
 
 #### 1.3.4 Limitations
 
@@ -147,11 +147,11 @@ The client has also outlined that the system is to be used in conjuction with re
 
 * It will be assumed that the devices will be used in the same room. Any UX features involving the display of information, crucial for online play, will not be implemented.
 
-* Assuming the DM will only rely on this for dungeon generation and nothing more. Any other dm support (such as calculating player stats, health modificers, speed modifiers inventory space, etc) will not be included. Custom dungeon creation of any sort will not be included.
+* Assuming the DM will only rely on this for dungeon generation and nothing more. Any other dm support (such as calculating player stats, health modifiers, speed modifiers inventory space, etc) will not be included. Custom dungeon creation of any sort will not be included.
 
 ## 2. References
 
-[1] Name of Software: ProDnD Publisher: Gray Lake Studios Date Accessed: 23/3/2021 Type of Medium: Mobile App Avaiable: http://prodnd.blogspot.com/
+[1] Name of Software: ProDnD Publisher: Gray Lake Studios Date Accessed: 23/3/2021 Type of Medium: Mobile App Available: http://prodnd.blogspot.com/
 
 [2] Name of Software: Kahoot! Publisher: Morten Versvik, Johan Brand, and Jamie Brooker Date Accessed: 25/3/2021 Type of Medium Website. Available: https://kahoot.com/
 
@@ -187,7 +187,7 @@ Once a map has been generated with a new set of tiles we can ensure that this us
 
 **What limitations are there to achieving the use case?**  
 * The dungeon master will no longer be allowed to select a desired map, but will only be able to generate random maps for usage.
-* If there arent enough prefab rooms, or if the user is really unlucky, they may experience very similar maps being generated if duplicate prefabs are being used.
+* If there aren't enough prefab rooms, or if the user is really unlucky, they may experience very similar maps being generated if duplicate prefabs are being used.
 
 **Use Case Flow**
 | Action | Type |
@@ -209,7 +209,7 @@ The players benefit directly as the players will be able to see what is going on
 
 **How will this use case be achieved?** <br>
 
-This use case will be acheived by the system taking the display chosen by the Dungeon Master and displaying it on the players screen.
+This use case will be achieved by the system taking the display chosen by the Dungeon Master and displaying it on the players screen.
 
 **How will we verify this specific requirement?** <br>
 
@@ -267,19 +267,19 @@ The goal of the use case "Change Maps" is for the Dungeon Master to be able to c
 
 **Who benefits from the result of this use case?** <br>
 
-The beneficiaries of this use case are the players, who will be able to play another level on a new map at higher levels, and the Dungeon Master, whos campaign continues on.
+The beneficiaries of this use case are the players, who will be able to play another level on a new map at higher levels, and the Dungeon Master, whose campaign continues on.
 
 **How will this use case be achieved?** <br>
 
-This use case will be acheived through the system generating a map and populating the map with higher leveled monsters than the previous map.
+This use case will be achieved through the system generating a map and populating the map with higher levelled monsters than the previous map.
 
 **How will we verify this specific requirement?** <br>
 
 We will be able to measure this use case being taken into account by seeing if the system is able to generate and move onto another map after the current map the players are on has been completed.
 
-**What are the limitations of acheiving this use case?** <br>
+**What are the limitations of achieving this use case?** <br>
 
-The limitations of acheiving this use case are generating maps. This is because the map must be generated before displaying anything to the users.
+The limitations of achieving this use case are generating maps. This is because the map must be generated before displaying anything to the users.
 
 **Use Case Flow** <br>
 
@@ -318,7 +318,7 @@ We can see that the use case has been taken into the account when the system gen
 | ---------------- | ------------------ |
  | The user can see any selected monster's stats | [user intention] |
  | The system must have a stored set of monsters and their stats | [system responsibilities] |
- | The system must display any specific monster's stats on a screen | [system responsibilites] |
+ | The system must display any specific monster's stats on a screen | [system responsibilities] |
  | The user should be able to pick a monster's name from a list of monsters and see its stats | [user interface] |
 
 #### 3.2.6 See Full Maps
@@ -346,7 +346,7 @@ We will be able to see that this use case has been taken in to account when the 
 | ---------------- | ------------------ |
 | The user can see the full generated map | [user intention] |
 | The system must generate the map | [system responsibility] |
-| The system myst display the generated map on to a screen | [system responsibility] |
+| The system must display the generated map on to a screen | [system responsibility] |
 | The user should be able to press the generate map button and see the full map | [user interface] |
 | The user should be able to press the see map button and see the full map | [user interface] |
 
@@ -379,10 +379,10 @@ Map themes are a pre-requisite for monster population. If successfully implement
 #### 3.2.8 Remove monsters
 
 **What is the Goal of the use case?**  
-The goal of the "Remove Monsters" use case is to ensure the monsters can be removed by the DM in the DM view to ensure that what is displayed on the DM view is still relevent.
+The goal of the "Remove Monsters" use case is to ensure the monsters can be removed by the DM in the DM view to ensure that what is displayed on the DM view is still relevant.
 
 **Who benefits from the result of this use case?**  
-The DM benefits from the use case. By removing monsters that are no longer relevent to the dungeon map (they have been defeated for instance, or the DM removed them for other reasons) it ensures that the DM view displays the current state of the board. This reduces noise to the DM and the need to remember which monsters have been defeated.
+The DM benefits from the use case. By removing monsters that are no longer relevant to the dungeon map (they have been defeated for instance, or the DM removed them for other reasons) it ensures that the DM view displays the current state of the board. This reduces noise to the DM and the need to remember which monsters have been defeated.
 
 **How will this use case be achieved?**  
 The DM has a view that shows monsters on the map. When the DM clicks on monsters there will be an option to delete that monster from the board and remove them from the map.
@@ -413,10 +413,10 @@ The goal of the use case is to allow the DM to automatically populate monsters i
 Both the players and the DM benefit from this use case. This is because there is less time in setup of the game given the monsters have been already populated. It allows the game to get up and running quicker than if it had not been implemented.
 
 **How will this use case be achieved?**  
-This will be achieved by implementing an algorithm that takes in a dungeon map and a list of monsters to pick from. It will then automatically populate the map with appropriately leveled and themed monsters.  
+This will be achieved by implementing an algorithm that takes in a dungeon map and a list of monsters to pick from. It will then automatically populate the map with appropriately levelled and themed monsters.  
 
 **How will we verify this specific requirement?**  
-We can ensure that this use case has been taken into account if when the DM presses the generate monsters button the dungeon is automatically populated with appropriately leveled and themed monsters.
+We can ensure that this use case has been taken into account if when the DM presses the generate monsters button the dungeon is automatically populated with appropriately levelled and themed monsters.
 
 **What limitations are there to achieving the use case?**  
 
@@ -547,7 +547,7 @@ In order to create a fully functional Dungeons and Dragons tabletop, the followi
 
 **Effectiveness:**
 * The DM device must take input functionality from the user to perform various defined tasks.
-* The devices need to communicate to and from ther server.
+* The devices need to communicate to and from the server.
 * The application must generate a dungeons and dragons map for player usage and be displayed on the player view.
 * The application should switch between multiple states (maps).
 
@@ -560,9 +560,9 @@ In order to create a fully functional Dungeons and Dragons tabletop, the followi
 * A web-based application must be used so that the application can be run from any operating system.
 * The application must be able to be run from the two different sized devices specified by the client (An iPad and a projector).
 * The application contains a "fog of war", only displaying sections of the map that the user can currently see.
-* The seperate device from the player view should contain functionality only the dungeon-master can use.
+* The separate device from the player view should contain functionality only the dungeon-master can use.
 * The application should contain a scale or grid to determine size of characters and scenery.
-* Size of tiles should be large enough to fit physical pieces ontop.
+* Size of tiles should be large enough to fit physical pieces on top.
 
 The application as the result of this project should contain no obscurities that could offend any of the users whilst using the application. The application must avoid any risks of usage that could arise from specific context of use.
 
@@ -607,7 +607,7 @@ When saving the game it is expected that it takes no longer than 20 seconds. The
 
 See 9.5.14. for most systems, a focus on d) and e) is appropriate, such as an object-oriented domain analysis. You should provide an overview domain model (e.g.  a UML class diagram of approximately ten classes) and write a brief description of the responsibilities of each class in the model (3 pages).
 
-You should use right tools, preferabley PlantUML, to draw your URL diagrams which can be easily embedded into a Mardown file (PlantUML is also supported by GitLab and Foswiki).
+You should use right tools, preferably PlantUML, to draw your URL diagrams which can be easily embedded into a Markdown file (PlantUML is also supported by GitLab and Foswiki).
 
 ### 3.6 Design constraints
 
@@ -746,7 +746,7 @@ We can ensure that this use case has been taken into account if the monster is n
 #### 4.9 Populate monsters
 
 **How will we verify this specific requirement?**  
-We can ensure that this use case has been taken into account if when the DM presses the generate monsters button the dungeon is automatically populated with appropriately leveled and themed monsters.
+We can ensure that this use case has been taken into account if when the DM presses the generate monsters button the dungeon is automatically populated with appropriately levelled and themed monsters.
 
 #### 4.10 Exit Game/server
 
@@ -813,7 +813,7 @@ This requirement can be tested by loading a saved game and comparing it to when 
 
 No paid items to be purchased have been outlined to be required for the purpose of constructing the system. Because no purchases have been outlined, and therefore no expenses have been outlined, no budget has been explicitly allocated for this project.
 
-However, a few potential expenses have been outlined. Potential expenses are expenses that are not determined to be necessary for the completion of this project, and therefore their costs and budgets are initially not real expenses. However, these potential expenses are considered to become real expenses if certain project circumstances change. If any of these potential expenses are ever decided to be purchased for the purpose of this project (i.e., they become real expenses), then their corresponding bugets are to be used to limit spendings on each respective expense.
+However, a few potential expenses have been outlined. Potential expenses are expenses that are not determined to be necessary for the completion of this project, and therefore their costs and budgets are initially not real expenses. However, these potential expenses are considered to become real expenses if certain project circumstances change. If any of these potential expenses are ever decided to be purchased for the purpose of this project (i.e., they become real expenses), then their corresponding budgets are to be used to limit spending on each respective expense.
 
 The table below describes these potential expenses.  
 | Item            | Purpose                              | Budget (NZD)       |
@@ -830,9 +830,9 @@ If the project will involve any work outside the ECS laboratories, i.e. off-camp
 | --- | :--------------------------------------------------------------------------------: |  --------------- | ------------ | ---------------- |
 | 1 | COVID-19 levels increase, restricting access to laboratories and equipment | Performance | High | Tolerable |
 | 2 | Client removes budget or online resources become unavailable | Financial / Availability | Low | Tolerable |
-| 3 | Incompabitibility of services or equipment | Availability / Performance | Medium | Severe |
+| 3 | Incompatibility of services or equipment | Availability / Performance | Medium | Severe |
 | 4 | Minimal requirements will not be met by the end of the project (Scope creep) | Operational | Medium | Extreme |
-| 5 | Team members are unable to work on the project (Illness, lack of internet, etc) | Health and Saftey / Performance | Medium | Extreme |
+| 5 | Team members are unable to work on the project (Illness, lack of internet, etc) | Health and Safety / Performance | Medium | Extreme |
 | 6 | Customer alters the requirements during development | Strategic | Low | Tolerable |
 | 7 | The products do not align with stakeholder expectations | Strategic | Medium | Tolerable |
 | 8 | Lack of communication amongst team members and stakeholders | Performance | Low | Severe |
@@ -843,13 +843,13 @@ If the project will involve any work outside the ECS laboratories, i.e. off-camp
 | --- | :--------------------------------------------------------------------------------: |  ------------------------------------------------ |
 | 1 | COVID-19 levels increase, restricting access to laboratories and equipment | Frequent usage of online resources to keep in-contact and productive until covid levels decrease or the project finalizes.  |
 | 2 | Client removes budget or online resources become unavailable | Utilisation of offline resources, if we are using any online assets (or planning to) we will need to produce them ourselves.  |
-| 3 | Incompabitibility of services or equipment | Research alternative services and equipment to use incase the current ones fail or become unavailable for usage. |
-| 4 | Minimal requirements will not be met by the end of the project (Scope creep) | We could invest in buying components to fulfill the remaining requirements or focus all members efforts into accomplishing the minimum requirements before attempting stretch goals. |
+| 3 | Incompatibility of services or equipment | Research alternative services and equipment to use in case the current ones fail or become unavailable for usage. |
+| 4 | Minimal requirements will not be met by the end of the project (Scope creep) | We could invest in buying components to fulfil the remaining requirements or focus all members efforts into accomplishing the minimum requirements before attempting stretch goals. |
 | 5 | Team members are unable to work on the project (Illness, lack of internet, etc) | Divide the absent members workload evenly amongst all remaining members to keep workflow consistent and to not overwhelm one member. |
 | 6 | Customer alters the requirements during development | As the client did not specify these requirements during the proposition, we may decline the additional requirements if we deem them to be unachievable during the remaining time given.  |
 | 7 | The products do not align with stakeholder expectations | Create frequent meetings with the client to ensure that each feature added is to specification. This will provide clarity if we are missing features or misinterpreted requirements. |
 | 8 | Lack of communication amongst team members and stakeholders | We will conduct frequent weekly meetups and utilize online social media platforms (Mattermost) to ensure each member understands the given situation and tasks needed to be completed for project completion.  |
-| 9 | Product has underlying bugs that impact the products functionality | We can create tests to identify and fix bugs occuring during development of each function. Ensuring each function remains bug-free before advancing to new tasks. |
+| 9 | Product has underlying bugs that impact the products functionality | We can create tests to identify and fix bugs occurring during development of each function. Ensuring each function remains bug-free before advancing to new tasks. |
 | 10 | Team members lack required skills to complete the project | Create sessions to learn the required information needed to progress through the project. If one member knows the skills necessary, they can tutor the remaining members until all members are fully capable to continue. |
 
 ### 5.4 Health and Safety
