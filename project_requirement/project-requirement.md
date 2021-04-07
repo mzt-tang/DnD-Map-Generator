@@ -554,21 +554,21 @@ In order to create a fully functional Dungeons and Dragons tabletop, the followi
 * Client specified **criteria for satisfaction**: The application needs to portray desired functions specified by the client.
 
 **Effectiveness:**
-* The touch table must take in touch functionality from the user to perform various defined tasks.
-* The touch table needs to communicate to another device and take in inputs from that device.
-* The application must generate a dungeons and dragons map for player usage and be displayed on the touch table.
+* The DM device must take input functionality from the user to perform various defined tasks.
+* The devices need to communicate to and from ther server.
+* The application must generate a dungeons and dragons map for player usage and be displayed on the player view.
 * The application should switch between multiple states (maps).
 
 **Efficiency:**
 * There should be no latency issues between the two devices.
 * The application should be booted up from devices and run from the get-go.
-* Map generation should be efficient and not take too long to be created.
+* Map generation should be efficient and not take longer than 20 seconds to be created.
 
 **Satisfaction Criteria:**
 * A web-based application must be used so that the application can be run from any operating system.
-* The application must be able to be run from the two different sized devices specified by the client (An IPad and the touch table).
+* The application must be able to be run from the two different sized devices specified by the client (An iPad and a projector).
 * The application contains a "fog of war", only displaying sections of the map that the user can currently see.
-* The seperate device from the touch table should contain functionality only the dungeon-master can use.
+* The seperate device from the player view should contain functionality only the dungeon-master can use.
 * The application should contain a scale or grid to determine size of characters and scenery.
 * Size of tiles should be large enough to fit physical pieces ontop.
 
