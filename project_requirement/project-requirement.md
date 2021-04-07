@@ -155,8 +155,6 @@ The client has also outlined that the system is to be used in conjuction with re
 
 [2] Name of Software: Kahoot! Publisher: Morten Versvik, Johan Brand, and Jamie Brooker Date Accessed: 25/3/2021 Type of Medium Website. Available: https://kahoot.com/
 
-References to other documents or standards. Follow the IEEE Citation  Reference scheme, available from the [IEEE website](https://www.ieee.org/) (please use the search box). (1 page, longer if required)
-
 ## 3. Specific requirements  
 
 20 pages outlining the requirements of the system. You should apportion these pages across the following subsections to focus on the most important parts of your product.
