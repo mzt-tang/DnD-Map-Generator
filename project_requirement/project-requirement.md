@@ -639,7 +639,6 @@ You should use right tools, preferabley PlantUML, to draw your URL diagrams whic
 
 For a more thorough entity relation diagram please view:
 ```plantuml
-@startuml
 entity "Monster" as e01 {
   * **monster_id : number** <<generated>> <<PK>>
   --
@@ -692,7 +691,6 @@ entity "Size" as e04 {
 e02 ||..|{ e01
 e03 ||..|{ e01
 e04 ||..|{ e01
-@enduml
 ```
 
 ### 3.6 Design constraints
