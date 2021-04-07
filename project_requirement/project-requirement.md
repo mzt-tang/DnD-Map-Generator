@@ -99,33 +99,33 @@ The software solution will allow multiple games to run concurrently and for the 
 
 ##### 1.3.2.2 Dungeon Generation Package
 
-- **Entry and Exit** The generated level must have a clear entry and exit point. These must be clearly connected and the exit point will lead to the next generated level.
+- **Entry and Exit**  The generated level must have a clear entry and exit point. These must be clearly connected and the exit point will lead to the next generated level.
 
-- **Monster Population** The generated level must be auto populated with monsters that are level appropriate. This means in levels 1-3 you would expect to find monsters that are very close to level 1-3. The monsters are expected to be context appropriate (In an underground level you would not expect to find horse riding knights)
+- **Monster Population**  The generated level must be auto populated with monsters that are level appropriate. This means in levels 1-3 you would expect to find monsters that are very close to level 1-3. The monsters are expected to be context appropriate (In an underground level you would not expect to find horse riding knights)
 
-- **Room sizing** Rooms are expected to be appropriately sized for the monsters that populate them. A room with an ogre should have entrances that allow the movement of that orge based on size.
+- **Room sizing**  Rooms are expected to be appropriately sized for the monsters that populate them. A room with an ogre should have entrances that allow the movement of that orge based on size.
 
-- **Level Scale** Levels have a scale that ties them to distance.
+- **Level Scale**  Levels have a scale that ties them to distance.
 
 ##### 1.3.2.3 Dungeon Master View
 
-- **Level overview** The dungeon master can see the entire map and the monsters on it.
+- **Level overview**  The dungeon master can see the entire map and the monsters on it.
 
-- **Line of sight** The dungeon master can change the line of sight of the players using the dungeon master view. Changes are reflected immediately inside the player view.
+- **Line of sight**  The dungeon master can change the line of sight of the players using the dungeon master view. Changes are reflected immediately inside the player view.
 
-- **Monster Stats** The dungeon master is able to see the monster stats of monsters inside the level. This includes stats such as health points, armour, size, speed etc.
+- **Monster Stats**  The dungeon master is able to see the monster stats of monsters inside the level. This includes stats such as health points, armour, size, speed etc.
 
 ##### 1.3.2.4 Player View
 
-- **Display** The players are able to see the sections of the map that have line of sight (as controlled by the dungeon master)
+- **Display**  The players are able to see the sections of the map that have line of sight (as controlled by the dungeon master)
 
-- **Tile Size** The display has the tiles large enough that the players are able to move physical figurines around on the map. This will require a minimum projector/TV size for the players to use.
+- **Tile Size**  The display has the tiles large enough that the players are able to move physical figurines around on the map. This will require a minimum projector/TV size for the players to use.
 
 ##### 1.3.2.5 Server Specific
 
-- **Save and Load** The server is able to save and load games
+- **Save and Load**  The server is able to save and load games
 
-- **Concurrent Games** The server supports concurrent games
+- **Concurrent Games**  The server supports concurrent games
 
 #### 1.3.3 User characteristics   
 
