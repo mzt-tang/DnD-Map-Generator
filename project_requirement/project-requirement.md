@@ -159,8 +159,6 @@ The client has also outlined that the system is to be used in conjuction with re
 
 ### 3.1 External interfaces
 
-See 9.5.10. for most systems this will be around one page.
-
 #### 3.1.1 Dungeon Master's View
 
 The dungeon master must be able to see a different view from the players. The dungeon master's view must be controllable by the dungeon master and must include features such as changing the player's view and viewing enemy statistics. This view includes displaying individual rooms as well as the dungeon as a whole.
