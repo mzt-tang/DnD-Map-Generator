@@ -627,7 +627,7 @@ On startup, the maps should not take a long time to generate. The maps will only
 
 Since the game will be played in real time, the game will need to react to changes made quickly. Each time the players progress to the next level of the dungeon a new map will be generated. If the players want to go back to a previous level, it should take less than 1 second to load, since the map had already been generated previously. The only other aspect that will need to be changed dynamically is the Fog of War system. When the players go to each room the dungeon master should be able to make the room visible on the map display. This will need to take less than a second to change, since waiting for a while for the rooms visibility to load may ruin the immersion of the players.
 
-When saving the game, this should not take too long. It is expected that it takes less than approximately 10-20 seconds. The players don't want to spend a long time saving the game, since they may be in a rush to finish the session. When loading the game, this will be dependent on how strong the device's connection to the database is.
+When saving the game, this should not take too long. It is expected that it takes less than approximately 10-20 seconds. The players don't want to spend a long time saving the game, since they may be in a rush to finish the session. When loading the game, this will be dependent on how strong the device's connection to the server is.
 
 ### 3.5 Logical database requirements
 
@@ -666,8 +666,7 @@ It is expected that the application is able to successfully generate a random ma
 
 Performance
 
-It is expected that the system is able to perform the inputs in an efficient amount of time. It shouldn't take
-longer than 2-3 seconds to generate a new random dungeon level. It should take less time than that to display a previously generated level.
+It is expected that the system is able to perform the inputs in an efficient amount of time. It should take less than 10-20 seconds to generate a new random dungeon level. It should take less time than that to display a previously generated level.
 
 Scalability
 
@@ -699,10 +698,10 @@ Requirements for the map display:
     - Be a projector projecting the image onto a table
     - This is necessary because the players will need to be able to place their figures on the map
 - It must be big enough so that the figures all fit on the map, and are to the correct scale (an ogre taking up more tiles than a human, for example)
-- It must be able to at least connect to the local network
+- It must be able to connect to a server
 
 Requirements for the dungeon master device:
-- It must be able to at least connect to the local network
+- It must be able to connect to a server
 - It must be able to get input from the dungeon master (e.g when they want to change levels)
 
 Requirements for room:
@@ -791,7 +790,7 @@ We can judge this by observing whether choosing a view provides the user with th
 
 #### 4.12 Save Game
 
-**How will we verify this specific requirement?**
+**How will we verify this specific requirement?**<br>
 This requirement can be tested by saving the game to the JSON file, then going through the file and checking that it includes the aspects of the dungeon that need to be saved. The parts of the map that need to be checked are:
 
 - The room layout of the levels
@@ -801,7 +800,7 @@ This requirement can be tested by saving the game to the JSON file, then going t
 
 #### 4.13 Load Game
 
-**How will we verify this specific requirement?**
+**How will we verify this specific requirement?**<br>
 This requirement can be tested by loading a saved game and comparing it to when it was saved. The parts of the map that need to be compared are:
 
 - The room layout of the levels
