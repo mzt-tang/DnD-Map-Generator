@@ -405,7 +405,7 @@ Map themes are a pre-requisite for monster population. If successfully implement
 The goal of the "Remove Monsters" use case is to ensure the monsters can be removed by the DM in the DM view to ensure that what is displayed on the DM view is still relevent.
 
 **Who benefits from the result of this use case?**  
-The DM benefits from the use case. By removing monsters that are no longer relevent to the dungeon map (they have been defeated for instance, or the DM removed them for other reasons) it ensures that the DM view displays the current state of the board. This reduces noise to the DM and the need to remember which monsters have been defeated or removed.
+The DM benefits from the use case. By removing monsters that are no longer relevent to the dungeon map (they have been defeated for instance, or the DM removed them for other reasons) it ensures that the DM view displays the current state of the board. This reduces noise to the DM and the need to remember which monsters have been defeated.
 
 **How will this use case be achieved?**  
 The DM has a view that shows monsters on the map. When the DM clicks on monsters there will be an option to delete that monster from the board and remove them from the map.
