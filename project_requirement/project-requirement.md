@@ -52,7 +52,7 @@ The system will generate a map as well as populate the map with enemies of varyi
 
 The system would display information to the players using a similar system to Kahoot[2], a system that allows the host (the Dungeon Master in our system) to host a game that the players can connect to on their devices. Our system would be different from Kahoot's system as the Dungeon Master would need to be able to choose what image the players see on their device. This system would have no direct relationship with any other products or systems similar to Kahoot, but will instead be inspired by the design and functions of other products such as Kahoot. Whereas Kahoot is hosted via the internet, therefore anyone can connect to a given game, our system will use a server to generate maps and monster data, send the information to the Dungeon Master's device, have the Dungeon Master's device construct a map based on the information sent by the server, and save and load data for the Dungeon Master's device.
 
-For our system to appear as a Dungeons and Dragons system, we will need to either create or use the artwork. The artwork we use will either be created by ourselves or will be free to use images.
+For our system to appear as a Dungeons and Dragons system, we will need to either create or use artwork. The artwork we use will either be created by ourselves or will be free to use images.
 
 > **9.5.3 Product perspective** <br>
 > Define the system's relationship to other related products.
