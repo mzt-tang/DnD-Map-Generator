@@ -115,8 +115,6 @@ The software solution will allow multiple games to run concurrently and for the 
 
 #### 1.3.3 User characteristics   
 
-One page identifying the main classes of users and their characteristics (9.5.5)
-
 The client (Craig Watterson) has outlined that the system will initially be for his personal use, and releasing the system commercially is a potential goal after the completion of the minimum viable product. Therefore, there is a priority on designing the system around the client's characteristics and attributes. These characteristics and attributes are thus assumed to be that of a typical user of the system.
 
 One characteristic the client has is that they are experienced with the premise of a Dungeons and Dragons game, as well as the process of how a game plays out. Therefore, the system will be designed with an assumption that users already have knowledge of how a game of Dungeons and Dragons works. Thus, the system will not prioritise teaching newer Dungeons and Dragons players how to play, but rather facilitate, digitise, and streamline the mechanics, information retrieval, and actions of a Dungeons and Dragons game that experienced players are familiar with.
