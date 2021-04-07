@@ -635,6 +635,61 @@ See 9.5.14. for most systems, a focus on d) and e) is appropriate, such as an ob
 
 You should use right tools, preferabley PlantUML, to draw your URL diagrams which can be easily embedded into a Mardown file (PlantUML is also supported by GitLab and Foswiki).
 
+@startuml
+entity "Monster" as e01 {
+  * **monster_id : number** <<generated>> <<PK>>
+  --
+  *name : text
+  **type_id : number** <<FK>>
+  **challenge_rating : number** <<FK>>
+  **size_id : number** <<FK>>
+  languages : string 
+  hp : number
+  alignment : string
+  armorClass : string
+  specialTraitList : string
+  speedList : string
+  senseList : string
+  actionList : string
+  skillsList : string
+  strength : number
+  dexterity : number
+  constitution : number
+  intelligence : number
+  wisdom : number
+  charisma : number
+  immunities : string
+  vulnerabilities : string
+  resistances : string
+}
+
+entity "Challenge" as e02 {
+  * **challenge_rating : number** <<PK>>
+  --
+  *xp : number
+}
+
+entity "Type" as e03 {
+  * **type_id : number** <<generated>> <<PK>>
+  --
+  *monster_type : string
+  tag : string
+  tag_description : string
+}
+
+entity "Size" as e04 {
+  * **size_id : number** <<generated>> <<PK>>
+  --
+  *size : string
+  space : string
+  hit_die : string
+}
+
+e02 ||..|{ e01
+e03 ||..|{ e01
+e04 ||..|{ e01
+@enduml
+
 ### 3.6 Design constraints
 
 #### Copyright And Legal Constraints:
