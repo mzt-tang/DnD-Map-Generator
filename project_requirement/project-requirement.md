@@ -612,20 +612,19 @@ See 9.5.13. for most systems this will be around one page. Hardware projects als
 > NOTE Numerical limits applied to one specific function are normally specified as part of the processing subparagraph description of that function.
 
 
-The program will need to support two terminals. One terminal will be used to display the randomly generated map, which will be used by the players to
-view the game map. The second terminal will be used to display the information about each room in the map, this will be used by the dungeon master. The first terminal will need to be large enough to display a map that will display the player character's positions (using physical figures supplied by the players). The physical objects will not interact with the board. The second terminal will need to be compatible with a smart device, or a laptop.
+The program will need to support concurrent games with two terminals per game. One terminal will be used to display the randomly generated map, which will be used by the players to view the game map. The second terminal will be used to display the information about each room in the map, this will be used by the dungeon master. The first terminal will need to be large enough to display a map that will display the player character's positions (using physical figures supplied by the players). The physical objects will not interact with the board. The second terminal will need to be compatible with a smart device, or a laptop.
 
 There will need to be at least two simultaneous users being supported. One user will be using the second terminal (they are the dungeon master) and the other users will be using the first terminal.
 
 There will need to be information about each room that will be displayed to the dungeon master. The information that is given to the dungeon master will be room name, monster details and the treasure for each room. The monster details are the type of monster, their hit-points, their armour and what weapon they are using. This information will not need to be transferred between the two terminals, it will just be seen by the dungeon master. The information given to the players terminal will be the layout of the dungeon itself, displaying each room and how they connect.
 
-The information that will be sent to the terminals will be persistent. It will need to be stored somewhere that the two devices can access.
+The information that will be sent to the terminals will be persistent. It will be stored on the server.
 
-On startup, the maps should not take a long time to generate. The maps will only be generated when the players are entering them. For example, when the game starts it will only randomly generate the first level. The map generation should take less than 10-20 seconds to generate a map and display it on the screen. It should then take less time to display the information for the dungeon master.
+The maps will only be generated when the players are entering them. For example, when the game starts it will only randomly generate the first level. The map generation should take no longer than 20 seconds to generate a map and display it on the screen.  
 
 Since the game will be played in real time, the game will need to react to changes made quickly. Each time the players progress to the next level of the dungeon a new map will be generated. If the players want to go back to a previous level, it should take less than 1 second to load, since the map had already been generated previously. The only other aspect that will need to be changed dynamically is the Fog of War system. When the players go to each room the dungeon master should be able to make the room visible on the map display. This will need to take less than a second to change, since waiting for a while for the rooms visibility to load may ruin the immersion of the players.
 
-When saving the game, this should not take too long. It is expected that it takes less than approximately 10-20 seconds. The players don't want to spend a long time saving the game, since they may be in a rush to finish the session. When loading the game, this will be dependent on how strong the device's connection to the server is.
+When saving the game it is expected that it takes no longer than 20 seconds. The players don't want to spend a long time saving the game, since they may be in a rush to finish the session. When loading the game, assuming the internet is stable, it should take no longer than 20 seconds.
 
 ### 3.5 Logical database requirements
 
