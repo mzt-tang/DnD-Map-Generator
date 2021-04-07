@@ -634,7 +634,7 @@ When saving the game, this should not take too long. It is expected that it take
 See 9.5.14. for most systems, a focus on d) and e) is appropriate, such as an object-oriented domain analysis. You should provide an overview domain model (e.g.  a UML class diagram of approximately ten classes) and write a brief description of the responsibilities of each class in the model (3 pages).
 
 You should use right tools, preferabley PlantUML, to draw your URL diagrams which can be easily embedded into a Mardown file (PlantUML is also supported by GitLab and Foswiki).
-
+```plantuml
 @startuml
 entity "Monster" as e01 {
   * **monster_id : number** <<generated>> <<PK>>
@@ -689,6 +689,7 @@ e02 ||..|{ e01
 e03 ||..|{ e01
 e04 ||..|{ e01
 @enduml
+```
 
 ### 3.6 Design constraints
 
