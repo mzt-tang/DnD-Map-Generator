@@ -812,14 +812,6 @@ This requirement can be tested by loading a saved game and comparing it to when 
 
 ### 5.1 Schedule
 
-Identify dates for key project deliverables:
-
-1. architectural prototype
-1. minimum viable product
-1. further releases
-
-(1 page).
-
 #### Architectural prototype
 07/05/2021
 - The architectural prototype is to be completed by Monday 7th May 2021
