@@ -79,7 +79,7 @@ h) Site adaptation requirements.
 
 The minimum viable product is a software solution that allows a dungeon master to automatically generate a random playable underground level for a game of dungeons and dragons. The generated dungeon will populate the level with monsters that are appropriate for the level and context of the generated level. The level will have both an entrance and exit with the exit leading to further harder generated levels. The level must have a measure or scale of distance for movement. We are not expected to make assets, we are expected to find assets online that we are able to use legally.
 
-The dungeon master will have a separate display to the players that will allow them to see additional information and control map visability. The additional information in the minimum viable product is monster stats for the generated monsters (hp,armor,etc). The players will be playing on a large display (projector or large TV) that allows them to move figurines around the dungeon. The level has optional line of sight and map hiding functions. Room sizes will be appropriate for the monsters in the rooms.
+The dungeon master will have a separate display to the players that will allow them to see additional information and control map visibility. The additional information in the minimum viable product is monster stats for the generated monsters (hp,armor,etc). The players will be playing on a large display (projector or large TV) that allows them to move figurines around the dungeon. The level has optional line of sight and map hiding functions. Room sizes will be appropriate for the monsters in the rooms.
 
 The software solution will allow multiple games to run concurrently and for the games to be loaded and saved.
 
@@ -209,7 +209,7 @@ Once a map has been generated with a new set of tiles we can ensure that this us
 
 **What is the Goal of the use case?** <br>
 
-For the player to be able to view their view of the map and for the Dungeon Master to be able to work with 3.2.3 Change Visability in order to do so.
+For the player to be able to view their view of the map and for the Dungeon Master to be able to work with 3.2.3 Change Visibility in order to do so.
 
 **Who benefits from the result of this use case?** <br>
 
@@ -234,10 +234,10 @@ The limitations of this use case are the implementations of 3.2.3 change visibil
 | Get the player view | [System Responsibilities] |
 | Display the view | [User Interface] |
 
-#### 3.2.3 Change Visability
+#### 3.2.3 Change Visibility
 
 **What is the Goal of the use case?**  
-The goal of "Change visability" is to allow the dm to manually select tiles that are visible on the "player's display" screen. This keeps unexplored parts of the dungeon hidden from the player, allowing the dungeon master to show the player's what they'll see directly.
+The goal of "Change visibility" is to allow the dm to manually select tiles that are visible on the "player's display" screen. This keeps unexplored parts of the dungeon hidden from the player, allowing the dungeon master to show the player's what they'll see directly.
 
 **Who benefits from the result of this use case?**  
 This use case benefits Dungeon Master. He will gain the ability to control the narrative by controlling what the player's know. This maintains the experience for the players.
@@ -716,7 +716,7 @@ We will measure that this has been taken into account if the players are able to
 
 We will test that this feature is working by checking manually that what the Dungeon Master wants the player to see is visible on the player's device. We will test this feature's software is working by checking if information has been sent by the Dungeon Master's device and received by the player's device. If both tests work, the function will be deemed to be working.
 
-#### 4.3 Change Visability
+#### 4.3 Change Visibility
 
 **How will we verify this specific requirement?**  
 This use case is essential to gameplay. We can judge it's success via playtesting. A successful implementation will make the tiles selected by the dm visible on the player's screen should update once selection is completed.
