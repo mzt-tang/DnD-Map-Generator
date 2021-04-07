@@ -14,6 +14,13 @@ All team members are expected to contribute equally to the document and list the
 
 # ENGR 301 Project *NN* Project Proposal and Requirements Document
 #### Author list, a comma-separated list of the names of each member of the team.
+- Connor de Bruyn
+- Oliver Badrick
+- Patrick Laing
+- Adam Sinclair
+- Elijah Guarina
+- Jeremiah Choi
+- Michael Tang
 
 ## 1. Introduction
 
