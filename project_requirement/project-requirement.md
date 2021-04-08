@@ -49,11 +49,11 @@ To create a D&D map generator that also generates a well-weighted list of monste
 
 This system generates maps to be used for a Dungeons and Dragons game, while also allowing the Dungeon Master to manage the game and choose what the players see. This system is similar to other systems such as ProDnD[1], an app available on the app store that allows users to input map sizes, complexity, and other information to generate a dungeon. Our system would not be as complex but will still be inspired in part by the ProDnD system and other systems similar to it.
 
-The system will generate a map as well as populate the map with enemies of varying levels and types. The Dungeon Master would then calculate any damage to the enemies and players and manage the player’s information off-screen and input the hit points lost to the enemies on their device. The system would also generate information about the enemy such as the armour level. The levels of the generated enemies would depend on the level of the Dungeon.
+The system will generate a map as well as populate the map with enemies of varying levels and types. The Dungeon Master would then calculate any damage to the enemies and players and manage the player’s information off-screen. The system would also generate information about the enemy such as the armour level. The levels of the generated enemies would depend on the level of the Dungeon.
 
-The system would display information to the players using a similar system to Kahoot[2], a system that allows the host (the Dungeon Master in our system) to host a game that the players can connect to on their devices. Our system would be different from Kahoot's system as the Dungeon Master would need to be able to choose what image the players see on their device. This system would have no direct relationship with any other products or systems similar to Kahoot, but will instead be inspired by the design and functions of other products such as Kahoot. Whereas Kahoot is hosted via the internet, therefore anyone can connect to a given game, our system will use a local area network to connect between devices.
+The system would display information to the players using a similar system to Kahoot[2], a system that allows the host (the Dungeon Master in our system) to host a game that the players can connect to on their devices. Our system would be different from Kahoot's system as the Dungeon Master would need to be able to choose what image the players see on their device. This system would have no direct relationship with any other products or systems similar to Kahoot, but will instead be inspired by the design and functions of other products such as Kahoot. Whereas Kahoot is hosted via the internet, therefore anyone can connect to a given game, our system will use a server to generate maps and monster data, send the information to the Dungeon Master's device, have the Dungeon Master's device construct a map based on the information sent by the server, and save and load data for the Dungeon Master's device.
 
-For our system to appear as a Dungeons and Dragons system, we will need to either create or use the artwork. The artwork we use will either be created by ourselves or will be free to use images.
+For our system to appear as a Dungeons and Dragons system, we will need to either create or use artwork. The artwork we use will either be created by ourselves or will be free to use images.
 
 > **9.5.3 Product perspective** <br>
 > Define the system's relationship to other related products.
@@ -80,43 +80,41 @@ h) Site adaptation requirements.
 
 The minimum viable product is a software solution that allows a dungeon master to automatically generate a random playable underground level for a game of dungeons and dragons. The generated dungeon will populate the level with monsters that are appropriate for the level and context of the generated level. The level will have both an entrance and exit with the exit leading to further harder generated levels. The level must have a measure or scale of distance for movement. We are not expected to make assets, we are expected to find assets online that we are able to use legally.
 
-The dungeon master will have a separate display to the players that will allow them to see additional information and control map visability. The additional information in the minimum viable product is monster stats for the generated monsters (hp,armor,etc). The players will be playing on a large display (projector or large TV) that allows them to move figurines around the dungeon. The level has optional line of sight and map hiding functions. Room sizes will be appropriate for the monsters in the rooms.
+The dungeon master will have a separate display to the players that will allow them to see additional information and control map visibility. The additional information in the minimum viable product is monster stats for the generated monsters (hp, armour, etc). The players will be playing on a large display (projector or large TV) that allows them to move figurines around the dungeon. The level has optional line of sight and map hiding functions. Room sizes will be appropriate for the monsters in the rooms.
 
 The software solution will allow multiple games to run concurrently and for the games to be loaded and saved.
 
 ##### 1.3.2.2 Dungeon Generation Package
 
-- **Entry and Exit** The generated level must have a clear entry and exit point. These must be clearly connected and the exit point will lead to the next generated level.
+- **Entry and Exit**  The generated level must have a clear entry and exit point. These must be clearly connected and the exit point will lead to the next generated level.
 
-- **Monster Population** The generated level must be auto populated with monsters that are level appropriate. This means in levels 1-3 you would expect to find monsters that are very close to level 1-3. The monsters are expected to be context appropriate (In an underground level you would not expect to find horse riding knights)
+- **Monster Population**  The generated level must be auto populated with monsters that are level appropriate. This means in levels 1-3 you would expect to find monsters that are very close to level 1-3. The monsters are expected to be context appropriate (In an underground level you would not expect to find horse riding knights)
 
-- **Room sizing** Rooms are expected to be appropriately sized for the monsters that populate them. A room with an ogre should have entrances that allow the movement of that orge based on size.
+- **Room sizing**  Rooms are expected to be appropriately sized for the monsters that populate them. A room with an ogre should have entrances that allow the movement of that orge based on size.
 
-- **Level Scale** Levels have a scale that ties them to distance.
+- **Level Scale**  Levels have a scale that ties them to distance.
 
 ##### 1.3.2.3 Dungeon Master View
 
-- **Level overview** The dungeon master can see the entire map and the monsters on it.
+- **Level overview**  The dungeon master can see the entire map and the monsters on it.
 
-- **Line of sight** The dungeon master can change the line of sight of the players using the dungeon master view. Changes are reflected immediately inside the player view.
+- **Line of sight**  The dungeon master can change the line of sight of the players using the dungeon master view. Changes are reflected immediately inside the player view.
 
-- **Monster Stats** The dungeon master is able to see the monster stats of monsters inside the level. This includes stats such as health points, armour, size, speed etc.
+- **Monster Stats**  The dungeon master is able to see the monster stats of monsters inside the level. This includes stats such as health points, armour, size, speed etc.
 
-#### 1.3.2.4 Player View
+##### 1.3.2.4 Player View
 
-- **Display** The players are able to see the sections of the map that have line of sight (as controlled by the dungeon master)
+- **Display**  The players are able to see the sections of the map that have line of sight (as controlled by the dungeon master)
 
-- **Tile Size** The display has the tiles large enough that the players are able to move physical figurines around on the map. This will require a minimum projector/TV size for the players to use.
+- **Tile Size**  The display has the tiles large enough that the players are able to move physical figurines around on the map. This will require a minimum projector/TV size for the players to use.
 
-#### 1.3.2.5 Server Specific
+##### 1.3.2.5 Server Specific
 
-- **Save and Load** The server is able to save and load games
+- **Save and Load**  The server is able to save and load games
 
-- **Concurrent Games** The server supports concurrent games
+- **Concurrent Games**  The server supports concurrent games
 
 #### 1.3.3 User characteristics   
-
-One page identifying the main classes of users and their characteristics (9.5.5)
 
 The client (Craig Watterson) has outlined that the system will initially be for his personal use, and releasing the system commercially is a potential goal after the completion of the minimum viable product. Therefore, there is a priority on designing the system around the client's characteristics and attributes. These characteristics and attributes are thus assumed to be that of a typical user of the system.
 
@@ -124,50 +122,43 @@ One characteristic the client has is that they are experienced with the premise 
 
 While the system is aimed more towards experienced Dungeons and Dragons players, the system is still aimed to be intuitive to use. This is because the client's main goal with the system is to create a map for a Dungeons and Dragons game in a short time and with little effort from the user. This is also supported by the fact that Dungeons and Dragons map-generator systems/applications are not widely used. Therefore, processes, functions, and actions the system supports should employ conventions and designs most people are familiar with.
 
-According to the client, the system is to be faciliated in a digital manner, using web browser(s) to host the system on multiple devices simultaneously for a single Dungeons and Dragons game. Therefore, the users are expected to:
+According to the client, the system is to be facilitated in a digital manner, using web browser(s) to host the system on multiple devices simultaneously for a single Dungeons and Dragons game. Therefore, the users are expected to:
 - Have basic experience with using technologies such as computers and/or mobile devices
 - Have basic experience with using a web browser
 
-The client has also outlined that the system is to be used in conjuction with real-life figures that are completely separate from the system. Therefore, users are expected to have such figures for use with the system. Thus, the system will not be designed with the need to track players. Rather, the Dungeon Master will manually track each Players' positions, and use the system to adjust the appearance of the map accordingly.
+The client has also outlined that the system is to be used in conjunction with real-life figures that are completely separate from the system. Therefore, users are expected to have such figures for use with the system. Thus, the system will not be designed with the need to track players. Rather, the Dungeon Master will manually track each Players' positions, and use the system to adjust the appearance of the map accordingly.
 
 #### 1.3.4 Limitations
 
 ##### 1.3.4.1 Software Limitations
-* The software will be written using the React framework. The system will be running on a web application such as "chrome", or something similar like "Node.js".  A standalone executable application will not be released.
-
-* No server hosting. Without server hosting available to us as a resource, the system won't be designed to run on a server. Devices will have to communicate with each other via peer-to-peer connection. The software will utilize Local Area Networking (assuming it is available, see next subsection).
-
-* Persistence of any kind is not supported. The DM will not be able to save and reload dungeons.
+* A modern web browser will be needed to display the application to the DM and users.
 
 * Use of copyright material is (under any circumstances) not permitted.
 
 ##### 1.3.4.2 Hardware Limitations
-* No 24 hour remote connections. An extension to software limitations, the lack of server hosting also means any sort of remote connection is impossible without a host computer portforwarding the program through their modem. Any remote connection features will not be supported.
+* An internet connection will be required to use the program. A loss of internet connection will mean the game cannot continue to work unless it is hosted locally.
 
-* Connectivity between devices will not work without a Local Area Network. The system does not require connection to the internet, but all devices must be connected to the same network.
+* A computer will be required to host the server (locally or online).
+
+* Players will need a large enough screen or projector to use the program.
+
 
 ##### 1.3.4.3 Usage Assumptions
-* It is assumed that there'll only be two devices involved. A network of more than 2 devices will be not be supported.
+* It is assumed that there'll only be two devices involved per game.
 
-* It will be assumed that the devices will be used in the same room. Any UX features involving the display of information, curcial for online play, will not be implemented. The user of the software will be able to see both devices and their separate displays.
+* It will be assumed that the devices will be used in the same room. Any UX features involving the display of information, crucial for online play, will not be implemented.
 
-* Assuming the DM will only rely on this for dungeon generation and nothing more. any more dm support (such as calculating player stats, health modificers, speed modifiers inventory space, etc) will not be included. Custom Dungeon creation of any sort will not be included.
+* Assuming the DM will only rely on this for dungeon generation and nothing more. Any other dm support (such as calculating player stats, health modifiers, speed modifiers inventory space, etc) will not be included. Custom dungeon creation of any sort will not be included.
 
 ## 2. References
 
-[1] Name of Software: ProDnD Publisher: Gray Lake Studios Date Accessed: 23/3/2021 Type of Medium: Mobile App Avaiable: http://prodnd.blogspot.com/
+[1] Name of Software: ProDnD Publisher: Gray Lake Studios Date Accessed: 23/3/2021 Type of Medium: Mobile App Available: http://prodnd.blogspot.com/
 
 [2] Name of Software: Kahoot! Publisher: Morten Versvik, Johan Brand, and Jamie Brooker Date Accessed: 25/3/2021 Type of Medium Website. Available: https://kahoot.com/
 
-References to other documents or standards. Follow the IEEE Citation  Reference scheme, available from the [IEEE website](https://www.ieee.org/) (please use the search box). (1 page, longer if required)
-
 ## 3. Specific requirements  
 
-20 pages outlining the requirements of the system. You should apportion these pages across the following subsections to focus on the most important parts of your product.
-
 ### 3.1 External interfaces
-
-See 9.5.10. for most systems this will be around one page.
 
 #### 3.1.1 Dungeon Master's View
 
@@ -199,7 +190,7 @@ Once a map has been generated with a new set of tiles we can ensure that this us
 
 **What limitations are there to achieving the use case?**  
 * The dungeon master will no longer be allowed to select a desired map, but will only be able to generate random maps for usage.
-* If there arent enough prefab rooms, or if the user is really unlucky, they may experience very similar maps being generated if duplicate prefabs are being used.
+* If there aren't enough prefab rooms, or if the user is really unlucky, they may experience very similar maps being generated if duplicate prefabs are being used.
 
 **Use Case Flow**
 | Action | Type |
@@ -213,7 +204,7 @@ Once a map has been generated with a new set of tiles we can ensure that this us
 
 **What is the Goal of the use case?** <br>
 
-For the player to be able to view their view of the map and for the Dungeon Master to be able to work with 3.2.3 Change Visability in order to do so.
+For the player to be able to view their view of the map and for the Dungeon Master to be able to work with 3.2.3 Change Visibility in order to do so.
 
 **Who benefits from the result of this use case?** <br>
 
@@ -221,7 +212,7 @@ The players benefit directly as the players will be able to see what is going on
 
 **How will this use case be achieved?** <br>
 
-This use case will be acheived by the system taking the display chosen by the Dungeon Master and displaying it on the players screen.
+This use case will be achieved by the system taking the display chosen by the Dungeon Master and displaying it on the players screen.
 
 **How will we verify this specific requirement?** <br>
 
@@ -238,10 +229,10 @@ The limitations of this use case are the implementations of 3.2.3 change visibil
 | Get the player view | [System Responsibilities] |
 | Display the view | [User Interface] |
 
-#### 3.2.3 Change Visability
+#### 3.2.3 Change Visibility
 
 **What is the Goal of the use case?**  
-The goal of "Change visability" is to allow the dm to manually select tiles that are visible on the "player's display" screen. This keeps unexplored parts of the dungeon hidden from the player, allowing the dungeon master to show the player's what they'll see directly.
+The goal of "Change visibility" is to allow the dm to manually select tiles that are visible on the "player's display" screen. This keeps unexplored parts of the dungeon hidden from the player, allowing the dungeon master to show the player's what they'll see directly.
 
 **Who benefits from the result of this use case?**  
 This use case benefits Dungeon Master. He will gain the ability to control the narrative by controlling what the player's know. This maintains the experience for the players.
@@ -279,19 +270,19 @@ The goal of the use case "Change Maps" is for the Dungeon Master to be able to c
 
 **Who benefits from the result of this use case?** <br>
 
-The beneficiaries of this use case are the players, who will be able to play another level on a new map at higher levels, and the Dungeon Master, whos campaign continues on.
+The beneficiaries of this use case are the players, who will be able to play another level on a new map at higher levels, and the Dungeon Master, whose campaign continues on.
 
 **How will this use case be achieved?** <br>
 
-This use case will be acheived through the system generating a map and populating the map with higher leveled monsters than the previous map.
+This use case will be achieved through the system generating a map and populating the map with higher levelled monsters than the previous map.
 
 **How will we verify this specific requirement?** <br>
 
 We will be able to measure this use case being taken into account by seeing if the system is able to generate and move onto another map after the current map the players are on has been completed.
 
-**What are the limitations of acheiving this use case?** <br>
+**What are the limitations of achieving this use case?** <br>
 
-The limitations of acheiving this use case are generating maps. This is because the map must be generated before displaying anything to the users.
+The limitations of achieving this use case are generating maps. This is because the map must be generated before displaying anything to the users.
 
 **Use Case Flow** <br>
 
@@ -330,7 +321,7 @@ We can see that the use case has been taken into the account when the system gen
 | ---------------- | ------------------ |
  | The user can see any selected monster's stats | [user intention] |
  | The system must have a stored set of monsters and their stats | [system responsibilities] |
- | The system must display any specific monster's stats on a screen | [system responsibilites] |
+ | The system must display any specific monster's stats on a screen | [system responsibilities] |
  | The user should be able to pick a monster's name from a list of monsters and see its stats | [user interface] |
 
 #### 3.2.6 See Full Maps
@@ -358,7 +349,7 @@ We will be able to see that this use case has been taken in to account when the 
 | ---------------- | ------------------ |
 | The user can see the full generated map | [user intention] |
 | The system must generate the map | [system responsibility] |
-| The system myst display the generated map on to a screen | [system responsibility] |
+| The system must display the generated map on to a screen | [system responsibility] |
 | The user should be able to press the generate map button and see the full map | [user interface] |
 | The user should be able to press the see map button and see the full map | [user interface] |
 
@@ -391,10 +382,10 @@ Map themes are a pre-requisite for monster population. If successfully implement
 #### 3.2.8 Remove monsters
 
 **What is the Goal of the use case?**  
-The goal of the "Remove Monsters" use case is to ensure the monsters can be removed by the DM in the DM view to ensure that what is displayed on the DM view is still relevent.
+The goal of the "Remove Monsters" use case is to ensure the monsters can be removed by the DM in the DM view to ensure that what is displayed on the DM view is still relevant.
 
 **Who benefits from the result of this use case?**  
-The DM benefits from the use case. By removing monsters that are no longer relevent to the dungeon map (they have been defeated for instance, or the DM removed them for other reasons) it ensures that the DM view displays the current state of the board. This reduces noise to the DM and the need to remember which monsters have been defeated or removed.
+The DM benefits from the use case. By removing monsters that are no longer relevant to the dungeon map (they have been defeated for instance, or the DM removed them for other reasons) it ensures that the DM view displays the current state of the board. This reduces noise to the DM and the need to remember which monsters have been defeated.
 
 **How will this use case be achieved?**  
 The DM has a view that shows monsters on the map. When the DM clicks on monsters there will be an option to delete that monster from the board and remove them from the map.
@@ -425,10 +416,10 @@ The goal of the use case is to allow the DM to automatically populate monsters i
 Both the players and the DM benefit from this use case. This is because there is less time in setup of the game given the monsters have been already populated. It allows the game to get up and running quicker than if it had not been implemented.
 
 **How will this use case be achieved?**  
-This will be achieved by implementing an algorithm that takes in a dungeon map and a list of monsters to pick from. It will then automatically populate the map with appropriately leveled and themed monsters.  
+This will be achieved by implementing an algorithm that takes in a dungeon map and a list of monsters to pick from. It will then automatically populate the map with appropriately levelled and themed monsters.  
 
 **How will we verify this specific requirement?**  
-We can ensure that this use case has been taken into account if when the DM presses the generate monsters button the dungeon is automatically populated with appropriately leveled and themed monsters.
+We can ensure that this use case has been taken into account if when the DM presses the generate monsters button the dungeon is automatically populated with appropriately levelled and themed monsters.
 
 **What limitations are there to achieving the use case?**  
 
@@ -550,8 +541,6 @@ It is very difficult to store JSON files in a relational database.
 | Displays the map in the same way as it was when saved | [User Interface] |
 | If saved game cannot be found, display a 'cannot find game' message | [User Interface] |
 
-This is typically the longest subsection in the document. List up to fifty use cases (in order of priority for development), and for at least top ten focal use cases, write a short goal statement and use case body (up to seven pages).  Identify the use cases that comprise a minimum viable product.
-
 ### 3.3 Usability Requirements
 
 In order to create a fully functional Dungeons and Dragons tabletop, the following usability requirements needs to be met:
@@ -560,73 +549,50 @@ In order to create a fully functional Dungeons and Dragons tabletop, the followi
 * Client specified **criteria for satisfaction**: The application needs to portray desired functions specified by the client.
 
 **Effectiveness:**
-* The touch table must take in touch functionality from the user to perform various defined tasks.
-* The touch table needs to communicate to another device and take in inputs from that device.
-* The application must generate a dungeons and dragons map for player usage and be displayed on the touch table.
+* The DM device must take input functionality from the user to perform various defined tasks.
+* The devices need to communicate to and from the server.
+* The application must generate a dungeons and dragons map for player usage and be displayed on the player view.
 * The application should switch between multiple states (maps).
 
 **Efficiency:**
 * There should be no latency issues between the two devices.
 * The application should be booted up from devices and run from the get-go.
-* Map generation should be efficient and not take too long to be created.
+* Map generation should be efficient and not take longer than 20 seconds to be created.
 
 **Satisfaction Criteria:**
 * A web-based application must be used so that the application can be run from any operating system.
-* The application must be able to be run from the two different sized devices specified by the client (An IPad and the touch table).
+* The application must be able to be run from the two different sized devices specified by the client (An iPad and a projector).
 * The application contains a "fog of war", only displaying sections of the map that the user can currently see.
-* The seperate device from the touch table should contain functionality only the dungeon-master can use.
+* The separate device from the player view should contain functionality only the dungeon-master can use.
 * The application should contain a scale or grid to determine size of characters and scenery.
-* Size of tiles should be large enough to fit physical pieces ontop.
+* Size of tiles should be large enough to fit physical pieces on top.
 
 The application as the result of this project should contain no obscurities that could offend any of the users whilst using the application. The application must avoid any risks of usage that could arise from specific context of use.
 
 
 ### 3.4 Performance requirements
 
-See 9.5.13. for most systems this will be around one page. Hardware projects also see section 9.4.6.
-
-> **9.5.13 Performance requirements** <br>
-> Specify both the static and the dynamic numerical requirements placed on the software or on human interaction with the software as a whole.
->
-> Static numerical requirements may include the following:
->
-> a) The number of terminals to be supported;  
-> b) The number of simultaneous users to be supported;  
-> c) Amount and type of information to be handled.
->
-> Static numerical requirements are sometimes identified under a separate section entitled Capacity.
->
-> Dynamic numerical requirements may include, for example, the numbers of transactions and tasks and the amount of data to be processed within certain time periods for both normal and peak workload conditions. The performance requirements should be stated in measurable terms.
->
->  For example, "_95 % of the transactions shall be processed in less than 1 second._" rather than, "An operator shall not have to wait for the transaction to complete."
->
-> NOTE Numerical limits applied to one specific function are normally specified as part of the processing subparagraph description of that function.
-
-
-The program will need to support two terminals. One terminal will be used to display the randomly generated map, which will be used by the players to
-view the game map. The second terminal will be used to display the information about each room in the map, this will be used by the dungeon master. The first terminal will need to be large enough to display a map that will display the player character's positions (using physical figures supplied by the players). The physical objects will not interact with the board. The second terminal will need to be compatible with a smart device, or a laptop.
+The program will need to support concurrent games with two terminals per game. One terminal will be used to display the randomly generated map, which will be used by the players to view the game map. The second terminal will be used to display the information about each room in the map, this will be used by the dungeon master. The first terminal will need to be large enough to display a map that will display the player character's positions (using physical figures supplied by the players). The physical objects will not interact with the board. The second terminal will need to be compatible with a smart device, or a laptop.
 
 There will need to be at least two simultaneous users being supported. One user will be using the second terminal (they are the dungeon master) and the other users will be using the first terminal.
 
 There will need to be information about each room that will be displayed to the dungeon master. The information that is given to the dungeon master will be room name, monster details and the treasure for each room. The monster details are the type of monster, their hit-points, their armour and what weapon they are using. This information will not need to be transferred between the two terminals, it will just be seen by the dungeon master. The information given to the players terminal will be the layout of the dungeon itself, displaying each room and how they connect.
 
-The information that will be sent to the terminals will be persistent. It will need to be stored somewhere that the two devices can access.
+The information that will be sent to the terminals will be persistent. It will be stored on the server.
 
-On startup, the maps should not take a long time to generate. The maps will only be generated when the players are entering them. For example, when the game starts it will only randomly generate the first level. The map generation should take less than 10-20 seconds to generate a map and display it on the screen. It should then take less time to display the information for the dungeon master.
+The maps will only be generated when the players are entering them. For example, when the game starts it will only randomly generate the first level. The map generation should take no longer than 20 seconds to generate a map and display it on the screen.  
 
 Since the game will be played in real time, the game will need to react to changes made quickly. Each time the players progress to the next level of the dungeon a new map will be generated. If the players want to go back to a previous level, it should take less than 1 second to load, since the map had already been generated previously. The only other aspect that will need to be changed dynamically is the Fog of War system. When the players go to each room the dungeon master should be able to make the room visible on the map display. This will need to take less than a second to change, since waiting for a while for the rooms visibility to load may ruin the immersion of the players.
 
-When saving the game, this should not take too long. It is expected that it takes less than approximately 10-20 seconds. The players don't want to spend a long time saving the game, since they may be in a rush to finish the session. When loading the game, this will be dependent on how strong the device's connection to the database is.
+When saving the game it is expected that it takes no longer than 20 seconds. The players don't want to spend a long time saving the game, since they may be in a rush to finish the session. When loading the game, assuming the internet is stable, it should take no longer than 20 seconds.
 
 ### 3.5 Logical database requirements
 
-See 9.5.14. for most systems, a focus on d) and e) is appropriate, such as an object-oriented domain analysis. You should provide an overview domain model (e.g.  a UML class diagram of approximately ten classes) and write a brief description of the responsibilities of each class in the model (3 pages).
-
-You should use right tools, preferabley PlantUML, to draw your URL diagrams which can be easily embedded into a Mardown file (PlantUML is also supported by GitLab and Foswiki).
+You should use right tools, preferably PlantUML, to draw your URL diagrams which can be easily embedded into a Markdown file (PlantUML is also supported by GitLab and Foswiki).
 
 ### 3.6 Design constraints
 
-#### Copyright And Legal Constraints:
+#### Copyright And Legal Constraints
 Dungeons and dragons is owned by Wizards Of The Coast and they have a copyright and/or licence agreement on all their assets relating to the game. We need to ensure we do not violate any of their terms and conditions associated with their assets. This includes monster information/names, dungeons and dragons images, game assets, and any other assets implemented into the game.
 
 Any other assets we use for this project that are free or paid will have terms of use associated with the assets. We must ensure we adhere to these requirements to avoid legal issues.
@@ -638,10 +604,6 @@ The program will not collect or store any personal data to avoid privacy laws.
 Time is limited to about 7 hours a week working on this project. There is a hard deadline of October to finish the project. Because of this time constraint there are no guarantees that any work outside the scope of this requirements document can be completed before the deadline. Any stretch targets could be left unfinished, however these will be in a feature branch and will not affect the functionality of the main program.
 
 ### 3.7 Nonfunctional system attributes
-
-Present the systemic (aka nonfunctional) requirements of the product (see ISO/IEC 25010).
-List up to twenty systemic requirements / attributes.
-Write a short natural language description of the top nonfunctional requirements (approx. five pages).
 
 - Performance
 - Usability
@@ -655,8 +617,7 @@ It is expected that the application is able to successfully generate a random ma
 
 Performance
 
-It is expected that the system is able to perform the inputs in an efficient amount of time. It shouldn't take
-longer than 2-3 seconds to generate a new random dungeon level. It should take less time than that to display a previously generated level.
+It is expected that the system is able to perform the inputs in an efficient amount of time. It should take less than 10-20 seconds to generate a new random dungeon level. It should take less time than that to display a previously generated level.
 
 Scalability
 
@@ -680,19 +641,19 @@ It is expected that the application conforms to the values of the client. It is 
 
 ### 3.8 Physical and Environmental Requirements
 
-For systems with hardware components, identify the physical characteristics of that hardware (9.4.10) and environment conditions in which it must operate (9.4.11).  Depending on the project, this section may be from one page up to 5 pages.
-
 Requirements for the map display:
 - It must either
     - Be a screen facing upwards or
     - Be a projector projecting the image onto a table
     - This is necessary because the players will need to be able to place their figures on the map
 - It must be big enough so that the figures all fit on the map, and are to the correct scale (an ogre taking up more tiles than a human, for example)
-- It must be able to at least connect to the local network
+- It must be able to connect to a server
+- It must support a modern web browser.
 
 Requirements for the dungeon master device:
-- It must be able to at least connect to the local network
+- It must be able to connect to a server
 - It must be able to get input from the dungeon master (e.g when they want to change levels)
+- It must support a modern web browser.
 
 Requirements for room:
 - Must be big enough for the players to comfortably play the game
@@ -722,7 +683,7 @@ We will measure that this has been taken into account if the players are able to
 
 We will test that this feature is working by checking manually that what the Dungeon Master wants the player to see is visible on the player's device. We will test this feature's software is working by checking if information has been sent by the Dungeon Master's device and received by the player's device. If both tests work, the function will be deemed to be working.
 
-#### 4.3 Change Visability
+#### 4.3 Change Visibility
 
 **How will we verify this specific requirement?**  
 This use case is essential to gameplay. We can judge it's success via playtesting. A successful implementation will make the tiles selected by the dm visible on the player's screen should update once selection is completed.
@@ -760,7 +721,7 @@ We can ensure that this use case has been taken into account if the monster is n
 #### 4.9 Populate monsters
 
 **How will we verify this specific requirement?**  
-We can ensure that this use case has been taken into account if when the DM presses the generate monsters button the dungeon is automatically populated with appropriately leveled and themed monsters.
+We can ensure that this use case has been taken into account if when the DM presses the generate monsters button the dungeon is automatically populated with appropriately levelled and themed monsters.
 
 #### 4.10 Exit Game/server
 
@@ -780,7 +741,7 @@ We can judge this by observing whether choosing a view provides the user with th
 
 #### 4.12 Save Game
 
-**How will we verify this specific requirement?**
+**How will we verify this specific requirement?**<br>
 This requirement can be tested by saving the game to the JSON file, then going through the file and checking that it includes the aspects of the dungeon that need to be saved. The parts of the map that need to be checked are:
 
 - The room layout of the levels
@@ -790,7 +751,7 @@ This requirement can be tested by saving the game to the JSON file, then going t
 
 #### 4.13 Load Game
 
-**How will we verify this specific requirement?**
+**How will we verify this specific requirement?**<br>
 This requirement can be tested by loading a saved game and comparing it to when it was saved. The parts of the map that need to be compared are:
 
 - The room layout of the levels
@@ -801,14 +762,6 @@ This requirement can be tested by loading a saved game and comparing it to when 
 ## 5. Development schedule.
 
 ### 5.1 Schedule
-
-Identify dates for key project deliverables:
-
-1. architectural prototype
-1. minimum viable product
-1. further releases
-
-(1 page).
 
 #### Architectural prototype
 07/05/2021
@@ -835,20 +788,23 @@ Identify dates for key project deliverables:
 
 No paid items to be purchased have been outlined to be required for the purpose of constructing the system. Because no purchases have been outlined, and therefore no expenses have been outlined, no budget has been explicitly allocated for this project.
 
-However, a potential expense is the use of paid/non-free assets (e.g. map textures, monster item icons/textures, or any other assets to be outlined in the future). There is no plan to purchase such assets, as instead there is a bias towards the use of free assets. However, if paid assets are decided to be used in the project, then a budget for purchasing paid assets will be set.
+However, a few potential expenses have been outlined. Potential expenses are expenses that are not determined to be necessary for the completion of this project, and therefore their costs and budgets are initially not real expenses. However, these potential expenses are considered to become real expenses if certain project circumstances change. If any of these potential expenses are ever decided to be purchased for the purpose of this project (i.e., they become real expenses), then their corresponding budgets are to be used to limit spending on each respective expense.
+
+The table below describes these potential expenses.  
+| Item            | Purpose                              | Budget (NZD)       |
+|---------------------------|--------------------------------------------------------------------|-------------------|
+| Cloud Instance | A Cloud Instance is to be paid for if the DnD Map Generator application is to be hosted and launched from the instance on a Cloud service such as Microsoft Azure or Amazon Web Service. This however is an alternative option, as ideally, the application would be hosted instead on servers operated by Victoria University of Wellington: School of Engineering and Computer Science (a.k.a. ECS Servers). This is because hosting the application from the ECS Servers would be free, whereas hosting it on Cloud services would not. If this ideal option turns out to not be possible however, then a Cloud instance would be the next preferred choice, and the outlined budget would be the limit on how much is spent on using the Cloud instance.  | $50.00 |
+| Paid Assets | Paid Assets are third-party non-free resources to be used in the DnD Map Generator. This includes map textures, User Interface artwork, or any other assets to be outlined in the future. There is no initial plan to purchase any paid assets, as there is a bias to using free assets.  | $100.00 |
 
 ### 5.3 Risks
-Identify the ten most important project risks to achieving project goals: their type, likelihood, impact, and mitigation strategies (3 pages).
-
-If the project will involve any work outside the ECS laboratories, i.e. off-campus activities, these should be included in the following section.
 
 | # | Risk | Risk Type | Likelihood | Severity |
 | --- | :--------------------------------------------------------------------------------: |  --------------- | ------------ | ---------------- |
 | 1 | COVID-19 levels increase, restricting access to laboratories and equipment | Performance | High | Tolerable |
 | 2 | Client removes budget or online resources become unavailable | Financial / Availability | Low | Tolerable |
-| 3 | Incompabitibility of services or equipment | Availability / Performance | Medium | Severe |
+| 3 | Incompatibility of services or equipment | Availability / Performance | Medium | Severe |
 | 4 | Minimal requirements will not be met by the end of the project (Scope creep) | Operational | Medium | Extreme |
-| 5 | Team members are unable to work on the project (Illness, lack of internet, etc) | Health and Saftey / Performance | Medium | Extreme |
+| 5 | Team members are unable to work on the project (Illness, lack of internet, etc) | Health and Safety / Performance | Medium | Extreme |
 | 6 | Customer alters the requirements during development | Strategic | Low | Tolerable |
 | 7 | The products do not align with stakeholder expectations | Strategic | Medium | Tolerable |
 | 8 | Lack of communication amongst team members and stakeholders | Performance | Low | Severe |
@@ -859,13 +815,13 @@ If the project will involve any work outside the ECS laboratories, i.e. off-camp
 | --- | :--------------------------------------------------------------------------------: |  ------------------------------------------------ |
 | 1 | COVID-19 levels increase, restricting access to laboratories and equipment | Frequent usage of online resources to keep in-contact and productive until covid levels decrease or the project finalizes.  |
 | 2 | Client removes budget or online resources become unavailable | Utilisation of offline resources, if we are using any online assets (or planning to) we will need to produce them ourselves.  |
-| 3 | Incompabitibility of services or equipment | Research alternative services and equipment to use incase the current ones fail or become unavailable for usage. |
-| 4 | Minimal requirements will not be met by the end of the project (Scope creep) | We could invest in buying components to fulfill the remaining requirements or focus all members efforts into accomplishing the minimum requirements before attempting stretch goals. |
+| 3 | Incompatibility of services or equipment | Research alternative services and equipment to use in case the current ones fail or become unavailable for usage. |
+| 4 | Minimal requirements will not be met by the end of the project (Scope creep) | We could invest in buying components to fulfil the remaining requirements or focus all members efforts into accomplishing the minimum requirements before attempting stretch goals. |
 | 5 | Team members are unable to work on the project (Illness, lack of internet, etc) | Divide the absent members workload evenly amongst all remaining members to keep workflow consistent and to not overwhelm one member. |
 | 6 | Customer alters the requirements during development | As the client did not specify these requirements during the proposition, we may decline the additional requirements if we deem them to be unachievable during the remaining time given.  |
 | 7 | The products do not align with stakeholder expectations | Create frequent meetings with the client to ensure that each feature added is to specification. This will provide clarity if we are missing features or misinterpreted requirements. |
 | 8 | Lack of communication amongst team members and stakeholders | We will conduct frequent weekly meetups and utilize online social media platforms (Mattermost) to ensure each member understands the given situation and tasks needed to be completed for project completion.  |
-| 9 | Product has underlying bugs that impact the products functionality | We can create tests to identify and fix bugs occuring during development of each function. Ensuring each function remains bug-free before advancing to new tasks. |
+| 9 | Product has underlying bugs that impact the products functionality | We can create tests to identify and fix bugs occurring during development of each function. Ensuring each function remains bug-free before advancing to new tasks. |
 | 10 | Team members lack required skills to complete the project | Create sessions to learn the required information needed to progress through the project. If one member knows the skills necessary, they can tutor the remaining members until all members are fully capable to continue. |
 
 ### 5.4 Health and Safety
@@ -886,13 +842,9 @@ Project requirements do not involve risk of death, serious harm, harm or injury.
 ## 6. Appendices
 ### 6.1 Assumptions and dependencies
 
-One page on assumptions and dependencies (9.5.7).
-
-The assumptions we are making when designing the application are:
-
 - That the devices used have access to the internet
 - That the devices used have enough computing power to run the application
-- That the online database used to store the saved game has enough space to store the file
+- That the online server used to store the saved game has enough space to store the file
 - That the device that displays the map has a large enough display for the player's physical figures to fit on the map 
 - That the device that the DM uses has some way to get input
 
