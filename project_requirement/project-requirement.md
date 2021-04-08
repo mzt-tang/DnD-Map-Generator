@@ -696,7 +696,15 @@ e04 ||..|{ e01
 
 #### 3.5.2 Monsters
 The monster class is responsible for providing all of the monsters information to the dungeon master. 
-A monster provides information on its statistics, abilities, alignments, profficiencies and all other information useful to the dungeon master.
+
+**A monster provides information on the following:**
+- Statistics: strength, dexterity, charisma, wisdom, constitution and intelligence. Used in general calculations.
+- Actions: active abilities the monster can do on their turn.
+- Senses / Special traits: passive abilities that occur without the monsters input.
+- Alignments: The political faction the monster associates to.
+- Profficiencies: Weapons, armor and tools the monster is allowed to use.
+- Languages spoken.
+- Immunities / Vulnerabilities / Resistances.
 
 #### 3.5.3 Type
 The type class is responsible for providing the monsters type to the monster class, as well as the tag if applicable.
