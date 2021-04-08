@@ -1,5 +1,6 @@
-# ENGR 301 Project "Dungeons and Dragons Tabletop Application 2" Project Proposal and Requirements Document
+# ENGR 301 Project *NN* Project Proposal and Requirements Document
 #### Author list, a comma-separated list of the names of each member of the team.
+- Connor de Bruyn, Oliver Badrick, Patrick Laing, Adam Sinclair, Elijah Guarina, Jeremiah Choi, Michael Tang
 
 ## 1. Introduction
 
@@ -168,6 +169,8 @@ The dungeon master must be able to see a different view from the players. The du
 The player's view must display what the dungeon master chooses to display. This means that the player's view interface and the dungeon master interface must be connected so that the dungeon master can change the display for the players, but not the other way around.
 
 ### 3.2 Functions
+
+[![](https://mermaid.ink/img/eyJjb2RlIjoic3RhdGVEaWFncmFtLXYyXG4gICAgUEVSU09OIDogUEVSU09OXG4gICAgUEVSU09OIC0tPiBDaG9vc2VfVmlldyhETS9QbGF5ZXIpXG4gICAgQ2hvb3NlX1ZpZXcoRE0vUGxheWVyKSAtLT4gUGxheWVyIDogU2VsZWN0cyBQbGF5ZXJcbiAgICBDaG9vc2VfVmlldyhETS9QbGF5ZXIpIC0tPiBEdW5nZW9uX01hc3RlciA6IFNlbGVjdHMgRE1cblxuICAgIFN0YXRlIER1bmdlb25fTWFzdGVyIHtcbiAgICAgICAgRE0gOiBETVxuICAgICAgICBETSAtLT4gVmlld19QbGF5ZXJfTWFwXG4gICAgICAgIERNIC0tPiBQaWNrX1RoZW1lXG4gICAgICAgIFBpY2tfVGhlbWUgLS0-IEdlbmVyYXRlX01hcFxuICAgICAgICBETSAtLT4gQ2hhbmdlX1Zpc2liaWxpdHlcbiAgICAgICAgRE0gLS0-IFJlbW92ZV9Nb25zdGVyc1xuICAgICAgICBETSAtLT4gVmlld19Nb25zdGVyX0RhdGFcbiAgICAgICAgRE0gLS0-IENoYW5nZV9NYXBcbiAgICAgICAgRE0gLS0-IFNlZV9GdWxsX01hcFxuICAgICAgICBETSAtLT4gUG9wdWxhdGVfTW9uc3RlcnNcbiAgICAgICAgRE0gLS0-IEV4aXRfR2FtZVxuICAgICAgICBETSAtLT4gU2F2ZV9HYW1lXG4gICAgICAgIERNIC0tPiBMb2FkX0dhbWVcbiAgICB9XG4gICAgXG4gICAgU3RhdGUgUGxheWVyIHtcbiAgICAgICAgUExBWUVSIDogUExBWUVSXG4gICAgICAgIFBMQVlFUiAtLT4gVmlld19QbGF5ZXJfTWFwXG4gICAgfSIsIm1lcm1haWQiOnsidGhlbWUiOiJmb3Jlc3QifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoic3RhdGVEaWFncmFtLXYyXG4gICAgUEVSU09OIDogUEVSU09OXG4gICAgUEVSU09OIC0tPiBDaG9vc2VfVmlldyhETS9QbGF5ZXIpXG4gICAgQ2hvb3NlX1ZpZXcoRE0vUGxheWVyKSAtLT4gUGxheWVyIDogU2VsZWN0cyBQbGF5ZXJcbiAgICBDaG9vc2VfVmlldyhETS9QbGF5ZXIpIC0tPiBEdW5nZW9uX01hc3RlciA6IFNlbGVjdHMgRE1cblxuICAgIFN0YXRlIER1bmdlb25fTWFzdGVyIHtcbiAgICAgICAgRE0gOiBETVxuICAgICAgICBETSAtLT4gVmlld19QbGF5ZXJfTWFwXG4gICAgICAgIERNIC0tPiBQaWNrX1RoZW1lXG4gICAgICAgIFBpY2tfVGhlbWUgLS0-IEdlbmVyYXRlX01hcFxuICAgICAgICBETSAtLT4gQ2hhbmdlX1Zpc2liaWxpdHlcbiAgICAgICAgRE0gLS0-IFJlbW92ZV9Nb25zdGVyc1xuICAgICAgICBETSAtLT4gVmlld19Nb25zdGVyX0RhdGFcbiAgICAgICAgRE0gLS0-IENoYW5nZV9NYXBcbiAgICAgICAgRE0gLS0-IFNlZV9GdWxsX01hcFxuICAgICAgICBETSAtLT4gUG9wdWxhdGVfTW9uc3RlcnNcbiAgICAgICAgRE0gLS0-IEV4aXRfR2FtZVxuICAgICAgICBETSAtLT4gU2F2ZV9HYW1lXG4gICAgICAgIERNIC0tPiBMb2FkX0dhbWVcbiAgICB9XG4gICAgXG4gICAgU3RhdGUgUGxheWVyIHtcbiAgICAgICAgUExBWUVSIDogUExBWUVSXG4gICAgICAgIFBMQVlFUiAtLT4gVmlld19QbGF5ZXJfTWFwXG4gICAgfSIsIm1lcm1haWQiOnsidGhlbWUiOiJmb3Jlc3QifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)
 
 #### 3.2.1 Generate Maps
 
@@ -823,35 +826,18 @@ The table below describes these potential expenses.
 
 ### 5.4 Health and Safety
 
-Document here project requirements for Health and Safety. All teams must state in this section:
+1. These are the computer-related risks that could occur during this project, and how they will be managed.
+- Eye damage: The 20-20-20 rule. Every 20 minutes, look at somthing 20 feet away for 20 seconds
+- Spine injury: Make sure to stretch for about 5-10 minutes every hour
+- Hand injury: Make sure to remove hands from keyboard when its not being used, also use whole arm to move mouse instead of wrist
 
-1. How teams will manage computer-related risks such as Occupational Over Use, Cable management, etc.  
+2. The project does not requre work or testing at an external workplace/site.
 
-2. Whether project work requires work or testing at any external (off-campus) workplaces/sites. If so, state the team's plans for receiving a Health and Safety induction for the external workplaces/sites. If the team has already received such an induction, state the date it was received.
-
-3. Whether project work requires the team test with human or animal subjects? If so, explain why there is no option but for the team to perform this testing, and state the team's plans for receiving Ethics Approval _prior_ to testing.
-
-Also document in this section any additional discussions with the School Safety Officer regarding Health and Safety risks. Give any further information on relevant health and safety regulations, risks, and mitigations, etc.
-
+3. The project does not require any testing with human and animal subjects.
 
 #### 5.4.1 Safety Plans
 
-Safety Plans may be required for some projects, depending on project requirements. Safety Plan templates are available on the course Health & Safety page. Two questions all teams must answer are:
-
-**Do project requirements involve anything that can cause serious harm or death?**  
-Examples: building/modifying devices using voltages > 60 V, chemicals, large moving machinery, flying devices, bodies of water.
-
-If so, you will have to write a separate Safety Plan as part of project requirements, and the Safety Plan must be referenced in this section. For health and safety risks involving serious harm or death, you must first contact the School Safety Officer and Course Coordinator first to discuss the Safety Plan and project requirements.
-
-**Do project requirements involve anything that can cause harm or injury?**  
-Examples: building/modifying things with voltages <= 60V, small moving machinery, wearable devices.
-
-If so, you will have to write a separate Safety Plan as part of project requirements, and the Safety Plan must be referenced in this section. For health and safety risks involving harm or injury, you should write a draft of the Safety Plan before contacting the School Safety Officer and Course Coordinator to discuss the Safety Plan and project requirements.
-
-If a safety plan is required, list in this section the date the School Safety officer accepted your Health and Safety plan (if accepted by submission date).
-
-_If the project is purely software and requires no contact risks involving physical harm, then state "Project requirements do not involve risk of death, serious harm, harm or injury." in this section._
-
+Project requirements do not involve risk of death, serious harm, harm or injury.
 
 ## 6. Appendices
 ### 6.1 Assumptions and dependencies
@@ -876,7 +862,16 @@ _If the project is purely software and requires no contact risks involving physi
 
 A one page statement of contributions, including a list of each member of the group and what they contributed to this document.
 
----
+| User | Sections Done | 
+| --------------- | :--------------------------------------------------------------------------------: |
+| Adam Sinclair |  1.3.2, 3.2.8, 3.2.9, 3.5, 3.6, 4.8, 4.9, 5.1, 7 |
+| Oliver Badrick | 3.2.12, 3.2.13, 3.4, 3.5, 3.7, 3.8, 4.12, 4.13, 5.1, 6.1, 7 |
+| Patrick Laing | 1.3.1, 2, 3.1, 3.2.2, 3.2.4, 3.5, 4.2, 4.4, 5.1, 7 |
+| Elijah Guarina | 1.3.3, 3.2.11, 3.5, 4.11, 5.1, 5.2, 7 |
+| Jeremiah Choi |  1.3.4, 2, 3.2.3, 3.2.7, 3.5, 4.3, 4.7, 5.1, 7 |
+| Connor de Bruyn | 3.2.1, 3.2.10, 3.3, 3.5, 4.1, 4.10, 5.1, 5.3, 6.2, 7 |
+| Michael Tang | 1.0, 1.1, 1.2, 3.2.5, 3.2.6, 3.5, 4.5, 4.6, 5.1, 7 |
+
 
 ## Formatting Rules
 
