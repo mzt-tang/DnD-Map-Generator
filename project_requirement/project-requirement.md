@@ -569,26 +569,6 @@ The application as the result of this project should contain no obscurities that
 
 ### 3.4 Performance requirements
 
-See 9.5.13. for most systems this will be around one page. Hardware projects also see section 9.4.6.
-
-> **9.5.13 Performance requirements** <br>
-> Specify both the static and the dynamic numerical requirements placed on the software or on human interaction with the software as a whole.
->
-> Static numerical requirements may include the following:
->
-> a) The number of terminals to be supported;  
-> b) The number of simultaneous users to be supported;  
-> c) Amount and type of information to be handled.
->
-> Static numerical requirements are sometimes identified under a separate section entitled Capacity.
->
-> Dynamic numerical requirements may include, for example, the numbers of transactions and tasks and the amount of data to be processed within certain time periods for both normal and peak workload conditions. The performance requirements should be stated in measurable terms.
->
->  For example, "_95 % of the transactions shall be processed in less than 1 second._" rather than, "An operator shall not have to wait for the transaction to complete."
->
-> NOTE Numerical limits applied to one specific function are normally specified as part of the processing subparagraph description of that function.
-
-
 The program will need to support concurrent games with two terminals per game. One terminal will be used to display the randomly generated map, which will be used by the players to view the game map. The second terminal will be used to display the information about each room in the map, this will be used by the dungeon master. The first terminal will need to be large enough to display a map that will display the player character's positions (using physical figures supplied by the players). The physical objects will not interact with the board. The second terminal will need to be compatible with a smart device, or a laptop.
 
 There will need to be at least two simultaneous users being supported. One user will be using the second terminal (they are the dungeon master) and the other users will be using the first terminal.
@@ -604,8 +584,6 @@ Since the game will be played in real time, the game will need to react to chang
 When saving the game it is expected that it takes no longer than 20 seconds. The players don't want to spend a long time saving the game, since they may be in a rush to finish the session. When loading the game, assuming the internet is stable, it should take no longer than 20 seconds.
 
 ### 3.5 Logical database requirements
-
-See 9.5.14. for most systems, a focus on d) and e) is appropriate, such as an object-oriented domain analysis. You should provide an overview domain model (e.g.  a UML class diagram of approximately ten classes) and write a brief description of the responsibilities of each class in the model (3 pages).
 
 You should use right tools, preferably PlantUML, to draw your URL diagrams which can be easily embedded into a Markdown file (PlantUML is also supported by GitLab and Foswiki).
 
@@ -623,10 +601,6 @@ The program will not collect or store any personal data to avoid privacy laws.
 Time is limited to about 7 hours a week working on this project. There is a hard deadline of October to finish the project. Because of this time constraint there are no guarantees that any work outside the scope of this requirements document can be completed before the deadline. Any stretch targets could be left unfinished, however these will be in a feature branch and will not affect the functionality of the main program.
 
 ### 3.7 Nonfunctional system attributes
-
-Present the systemic (aka nonfunctional) requirements of the product (see ISO/IEC 25010).
-List up to twenty systemic requirements / attributes.
-Write a short natural language description of the top nonfunctional requirements (approx. five pages).
 
 - Performance
 - Usability
@@ -663,8 +637,6 @@ Compliance
 It is expected that the application conforms to the values of the client. It is also important that if the decision is made to release the application to the public, that any names/terms that are copyrighted by Wizards of the Coast are not used.
 
 ### 3.8 Physical and Environmental Requirements
-
-For systems with hardware components, identify the physical characteristics of that hardware (9.4.10) and environment conditions in which it must operate (9.4.11).  Depending on the project, this section may be from one page up to 5 pages.
 
 Requirements for the map display:
 - It must either
@@ -822,9 +794,6 @@ The table below describes these potential expenses.
 | Paid Assets | Paid Assets are third-party non-free resources to be used in the DnD Map Generator. This includes map textures, User Interface artwork, or any other assets to be outlined in the future. There is no initial plan to purchase any paid assets, as there is a bias to using free assets.  | $100.00 |
 
 ### 5.3 Risks
-Identify the ten most important project risks to achieving project goals: their type, likelihood, impact, and mitigation strategies (3 pages).
-
-If the project will involve any work outside the ECS laboratories, i.e. off-campus activities, these should be included in the following section.
 
 | # | Risk | Risk Type | Likelihood | Severity |
 | --- | :--------------------------------------------------------------------------------: |  --------------- | ------------ | ---------------- |
@@ -886,8 +855,6 @@ _If the project is purely software and requires no contact risks involving physi
 
 ## 6. Appendices
 ### 6.1 Assumptions and dependencies
-
-One page on assumptions and dependencies (9.5.7).
 
 The assumptions we are making when designing the application are:
 
