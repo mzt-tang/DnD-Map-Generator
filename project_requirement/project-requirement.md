@@ -635,9 +635,10 @@ See 9.5.14. for most systems, a focus on d) and e) is appropriate, such as an ob
 
 You should use right tools, preferabley PlantUML, to draw your URL diagrams which can be easily embedded into a Mardown file (PlantUML is also supported by GitLab and Foswiki).
 
+#### 3.5.1 Overview domain model
 [![](https://mermaid.ink/img/eyJjb2RlIjoiZXJEaWFncmFtXG4gICAgICAgICAgVFlQRSB8fC0tfHsgTU9OU1RFUiA6IFwidHlwZV9pZFwiXG4gICAgICAgICAgU0laRSB8fC0tfHsgTU9OU1RFUiA6IFwic2l6ZV9pZFwiXG4gICAgICAgICAgQ0hBTExFTkdFIHx8LS18eyBNT05TVEVSIDogXCJjaGFsbGVuZ2VfcmF0aW5nXCJcbiAgICAgICAgICAgICIsIm1lcm1haWQiOnsidGhlbWUiOiJmb3Jlc3QifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZXJEaWFncmFtXG4gICAgICAgICAgVFlQRSB8fC0tfHsgTU9OU1RFUiA6IFwidHlwZV9pZFwiXG4gICAgICAgICAgU0laRSB8fC0tfHsgTU9OU1RFUiA6IFwic2l6ZV9pZFwiXG4gICAgICAgICAgQ0hBTExFTkdFIHx8LS18eyBNT05TVEVSIDogXCJjaGFsbGVuZ2VfcmF0aW5nXCJcbiAgICAgICAgICAgICIsIm1lcm1haWQiOnsidGhlbWUiOiJmb3Jlc3QifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)
 
-For a more thorough entity relation diagram please view:
+For a more detailed entity relation diagram please view:
 ```plantuml
 @startuml
 entity "Monster" as e01 {
@@ -694,6 +695,19 @@ e03 ||..|{ e01
 e04 ||..|{ e01
 @enduml
 ```
+
+#### 3.5.2 Monsters
+The monster class is responsible for providing all of the monsters information to the dungeon master. 
+A monster provides information on its statistics, abilities, alignments, profficiencies and all other information useful to the dungeon master.
+
+#### 3.5.3 Type
+The type class is responsible for providing the monsters type to the monster class, as well as the tag if applicable.
+
+#### 3.5.2 Size
+The size class is responsible for providing the size of the monster to the monster class. A given size specifies how much space the monster occupies as well as the amount of hit dice needed to generate the monsters health. 
+
+#### 3.5.3 Challenge
+The challenge class is responsible for providing the overall level of the monster (challenge rating) to the monster class. The challenge rating specifies how tough a given monster is, as well as the amount of xp provided for defeating the monster.
 
 ### 3.6 Design constraints
 
