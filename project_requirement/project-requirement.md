@@ -1,4 +1,4 @@
-# ENGR 301 Project *NN* Project Proposal and Requirements Document
+# ENGR 301 Project "Dungeons and Dragons Tabletop Application 2" Project Proposal and Requirements Document
 #### Author list, a comma-separated list of the names of each member of the team.
 - Connor de Bruyn, Oliver Badrick, Patrick Laing, Adam Sinclair, Elijah Guarina, Jeremiah Choi, Michael Tang
 
