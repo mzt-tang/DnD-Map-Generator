@@ -43,7 +43,6 @@ To create a D&D map generator that also generates a well-weighted list of monste
  - The dungeon master should be able to generate a new map with the selected theme
  - The dungeon master should be able to change any monster's stats
 
-
 ### 1.3 Product overview
 #### 1.3.1 Product perspective
 
@@ -54,25 +53,6 @@ The system will generate a map as well as populate the map with enemies of varyi
 The system would display information to the players using a similar system to Kahoot[2], a system that allows the host (the Dungeon Master in our system) to host a game that the players can connect to on their devices. Our system would be different from Kahoot's system as the Dungeon Master would need to be able to choose what image the players see on their device. This system would have no direct relationship with any other products or systems similar to Kahoot, but will instead be inspired by the design and functions of other products such as Kahoot. Whereas Kahoot is hosted via the internet, therefore anyone can connect to a given game, our system will use a server to generate maps and monster data, send the information to the Dungeon Master's device, have the Dungeon Master's device construct a map based on the information sent by the server, and save and load data for the Dungeon Master's device.
 
 For our system to appear as a Dungeons and Dragons system, we will need to either create or use artwork. The artwork we use will either be created by ourselves or will be free to use images.
-
-> **9.5.3 Product perspective** <br>
-> Define the system's relationship to other related products.
->
-> If the product is an element of a larger system, then relate the requirements of that larger system to the functionality of the product covered by the software requirements specification.
->
-> If the product is an element of a larger system, then identify the interfaces between the product covered by the software requirements specification and the larger system of which the product is an element.
->
-> A block diagram showing the major elements of the larger system, interconnections, and external interfaces can be helpful.
->
-> Describe how the software operates within the following constraints:  
-a) System interfaces;  
-b) User interfaces;  
-c) Hardware interfaces;  
-d) Software interfaces;  
-e) Communications interfaces;  
-f) Memory;  
-g) Operations;  
-h) Site adaptation requirements.
 
 #### 1.3.2 Product functions
 
@@ -588,8 +568,6 @@ When saving the game it is expected that it takes no longer than 20 seconds. The
 
 ### 3.5 Logical database requirements
 
-You should use right tools, preferably PlantUML, to draw your URL diagrams which can be easily embedded into a Markdown file (PlantUML is also supported by GitLab and Foswiki).
-
 #### 3.5.1 Overview domain model
 [![](https://mermaid.ink/img/eyJjb2RlIjoiZXJEaWFncmFtXG4gICAgICAgICAgVFlQRSB8fC0tfHsgTU9OU1RFUiA6IFwidHlwZV9pZFwiXG4gICAgICAgICAgU0laRSB8fC0tfHsgTU9OU1RFUiA6IFwic2l6ZV9pZFwiXG4gICAgICAgICAgQ0hBTExFTkdFIHx8LS18eyBNT05TVEVSIDogXCJjaGFsbGVuZ2VfcmF0aW5nXCJcbiAgICAgICAgICAgICIsIm1lcm1haWQiOnsidGhlbWUiOiJmb3Jlc3QifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZXJEaWFncmFtXG4gICAgICAgICAgVFlQRSB8fC0tfHsgTU9OU1RFUiA6IFwidHlwZV9pZFwiXG4gICAgICAgICAgU0laRSB8fC0tfHsgTU9OU1RFUiA6IFwic2l6ZV9pZFwiXG4gICAgICAgICAgQ0hBTExFTkdFIHx8LS18eyBNT05TVEVSIDogXCJjaGFsbGVuZ2VfcmF0aW5nXCJcbiAgICAgICAgICAgICIsIm1lcm1haWQiOnsidGhlbWUiOiJmb3Jlc3QifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)
 
@@ -740,11 +718,9 @@ Requirements for room:
 
 ### 3.9 Supporting information
 
-see 9.5.19.
+No supporting information provided.
 
 ## 4. Verification
-
-3 pages outlining how you will verify that the product meets the most important specific requirements. The format of this section should parallel section 3 of your document (see 9.5.18). Wherever possible (especially systemic requirements) you should indicate testable acceptance criteria.
 
 #### 4.1 Generate Maps
 
@@ -863,7 +839,6 @@ This requirement can be tested by loading a saved game and comparing it to when 
 07/09/2021
 - Minimum viable product to be demoed for client feedback.
 
-
 ### 5.2 Budget
 
 No paid items to be purchased have been outlined to be required for the purpose of constructing the system. Because no purchases have been outlined, and therefore no expenses have been outlined, no budget has been explicitly allocated for this project.
@@ -940,8 +915,6 @@ Project requirements do not involve risk of death, serious harm, harm or injury.
 
 ## 7. Contributions
 
-A one page statement of contributions, including a list of each member of the group and what they contributed to this document.
-
 | User | Sections Done | 
 | --------------- | :--------------------------------------------------------------------------------: |
 | Adam Sinclair |  1.3.2, 3.2.8, 3.2.9, 3.5, 3.6, 4.8, 4.9, 5.1, 7 |
@@ -951,7 +924,6 @@ A one page statement of contributions, including a list of each member of the gr
 | Jeremiah Choi |  1.3.4, 2, 3.2.3, 3.2.7, 3.5, 4.3, 4.7, 5.1, 7 |
 | Connor de Bruyn | 3.2.1, 3.2.10, 3.3, 3.5, 4.1, 4.10, 5.1, 5.3, 6.2, 7 |
 | Michael Tang | 1.0, 1.1, 1.2, 3.2.5, 3.2.6, 3.5, 4.5, 4.6, 5.1, 7 |
-
 
 ## Formatting Rules
 
