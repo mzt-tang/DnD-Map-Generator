@@ -709,10 +709,10 @@ The monster class is responsible for providing all of the monsters information t
 #### 3.5.3 Type
 The type class is responsible for providing the monsters type to the monster class, as well as the tag if applicable.
 
-#### 3.5.2 Size
+#### 3.5.4 Size
 The size class is responsible for providing the size of the monster to the monster class. A given size specifies how much space the monster occupies as well as the amount of hit dice needed to generate the monsters health. 
 
-#### 3.5.3 Challenge
+#### 3.5.5 Challenge
 The challenge class is responsible for providing the overall level of the monster (challenge rating) to the monster class. The challenge rating specifies how tough a given monster is, as well as the amount of xp provided for defeating the monster.
 
 ### 3.6 Design constraints
