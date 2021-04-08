@@ -856,8 +856,6 @@ _If the project is purely software and requires no contact risks involving physi
 ## 6. Appendices
 ### 6.1 Assumptions and dependencies
 
-The assumptions we are making when designing the application are:
-
 - That the devices used have access to the internet
 - That the devices used have enough computing power to run the application
 - That the online server used to store the saved game has enough space to store the file
