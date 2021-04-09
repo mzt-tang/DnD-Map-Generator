@@ -340,18 +340,18 @@ We will be able to see that this use case has been taken in to account when the 
 | The user should be able to press the generate map button and see the full map | [user interface] |
 | The user should be able to press the see map button and see the full map | [user interface] |
 
-#### 3.2.7 Pick Map theme
+#### 3.2.7 Pick Map theme and level
 **What is the Goal of the use case?**  
-Map themes are the type of dungeon the game takes place in. They determine monster population. The Dungeon Master shall be able to pick what themed dungeon they would like to play in before map generation.
+Map themes are the type of dungeon the game takes place in. They determine monster population. The Dungeon Master shall be able to pick what themed dungeon and level they would like to play in before map generation. The DM should also be able to also specify a random theme or level.
 
 **Who benefits from the result of this use case?**  
 This use case benefits the DM in the sense that they'll be able to choose what sort of experience they want the game session to have.
 
 **How will this use case be achieved?**  
-The Dungeon master shall choose the theme of the dungeon before map generation.
+The Dungeon master shall choose the theme and level (or random theme/level)of the dungeon before map generation.
 
 **How will we verify this specific requirement?**  
-Map themes are a pre-requisite for monster population. If successfully implemented, the types of monsters within the dungeon should be consistent to the theme (for instance, undead shouldn't be spawning in an bandit hideout).
+Map themes are a pre-requisite for monster population. If successfully implemented, the types of monsters within the dungeon should be consistent to the theme (for instance, undead shouldn't be spawning in an bandit hideout) and the difficulty of the monsters should more difficult (more health, damage, armour levels, etc.) than the levels below the chosen level.
 
 **What limitations are there to achieving the use case?**
 - This use case is used after the Dungeon Master role is assigned.
@@ -360,11 +360,12 @@ Map themes are a pre-requisite for monster population. If successfully implement
 **Use Case Flow**
 | Action | Type |
 | ---------------- | ------------------ |
-| Select map theme. | [User Intention] | 
-| Display options | [System Responsibilities] | 
-| Dungeon Master makes selection. | [User Intention] | 
+| Select map theme. | [User Intention] |
+| Select level difficulty | [User Intention] |
+| Display options | [System Responsibilities] |
+| Dungeon Master makes selections. | [User Intention] | 
 | Store selection in public variable. | [System Responsibilities] | 
-| Populate dungeon with monsters according to the theme. | [System Responsibilities] | 
+| Populate dungeon with monsters according to the theme and level. | [System Responsibilities] | 
 
 #### 3.2.8 Remove monsters
 
@@ -550,13 +551,10 @@ This use case is essential to gameplay. We can judge it's success via playtestin
 **Use Case Flow**
 | Action | Type |
 | ---------------- | ------------------ |
-| Player adjusts the map scale slider | [User Intention] | 
-| Player touch/clicks and drags the map | [User Intention] | 
-| DM adjusts the map scale slider | [User Intention] | 
-| DM touch/clicks and drags the map | [User Intention] | 
-| Update player's screen | [System Responsibilities] | 
-| Update DM's screen | [System Responsibilities] |
 | Players' and DM's maps displays a scale slider | [User Interface] |
+| Player or DM adjusts the map scale slider | [User Intention] | 
+| Player or DM touch/clicks and drags the map | [User Intention] | 
+| Update player or DM's screen | [System Responsibilities] | 
 | Players' and DM able to see the zoomed in/zoomed out/panned screen. | [User Interface] | 
 
 
