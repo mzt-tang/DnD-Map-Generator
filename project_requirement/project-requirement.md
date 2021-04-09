@@ -804,7 +804,7 @@ We will be able to see that this use case has been taken in to account when the 
 #### 4.7 Pick Map theme
 
 **How will we verify this specific requirement?**  
-Map themes are a pre-requisite for monster population. If successfully implemented, the types of monsters within the dungeon should be consistent to the theme (for instance, undead shouldn't be spawning in an bandit hideout).
+Map themes are a pre-requisite for monster population. If successfully implemented, the types of monsters within the dungeon should be consistent to the theme (for instance, undead shouldn't be spawning in an bandit hideout) and the difficulty of the monsters should more difficult (more health, damage, armour levels, etc.) than the levels below the chosen level.
 
 #### 4.8 Remove monsters
 
@@ -851,6 +851,11 @@ This requirement can be tested by loading a saved game and comparing it to when 
 - The amount and type of monsters in each room
 - Which rooms are the entrance and exit rooms
 - The visual theme of the dungeon
+
+#### 4.14 Map Resizing and Panning
+
+**How will we verify this specific requirement?**<br>
+This use case is essential to gameplay. We can judge it's success via playtesting using large scale map. A successful implementation will zoom and pan the map accordingly to the player/DM's touch/mouse.
 
 ## 5. Development schedule.
 
