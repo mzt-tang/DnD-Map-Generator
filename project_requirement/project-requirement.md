@@ -63,7 +63,7 @@ For our system to appear as a Dungeons and Dragons system, we will need to eithe
 
 The minimum viable product is a software solution that allows a dungeon master to automatically generate a random playable underground level for a game of dungeons and dragons. The generated dungeon will populate the level with monsters that are appropriate for the level and context of the generated level. The level will have both an entrance and exit with the exit leading to further harder generated levels. The level must have a measure or scale of distance for movement. We are not expected to make assets, we are expected to find assets online that we are able to use legally.
 
-The dungeon master will have a separate display to the players that will allow them to see additional information and control map visibility. The additional information in the minimum viable product is monster stats for the generated monsters (hp, armour, etc). The players will be playing on a large display (projector or large TV) that allows them to move figurines around the dungeon. The level has optional line of sight and map hiding functions. Room sizes will be appropriate for the monsters in the rooms.
+The dungeon master will have a separate display to the players that will allow them to see additional information and control map visibility. The additional information in the minimum viable product is monster stats for the generated monsters (hp, armour, etc). The players will be playing on a large display (projector or large TV) that allows them to move figurines around a pannable dungeon. The level has optional line of sight and map hiding functions. Room sizes will be appropriate for the monsters in the rooms.
 
 The software solution will allow multiple games to run concurrently and for the games to be loaded and saved.
 
@@ -81,6 +81,8 @@ The software solution will allow multiple games to run concurrently and for the 
 
 - **Level overview**  The dungeon master can see the entire map and the monsters on it.
 
+- **Level control** The dungeon master can scale and pan the entire map to display on the player view
+
 - **Line of sight**  The dungeon master can change the line of sight of the players using the dungeon master view. Changes are reflected immediately inside the player view.
 
 - **Monster Stats**  The dungeon master is able to see the monster stats of monsters inside the level. This includes stats such as health points, armour, size, speed etc.
@@ -88,6 +90,8 @@ The software solution will allow multiple games to run concurrently and for the 
 ##### 1.3.2.4 Player View
 
 - **Display**  The players are able to see the sections of the map that have line of sight (as controlled by the dungeon master)
+
+- **View control** The players can scale and pan the entire map that is displayed
 
 - **Tile Size**  The display has the tiles large enough that the players are able to move physical figurines around on the map. This will require a minimum projector/TV size for the players to use.
 
