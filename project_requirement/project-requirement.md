@@ -528,6 +528,38 @@ It is very difficult to store JSON files in a relational database.
 | Displays the map in the same way as it was when saved | [User Interface] |
 | If saved game cannot be found, display a 'cannot find game' message | [User Interface] |
 
+#### 3.2.14 Map Resizing and Panning (DM or Player)
+
+**What is the Goal of the use case?**  
+The goal of this use case to allow the functionability of resizing and panning of the map on both the DM's display and players' display.
+
+**Who benefits from the result of this use case?**  
+This use case benefits both the DM and the players. It allows maps that are larger to be zoomed in upon to scale for size and also allows the DM to view the map clearer on the DM display.
+
+**How will this use case be achieved?**  
+This use case will be achieved by the player or DM interacting with the map through touch or mouse, adjusting a slider to zooming of the map and panning by click/touch and drag. The program changes the display of the map to the touch/mouse adjustation, by either zooming in/out and panning.
+
+**How will we verify this specific requirement?**  
+This use case is essential to gameplay. We can judge it's success via playtesting using large scale map. A successful implementation will zoom and pan the map accordingly to the player/DM's touch/mouse.
+
+**What limitations are there to achieving the use case?**  
+- A map must be generated to scale and pan
+- The DM/player must have access to touch/mouse to interact with the display
+
+
+**Use Case Flow**
+| Action | Type |
+| ---------------- | ------------------ |
+| Player adjusts the map scale slider | [User Intention] | 
+| Player touch/clicks and drags the map | [User Intention] | 
+| DM adjusts the map scale slider | [User Intention] | 
+| DM touch/clicks and drags the map | [User Intention] | 
+| Update player's screen | [System Responsibilities] | 
+| Update DM's screen | [System Responsibilities] |
+| Players' and DM's maps displays a scale slider | [User Interface] |
+| Players' and DM able to see the zoomed in/zoomed out/panned screen. | [User Interface] | 
+
+
 ### 3.3 Usability Requirements
 
 In order to create a fully functional Dungeons and Dragons tabletop, the following usability requirements needs to be met:
