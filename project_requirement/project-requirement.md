@@ -30,11 +30,13 @@ To create a D&D map generator that also generates a well-weighted list of monste
  - The enemies should be weighted so that the amount of enemies at any given location is well balanced
  - Multiple maps should be able to be generated concurrently on different machines
  - Maps generated should be able to be saved and loaded
+ - Users should be able to specify the level/difficulty and theme of the maps, as well as specify it to be random
 
 #### The Primary Map Displaying Screen of the Program should meet the Following Goals
  - The map should be scalable and resizable to the screen that its displayed on
  - Locations on the map should be covered in fog of war unless specified by the dungeon master
  - The map should have some form of scale, allowing players to gauge distance
+ - The map displayed should be pannable to adjust for any map size
 
 #### The Secondary Screen Map Controller of the Program should meet the Following Goals
  - The screen should be able to display any/all enemies' stats
@@ -42,6 +44,7 @@ To create a D&D map generator that also generates a well-weighted list of monste
  - The dungeon master should be able to control where to uncover the fog of war on using the screen
  - The dungeon master should be able to generate a new map with the selected theme
  - The dungeon master should be able to change any monster's stats
+ - The dungeon master should be able to pan the map to adjust for any map size
 
 ### 1.3 Product overview
 #### 1.3.1 Product perspective
@@ -60,7 +63,7 @@ For our system to appear as a Dungeons and Dragons system, we will need to eithe
 
 The minimum viable product is a software solution that allows a dungeon master to automatically generate a random playable underground level for a game of dungeons and dragons. The generated dungeon will populate the level with monsters that are appropriate for the level and context of the generated level. The level will have both an entrance and exit with the exit leading to further harder generated levels. The level must have a measure or scale of distance for movement. We are not expected to make assets, we are expected to find assets online that we are able to use legally.
 
-The dungeon master will have a separate display to the players that will allow them to see additional information and control map visibility. The additional information in the minimum viable product is monster stats for the generated monsters (hp, armour, etc). The players will be playing on a large display (projector or large TV) that allows them to move figurines around the dungeon. The level has optional line of sight and map hiding functions. Room sizes will be appropriate for the monsters in the rooms.
+The dungeon master will have a separate display to the players that will allow them to see additional information and control map visibility. The additional information in the minimum viable product is monster stats for the generated monsters (hp, armour, etc). The players will be playing on a large display (projector or large TV) that allows them to move figurines around a pannable dungeon. The level has optional line of sight and map hiding functions. Room sizes will be appropriate for the monsters in the rooms.
 
 The software solution will allow multiple games to run concurrently and for the games to be loaded and saved.
 
@@ -78,6 +81,8 @@ The software solution will allow multiple games to run concurrently and for the 
 
 - **Level overview**  The dungeon master can see the entire map and the monsters on it.
 
+- **Level control** The dungeon master can scale and pan the entire map to display on the player view
+
 - **Line of sight**  The dungeon master can change the line of sight of the players using the dungeon master view. Changes are reflected immediately inside the player view.
 
 - **Monster Stats**  The dungeon master is able to see the monster stats of monsters inside the level. This includes stats such as health points, armour, size, speed etc.
@@ -85,6 +90,8 @@ The software solution will allow multiple games to run concurrently and for the 
 ##### 1.3.2.4 Player View
 
 - **Display**  The players are able to see the sections of the map that have line of sight (as controlled by the dungeon master)
+
+- **View control** The players can scale and pan the entire map that is displayed
 
 - **Tile Size**  The display has the tiles large enough that the players are able to move physical figurines around on the map. This will require a minimum projector/TV size for the players to use.
 
@@ -333,18 +340,18 @@ We will be able to see that this use case has been taken in to account when the 
 | The user should be able to press the generate map button and see the full map | [user interface] |
 | The user should be able to press the see map button and see the full map | [user interface] |
 
-#### 3.2.7 Pick Map theme
+#### 3.2.7 Pick Map theme and level
 **What is the Goal of the use case?**  
-Map themes are the type of dungeon the game takes place in. They determine monster population. The Dungeon Master shall be able to pick what themed dungeon they would like to play in before map generation.
+Map themes are the type of dungeon the game takes place in. They determine monster population. The Dungeon Master shall be able to pick what themed dungeon and level they would like to play in before map generation. The DM should also be able to also specify a random theme or level.
 
 **Who benefits from the result of this use case?**  
 This use case benefits the DM in the sense that they'll be able to choose what sort of experience they want the game session to have.
 
 **How will this use case be achieved?**  
-The Dungeon master shall choose the theme of the dungeon before map generation.
+The Dungeon master shall choose the theme and level (or random theme/level)of the dungeon before map generation.
 
 **How will we verify this specific requirement?**  
-Map themes are a pre-requisite for monster population. If successfully implemented, the types of monsters within the dungeon should be consistent to the theme (for instance, undead shouldn't be spawning in an bandit hideout).
+Map themes are a pre-requisite for monster population. If successfully implemented, the types of monsters within the dungeon should be consistent to the theme (for instance, undead shouldn't be spawning in an bandit hideout) and the difficulty of the monsters should more difficult (more health, damage, armour levels, etc.) than the levels below the chosen level.
 
 **What limitations are there to achieving the use case?**
 - This use case is used after the Dungeon Master role is assigned.
@@ -353,11 +360,12 @@ Map themes are a pre-requisite for monster population. If successfully implement
 **Use Case Flow**
 | Action | Type |
 | ---------------- | ------------------ |
-| Select map theme. | [User Intention] | 
-| Display options | [System Responsibilities] | 
-| Dungeon Master makes selection. | [User Intention] | 
+| Select map theme. | [User Intention] |
+| Select level difficulty | [User Intention] |
+| Display options | [System Responsibilities] |
+| Dungeon Master makes selections. | [User Intention] | 
 | Store selection in public variable. | [System Responsibilities] | 
-| Populate dungeon with monsters according to the theme. | [System Responsibilities] | 
+| Populate dungeon with monsters according to the theme and level. | [System Responsibilities] | 
 
 #### 3.2.8 Remove monsters
 
@@ -520,6 +528,35 @@ It is very difficult to store JSON files in a relational database.
 | The JSON file is retrieved from the online database | [System Responsibility] |
 | Displays the map in the same way as it was when saved | [User Interface] |
 | If saved game cannot be found, display a 'cannot find game' message | [User Interface] |
+
+#### 3.2.14 Map Resizing and Panning (DM or Player)
+
+**What is the Goal of the use case?**  
+The goal of this use case to allow the functionability of resizing and panning of the map on both the DM's display and players' display.
+
+**Who benefits from the result of this use case?**  
+This use case benefits both the DM and the players. It allows maps that are larger to be zoomed in upon to scale for size and also allows the DM to view the map clearer on the DM display.
+
+**How will this use case be achieved?**  
+This use case will be achieved by the player or DM interacting with the map through touch or mouse, adjusting a slider to zooming of the map and panning by click/touch and drag. The program changes the display of the map to the touch/mouse adjustation, by either zooming in/out and panning.
+
+**How will we verify this specific requirement?**  
+This use case is essential to gameplay. We can judge it's success via playtesting using large scale map. A successful implementation will zoom and pan the map accordingly to the player/DM's touch/mouse.
+
+**What limitations are there to achieving the use case?**  
+- A map must be generated to scale and pan
+- The DM/player must have access to touch/mouse to interact with the display
+
+
+**Use Case Flow**
+| Action | Type |
+| ---------------- | ------------------ |
+| Players' and DM's maps displays a scale slider | [User Interface] |
+| Player or DM adjusts the map scale slider | [User Intention] | 
+| Player or DM touch/clicks and drags the map | [User Intention] | 
+| Update player or DM's screen | [System Responsibilities] | 
+| Players' and DM able to see the zoomed in/zoomed out/panned screen. | [User Interface] | 
+
 
 ### 3.3 Usability Requirements
 
@@ -767,7 +804,7 @@ We will be able to see that this use case has been taken in to account when the 
 #### 4.7 Pick Map theme
 
 **How will we verify this specific requirement?**  
-Map themes are a pre-requisite for monster population. If successfully implemented, the types of monsters within the dungeon should be consistent to the theme (for instance, undead shouldn't be spawning in an bandit hideout).
+Map themes are a pre-requisite for monster population. If successfully implemented, the types of monsters within the dungeon should be consistent to the theme (for instance, undead shouldn't be spawning in an bandit hideout) and the difficulty of the monsters should more difficult (more health, damage, armour levels, etc.) than the levels below the chosen level.
 
 #### 4.8 Remove monsters
 
@@ -814,6 +851,11 @@ This requirement can be tested by loading a saved game and comparing it to when 
 - The amount and type of monsters in each room
 - Which rooms are the entrance and exit rooms
 - The visual theme of the dungeon
+
+#### 4.14 Map Resizing and Panning
+
+**How will we verify this specific requirement?**<br>
+This use case is essential to gameplay. We can judge it's success via playtesting using large scale map. A successful implementation will zoom and pan the map accordingly to the player/DM's touch/mouse.
 
 ## 5. Development schedule.
 
