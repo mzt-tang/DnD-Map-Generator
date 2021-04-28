@@ -97,7 +97,7 @@ Each architectural view should include at least one architectural model. If arch
 ...
 
 ### 4.2 Development
-The development view is the system as view from the developers perspective.
+The development view is the system as view from the developers perspective.     Jerr
 
 - Code Structure
 - Version control
@@ -107,7 +107,7 @@ The development view is the system as view from the developers perspective.
 
 #### 4.2.1 Code Structure
 
-Database, typescript, layers, different things it's 'sposed to do.
+Database, typescript, layers, different things it's 'sposed to do.      Ollie
 The minimum viable product
 
 ```plantuml
@@ -148,25 +148,25 @@ CV--[View Choosing]
 
 #### 4.2.2 Version control
 
-Gitlab
+Gitlab      Ollie
 
 #### 4.2.3 Testing
 
 ##### 4.2.3.1 Automated testing
 
-Persistency n stuff
+Persistency n stuff     Ollie
 
 ##### 4.2.3.2 Eye testing
 
-Gameplay testing, checking the F L O W wwwwwww
+Gameplay testing, checking the F L O W wwwwwww  Jerr
 
 #### 4.2.4 Prototyping
 
-Iterations, meeting client and showing iterations, we're gonne recieve feedback.
+Iterations, meeting client and showing iterations, we're gonne recieve feedback. Jerr
 
 #### 4.2.5 Software consistency
 
-Variables and code structure, coding disciplines etc.
+Variables and code structure, coding disciplines etc.       Ollie
 
 
 ### 4.3 Process
