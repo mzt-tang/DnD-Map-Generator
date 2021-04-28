@@ -105,6 +105,42 @@ The development view is the system as view from the developers perspective.
 - Prototyping
 - Software consistency
 
+```plantuml
+@startuml
+[Server]
+
+() "Map Generation" as MG
+() "Monster Generation" as MONSG
+() "Saving Map" as SM
+() "Loading Map" as LM
+() "Sending Data" as SD
+() "Retrieving Data" as RD
+() "Display Player Map" as DPM
+() "Display DM Map" as DMM 
+() "Choose View" as CV
+
+MG--[Map Generation]
+MONSG--[Map Generation]
+SM--[Persistence]
+LM--[Persistence]
+SD--[Data Transmission]
+RD--[Data Transmission]
+DPM--[Map Display]
+DMM--[Map Display]
+CV--[View Choosing]
+
+[Server]-->MG
+[Server]-->MONSG
+[Server]-->SM
+[Server]-->LM
+[Server]-->SD
+[Server]-->RD
+[Server]-->DPM
+[Server]-->DMM
+[Server]-->CV
+@enduml
+```
+
 #### 4.2.1 Code Structure
 
 Database, typescript, layers, different things it's 'sposed to do.
