@@ -105,6 +105,11 @@ The development view is the system as view from the developers perspective.
 - Prototyping
 - Software consistency
 
+#### 4.2.1 Code Structure
+
+Database, typescript, layers, different things it's 'sposed to do.
+The minimum viable product
+
 ```plantuml
 @startuml
 [Server]
@@ -140,11 +145,6 @@ CV--[View Choosing]
 [Server]-->CV
 @enduml
 ```
-
-#### 4.2.1 Code Structure
-
-Database, typescript, layers, different things it's 'sposed to do.
-The minimum viable product
 
 #### 4.2.2 Version control
 
