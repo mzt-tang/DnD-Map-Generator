@@ -97,7 +97,28 @@ Each architectural view should include at least one architectural model. If arch
 ...
 
 ### 4.2 Development
-...
+The development view is the system as view from the developers perspective.
+
+- Code Structure
+- Version control
+- Testing
+- Prototyping
+- Software consistency
+
+#### 4.2.1 Code Structure
+
+#### 4.2.2 Version control
+
+#### 4.2.3 Testing
+
+##### 4.2.3.1 heading 1
+
+##### 4.2.3.2 heading 2
+
+#### 4.2.4 Prototyping
+
+#### 4.2.5 Software consistency
+
 
 ### 4.3 Process
 ...
