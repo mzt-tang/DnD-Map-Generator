@@ -107,17 +107,29 @@ The development view is the system as view from the developers perspective.
 
 #### 4.2.1 Code Structure
 
+Database, typescript, layers, different things it's 'sposed to do.
+
 #### 4.2.2 Version control
+
+Gitlab
 
 #### 4.2.3 Testing
 
-##### 4.2.3.1 heading 1
+##### 4.2.3.1 Automated testing
 
-##### 4.2.3.2 heading 2
+Persistency n stuff
+
+##### 4.2.3.2 Eye testing
+
+Gameplay testing, checking the F L O W wwwwwww
 
 #### 4.2.4 Prototyping
 
+Iterations, meeting client and showing iterations, we're gonne recieve feedback.
+
 #### 4.2.5 Software consistency
+
+Variables and code structure, coding disciplines etc.
 
 
 ### 4.3 Process
