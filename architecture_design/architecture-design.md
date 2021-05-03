@@ -107,7 +107,7 @@ The development view is the system as view from the developers perspective.     
 
 #### 4.2.1 Code Structure
 
-Database, typescript, layers, different things it's 'sposed to do.      Ollie
+Database, typescript, layers, different things it's 'sposed to do.      Ollie & Jeremiah
 The minimum viable product
 
 ```plantuml
@@ -161,6 +161,8 @@ We will also use Issues and Epics to divide the tasks and assign them to each te
 ##### 4.2.3.1 Automated testing
 
 Persistency n stuff     Ollie
+
+We will use Javascript Unit Testing to test the functionality of the program. Since this project includes data being sent between different devices, saved, and loaded, we will need to ensure that the data being sent is the same as the data received. Using Unit Testing will be the most efficient way to test this. We can write functions to test specific functionalities of the program. For testing the functionality, this is a more efficient method of testing than just running the program and getting an idea of whether it works or not. It allows us to test a wide variety of different conditions, and if something isn’t working it will be easier to narrow down what’s wrong.
 
 ##### 4.2.3.2 Eye testing
 
