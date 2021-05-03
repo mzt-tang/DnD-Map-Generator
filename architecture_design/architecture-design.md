@@ -106,7 +106,15 @@ Each architectural view should include at least one architectural model. If arch
 ...
 
 ### 4.5 Scenarios
-...
+
+We have determined our two most important scenarios for out MVP are:
+
+- Scenario 1 ??????
+    - Scenario 1 Explanation ???????
+
+
+- Scenario 2 ??????
+    - Scenario 2 Explanation ???????
 
 ## 5. Development Schedule
 
