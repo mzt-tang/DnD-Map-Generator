@@ -98,12 +98,12 @@ Each architectural view should include at least one architectural model. If arch
 
 ### 4.2 Development
 The development view is the system as view from the developers perspective.     Jerr
+This section covers both the system as viewed from the developers perspective, and the process of development.
 
 - Code Structure
 - Version control
 - Testing
 - Prototyping
-- Software consistency
 
 #### 4.2.1 Code Structure
 
@@ -166,11 +166,20 @@ We will use Javascript Unit Testing to test the functionality of the program. Si
 
 ##### 4.2.3.2 Eye testing
 
-Gameplay testing, checking the F L O W wwwwwww  Jerr
+Whilst backend software is tested via automated testing (refer to section 4.2.3.1), the user interface and interaction the software provides must be tested manually; eye tested.
+
+There are three things we must test during development:
+- The first thing we'll test is the visual functionality of the user interface features. (for instance: Making a popup window).
+- The second thing we'll test is the gameplay. The software is designed to aid the DM and his friends when they play DnD. We can test this ourselves by playing a game of dnd using the system after a number of sprints. 
+- The third thing is user friendliness. To test the user friendliness, we require a DM with no prior knowledge of the software to test the system. We can acquire DM testers, outside the development team, via personal connections. However these tests cannot be conducted often as it is unknown how willing they'll be to volunteer.
 
 #### 4.2.4 Prototyping
 
 Iterations, meeting client and showing iterations, we're gonne recieve feedback. Jerr
+
+To keep our client updated, we will make use of 
+
+During development, we'll communicate our progress with the client frequently by developing prototypes. After each sprint of development, we will be able to show the iteration of the system to the client.
 
 
 ### 4.3 Process
