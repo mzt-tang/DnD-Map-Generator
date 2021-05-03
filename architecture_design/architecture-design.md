@@ -172,10 +172,6 @@ Gameplay testing, checking the F L O W wwwwwww  Jerr
 
 Iterations, meeting client and showing iterations, we're gonne recieve feedback. Jerr
 
-#### 4.2.5 Software consistency
-
-Variables and code structure, coding disciplines etc.       Ollie
-
 
 ### 4.3 Process
 ...
