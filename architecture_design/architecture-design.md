@@ -100,8 +100,11 @@ Each architectural view should include at least one architectural model. If arch
 ...
 
 ### 4.3 Process
-...
+#### Start/Load Game
+![](architecture_design/resources/Save_Load_Game.png)
 
+#### Game In Progress
+![](architecture_design/resources/Game_In_Progress.png)
 ### 4.4 Physical 
 ...
 
