@@ -164,6 +164,16 @@ One page glossary as required
 
 An one page statement of contributions, including a list of each member of the group and what they contributed to this document.
 
+| Member | Contributions |
+|------|------|
+| Adam Sinclair | 4.3, 7 |
+| Connor de Bruyn | 4.1, 7 |
+| Elijah Guarina | 4.1, 7 |
+| Jeremiah Choi | 1 (all), 4.2, 5 (all), 6 (all), 7 |
+| Michael Tang | 4.3, 7 |
+| Oliver Badrick | 4.2, 7 |
+| Patrick Laing | 2, 3.1, 4.4, 4.5, 7 |
+
 ---
 
 ## Formatting Rules 
