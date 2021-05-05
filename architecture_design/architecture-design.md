@@ -100,11 +100,14 @@ Each architectural view should include at least one architectural model. If arch
 ...
 
 ### 4.3 Process
+
+The process view shows what happens when the user is interacting with the system and the underlying interactions between different classes of the system with a focus on the run time behaviour. The arrows show class interactions with a description for each interaction to help with understanding of what is happening. Our process view is broken down into the start/loading of a game, and a game in progress.
+
 #### Start/Load Game
-![](architecture_design/resources/Save_Load_Game.png)
+![Saving and Loading Game](architecture_design/resources/Save_Load_Game.png)
 
 #### Game In Progress
-![](architecture_design/resources/Game_In_Progress.png)
+![Game In Progress](architecture_design/resources/Game_In_Progress.png)
 ### 4.4 Physical 
 ...
 
