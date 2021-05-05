@@ -107,7 +107,7 @@ The development view is the system viewed from a programmers perspective, it foc
 
 #### 4.2.1 Code Structure
 
-The code structure subection covers the software architechure. The following diagrams represents the modules that make up the software, and the interactions between them.
+The code structure subsection covers the software architecture. The following diagrams represents the modules that make up the software, and the interactions between them.
 
 ![](resources/Component_Diagram.png)
 
