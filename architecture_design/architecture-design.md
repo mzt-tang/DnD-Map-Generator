@@ -98,6 +98,7 @@ Each architectural view should include at least one architectural model. If arch
 
 ### 4.2 Development
 Jerr
+
 The development view is the system viewed from a programmers perspective, it focuses heavily on software management. This section includes the following four subsections:
 
 - Code Structure
@@ -108,6 +109,9 @@ The development view is the system viewed from a programmers perspective, it foc
 #### 4.2.1 Code Structure
 
 Database, typescript, layers, different things it's 'sposed to do.      Ollie & Jeremiah
+
+The code structure subection covers the software architechure. The following diagrams represents the modules that make up the software, and the interactions between them.
+
 The minimum viable product
 
 ```plantuml
@@ -158,15 +162,23 @@ We will also use Issues and Epics to divide the tasks and assign them to each te
 
 #### 4.2.3 Testing
 
+Jerr
+
+The testing section covers the methods we will use to ensure software functionality during development. 
+
+We will utilize two methods, each explained in a subsection of its own:
+- Automated testing
+- Play testing
+
 ##### 4.2.3.1 Automated testing
 
 Persistency n stuff     Ollie
 
 We will use Javascript Unit Testing to test the functionality of the program. Since this project includes data being sent between different devices, saved, and loaded, we will need to ensure that the data being sent is the same as the data received. Using Unit Testing will be the most efficient way to test this. We can write functions to test specific functionalities of the program. For testing the functionality, this is a more efficient method of testing than just running the program and getting an idea of whether it works or not. It allows us to test a wide variety of different conditions, and if something isn’t working it will be easier to narrow down what’s wrong.
 
-##### 4.2.3.2 Eye testing
+##### 4.2.3.2 Play testing
 
-Whilst backend software is tested via automated testing (refer to section 4.2.3.1), the user interface and interaction the software provides must be tested manually; eye tested.
+Whilst backend software is tested via automated testing (refer to section 4.2.3.1), the user interface and interaction the software provides must be tested manually.
 
 There are three things we must test during development:
 - The first thing we'll test is the visual functionality of the user interface features. (for instance: Making a popup window).
@@ -175,10 +187,11 @@ There are three things we must test during development:
 
 #### 4.2.4 Prototyping
 
-During development, we will frequently release prototypes, which are playable iterations, inbetween each sprint. This will assist us in two ways:
+The prototyping section covers the usage of prototypes during development.
 
-1. Use of prototypes will allow us to test gameplay and user experience on top of the software's functionality. (refer to section 4.2.3.2).
-2. Prototypes can allow us to keep our client updated on our progress with tangible evidence. In addition, it can allow our client to provide feedback to us, regarding small decisions during development. (for instance: our usage and choice of assets in the software display.)
+During development, it is important to inform the client of the completed features and the features still in progress. Developing small scaled early iteration will allow us to showcase the client our understanding of his specifications. The client, in return, can either confirm or clarify on his specification.
+
+Furthermore, prototypes of functional features updates our client on our development progress and allow for playtesting of the software (refer to sub-section 4.2.3.2).
 
 ### 4.3 Process
 ...
