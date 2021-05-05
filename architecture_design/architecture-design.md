@@ -97,7 +97,52 @@ Each architectural view should include at least one architectural model. If arch
 ...
 
 ### 4.2 Development
-...
+
+The development view is the system viewed from a programmers perspective, it focuses heavily on software management. This section includes the following four subsections:
+
+- Code Structure
+- Version control
+- Testing
+- Prototyping
+
+#### 4.2.1 Code Structure
+
+The code structure subection covers the software architechure. The following diagrams represents the modules that make up the software, and the interactions between them.
+
+![](resources/Component_Diagram.png)
+
+#### 4.2.2 Version control
+
+We will be using Gitlab for version control on this project. By using Gitlab, we can store the files needed for the project online, so the files are backed up online and available to everyone in the team.
+
+In Gitlab we will be using branches to work on the different parts of the project. A branch will be made for each issue in the project. Branches are a feature that allows different members of the team to make a separate branch from the master, and store their code. This allows everyone to work on their own branch on their own device. It also ensures that buggy or unfinished code is not pushed to the master branch. When the branch has been completed, it can be merged with the master branch, and any conflicts that arise can be handled when the team next meets up.
+
+We will also use Issues and Epics to divide the tasks and assign them to each team member. This allows us to know exactly what needs to be done, what is being worked on and what is completed. It also lets us know who worked on what aspect of the program. 
+
+#### 4.2.3 Testing
+
+The testing section covers the methods we will use to ensure software functionality during development. 
+We will utilize two methods, each explained in a subsection of its own:
+- Automated testing
+- Play testing
+
+##### 4.2.3.1 Automated testing
+
+We will use Javascript Unit Testing to test the functionality of the program. Since this project includes data being sent between different devices, saved, and loaded, we will need to ensure that the data being sent is the same as the data received. Using Unit Testing will be the most efficient way to test this. We can write functions to test specific functionalities of the program. For testing the functionality, this is a more efficient method of testing than just running the program and getting an idea of whether it works or not. It allows us to test a wide variety of different conditions, and if something isn’t working it will be easier to narrow down what’s wrong.
+
+##### 4.2.3.2 Play testing
+
+Whilst backend software is tested via automated testing (refer to section 4.2.3.1), the user interface and interaction the software provides must be tested manually.
+There are three things we must test during development:
+- The first thing we'll test is the visual functionality of the user interface features. (for instance: Making a popup window).
+- The second thing we'll test is the gameplay. The software is designed to aid the DM and his friends when they play DnD. We can test this ourselves by playing a game of dnd using the system after a number of sprints. 
+- The third thing is user friendliness. To test the user friendliness, we require a DM with no prior knowledge of the software to test the system. We can acquire DM testers, outside the development team, via personal connections. However these tests cannot be conducted often as it is unknown how willing they'll be to volunteer.
+
+#### 4.2.4 Prototyping
+
+The prototyping section covers the usage of prototypes during development.
+
+During development, it is important to inform the client of the completed features and the features still in progress. Developing small scaled early iteration will allow us to showcase the client our understanding of his specifications. The client, in return, can either confirm or clarify on his specification. Furthermore, prototypes of functional features updates our client on our development progress and allow for playtesting of the software (refer to sub-section 4.2.3.2).
 
 ### 4.3 Process
 ...
