@@ -109,12 +109,12 @@ Each architectural view should include at least one architectural model. If arch
 
 We have determined our two most important scenarios for out MVP are:
 
-- Scenario 1 ??????
-    - Scenario 1 Explanation ???????
+- The user is able to view a randomly generated Dungeons and Dragons dungeon map, with monsters in the map, which is able to be traversed from the start to the end.
+    - The map generation will need to be different each time, with no two dungeons the same, and monsters available for the DM to use if needed.
 
 
-- Scenario 2 ??????
-    - Scenario 2 Explanation ???????
+- The DM must be able to alter the view for the player using the control of their device.
+    - This is a core feature of the system, handing over control to the DM, maximising user control over the campaign.
 
 ## 5. Development Schedule
 
