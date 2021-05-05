@@ -107,7 +107,7 @@ Each architectural view should include at least one architectural model. If arch
 
 ### 4.5 Scenarios
 
-We have determined our two most important scenarios for out MVP are:
+We have determined our two most important scenarios for our MVP are:
 
 - The user is able to view a randomly generated Dungeons and Dragons dungeon map, which is able to be traversed from the start to the end.
   - The map generation will need to be different each time, with no two dungeons the same.
