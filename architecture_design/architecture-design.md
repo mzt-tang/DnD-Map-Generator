@@ -79,7 +79,7 @@ The development view focuses on the development of the software, combining how t
 
 **Process**
 
-The process viewpoint describes the non-functional requirements. This viewpoint focuses on the performance of the system.
+The process viewpoint describes how the system processes information from the user input to the system output. This viewpoint also goes into detail what the system does for many scenarios that the system may need to work for.
 
 **Physical**
 
