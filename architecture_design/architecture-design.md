@@ -108,15 +108,11 @@ The development view is the system viewed from a programmers perspective, it foc
 
 #### 4.2.1 Code Structure
 
-Database, typescript, layers, different things it's 'sposed to do.      Ollie & Jeremiah
-
 The code structure subection covers the software architechure. The following diagrams represents the modules that make up the software, and the interactions between them.
 
 ![](resources/Component_Diagram.png)
 
 #### 4.2.2 Version control
-
-Gitlab      Ollie
 
 We will be using Gitlab for version control on this project. By using Gitlab, we can store the files needed for the project online, so the files are backed up online and available to everyone in the team.
 
@@ -126,8 +122,6 @@ We will also use Issues and Epics to divide the tasks and assign them to each te
 
 #### 4.2.3 Testing
 
-Jerr
-
 The testing section covers the methods we will use to ensure software functionality during development. 
 
 We will utilize two methods, each explained in a subsection of its own:
@@ -135,8 +129,6 @@ We will utilize two methods, each explained in a subsection of its own:
 - Play testing
 
 ##### 4.2.3.1 Automated testing
-
-Persistency n stuff     Ollie
 
 We will use Javascript Unit Testing to test the functionality of the program. Since this project includes data being sent between different devices, saved, and loaded, we will need to ensure that the data being sent is the same as the data received. Using Unit Testing will be the most efficient way to test this. We can write functions to test specific functionalities of the program. For testing the functionality, this is a more efficient method of testing than just running the program and getting an idea of whether it works or not. It allows us to test a wide variety of different conditions, and if something isn’t working it will be easier to narrow down what’s wrong.
 
