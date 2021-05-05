@@ -29,19 +29,47 @@ All team members are expected to contribute equally to the document and list the
 
 ## 1. Introduction
 
-One page overall introduction including sections 1.1 and 1.2 (ISO/IEC/IEEE 42010:2011(E) clause 5.2)
+Dungeons and Dragons (D&D) is a co-operative tabletop fantasy role-playing game. Most players play as adventurers/heroes that explore the world by going on quests, fighting monsters and hunting for rewards. One player is the Dungeon Master (DM) who facilitates the game, controls the non-player characters and monsters, and narrates the story. The players traverse the world as figures moving on top of a set-up map, which contains non-playable characters that the players interact with.
+
+There are enemies that the DM controls (often a type of monster). Each enemy has statistics on its hit points, armour class and speed. This allows the players to interact and do battle with the adversary. The enemies may also contain additional information on their challenge rating, armour type, race, size, alignment and other specific data that could affect the nature of the battle.
+
+D&D includes a specific type of map called dungeons. Which is a dangerous enclosed space (E.g. basement of a haunted mansion, an underground dark elven city, a monster-filled treasure cave) that might contain many dangerous monsters and traps. A dungeon should present a large risk to the players, but they are rewarded heavily if they're triumphant in their dungeon run. A dungeon may contain multiple layers that the players can traverse between. The dungeon should get progressively more dangerous the deeper it is. The players' view is also restricted, meaning they can only see a certain portion of the dungeon and what enemies are within their view at any time (except for the DM, who can see/knows the whole map). This creates uncertainty and allows for interesting decisions/outcomes for the players.
 
 ### Client
 
-Identify the client and their contact details.
+**Craig Watterson**  
+Victoria University of Wellington, Cotton Building, Room 253  
+**Phone:** +64 4 886 5333  
+**Email:** craig.watterson@vuw.ac.nz  
 
 ### 1.1 Purpose
 
-One sentence describing the purpose of the system.
+To create a D&D map generator that also generates a well-weighted list of monsters within the map. The generated map can be displayed on a large table screen, and be able be controlled via a secondary screen.
 
 ### 1.2 Scope
 
-One paragraph describing the scope of the system.
+#### The Map Generation of the Program should meet the Following Goals
+ - Maps generated should be different each time
+ - Maps should adhere to at least 1 theme
+ - The location that enemies are placed should make sense in relation to the place/theme on the map
+ - The enemies should be weighted so that the amount of enemies at any given location is well balanced
+ - Multiple maps should be able to be generated concurrently on different machines
+ - Maps generated should be able to be saved and loaded
+ - Users should be able to specify the level/difficulty and theme of the maps, as well as specify it to be random
+
+#### The Primary Map Displaying Screen of the Program should meet the Following Goals
+ - The map should be scalable and resizable to the screen that its displayed on
+ - Locations on the map should be covered in fog of war unless specified by the dungeon master
+ - The map should have some form of scale, allowing players to gauge distance
+ - The map displayed should be pannable to adjust for any map size
+
+#### The Secondary Screen Map Controller of the Program should meet the Following Goals
+ - The screen should be able to display any/all enemies' stats
+ - The dungeon master should be able to see the full map
+ - The dungeon master should be able to control where to uncover the fog of war on using the screen
+ - The dungeon master should be able to generate a new map with the selected theme
+ - The dungeon master should be able to change any monster's stats
+ - The dungeon master should be able to pan the map to adjust for any map size
 
 ### 1.3 Changes to requirements
 
