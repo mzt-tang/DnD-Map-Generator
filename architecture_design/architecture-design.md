@@ -97,8 +97,8 @@ Each architectural view should include at least one architectural model. If arch
 ...
 
 ### 4.2 Development
-The development view is the system as view from the developers perspective.     Jerr
-This section covers both the system as viewed from the developers perspective, and the process of development.
+Jerr
+The development view is the system viewed from a programmers perspective, it focuses heavily on software management. This section includes the following four subsections:
 
 - Code Structure
 - Version control
@@ -175,12 +175,10 @@ There are three things we must test during development:
 
 #### 4.2.4 Prototyping
 
-Iterations, meeting client and showing iterations, we're gonne recieve feedback. Jerr
+During development, we will frequently release prototypes, which are playable iterations, inbetween each sprint. This will assist us in two ways:
 
-To keep our client updated, we will make use of 
-
-During development, we'll communicate our progress with the client frequently by developing prototypes. After each sprint of development, we will be able to show the iteration of the system to the client.
-
+1. Use of prototypes will allow us to test gameplay and user experience on top of the software's functionality. (refer to section 4.2.3.2).
+2. Prototypes can allow us to keep our client updated on our progress with tangible evidence. In addition, it can allow our client to provide feedback to us, regarding small decisions during development. (for instance: our usage and choice of assets in the software display.)
 
 ### 4.3 Process
 ...
