@@ -97,7 +97,6 @@ Each architectural view should include at least one architectural model. If arch
 ...
 
 ### 4.2 Development
-Jerr
 
 The development view is the system viewed from a programmers perspective, it focuses heavily on software management. This section includes the following four subsections:
 
