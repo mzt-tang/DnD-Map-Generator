@@ -151,7 +151,16 @@ During development, it is important to inform the client of the completed featur
 ...
 
 ### 4.5 Scenarios
-...
+
+We have determined our two most important scenarios for our MVP are:
+
+- The user is able to view a randomly generated Dungeons and Dragons dungeon map, which is able to be traversed from the start to the end.
+  - The map generation will need to be different each time, with no two dungeons the same.
+
+
+
+- The map must be populated with monsters according to the level of the Dungeon.
+  - The monsters would be grouped by room, and not be necessary for the DM to use, they will only be a guide for the DM if needed.
 
 ## 5. Development Schedule
 
