@@ -123,7 +123,6 @@ We will also use Issues and Epics to divide the tasks and assign them to each te
 #### 4.2.3 Testing
 
 The testing section covers the methods we will use to ensure software functionality during development. 
-
 We will utilize two methods, each explained in a subsection of its own:
 - Automated testing
 - Play testing
@@ -135,7 +134,6 @@ We will use Javascript Unit Testing to test the functionality of the program. Si
 ##### 4.2.3.2 Play testing
 
 Whilst backend software is tested via automated testing (refer to section 4.2.3.1), the user interface and interaction the software provides must be tested manually.
-
 There are three things we must test during development:
 - The first thing we'll test is the visual functionality of the user interface features. (for instance: Making a popup window).
 - The second thing we'll test is the gameplay. The software is designed to aid the DM and his friends when they play DnD. We can test this ourselves by playing a game of dnd using the system after a number of sprints. 
@@ -145,9 +143,7 @@ There are three things we must test during development:
 
 The prototyping section covers the usage of prototypes during development.
 
-During development, it is important to inform the client of the completed features and the features still in progress. Developing small scaled early iteration will allow us to showcase the client our understanding of his specifications. The client, in return, can either confirm or clarify on his specification.
-
-Furthermore, prototypes of functional features updates our client on our development progress and allow for playtesting of the software (refer to sub-section 4.2.3.2).
+During development, it is important to inform the client of the completed features and the features still in progress. Developing small scaled early iteration will allow us to showcase the client our understanding of his specifications. The client, in return, can either confirm or clarify on his specification. Furthermore, prototypes of functional features updates our client on our development progress and allow for playtesting of the software (refer to sub-section 4.2.3.2).
 
 ### 4.3 Process
 ...
