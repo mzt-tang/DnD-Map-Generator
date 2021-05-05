@@ -104,7 +104,7 @@ Each architectural view should include at least one architectural model. If arch
 
 ### 4.4 Physical 
 
-Our system is mostly a software system, meaning there would be very little hardware required. However there will still be some physical architecture involved, such as the computers we code with, the Dungeon Master's device, and the TV, projector, touch screen table, tablet, or anything that can display our system as a full sized map while being able to give the users the ability to display their characters on the screen.
+Our system is mostly a software system, meaning there would be very little hardware required. However there will still be some physical architecture involved, such as the computers we code with, the Dungeon Master's device, and the TV, projector, touch screen table, tablet, or anything that can display our system as a full sized map while being able to give the users the ability to display their characters on the screen using figurines the players have in person.
 
 This system will need to be able to connect to two pieces of hardware per game, the Dungeon Master's device, a phone, tablet, or computer, and the player's device, be it a TV, projector or anything similar, and send to the hardware the images to display. The system will need to send to the player's device images based on what the Dungeon Master wants to display, which will be controlled via the Dungeon Master's device.
 
