@@ -68,9 +68,26 @@ See ISO/IEC/IEEE 42010 clause 5.3 and ISO/IEC/IEEE 12207 clause 6.4.4.3(2).
 For most systems this will be about 2 pages, including a table mapping concerns to stakeholder.
 
 ### 3.2 Architectural Viewpoints
-(1 page, 42010 5.4) 
 
-Identify the architectural viewpoints you will use to present your system's architecture. Write one sentence to outline each viewpoint. Show which viewpoint frames which architectural concern.
+**Logical**
+
+The logical view shows how the system will function for the end user. The diagram in 4.1 shows how the user would use the system.
+
+**Development**
+
+The development view focuses on the development of the software, combining how the system works from the programmers perspective with software management.
+
+**Process**
+
+The process viewpoint describes how the system processes information from the user input to the system output. This viewpoint also goes into detail what the system does for many scenarios that the system may need to work for.
+
+**Physical**
+
+The physical viewpoint describes how the system works with hardware components required to run the system.
+
+**Scenarios**
+
+The scenarios viewpoint focuses on realistic interactions between the user and the system, describing what the system must be capable of in the MVP in relation to the scenario.
 
 ### 4. Architectural Views
 
