@@ -145,8 +145,14 @@ The prototyping section covers the usage of prototypes during development.
 During development, it is important to inform the client of the completed features and the features still in progress. Developing small scaled early iteration will allow us to showcase the client our understanding of his specifications. The client, in return, can either confirm or clarify on his specification. Furthermore, prototypes of functional features updates our client on our development progress and allow for playtesting of the software (refer to sub-section 4.2.3.2).
 
 ### 4.3 Process
-...
 
+The process view shows what happens when the user is interacting with the system and the underlying interactions between different classes of the system with a focus on the run time behaviour. The arrows show class interactions with a description for each interaction to help with understanding of what is happening. Our process view is broken down into the start/loading of a game, and a game in progress.
+
+#### Start/Load Game
+![Saving and Loading Game](architecture_design/resources/Save_Load_Game.png)
+
+#### Game In Progress
+![Game In Progress](architecture_design/resources/Game_In_Progress.png)
 ### 4.4 Physical 
 ...
 
