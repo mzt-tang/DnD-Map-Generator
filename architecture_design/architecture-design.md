@@ -73,14 +73,12 @@ To create a D&D map generator that also generates a well-weighted list of monste
 
 ### 1.3 Changes to requirements
 
-The ability to add or remove monsters has been removed, as it is an unnecessary functionality of the program. The stakeholder mentions that he can just either ignore or add monsters in their own specific game as needed, which is easy to do and no not require a form of marking it down from the program.
+The ability to add or remove monsters has been removed, as it is an unnecessary functionality of the program. The stakeholder mentions that he can just either ignore or add monsters in their own specific game as needed, which is easy to do and no not require a form of marking it down on the program.
 
 The minimum viable product has been updated to be clearer. It more precisely defines the core of the program, such as:
  - reducing the minimum number of themes to 1
  - zooming on maps is not required
 This reduces our scope of the MVP, and allows the team to produce a better core program such as a more complex map or monster generation algorithm.
-
-If the requirement have changed significantly since the requirements document, outline the changes here. Changes must be justified and supported by evidences, i.e., they must be substantiated. (max one page, only if required)
 
 ## 2. References
 
