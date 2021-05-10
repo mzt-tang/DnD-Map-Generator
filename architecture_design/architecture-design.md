@@ -113,8 +113,8 @@ Each architectural view should include at least one architectural model. If arch
 ### 5.1 Schedule
 
 #### Architectural prototype
-07/05/2021
-- The architectural prototype is to be completed by Monday 7th May 2021
+14/05/2021
+- The architectural prototype is to be completed by Friday 14th May 2021
 
 #### Map Generation Demo
 01/06/2021
