@@ -74,10 +74,10 @@ To create a D&D map generator that also generates a well-weighted list of monste
 ### 1.3 Changes to requirements
 
 The ability to add or remove monsters has been removed. The stakeholder mentioned that he does not need this functionality. 
-
 The minimum viable product has been updated to be more precise:
  - The minimum number of themes is reduced to 1 instead of 3
  - zooming on maps is not required
+
 This reduces our scope of the MVP, and the aforementioned goals have been moved to stretch goals.
 
 ## 2. References
