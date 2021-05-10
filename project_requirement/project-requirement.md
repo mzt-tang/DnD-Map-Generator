@@ -778,17 +778,12 @@ We will be able to see that this use case has been taken in to account when the 
 **How will we verify this specific requirement?**  
 Map themes are a pre-requisite for monster population. If successfully implemented, the types of monsters within the dungeon should be consistent to the theme (for instance, undead shouldn't be spawning in an bandit hideout) and the difficulty of the monsters should more difficult (more health, damage, armour levels, etc.) than the levels below the chosen level.
 
-#### 4.8 Remove monsters
-
-**How will we verify this specific requirement?**  
-We can ensure that this use case has been taken into account if the monster is no longer displayed on the map when the DM clicks the delete button for that monster.
-
-#### 4.9 Populate monsters
+#### 4.8 Populate monsters
 
 **How will we verify this specific requirement?**  
 We can ensure that this use case has been taken into account if when the DM presses the generate monsters button the dungeon is automatically populated with appropriately levelled and themed monsters.
 
-#### 4.10 Exit Game/server
+#### 4.9 Exit Game/server
 
 **How will we verify this specific requirement?**  
 This requirement can be manually tested by viewing the application and server after running the function. 
@@ -796,7 +791,7 @@ If the board is no longer displaying on either device, and the application has c
 Then we can assume this requirement has been fulfilled. For a further test we may check the system resource usage
 on the dungeon masters device and server, to ensure no background processes are pursuing after exiting. 
 
-#### 4.11 Choose View (DM Or Player)
+#### 4.10 Choose View (DM Or Player)
 
 **How will we verify this specific requirement?**  
 We can judge this by observing whether choosing a view provides the user with the correct view. Specifically:
@@ -804,7 +799,7 @@ We can judge this by observing whether choosing a view provides the user with th
 - Choosing to view the Player view instructs the system to present the Player view to the user
 - Choosing to view the DM view instructs the system to present the DM view instead
 
-#### 4.12 Save Game
+#### 4.11 Save Game
 
 **How will we verify this specific requirement?**<br>
 This requirement can be tested by saving the game to the JSON file, then going through the file and checking that it includes the aspects of the dungeon that need to be saved. The parts of the map that need to be checked are:
@@ -814,7 +809,7 @@ This requirement can be tested by saving the game to the JSON file, then going t
 - Which rooms are the entrance and exit rooms
 - The visual theme of the dungeon
 
-#### 4.13 Load Game
+#### 4.12 Load Game
 
 **How will we verify this specific requirement?**<br>
 This requirement can be tested by loading a saved game and comparing it to when it was saved. The parts of the map that need to be compared are:
@@ -824,10 +819,10 @@ This requirement can be tested by loading a saved game and comparing it to when 
 - Which rooms are the entrance and exit rooms
 - The visual theme of the dungeon
 
-#### 4.14 Map Resizing and Panning
+#### 4.13 Map Resizing and Panning
 
 **How will we verify this specific requirement?**<br>
-This use case is essential to gameplay. We can judge it's success via playtesting using large scale map. A successful implementation will zoom and pan the map accordingly to the player/DM's touch/mouse.
+This use case is essential to gameplay. We can judge it's success via playtesting using large scale map. A successful implementation will zoom and pan the map accordingly to the DM's touch/mouse.
 
 ## 5. Development schedule.
 
