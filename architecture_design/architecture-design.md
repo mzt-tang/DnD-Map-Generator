@@ -111,7 +111,53 @@ As appropriate you should include the following viewpoints:
 Each architectural view should include at least one architectural model. If architectural models are shared across views, refer back to the first occurrence of that model in your document, rather than including a separate section for the architectural models.
 
 ### 4.1 Logical
-...
+```plantuml
+@startuml
+[*] --> selectView
+selectView --> enterGame1 : Selected Player View
+enterGame1 --> selectView : Undo decision to Select Player View
+enterGame1 --> playerView : Entered Gamecode [Gamecode is valid]
+playerView --> enterGame1 : Leave to Enter a new Gamecode
+playerView --> [*] : Exit Game
+selectView --> selectNewGame : Selected DM View
+selectNewGame --> selectView : Undo decision to Select DM View
+selectNewGame --> chooseTheme : Selected New Game
+chooseTheme --> selectNewGame : Undo decision to Select a New Game
+selectNewGame --> enterGame2 : Selected Existing Game
+enterGame2 --> selectNewGame : Undo decision to Select an Existing Game
+enterGame2 --> DmView : Entered Gamecode [Gamecode is valid]
+DmView --> enterGame2 : Leave to Enter a new Gamecode
+chooseTheme --> DmView : Theme Chosen, Map is Generated
+
+
+state "Select DM or Player View" as selectView
+state "Enter Existing Gamecode" as enterGame1
+state "Enter Existing Gamecode" as enterGame2
+state "Select New or Existing Game" as selectNewGame
+state "Choose Theme" as chooseTheme
+state "Show Player View" as playerView
+
+selectView : entry / ask user to choose to view the DM View or the Player View
+enterGame1 : entry / ask user for gamecode
+enterGame1 : do / verify entered gamecode
+playerView : do / update view according to what DM wants to show the players 
+selectNewGame : entry / ask user if they want to create a new game or continue an existing game
+chooseTheme : entry / ask user for a theme
+chooseTheme : exit / generate map & monsters using the theme
+enterGame2 : entry / ask user for gamecode
+enterGame2 : do / verify entered gamecode
+
+state "Dungeon Master View" as DmView {
+  state "Show DM View" as showDm
+  [*] --> showDm 
+  showDm --> [*] : Save & Exit game
+  showDm --> [*] : Discard changes & Exit game
+
+  showDm : do / Display map and allow DM input for functions
+  showDm : exit / ask user to save and exit or discard changes
+}
+@enduml
+```
 
 ### 4.2 Development
 
