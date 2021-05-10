@@ -196,7 +196,25 @@ As appropriate you should include the following viewpoints:
 Each architectural view should include at least one architectural model. If architectural models are shared across views, refer back to the first occurrence of that model in your document, rather than including a separate section for the architectural models.
 
 ### 4.1 Logical
-...
+
+#### 4.1.1 State Flow Model:
+The State Flow Model below shows what states a user of the web-based DnD Map Generator application may encounter from the point they open the application to the point they close it. The model also shows how the user transitions between these states (as shown by the description of the directed edges between states), including any conditions that must be met before a transition between states can be successfully performed.
+
+![](resources/state_diagram.png)
+
+#### 4.1.2 Class Interaction Model:
+The class interaction model demonstrates the dependencies between providers, containers and components of the web based application, showing the interaction between these classes. Each class is a box and states whether it is a provider (A class that encapsulates multiple containers and runs game functionality), a container (A class that contains components) or a component (A class to represent UI functionality). The arrows represent the dependencies of each class along with a definition into why we have created the dependency.
+
+#### 4.1.2.1 Map Interface Class Model:
+The Map interface class model demonstrates the functionality of the DM’s device. Expressing how UI components interact with each other and how information is shared between classes.  In this model, providers are shown in yellow, containers are in red, components are in blue and higher level components that encapsulate other components are in green. 
+
+![](resources/map_interface_class_diagram.png)
+
+#### 4.1.2.2 Start Menu Class Model:
+The Start Menu Class Model shows the functionality of the choices users can make when opening the web-based DnD map generator application. This includes choosing between the respective views of the DM role and the Player (i.e., the Non-DM) role, and the steps the user follows for each view.
+The functionality shown in the model is divided into several classes, and groups of related classes are each encapsulated in a package. There are multiple packages to display, and each package is provided by the “Main” provider class. The provider class is shown in yellow, whereas higher-level components are shown in red, and lower-level components are shown in blue. The model also describes how each class is related to other directly-connected classes, and their multiplicities.
+
+![](resources/startMenu_class_diagram.png)
 
 ### 4.2 Development
 
