@@ -167,8 +167,8 @@ An one page statement of contributions, including a list of each member of the g
 | Member | Contributions |
 |------|------|
 | Adam Sinclair | 4.3, 7 |
-| Connor de Bruyn | 4.1, 4.1.1, 4.1.2.2 7 |
-| Elijah Guarina | 4.1, 7 |
+| Connor de Bruyn | 4.1, 7 |
+| Elijah Guarina | 4.1, 4.1.1, 4.1.2.2, 6.2, 7 |
 | Jeremiah Choi | 4.2, 4.2.3, 4.2.3.2, 4.2.4, 7 |
 | Michael Tang | 4.3, 7 |
 | Oliver Badrick | 4.2.1, 4.2.2, 4.2.3.1, 7 |
