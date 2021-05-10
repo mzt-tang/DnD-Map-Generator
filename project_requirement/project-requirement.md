@@ -367,35 +367,7 @@ Map themes are a pre-requisite for monster population. If successfully implement
 | Store selection in public variable. | [System Responsibilities] | 
 | Populate dungeon with monsters according to the theme and level. | [System Responsibilities] | 
 
-#### 3.2.8 Remove monsters
-
-**What is the Goal of the use case?**  
-The goal of the "Remove Monsters" use case is to ensure the monsters can be removed by the DM in the DM view to ensure that what is displayed on the DM view is still relevant.
-
-**Who benefits from the result of this use case?**  
-The DM benefits from the use case. By removing monsters that are no longer relevant to the dungeon map (they have been defeated for instance, or the DM removed them for other reasons) it ensures that the DM view displays the current state of the board. This reduces noise to the DM and the need to remember which monsters have been defeated.
-
-**How will this use case be achieved?**  
-The DM has a view that shows monsters on the map. When the DM clicks on monsters there will be an option to delete that monster from the board and remove them from the map.
-
-**How will we verify this specific requirement?**  
-We can ensure that this use case has been taken into account if the monster is no longer displayed on the map when the DM clicks the delete button for that monster.
-
-**What limitations are there to achieving the use case?**
-
-- This requires input from the DM, and so a button will need to be implemented that the DM can click that will remove the monster from the map.
-- The dungeon must be populated with monsters for this to work. Hence if the monster population function does not work this will not be able to work.
-
-**Use Case Flow**
-| Action | Type |
-| ---------------- | ------------------ |
-| DM clicks monster delete button | [user intention] |
-| Button sends request to delete monster | [system responsibility] |
-| Monster is removed from monster list | [system responsibility] |
-| View updates with monster removed | [user interface] |
-
-
-#### 3.2.9 Populate monsters
+#### 3.2.8 Populate monsters
 
 **What is the Goal of the use case?**  
 The goal of the use case is to allow the DM to automatically populate monsters in the dungeon.
@@ -423,7 +395,7 @@ We can ensure that this use case has been taken into account if when the DM pres
 | server returns generated monster list | [system responsibility] |
 | view updates display to show monsters | [user interface] |
 
-#### 3.2.10 Exit Game/server
+#### 3.2.9 Exit Game/server
 
 **What is the Goal of the use case?**  
 Close the dungeons and dragons application and server.
@@ -448,7 +420,7 @@ If we are unable to see the application or server running, as well as no longer 
 | Dungeon masters view is no longer being displayed | [User Interface] |
 | Players view is no longer being displayed | [User Interface] |
 
-#### 3.2.11 Choose View (DM Or Player)
+#### 3.2.10 Choose View (DM Or Player)
 
 **What is the Goal of the use case?**  
 The goal is to categorise users into the Dungeon Master and the Player(s) by allowing users to choose to view either the DM's view and the players' view.
@@ -481,7 +453,7 @@ Limitations of achieving this function include:
 | Choose a view | [user interface] |
 | Display the view that the player selected, including all functionalities associated with that view | [system responsibility] |
 
-#### 3.2.12 Save Game (DM)
+#### 3.2.11 Save Game (DM)
 
 **What is the Goal of the use case?**<br>
 The goal is to allow the DM to save the generated map, so that they are able to load the map for another game.
@@ -504,7 +476,7 @@ If the JSON file is stored on an online database, it is very difficult to retrie
 | The JSON file is saved to an online database | [System Requirements] |
 | Display a 'Saved Game' message | [User Interface] |
 
-#### 3.2.13 Load Game (DM)
+#### 3.2.12 Load Game (DM)
 
 **What is the goal of the use case?**<br>
 The goal is to allow the DM to load a previously saved game, so that the players can continue where they left off.
@@ -529,33 +501,33 @@ It is very difficult to store JSON files in a relational database.
 | Displays the map in the same way as it was when saved | [User Interface] |
 | If saved game cannot be found, display a 'cannot find game' message | [User Interface] |
 
-#### 3.2.14 Map Resizing and Panning (DM or Player)
+#### 3.2.13 Map Resizing and Panning (DM)
 
 **What is the Goal of the use case?**  
-The goal of this use case to allow the functionability of resizing and panning of the map on both the DM's display and players' display.
+The goal of this use case to allow the functionability of resizing and panning of the map on the DM's display.
 
 **Who benefits from the result of this use case?**  
-This use case benefits both the DM and the players. It allows maps that are larger to be zoomed in upon to scale for size and also allows the DM to view the map clearer on the DM display.
+This use case benfits the DM. It allows the DM to get a better look at the rooms in the map.
 
 **How will this use case be achieved?**  
-This use case will be achieved by the player or DM interacting with the map through touch or mouse, adjusting a slider to zooming of the map and panning by click/touch and drag. The program changes the display of the map to the touch/mouse adjustation, by either zooming in/out and panning.
+This use case will be achieved by the DM interacting with the map through touch or mouse, adjusting a slider to zooming of the map and panning by click/touch and drag. The program changes the display of the map to the touch/mouse adjustation, by either zooming in/out and panning.
 
 **How will we verify this specific requirement?**  
 This use case is essential to gameplay. We can judge it's success via playtesting using large scale map. A successful implementation will zoom and pan the map accordingly to the player/DM's touch/mouse.
 
 **What limitations are there to achieving the use case?**  
 - A map must be generated to scale and pan
-- The DM/player must have access to touch/mouse to interact with the display
+- The DM must have access to touch/mouse to interact with the display
 
 
 **Use Case Flow**
 | Action | Type |
 | ---------------- | ------------------ |
-| Players' and DM's maps displays a scale slider | [User Interface] |
-| Player or DM adjusts the map scale slider | [User Intention] | 
-| Player or DM touch/clicks and drags the map | [User Intention] | 
-| Update player or DM's screen | [System Responsibilities] | 
-| Players' and DM able to see the zoomed in/zoomed out/panned screen. | [User Interface] | 
+| DM's maps displays a scale slider | [User Interface] |
+| DM adjusts the map scale slider | [User Intention] | 
+| DM touch/clicks and drags the map | [User Intention] | 
+| Update DM's screen | [System Responsibilities] | 
+| DM is able to see the zoomed in/zoomed out/panned screen. | [User Interface] | 
 
 
 ### 3.3 Usability Requirements
