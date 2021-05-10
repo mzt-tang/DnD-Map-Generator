@@ -67,6 +67,56 @@ See ISO/IEC/IEEE 42010 clause 5.3 and ISO/IEC/IEEE 12207 clause 6.4.4.3(2).
 
 For most systems this will be about 2 pages, including a table mapping concerns to stakeholder.
 
+#### 3.1.1 Identify Stakeholders
+
+For this system the stakeholders are:
+
+| Person/Group | Role(s) |
+|-------------------|-------------------|
+| Group Members | Developers/Builders |
+| Craig Watterson | Client/User/Operator |
+| Kris Bubendorfer | Project Manager |
+| Calvin Lee | Tutor |
+| Craig Anslow | Owner |
+| Future Players | User |
+
+#### 3.1.2 Stakeholder Main Concerns
+
+| Person/Group | Role(s) | Main Concern |
+|-------------------|-------------------| ------------|
+| Group Members | Developers/Builders | The group's main concern is the development of the product. |
+| Craig Watterson | Client/User/Operator | Craig's main concern is the end product. |
+| Kris Bubendorfer | Project Manager | Kris' main concern is managing interaction between the client and the group members. |
+| Calvin Lee | Tutor | Calvin's main concern is the group understanding requirements of the project. |
+| Craig Anslow | Owner | Craig's main concern as the owner of the project is the client being statisfied with the final product |
+| Future Players | User | This group's main concern is the final product and the playability of the product. |
+
+#### 3.1.3 Other Stakeholder Concerns
+
+##### 3.1.3.1 Group Members
+
+Other concerns of the group members include the quality of the end product and communication between themselves and the client.
+
+##### 3.1.3.2 Craig Watterson
+
+Craig's only concern for this project as the client is the end product's quality.
+
+##### 3.1.3.3 Kris Bubendorfer
+
+Other concerns of Kris include the end product meeting the client's requirements.
+
+##### 3.1.3.4 Calvin Lee
+
+While Calvin's main concern will be that the group understands requirements of the project, he will also be concerned with the wellbeing of the group.
+
+##### 3.1.3.5 Craig Anslow
+
+Craig's only concern is that the final product meets the requirements of the client.
+
+##### 3.1.3.6 Future Players
+
+For the future players of the system, their only concern is playability and quality of the final product.
+
 ### 3.2 Architectural Viewpoints
 
 **Logical**
