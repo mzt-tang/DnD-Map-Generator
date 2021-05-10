@@ -239,6 +239,10 @@ Safety Plans may be required for some projects, depending on project requirement
 
 ### 6.2 Acronyms and abbreviations
 
+**Contextual Acronyms and Abbreviations:**
+* DnD/D&D: The fantasy tabletop role-playing game Dungeons and Dragons published by Wizards of the Coast.
+* DM: The "Dungeon Master" that dictates the world of a DnD game (a.k.a. GM or "Game Master"). They are the one in control of a DnD game, and so in this web-based DnD map generator application, are also the one able to alter and switch between levels and maps.
+
 **Risk Acronyms and Abbreviations:**
 * Performance Risk: A risk that impacts the efficiency of project operations.
 * Financial Risk: A risk that impacts the budget of the product, affecting bought items and assets.
