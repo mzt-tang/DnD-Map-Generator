@@ -114,6 +114,8 @@ Each architectural view should include at least one architectural model. If arch
 #### 4.1.2 Class Interaction Model:
 The class interaction model demonstrates the dependencies between providers, containers and components of the web based application, showing the interaction between these classes. Each class is a box and states whether it is a provider (A class that encapsulates multiple containers and runs game functionality), a container (A class that contains components) or a component (A class to represent UI functionality). The arrows represent the dependencies of each class along with a definition into why we have created the dependency.
 
+#### 4.1.3 Map Interface Class Model:
+The Map interface class model demonstrates the functionality of the DM’s device. Expressing how UI components interact with each other and how information is shared between classes.  In this model, providers are shown in yellow, containers are in red, components are in blue and higher level components that encapsulate other components are in green. 
 
 ![](resources/map_interface_class_diagram.png)
 
