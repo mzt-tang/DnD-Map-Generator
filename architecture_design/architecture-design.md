@@ -115,7 +115,7 @@ Each architectural view should include at least one architectural model. If arch
 #### 4.1.1 State Flow Model:
 The State Flow Model below shows what states a user of the web-based DnD Map Generator application may encounter from the point they open the application to the point they close it. The model also shows how the user transitions between these states (as shown by the description of the directed edges between states), including any conditions that must be met before a transition between states can be successfully performed.
 
-
+![](resources/state_diagram.png)
 
 #### 4.1.2 Class Interaction Model:
 The class interaction model demonstrates the dependencies between providers, containers and components of the web based application, showing the interaction between these classes. Each class is a box and states whether it is a provider (A class that encapsulates multiple containers and runs game functionality), a container (A class that contains components) or a component (A class to represent UI functionality). The arrows represent the dependencies of each class along with a definition into why we have created the dependency.
