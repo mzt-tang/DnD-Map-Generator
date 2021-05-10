@@ -299,45 +299,82 @@ We have determined our two most important scenarios for our MVP are:
 
 ## 5. Development Schedule
 
-_For each subsection, make clear what (if anything) has changed from the requirements document._ If unchanged, these sections should be copied over from the requirements document, not simply cross-referenced.
-
-Schedules must be justified and supported by evidences; they must be either direct client requirements or direct consequences of client requirements. If the requirements document did not contain justifications or supporting evidences, then both must be provided here.
-
 ### 5.1 Schedule
 
-Identify dates for key project deliverables:
+#### Architectural prototype
+14/05/2021
+- The architectural prototype is to be completed by Friday 14th May 2021
 
-1. prototype(s).
-1. first deployment to the client.
-1. further improvements required or specified by the client.
+#### Map Generation Demo
+01/06/2021
+- The map generation will be demoed to get client feedback
 
-(1 page).
+#### Monster Generation Demo
+26/07/2021
+- Monsters incorporated into map generation to be demoed for client feedback
 
-### 5.2 Budget and Procurement
+#### Saving and Loading
+09/08/2021
+- Saving and loading functionality to be demoed for client feedback
 
-#### 5.2.1 Budget
+#### Minimum viable product
+07/09/2021
+- Minimum viable product to be demoed for client feedback.
 
-Present a budget for the project (as a table), showing the amount of expenditure the project requires and the date(s) on which it will be incurred. Substantiate each budget item by reference to fulfilment of project goals (one paragraph per item).
+### 5.2 Budget
 
-(1 page). 
+No paid items to be purchased have been outlined to be required for the purpose of constructing the system. Because no purchases have been outlined, and therefore no expenses have been outlined, no budget has been explicitly allocated for this project.
 
-#### 5.2.2 Procurement
+However, a few potential expenses have been outlined. Potential expenses are expenses that are not determined to be necessary for the completion of this project, and therefore their costs and budgets are initially not real expenses. However, these potential expenses are considered to become real expenses if certain project circumstances change. If any of these potential expenses are ever decided to be purchased for the purpose of this project (i.e., they become real expenses), then their corresponding budgets are to be used to limit spending on each respective expense.
 
-Present a table of goods or services that will be required to deliver project goals and specify how they are to be procured (e.g. from the School or from an external organisation). These may be software applications, libraries, training or other infrastructure, including open source software. Justify and substantiate procurement with reference to fulfilment of project goals, one paragraph per item.
-(1 page).
+The table below describes these potential expenses.  
+| Item            | Purpose                              | Budget (NZD)       |
+|---------------------------|--------------------------------------------------------------------|-------------------|
+| Cloud Instance | A Cloud Instance is to be paid for if the DnD Map Generator application is to be hosted and launched from the instance on a Cloud service such as Microsoft Azure or Amazon Web Service. This however is an alternative option, as ideally, the application would be hosted instead on servers operated by Victoria University of Wellington: School of Engineering and Computer Science (a.k.a. ECS Servers). This is because hosting the application from the ECS Servers would be free, whereas hosting it on Cloud services would not. If this ideal option turns out to not be possible however, then a Cloud instance would be the next preferred choice, and the outlined budget would be the limit on how much is spent on using the Cloud instance.  | $50.00 |
+| Paid Assets | Paid Assets are third-party non-free resources to be used in the DnD Map Generator. This includes map textures, User Interface artwork, or any other assets to be outlined in the future. There is no initial plan to purchase any paid assets, as there is a bias to using free assets.  | $100.00 |
 
-### 5.3 Risks 
+### 5.3 Risks
 
-Identify the ten most important project risks: their type, likelihood, impact, and mitigation strategies (3 pages).
+| # | Risk | Risk Type | Likelihood | Severity |
+| --- | :--------------------------------------------------------------------------------: |  --------------- | ------------ | ---------------- |
+| 1 | COVID-19 levels increase, restricting access to laboratories and equipment | Performance | High | Tolerable |
+| 2 | Client removes budget or online resources become unavailable | Financial / Availability | Low | Tolerable |
+| 3 | Incompatibility of services or equipment | Availability / Performance | Medium | Severe |
+| 4 | Minimal requirements will not be met by the end of the project (Scope creep) | Operational | Medium | Extreme |
+| 5 | Team members are unable to work on the project (Illness, lack of internet, etc) | Health and Safety / Performance | Medium | Extreme |
+| 6 | Customer alters the requirements during development | Strategic | Low | Tolerable |
+| 7 | The products do not align with stakeholder expectations | Strategic | Medium | Tolerable |
+| 8 | Lack of communication amongst team members and stakeholders | Performance | Low | Severe |
+| 9 | Product has underlying bugs that impact the products functionality | Operational | Low | Tolerable |
+| 10 | Team members lack required skills to complete the project | Performance | Low | Tolerable |
+
+| # | Risk | Mitigation Strategy |
+| --- | :--------------------------------------------------------------------------------: |  ------------------------------------------------ |
+| 1 | COVID-19 levels increase, restricting access to laboratories and equipment | Frequent usage of online resources to keep in-contact and productive until covid levels decrease or the project finalizes.  |
+| 2 | Client removes budget or online resources become unavailable | Utilisation of offline resources, if we are using any online assets (or planning to) we will need to produce them ourselves.  |
+| 3 | Incompatibility of services or equipment | Research alternative services and equipment to use in case the current ones fail or become unavailable for usage. |
+| 4 | Minimal requirements will not be met by the end of the project (Scope creep) | We could invest in buying components to fulfil the remaining requirements or focus all members efforts into accomplishing the minimum requirements before attempting stretch goals. |
+| 5 | Team members are unable to work on the project (Illness, lack of internet, etc) | Divide the absent members workload evenly amongst all remaining members to keep workflow consistent and to not overwhelm one member. |
+| 6 | Customer alters the requirements during development | As the client did not specify these requirements during the proposition, we may decline the additional requirements if we deem them to be unachievable during the remaining time given.  |
+| 7 | The products do not align with stakeholder expectations | Create frequent meetings with the client to ensure that each feature added is to specification. This will provide clarity if we are missing features or misinterpreted requirements. |
+| 8 | Lack of communication amongst team members and stakeholders | We will conduct frequent weekly meetups and utilize online social media platforms (Mattermost) to ensure each member understands the given situation and tasks needed to be completed for project completion.  |
+| 9 | Product has underlying bugs that impact the products functionality | We can create tests to identify and fix bugs occurring during development of each function. Ensuring each function remains bug-free before advancing to new tasks. |
+| 10 | Team members lack required skills to complete the project | Create sessions to learn the required information needed to progress through the project. If one member knows the skills necessary, they can tutor the remaining members until all members are fully capable to continue. |
 
 ### 5.4 Health and Safety
 
-Document here project requirements for Health and Safety.
+1. These are the computer-related risks that could occur during this project, and how they will be managed.
+- Eye damage: The 20-20-20 rule. Every 20 minutes, look at somthing 20 feet away for 20 seconds
+- Spine injury: Make sure to stretch for about 5-10 minutes every hour
+- Hand injury: Make sure to remove hands from keyboard when its not being used, also use whole arm to move mouse instead of wrist
+
+2. The project does not requre work or testing at an external workplace/site.
+
+3. The project does not require any testing with human and animal subjects.
 
 #### 5.4.1 Safety Plans
 
-Safety Plans may be required for some projects, depending on project requirements.
-
+Project requirements do not involve risk of death, serious harm, harm or injury.
 
 ## 6. Appendices
 
