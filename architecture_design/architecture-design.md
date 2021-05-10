@@ -171,7 +171,16 @@ The process view shows what happens when the user is interacting with the system
 #### Game In Progress
 ![Game In Progress](architecture_design/resources/Game_In_Progress.png)
 ### 4.4 Physical 
-...
+
+Our system is mostly a software system, meaning there would be very little hardware required. However there will still be some physical architecture involved, such as the computers we code with, the Dungeon Master's device, and the TV, projector, touch screen table, tablet, or anything that can display our system as a full sized map while being able to give the users the ability to display their characters on the screen using figurines the players have in person.
+
+This system will need to be able to connect to two pieces of hardware per game, the Dungeon Master's device, a phone, tablet, or computer, and the player's device, be it a TV, projector or anything similar, and send to the hardware the images to display. The system will need to send to the player's device images based on what the Dungeon Master wants to display, which will be controlled via the Dungeon Master's device.
+
+This would involve setting up a connection between the two pieces of hardware via connection to a server, once the devices are connected to each other, the server will need to send data to the Dungeon Master's device to create the map, and then send to the player's device the map information as the Dungeon Master wants the map to be displayed. As the game continues on, the Dungeon Master's device will send more information to the player's device based on what the Dungeon Master wants the player to see.
+
+The connection between server and hardware will need to also work for saving and loading the map information when the Dungeon Master wants to save a current game, or load an existing game.
+
+Overall the system is not entirely dependant on the hardware components, but is more dependant on software components. The dependancy on hardware components is based on whether the hardware works and is able to do what is needed, for example the Dungeon Master's device must be able to connect to the internet, must be able to input and change data, and must have a display. The player's device must be able to connect to the internet, receive data, and display information. Any further features of these devices would not be necessary but would not hinder the performance of the system.
 
 ### 4.5 Scenarios
 
