@@ -172,7 +172,7 @@ An one page statement of contributions, including a list of each member of the g
 | Jeremiah Choi | 4.2, 4.2.3, 4.2.3.2, 4.2.4, 7 |
 | Michael Tang | 1, 4.3, 7 |
 | Oliver Badrick | 4.2.1, 4.2.2, 4.2.3.1, 7 |
-| Patrick Laing | 2, 3.1, 3.2, 4.4, 4.5, 7 |
+| Patrick Laing | 2, 3.1, 3.2, 4.4, 4.5, 5.1, 7 |
 
 ---
 
