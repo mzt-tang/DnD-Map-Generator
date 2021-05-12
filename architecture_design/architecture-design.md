@@ -404,6 +404,16 @@ Project requirements do not involve risk of death, serious harm, harm or injury.
 
 An one page statement of contributions, including a list of each member of the group and what they contributed to this document.
 
+| Member | Contributions |
+|------|------|
+| Adam Sinclair | 4.3, 7 |
+| Connor de Bruyn | 4.1, 4.1.1, 4.1.2, 4.1.2.1, 5.3, 6.2, 7 |
+| Elijah Guarina | 4.1, 4.1.1, 4.1.2.1, 4.1.2.2, 6.2, 7 |
+| Jeremiah Choi | 4.2, 4.2.3, 4.2.3.2, 4.2.4, 7 |
+| Michael Tang | 1, 4.3, 7 |
+| Oliver Badrick | 4.2.1, 4.2.2, 4.2.3.1, 7 |
+| Patrick Laing | 2, 3.1, 3.2, 4.4, 4.5, 5.1, 7 |
+
 ---
 
 ## Formatting Rules 
