@@ -378,13 +378,27 @@ Project requirements do not involve risk of death, serious harm, harm or injury.
 
 ## 6. Appendices
 
-### 6.1 Assumptions and dependencies 
+### 6.1 Assumptions and dependencies
 
-One page on assumptions and dependencies (9.5.7) 
+- That the devices used have access to the internet
+- That the devices used have enough computing power to run the application
+- That the online server used to store the saved game has enough space to store the file
+- That the device that displays the map has a large enough display for the player's physical figures to fit on the map 
+- That the device that the DM uses has some way to get input
 
 ### 6.2 Acronyms and abbreviations
 
-One page glossary as required 
+**Contextual Acronyms and Abbreviations:**
+* DnD/D&D: The fantasy tabletop role-playing game Dungeons and Dragons published by Wizards of the Coast.
+* DM: The "Dungeon Master" that dictates the world of a DnD game (a.k.a. GM or "Game Master"). They are the one in control of a DnD game, and so in this web-based DnD map generator application, are also the one able to alter and switch between levels and maps.
+
+**Risk Acronyms and Abbreviations:**
+* Performance Risk: A risk that impacts the efficiency of project operations.
+* Financial Risk: A risk that impacts the budget of the product, affecting bought items and assets.
+* Availability Risk: A risk that halts or reduces the amount of work team-members can contribute.
+* Operational Risk: A risk that alters the functionality of the product.
+* Health and Safety Risk: A risk that impacts the health and well-being of the team members.
+* Strategic Risk: A risk that alters requirements of the project or client specifications. 
 
 ## 7. Contributions
 
