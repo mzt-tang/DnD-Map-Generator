@@ -1,66 +1,19 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
-import {GridList, GridListTile} from "@material-ui/core";
 
-const tileData = [
-    {
-        img: '../assets/icon.png',
-        author: 'michael',
-        cols: 2,
-        featured: true,
-    },
+// Import styles
+import '../styles/style.css'
+import GridOther from "../components/GridOther";
 
-    {
-        img: 'icon.png',
-        author: 'michael',
-        cols: 2,
-        featured: true,
-    }
+const Home = () => {
 
-]
-
-function render(x : string) {
-    let imgSource = require(x);
-    return (
-        <View>
-            <img src ={imgSource} />
-        </View>
-    );
-}
-
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-around',
-            overflow: 'hidden',
-            backgroundColor: theme.palette.background.paper,
-        },
-        gridList: {
-            width: 500,
-            height: 450,
-        },
-    }),
-);
-
-const Map = () => {
-    const classes = useStyles();
+    const images : JSX.Element[] = [<img className="grid_img" src="https://pngimg.com/uploads/square/square_PNG24.png"/>]
+    const tiles : number[][] = [[0,0],[0,0]]
 
     return (
         <View>
-            <GridList cellHeight={160} className={classes.gridList} cols={3}>
-                {tileData.map(tile => (
-                    <GridListTile key={tile.img} cols={tile.cols || 1}>
-                        render({tile.img});
-                        <img src={tile.img}/>
-                    </GridListTile>
-                ))}
-            </GridList>
-
+            <GridOther width={2} height={2} images={images} tiles={tiles} />
         </View>
     );
 }
-
-export default Map
+export default Home
