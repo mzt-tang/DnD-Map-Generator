@@ -1,4 +1,5 @@
 .grid-display {
+    margin:auto;
     display: grid;
     grid-template-columns: repeat(40,max-content);
     grid-template-rows: repeat(25,max-content);
