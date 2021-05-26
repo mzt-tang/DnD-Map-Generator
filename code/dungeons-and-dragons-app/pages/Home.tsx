@@ -12,30 +12,6 @@ const Home = () => {
     return (
         <View>
 
-            {/*Displays the AppBar (Header Bar*/}
-            <CustomAppBar headerLabel="Contact" />
-
-            {/*Displays the Button to send you to the Contact Page*/}
-            <ContactButton />
-
-            {/*Displays the Incremented Count*/}
-            <Typography variant="h6">
-                {count} {/*Note that the Variable is in parentheses, since it is a variable*/}
-            </Typography>
-
-            {/*Create the Increment Button*/}
-            <Button
-                variant="contained"
-                color="primary"
-                onClick={() => {
-                    // count++; // Don't use count, as this is a "const"
-                    setCount(count+1); // Use the method defined in the hook instead
-                    console.log(count)
-                }
-                }>
-                Increment
-            </Button>
-
         </View>
     );
 }
