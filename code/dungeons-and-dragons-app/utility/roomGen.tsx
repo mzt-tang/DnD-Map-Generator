@@ -63,21 +63,21 @@ function roomGen(rowSize: number, colSize :number, entrances: number[][], growPr
         }
     }
 
-    // then move cols towards middle col
+    // ensure middle cols grow to size of rows bounds.
+    let colMin = colSize;
+    let colMax = 0;
+
     for (let i = 0; i < entrances.length; i++){
         let entrance = entrances[i];
-        let entranceRow = entrance[0];
         let entranceCol = entrance[1];
+        colMin = Math.min(colMin,entranceCol);
+        colMax = Math.max(colMax,entranceCol);
+    }
 
-        // grow towards middle, whichever way that is.
-        while (entranceCol < middleY){
-            entranceCol++;
-            room[entranceRow][entranceCol] = ROOM_TILE;
-        }
-        while (entranceCol > middleY){
-            entranceCol--;
-            room[entranceRow][entranceCol] = ROOM_TILE
-        }
+    // grow cols to connect
+    while (colMin < colMax){
+        colMin++;
+        room[middleX][colMin] = ROOM_TILE;
     }
 
     // entrances should be connected, grow tiles with probability depending on surrounding tiles.
