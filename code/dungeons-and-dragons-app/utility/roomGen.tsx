@@ -82,7 +82,8 @@ function roomGen(rowSize: number, colSize :number, entrances: number[][], growPr
 
     // entrances should be connected, grow tiles with probability depending on surrounding tiles.
 
-
-    console.log(room);
+    for (let i = 0; i < room.length; i++){
+        console.log(room[i]);
+    }
     return room;
 }
