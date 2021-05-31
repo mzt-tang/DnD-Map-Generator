@@ -9,6 +9,8 @@ import Image6 from '../assets/WallTop.png';
 import Image7 from '../assets/WallLeft.png';
 import Image8 from '../assets/WallRight.png';
 import Image9 from '../assets/Floor.png';
+import Image10 from '../assets/Dark.png';
+import Image11 from '../assets/Light.png';
 
 // Import styles
 import '../styles/style.css'
@@ -25,11 +27,14 @@ const Home = () => {
         <img className="grid_img" src={Image6}/>,
         <img className="grid_img" src={Image7}/>,
         <img className="grid_img" src={Image8}/>,
-        <img className="grid_img" src={Image9}/>,]
+        <img className="grid_img" src={Image9}/>,
+        <img className="grid_img" src={Image10}/>,
+        <img className="grid_img" src={Image11}/>,
+    ]
 
     const tiles : number[][] = [
-        [8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8],
-        [8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8],
+        [9,9,9,9,9,9,9,9,9,9,9,9,9,9,0,5,5,5,5,5,5,5,3,9,9,9,9,9,9,9,9,9,9,0,5,5,5,5,3,9],
+        [9,9,9,9,9,9,9,9,0,5,5,3,9,9,6,10,8,10,8,10,8,10,7,9,9,9,9,9,0,5,5,3,9,6,10,10,10,10,7,9],
         [8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8],
         [8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8],
         [8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8],
