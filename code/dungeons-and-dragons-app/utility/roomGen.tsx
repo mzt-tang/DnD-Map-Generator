@@ -82,8 +82,61 @@ export function roomGen(rowSize: number, colSize :number, entrances: number[][],
 
     // entrances should be connected, grow tiles with probability depending on surrounding tiles.
 
-    for (let i = 0; i < room.length; i++){
-        console.log(room[i]);
+    // find all tiles that have an adjacent floor tiles. The more floor tiles the higher change to become a floor tile.
+
+    // array of x,y coords where empty tiles are.
+    const emptyTiles : number[][] = [];
+
+    // array of failed to grow tiles that we no longer grow from
+    let doNotGrow : number[][] = [];
+
+    // collect all empty tiles
+    for (let i = 0; i < room.length; i++) {
+        for (let j = 0; j < room[i].length; j++) {
+            if (room[i][j] == EMPTY) {
+                emptyTiles.push([i,j]);
+            }
+        }
     }
+
+    // grow empty tiles
+    for (let i = 0; i < emptyTiles.length; i++){
+        const emptyTile = emptyTiles[i];
+        const row = emptyTile[0];
+        const col = emptyTile[1];
+        const count = surroundingTiles(emptyTile,room);
+
+        if (count >= 1 && Math.random() < growProbability){
+            room[row][col] = ROOM_TILE;
+        }
+    }
+
+    // experimental
+    function surroundingTiles(tile : number[], room : number[][]) {
+        const row = tile[0];
+        const col = tile[1];
+        let count = 0;
+        // left
+        if (col-1 >= 0){
+            if (room[row][col-1] == ROOM_TILE) count++;
+        }
+        // right
+        if (col+1 < room[0].length){
+            if (room[row][col+1] == ROOM_TILE) count++;
+        }
+        // up
+        if (row-1 >= 0){
+            if (room[row-1][col] == ROOM_TILE) count++;
+        }
+        // down
+        if (row+1 < room.length){
+            if (room[row+1][col] == ROOM_TILE) count++;
+        }
+        return count;
+    }
+
+
+
+
     return room;
 }
