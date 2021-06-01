@@ -10,6 +10,19 @@ interface GridOtherProps {
 }
 
 const GridOther = (props : GridOtherProps) => {
+
+
+    const mapStyle = function(width: number, height: number)
+    {
+        return {
+            margin: 'auto',
+            display: 'grid',
+            gridTemplateColumns: 'repeat('+width+',max-content)',
+            gridTemplateRows: 'repeat('+height+',max-content)',
+            gridGap: '0px'
+        }
+    }
+
     let rows : JSX.Element[][] = []
     props.tiles.forEach(function(e1 : number[],index : number){
         //  row
@@ -25,7 +38,7 @@ const GridOther = (props : GridOtherProps) => {
     })
 
     return (
-        <div className="grid-display">{rows}</div>
+        <div className="grid-display" style={mapStyle(props.width,props.height)}>{rows}</div>
     );
 
 }
