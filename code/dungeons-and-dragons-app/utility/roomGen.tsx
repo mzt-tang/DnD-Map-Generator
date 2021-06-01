@@ -20,6 +20,7 @@ export function roomGen(rowSize: number, colSize :number, entrances: number[][],
     // if only single entrance, grow probability increased and decreases with distance.
 
     const singleEntrance = entrances.length == 1;
+
     // Start with array of 0's
     let room = Array.from(Array(rowSize), _ => Array(colSize).fill(EMPTY));
 
@@ -85,58 +86,44 @@ export function roomGen(rowSize: number, colSize :number, entrances: number[][],
     // find all tiles that have an adjacent floor tiles. The more floor tiles the higher change to become a floor tile.
 
     // array of x,y coords where empty tiles are.
-    const emptyTiles : number[][] = [];
 
-    // array of failed to grow tiles that we no longer grow from
-    let doNotGrow : number[][] = [];
 
-    // collect all empty tiles
+    const roomTiles : number[][] = [];
+
+    // collect all room tiles
     for (let i = 0; i < room.length; i++) {
         for (let j = 0; j < room[i].length; j++) {
-            if (room[i][j] == EMPTY) {
-                emptyTiles.push([i,j]);
+            if (room[i][j] == ROOM_TILE) {
+                roomTiles.push([i, j]);
             }
         }
     }
 
-    // grow empty tiles
-    for (let i = 0; i < emptyTiles.length; i++){
-        const emptyTile = emptyTiles[i];
-        const row = emptyTile[0];
-        const col = emptyTile[1];
-        const count = surroundingTiles(emptyTile,room);
+    // spread from room tiles to empty tiles
+    for (let i = 0; i < roomTiles.length; i++) {
+        const row = roomTiles[i][0];
+        const col = roomTiles[i][1];
 
-        if (count >= 1 && Math.random() < growProbability){
-            room[row][col] = ROOM_TILE;
-        }
+        spread(row-1, col);  // down
+        spread(row, col+1);  // right
+        spread(row+1, col); // up
+        spread(row, col-1); // left
     }
 
-    // experimental
-    function surroundingTiles(tile : number[], room : number[][]) {
-        const row = tile[0];
-        const col = tile[1];
-        let count = 0;
-        // left
-        if (col-1 >= 0){
-            if (room[row][col-1] == ROOM_TILE) count++;
+    function spread(row : number, col : number){
+        // check bounds/conditions
+        if (row >= 0 && row < room.length && col >= 0 && col < room[row].length && room[row][col] == EMPTY){
+
+            // spread with probability
+            if (Math.random() < growProbability){
+                room[row][col] = ROOM_TILE
+                spread(row-1, col);  // down
+                spread(row, col+1);  // right
+                spread(row+1, col); // up
+                spread(row, col-1); // left
+            }
         }
-        // right
-        if (col+1 < room[0].length){
-            if (room[row][col+1] == ROOM_TILE) count++;
-        }
-        // up
-        if (row-1 >= 0){
-            if (room[row-1][col] == ROOM_TILE) count++;
-        }
-        // down
-        if (row+1 < room.length){
-            if (room[row+1][col] == ROOM_TILE) count++;
-        }
-        return count;
     }
-
-
-
 
     return room;
 }
