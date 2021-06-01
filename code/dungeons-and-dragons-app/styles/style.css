@@ -1,11 +1,3 @@
-.grid-display {
-    margin:auto;
-    display: grid;
-    grid-template-columns: repeat(40,max-content);
-    grid-template-rows: repeat(25,max-content);
-    grid-gap: 0px;
-}
-
 .grid_img {
     width:25px;
     height:25px;
