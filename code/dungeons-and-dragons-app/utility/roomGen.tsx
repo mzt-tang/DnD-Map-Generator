@@ -1,6 +1,6 @@
 const EMPTY = 0;
 const ROOM_TILE = 1;
-const ENTRANCE = 3;
+const ENTRANCE = 2;
 
 
 
@@ -12,7 +12,7 @@ const ENTRANCE = 3;
  * @param growProbability the probability that the room will grow (that is, it will be larger)
  * @return room The new room in array form.
  */
-function roomGen(rowSize: number, colSize :number, entrances: number[][], growProbability: number) : number[][] {
+export function roomGen(rowSize: number, colSize :number, entrances: number[][], growProbability: number) : number[][] {
     // preconditions: rowsize/colsize must be positive
     // grow probability(x) = 0 > x <= 1
     // at least one entrance
@@ -21,7 +21,7 @@ function roomGen(rowSize: number, colSize :number, entrances: number[][], growPr
 
     const singleEntrance = entrances.length == 1;
     // Start with array of 0's
-    let room = Array.from(Array(rowSize), _ => Array(colSize).fill(0));
+    let room = Array.from(Array(rowSize), _ => Array(colSize).fill(EMPTY));
 
 
     // assign entrances
