@@ -3,6 +3,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import React from 'react';
 import Home from "./pages/Home";
 import Map from "./pages/Map";
+import Room from "./pages/Room";
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
         <Route path = "/home" component = {Home} />
           <Route path = "/" component = {Home} />
           <Route path = "/map" component = {Map}/>
+          <Route path = "/room" component={Room}/>
       </BrowserRouter>
   );
 }
