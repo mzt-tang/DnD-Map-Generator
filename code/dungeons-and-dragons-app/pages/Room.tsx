@@ -16,7 +16,7 @@ import {roomGen} from "../utility/roomGen";
 const Room = () => {
     const[rows, setRows] = useState(20);
     const[cols,setCols] = useState(20);
-    const[probability,setProbability] = useState(0.1);
+    const[probability,setProbability] = useState(0.35);
     const[entrances,setEntrances] = useState([[10,0],[0,12],[19,19]])
 
     const images : JSX.Element[] = [
