@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useState} from 'react';
 import { View } from 'react-native';
-import {Slider, Typography} from '@material-ui/core';
+import {Checkbox, Slider, Typography} from '@material-ui/core';
 import empty from '../assets/Dark.png';
 import floor from '../assets//Light.png';
 import entrance from '../assets/images4/Floor.png';
@@ -18,6 +18,7 @@ const Room = () => {
     const[cols,setCols] = useState(20);
     const[probability,setProbability] = useState(0.35);
     const[entrances,setEntrances] = useState([[10,0],[0,12],[19,19]])
+    const[clean, setClean] = useState(true)
 
     const images : JSX.Element[] = [
         <img className="grid_img" src={empty}/>,    // empty tile
@@ -30,10 +31,14 @@ const Room = () => {
     // const cols = 20;
     // let prob = 0.5
 
-    const tiles = roomGen(rows,cols,entrances,probability);
+    const tiles = roomGen(rows,cols,entrances,probability,clean);
 
     const updateProbability = (event: any, newValue: number | number[]) => {
         setProbability(newValue as number);
+    };
+
+    const updateClean = (event: any, newValue: boolean) => {
+        setClean(newValue as boolean);
     };
 
     function valuetext(value: number) {
@@ -56,6 +61,17 @@ const Room = () => {
                     getAriaValueText={valuetext}
                     aria-labelledby="probability-slider"
             />
+            </div>
+            <div style={{width:300,margin:30}}>
+                <Typography id="clean-checkbox" gutterBottom>
+                    Post Generation Clean
+                </Typography>
+                <Checkbox
+                    checked={clean}
+                    onChange={updateClean}
+                    color="primary"
+                    inputProps={{ 'aria-label': 'clean-checkbox' }}
+                />
             </div>
         </View>
     );

@@ -3,7 +3,6 @@ const ROOM_TILE = 1;
 const ENTRANCE = 2;
 
 
-
 /**
  * Generates a random room with a change to grow
  * @param rowSize the number of rows
@@ -12,7 +11,7 @@ const ENTRANCE = 2;
  * @param growProbability the probability that the room will grow (that is, it will be larger)
  * @return room The new room in array form.
  */
-export function roomGen(rowSize: number, colSize :number, entrances: number[][], growProbability: number) : number[][] {
+export function roomGen(rowSize: number, colSize: number, entrances: number[][], growProbability: number, clean: boolean): number[][] {
     // preconditions: rowsize/colsize must be positive
     // grow probability(x) = 0 > x <= 1
     // at least one entrance
@@ -27,18 +26,18 @@ export function roomGen(rowSize: number, colSize :number, entrances: number[][],
 
     // assign entrances
 
-    for (let i = 0;i < entrances.length; i++){
-     let row = entrances[i][0];
-     let col = entrances[i][1];
+    for (let i = 0; i < entrances.length; i++) {
+        let row = entrances[i][0];
+        let col = entrances[i][1];
 
-     room[row][col] = ENTRANCE;
+        room[row][col] = ENTRANCE;
     }
 
     // figure out middle row and col if entrances > 1
     let middleX = 0;
     let middleY = 0;
 
-    for (let i = 0; i < entrances.length; i++){
+    for (let i = 0; i < entrances.length; i++) {
         middleX += entrances[i][0];
         middleY += entrances[i][1];
     }
@@ -48,17 +47,17 @@ export function roomGen(rowSize: number, colSize :number, entrances: number[][],
     middleY = Math.floor(middleY / entrances.length);
 
     // first move rows towards middle row
-    for (let i = 0; i < entrances.length; i++){
+    for (let i = 0; i < entrances.length; i++) {
         let entrance = entrances[i];
         let entranceRow = entrance[0];
         let entranceCol = entrance[1];
 
         // grow towards middle, whichever way that is.
-        while (entranceRow < middleX){
+        while (entranceRow < middleX) {
             entranceRow++;
             room[entranceRow][entranceCol] = ROOM_TILE;
         }
-        while (entranceRow > middleX){
+        while (entranceRow > middleX) {
             entranceRow--;
             room[entranceRow][entranceCol] = ROOM_TILE
         }
@@ -68,15 +67,15 @@ export function roomGen(rowSize: number, colSize :number, entrances: number[][],
     let colMin = colSize;
     let colMax = 0;
 
-    for (let i = 0; i < entrances.length; i++){
+    for (let i = 0; i < entrances.length; i++) {
         let entrance = entrances[i];
         let entranceCol = entrance[1];
-        colMin = Math.min(colMin,entranceCol);
-        colMax = Math.max(colMax,entranceCol);
+        colMin = Math.min(colMin, entranceCol);
+        colMax = Math.max(colMax, entranceCol);
     }
 
     // grow cols to connect
-    while (colMin < colMax){
+    while (colMin < colMax) {
         colMin++;
         room[middleX][colMin] = ROOM_TILE;
     }
@@ -88,7 +87,7 @@ export function roomGen(rowSize: number, colSize :number, entrances: number[][],
     // array of x,y coords where empty tiles are.
 
 
-    const roomTiles : number[][] = [];
+    const roomTiles: number[][] = [];
 
     // collect all room tiles
     for (let i = 0; i < room.length; i++) {
@@ -104,26 +103,44 @@ export function roomGen(rowSize: number, colSize :number, entrances: number[][],
         const row = roomTiles[i][0];
         const col = roomTiles[i][1];
 
-        spread(row-1, col);  // down
-        spread(row, col+1);  // right
-        spread(row+1, col); // up
-        spread(row, col-1); // left
+        spread(row - 1, col);  // down
+        spread(row, col + 1);  // right
+        spread(row + 1, col); // up
+        spread(row, col - 1); // left
     }
 
-    function spread(row : number, col : number){
+    function spread(row: number, col: number) {
         // check bounds/conditions
-        if (row >= 0 && row < room.length && col >= 0 && col < room[row].length && room[row][col] == EMPTY){
+        if (row >= 0 && row < room.length && col >= 0 && col < room[row].length && room[row][col] == EMPTY) {
 
             // spread with probability
-            if (Math.random() < growProbability){
+            if (Math.random() < growProbability) {
                 room[row][col] = ROOM_TILE
-                spread(row-1, col);  // down
-                spread(row, col+1);  // right
-                spread(row+1, col); // up
-                spread(row, col-1); // left
+                spread(row - 1, col);  // down
+                spread(row, col + 1);  // right
+                spread(row + 1, col); // up
+                spread(row, col - 1); // left
             }
         }
     }
+
+    function cleanFinish() {
+        for (let row = 1; row < room.length - 1; row++) {
+            for (let col = 1; col < room[row].length - 1; col++) {
+                if (room[row][col] != EMPTY) continue;
+
+                let left = room[row][col - 1] == ROOM_TILE;
+                let right = room[row][col + 1] == ROOM_TILE;
+                let up = room[row - 1][col] == ROOM_TILE;
+                let down = room[row + 1][col] == ROOM_TILE;
+
+                if (left && right && up && down) room[row][col] = ROOM_TILE;
+
+            }
+        }
+    }
+
+    if (clean) cleanFinish();
 
     return room;
 }
