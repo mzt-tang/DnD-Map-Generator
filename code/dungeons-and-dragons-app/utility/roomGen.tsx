@@ -8,7 +8,7 @@ const ENTRANCE = 2;
  * Generates a random room with a change to grow
  * @param rowSize the number of rows
  * @param colSize the number of columns
- * @param entrances the entrances (array of x,y coordinates eg [[1,3],[3,2]])
+ * @param entrances the entrances (array of x,y coordinates eg [[0,3],[3,7]])
  * @param growProbability the probability that the room will grow (that is, it will be larger)
  * @param clean if you want the room to be cleaned of single tiles left after the grow function
  * @return room The new room in array form.
@@ -19,6 +19,7 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
     // at least one entrance
     // entrances are within the row/col size
     // if only single entrance, grow probability increased and decreases with distance.
+    // no corner entrances
 
     //todo if we want to maintain the walls around the room we need to implement changes to the grow function and
     // disallow corner room entrances as this would break it. Also if we want entrances to NOT be room edge pieces or
@@ -40,7 +41,7 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
         room[row][col] = ENTRANCE;
     }
 
-    // todo we could grow horizontally instead of vertically for more variation if we wanted
+    //todo we could grow horizontally instead of vertically for more variation if we wanted
     // this would involve using the middleY value instead of the middleX value.
 
     // figure out middle row and col if entrances > 1
@@ -61,6 +62,7 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
         let entrance = entrances[i];
         let entranceRow = entrance[0];
         let entranceCol = entrance[1];
+
 
         // grow towards middle, whichever way that is.
         while (entranceRow < middleX) {
