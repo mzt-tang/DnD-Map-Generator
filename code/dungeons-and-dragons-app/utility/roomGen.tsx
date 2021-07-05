@@ -20,6 +20,10 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
     // entrances are within the row/col size
     // if only single entrance, grow probability increased and decreases with distance.
 
+    //todo if we want to maintain the walls around the room we need to implement changes to the grow function and
+    // disallow corner room entrances as this would break it. Also if we want entrances to NOT be room edge pieces or
+    // if the room to be generated is not a perfect square this might break the generation algorithm.
+
     const singleEntrance = entrances.length == 1;
 
     //todo handle single entrances with simple/modified grow function
@@ -36,7 +40,7 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
         room[row][col] = ENTRANCE;
     }
 
-    //todo we could grow horizontally instead of vertically for more variation if we wanted
+    // todo we could grow horizontally instead of vertically for more variation if we wanted
     // this would involve using the middleY value instead of the middleX value.
 
     // figure out middle row and col if entrances > 1
@@ -156,7 +160,6 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
                 let down = room[row + 1][col] == ROOM_TILE;
 
                 if (left && right && up && down) room[row][col] = ROOM_TILE;
-
             }
         }
     }
