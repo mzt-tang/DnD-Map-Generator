@@ -1,8 +1,9 @@
-# image: gradle:alpine
-
 stages:
   - Build
   - Test
+  - Deploy
+
+image: gradle:alpine
 
 build:
   stage: Build
@@ -18,4 +19,12 @@ unit_testing:
     - shell
   script:
    - echo "test"
+  allow_failure: true
+
+deploy:
+  stage: Deploy
+  tags:
+    - shell
+  script:
+    - echo "deploying"
   allow_failure: true
