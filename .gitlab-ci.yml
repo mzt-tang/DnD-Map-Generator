@@ -22,20 +22,20 @@ build_b:
   allow_failure: false
 
 unit_testing:
+  stage:
+    - Test
   image: node:alpine
-cache:
-  key: ${CI_COMMIT_REF_SLUG}
-  paths:
-    - ~/.npm
-stages:
-  - test
-before_script:
-  - npm ci
-jest-tests:
-  stage: test
-  script:
-    - echo "Testing stage 1/1"
-    - npx jest --ci
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - ~/.npm
+  before_script:
+    - npm ci
+  jest-tests:
+    stage: Test
+    script:
+      - echo "Testing stage 1/1"
+      - npx jest --ci
 
 deploy_a:
   stage: Deploy
