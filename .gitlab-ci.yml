@@ -1,21 +1,54 @@
-# image: gradle:alpine
-
 stages:
   - Build
   - Test
+  - Deploy
 
-build:
+image: gradle:alpine
+
+build_a:
   stage: Build
   tags:
     - shell
   script:
-    - echo "build"
+    - echo "Building stage 1/2"
   allow_failure: false
 
-unit_testing:
+build_b:
+  stage: Build
+  tags:
+    - shell
+  script:
+    - echo "Building stage 2/2"
+  allow_failure: false
+
+unit_testing_a:
   stage: Test
   tags:
     - shell
   script:
-   - echo "test"
+   - echo "Testing stage 1/2"
+  allow_failure: true
+
+unit_testing_b:
+  stage: Test
+  tags:
+    - shell
+  script:
+   - echo "Testing stage 2/2"
+  allow_failure: true
+
+deploy_a:
+  stage: Deploy
+  tags:
+    - shell
+  script:
+    - echo "Deployment stage 1/2"
+  allow_failure: true
+
+deploy_b:
+  stage: Deploy
+  tags:
+    - shell
+  script:
+    - echo "Deployment stage 2/2"
   allow_failure: true
