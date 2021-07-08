@@ -68,11 +68,10 @@ class TileData {
             this.img = Image1;
         }
     }
-    
 }
 
 function fill(tileData: TileData[]) {
-    for (let i = 0; i < (40*25); i++){
+    for (let i = 0; i < (4*4); i++){
         tileData[i] = new TileData(1);
     }
 }
