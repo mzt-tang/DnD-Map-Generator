@@ -21,21 +21,21 @@ build_b:
     - echo "Building stage 2/2"
   allow_failure: false
 
-unit_testing_a:
-  stage: Test
-  tags:
-    - shell
+unit_testing:
+  image: node:alpine
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - ~/.npm
+stages:
+  - test
+before_script:
+  - npm ci
+jest-tests:
+  stage: test
   script:
-   - echo "Testing stage 1/2"
-  allow_failure: true
-
-unit_testing_b:
-  stage: Test
-  tags:
-    - shell
-  script:
-   - echo "Testing stage 2/2"
-  allow_failure: true
+    - echo "Testing stage 1/1"
+    - npx jest --ci
 
 deploy_a:
   stage: Deploy
