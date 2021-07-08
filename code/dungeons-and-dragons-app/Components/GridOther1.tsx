@@ -42,37 +42,8 @@ const GridOther = (props : GridOtherProps) => {
                 if (i > 0 && j > 0 && i < props.width-1 && j < props.height-1){
                     // Need to check tiles left, right, above, below, above left, above right, below left, below right
 
-                    if (props.tiles[i-1][j-1] == 1 && props.tiles[i-1][j] == 0 && props.tiles[i-1][j+1] == 0 && props.tiles[i][j-1] == 0 && props.tiles[i][j+1] == 0 && props.tiles[i+1][j-1] == 0 && props.tiles[i+1][j+1] == 0) {
-                        imagelink = props.images[5]
-                    }
-                    else if (props.tiles[i+1][j-1] == 1 && props.tiles[i-1][j] == 0 && props.tiles[i-1][j+1] == 0 && props.tiles[i][j-1] == 0 && props.tiles[i][j+1] == 0 && props.tiles[i-1][j-1] == 0 && props.tiles[i+1][j+1] == 0){
-                        imagelink = props.images[6]
-                    }
-                    else if (props.tiles[i-1][j+1] == 1 && props.tiles[i-1][j] == 0 && props.tiles[i-1][j-1] == 0 && props.tiles[i][j-1] == 0 && props.tiles[i][j+1] == 0 && props.tiles[i+1][j-1] == 0 && props.tiles[i+1][j+1] == 0){
-                        imagelink = props.images[4]
-                    }
-                    else if (props.tiles[i+1][j+1] == 1 && props.tiles[i-1][j] == 0 && props.tiles[i-1][j+1] == 0 && props.tiles[i][j-1] == 0 && props.tiles[i][j+1] == 0 && props.tiles[i+1][j-1] == 0 && props.tiles[i-1][j-1] == 0){
-                        imagelink = props.images[3]
-                    }
-
-                    if (props.tiles[i-1][j] == 1){
-                        imagelink = props.images[8]
-                    }
-                    else if (props.tiles[i+1][j] == 1){
-                        imagelink = props.images[7]
-                    }
-                    else if (props.tiles[i][j-1] == 1){
-                        imagelink = props.images[9]
-                    }
-                    else if (props.tiles[i][j+1] == 1){
-                        imagelink = props.images[10]
-                    }
-
-                    // all above the only surrounding floor tiles? - yes then wall up tile
-                    // all below tiles only surrounding floor tiles? - yes then wall below tile
-                    // all left tiles only surrounding floor tiles? - yes then wall left tile
-                    // all right tiles only surrounding floor tiles? - yes then wall right tile
-
+                    // Checks for tiles in the corners, if there is one floor tile in one corner only
+                    // Check for three tiles, in a corner formation around the current tile
                     if (props.tiles[i-1][j] == 1 && props.tiles[i-1][j-1] == 1 && props.tiles[i][j-1] == 1){
                         imagelink = props.images[3]
                     }
@@ -84,36 +55,60 @@ const GridOther = (props : GridOtherProps) => {
                     }
                     else if (props.tiles[i+1][j] == 1 && props.tiles[i+1][j+1] == 1 && props.tiles[i][j+1] == 1) {
                         imagelink = props.images[5]
+                    }// Checks for if there are floor tiles adjacent to the current tile
+                    else if (props.tiles[i-1][j] == 1){
+                        imagelink = props.images[8]
+                    }
+                    else if (props.tiles[i+1][j] == 1){
+                        imagelink = props.images[7]
+                    }
+                    else if (props.tiles[i][j-1] == 1){
+                        imagelink = props.images[9]
+                    }
+                    else if (props.tiles[i][j+1] == 1){
+                        imagelink = props.images[10]
+                    }
+                    else if (props.tiles[i-1][j-1] == 1 && props.tiles[i-1][j] == 0 && props.tiles[i-1][j+1] == 0 && props.tiles[i][j-1] == 0 && props.tiles[i][j+1] == 0 && props.tiles[i+1][j-1] == 0 && props.tiles[i+1][j+1] == 0) {
+                        imagelink = props.images[5]
+                    }
+                    else if (props.tiles[i+1][j-1] == 1 && props.tiles[i-1][j] == 0 && props.tiles[i-1][j+1] == 0 && props.tiles[i][j-1] == 0 && props.tiles[i][j+1] == 0 && props.tiles[i-1][j-1] == 0 && props.tiles[i+1][j+1] == 0){
+                        imagelink = props.images[6]
+                    }
+                    else if (props.tiles[i-1][j+1] == 1 && props.tiles[i-1][j] == 0 && props.tiles[i-1][j-1] == 0 && props.tiles[i][j-1] == 0 && props.tiles[i][j+1] == 0 && props.tiles[i+1][j-1] == 0 && props.tiles[i+1][j+1] == 0){
+                        imagelink = props.images[4]
+                    }
+                    else if (props.tiles[i+1][j+1] == 1 && props.tiles[i-1][j] == 0 && props.tiles[i-1][j+1] == 0 && props.tiles[i][j-1] == 0 && props.tiles[i][j+1] == 0 && props.tiles[i+1][j-1] == 0 && props.tiles[i-1][j-1] == 0){
+                        imagelink = props.images[3]
+                    }
+                    else {
+                        let countCorners = 0;
+                        if (props.tiles[i-1][j-1] == 1) {
+                            countCorners++;
+                        }
+                        if (props.tiles[i+1][j-1] == 1) {
+                            countCorners++;
+                        }
+                        if (props.tiles[i-1][j+1] == 1) {
+                            countCorners++;
+                        }
+                        if (props.tiles[i+1][j+1] == 1) {
+                            countCorners++;
+                        }
+
+                        if (countCorners > 0) {
+                            imagelink = props.images[11]
+                        }
                     }
 
-                    // all left and above tiles the only surrouding floor tiles? - yes then corner top left tile
-                    // all left and below tiles only surrounding floor tiles? - yes then corner below left tile
-                    // all right and above tiles only surrounding floor tiles? - yes then corner above right tile
-                    // all right and below tiles only surrounding floor tiles? - yes then corner below right tile
+                    // Check and count how many corner tiles there are around the current tile, if there are more than two, 
+                    // and none of the other conditions are met, put in another tile type.
 
-                    // bottom right the only floor tile? - yes then corner top left tile
-                    // bottom left the only floor tile? - yes then corner top right tile
-                    // top right the only floor tile? - yes then corner below left tile
-                    // top left the only floor tile? - yes then corner below right tile
                 }
             }
             row.push(imagelink)
         }
         rows.push(row)
     }
-
-    //props.tiles.forEach(function(e1 : number[],index : number){
-        //  row
-      //  let row : JSX.Element[] = []
-      //  e1.forEach(function(e2:number,index2:number){
-            //  col
-            // numbers should reference a tile in images
-      //      const imagelink = props.images[e2]
-      //      row.push(imagelink)
-
-      //  })
-      //  rows.push(row)
-    //})
 
     return (
         <div className="grid-display" style={mapStyle(props.width,props.height)}>{rows}</div>
