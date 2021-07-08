@@ -3,7 +3,7 @@ stages:
   - Test
   - Deploy
 
-image: gradle:alpine
+image: node:alpine
 
 build_a:
   stage: Build
@@ -22,9 +22,7 @@ build_b:
   allow_failure: false
 
 unit_testing:
-  stage:
-    - Test
-  image: node:alpine
+  stage: Test
   cache:
     key: ${CI_COMMIT_REF_SLUG}
     paths:
@@ -36,6 +34,7 @@ unit_testing:
     script:
       - echo "Testing stage 1/1"
       - npx jest --ci
+  allow_failure: false
 
 deploy_a:
   stage: Deploy
