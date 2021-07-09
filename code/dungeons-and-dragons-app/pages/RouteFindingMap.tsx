@@ -14,7 +14,6 @@ import Image9 from '../assets/Floor.png';
 import Image10 from '../assets/Light.png';
 import Image11 from '../assets/Dark.png';
 
-import Room from '../components/Room';
 import Pixel from '../components/Pixel';
 import Map from '../components/Map';
 
