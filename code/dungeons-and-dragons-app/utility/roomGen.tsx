@@ -179,7 +179,7 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
 
     function checkEdgeTile(row: number, col: number): boolean {
         return (((row == 0 || row == room.length-1) && (col != 0 && col != room[0].length-1))
-            || ((col == 0 || col == room.length-1) && (row != 0 && row != room[0].length-1)));
+            || ((col == 0 || col == room[0].length-1) && (row != 0 && row != room.length-1)));
 
         // This actually creates some interesting rooms
         // return (((row == 0 || row == room.length) && (col != 0 && col != room[0].length))

@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import {Checkbox, Slider, Typography} from '@material-ui/core';
 import empty from '../assets/Dark.png';
 import floor from '../assets//Light.png';
-import entrance from '../assets/images4/Floor.png';
+import entrance from '../assets/Floor.png';
 
 
 import '../utility/roomGen';
@@ -17,7 +17,7 @@ const Room = () => {
     const[rows, setRows] = useState(20);
     const[cols,setCols] = useState(20);
     const[probability,setProbability] = useState(0.35);
-    const[entrances,setEntrances] = useState([[10,0],[0,12]])
+    const[entrances,setEntrances] = useState([[10,0],[0,12],[0,13],[0,14],[0,18],[5,0]])
     const[clean, setClean] = useState(true)
 
     const images : JSX.Element[] = [
