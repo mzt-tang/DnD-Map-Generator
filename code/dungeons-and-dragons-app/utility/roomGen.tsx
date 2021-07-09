@@ -40,8 +40,7 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
 
         //Checks entrance isn't a corner entrance and is on the edge.
         console.assert ((row == 0 || row == room.length-1) && (col == 0 || room[0].length), "Entrances can't be corner tiles!");
-        console.assert(((row == 0 || row == room.length) && (col != 0 || col != room[0].length))
-            && ((col == 0 || col == room.length) && (row != 0 || row != room[0].length)), "Entrances must be an edge tile!")
+        console.assert(checkEdgeTile(row, col), "Entrances must be an edge tile!")
 
         room[row][col] = ENTRANCE;
     }
@@ -68,6 +67,14 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
         let entranceRow = entrance[0];
         let entranceCol = entrance[1];
 
+        //Checks if entrance is on column edge. If it is move it 1 over to avoid a edge path.
+        if (entranceCol == 0) {
+            entranceCol++;
+            room[entranceRow][entranceCol] = ROOM_TILE;
+        } else if (entranceCol == room[0].length) {
+            entranceCol--;
+            room[entranceRow][entranceCol] = ROOM_TILE;
+        }
 
         // grow towards middle, whichever way that is.
         while (entranceRow < middleX) {
@@ -139,8 +146,7 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
      */
     function spread(row: number, col: number) {
         // check bounds/conditions
-        if (row >= 0 && row < room.length && col >= 0 && col < room[row].length && room[row][col] == EMPTY) {
-
+        if (row >= 0 && row < room.length && col >= 0 && col < room[row].length && room[row][col] == EMPTY && !checkEdgeTile(row, col)) {
             // spread with probability
             if (Math.random() < growProbability) {
                 room[row][col] = ROOM_TILE
@@ -169,5 +175,14 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
                 if (left && right && up && down) room[row][col] = ROOM_TILE;
             }
         }
+    }
+
+    function checkEdgeTile(row: number, col: number): boolean {
+        return (((row == 0 || row == room.length-1) && (col != 0 && col != room[0].length-1))
+            || ((col == 0 || col == room.length-1) && (row != 0 && row != room[0].length-1)));
+
+        // This actually creates some interesting rooms
+        // return (((row == 0 || row == room.length) && (col != 0 && col != room[0].length))
+        //     || ((col == 0 || col == room.length) && (row != 0 && row != room[0].length)));
     }
 }
