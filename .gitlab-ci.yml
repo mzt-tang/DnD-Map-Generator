@@ -21,19 +21,19 @@ build_b:
     - echo "Building stage 2/2"
   allow_failure: false
 
-unit_testing:
-  stage: Test
-  cache:
+cache:
     key: ${CI_COMMIT_REF_SLUG}
     paths:
       - ~/.npm
-  before_script:
+
+before_script:
     - npm ci
-  jest-tests:
-    stage: Test
-    script:
-      - echo "Testing stage 1/1"
-      - npx jest --ci
+
+unit_testing:
+  stage: Test
+  script:
+    - echo "Testing stage 1/1"
+    - npx jest --ci
   allow_failure: false
 
 deploy_a:
