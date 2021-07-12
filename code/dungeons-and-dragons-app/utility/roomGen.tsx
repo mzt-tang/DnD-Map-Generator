@@ -32,14 +32,14 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
     // Start with array of 0's
     let room = Array.from(Array(rowSize), _ => Array(colSize).fill(EMPTY));
 
-
     // assign entrances
     for (let i = 0; i < entrances.length; i++) {
         let row = entrances[i][0];
         let col = entrances[i][1];
 
         //Checks entrance isn't a corner entrance and is on the edge.
-        console.assert ((row == 0 || row == room.length-1) && (col == 0 || room[0].length), "Entrances can't be corner tiles!");
+        let isCornerTile = (row == 0 || row == rowSize-1) && (col == 0 || col == colSize-1);
+        console.assert (!isCornerTile,"Entrances can't be corner tiles! row: " + row + " col: " + col);
         console.assert(checkEdgeTile(row, col), "Entrances must be an edge tile!")
 
         room[row][col] = ENTRANCE;
