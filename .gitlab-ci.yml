@@ -28,6 +28,8 @@ cache:
 
 unit_testing:
   stage: Test
+  tags:
+    - shell
   script:
     - echo "Testing stage 1/1"
     - npx jest --ci
