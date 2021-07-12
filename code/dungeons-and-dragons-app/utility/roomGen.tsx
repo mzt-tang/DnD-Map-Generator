@@ -38,10 +38,47 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
         room[row][col] = ENTRANCE;
     }
 
-    growRoomInwards();
+    if (singleEntrance){
+        handleSingleEntrance()
+    } else {
+        // pick randomly from a selection of entrance connection methods here
+        growRoomInwards();
+    }
+
     spreadRoomTiles();
 
     return room;
+
+    /**
+     * Places room tiles from the entrance to the middle of the room to allow the grow function to generate
+     * more consistent rooms.
+     */
+    function handleSingleEntrance() {
+        let row = entrances[0][0];
+        let col = entrances[0][1];
+
+        if (row == 0) {
+            while (row < rowSize / 2) {
+                row++;
+                room[row][col] = ROOM_TILE;
+            }
+        } else if (row == room.length - 1) {
+            while (row > rowSize / 2) {
+                row--;
+                room[row][col] = ROOM_TILE;
+            }
+        } else if (col == 0) {
+            while (col < colSize / 2) {
+                col++;
+                room[row][col] = ROOM_TILE;
+            }
+        } else if (col == room[0].length - 1) {
+            while (col > colSize / 2) {
+                col--;
+                room[row][col] = ROOM_TILE;
+            }
+        }
+    }
 
     /**
      * Collects all the room tiles which connect the entrances and spreads with the probability passed to the room.
