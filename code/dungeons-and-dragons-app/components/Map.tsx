@@ -190,13 +190,13 @@ export default function map(props: mapProps) {
             roomTop++;
         }
     }
-    var rooms: Room[] = [(new Room(0, 0, 10, 10, [0, 0], [0, 0], [4, 6], [0, 0])), (new Room(30, 20, 40, 30, [4, 6], [0, 0], [0, 0], [4, 6]))]
+    var rooms: Room[] = [(new Room(0, 0, 10, 10, [0, 0], [0, 0], [4, 6], [0, 0],'NULL')), (new Room(30, 20, 40, 30, [4, 6], [0, 0], [0, 0], [4, 6],'NULL'))]
 
     var foundExit: Boolean = false;
     var roomIndex = 0;
     var no = 0;
-    var no2 = 0;
-    while (no < 4) {
+    var pRoom:String = ''
+    while (no < 3) {
         var prevRoom: Room = rooms[roomIndex]
         var southEntrance = [0, 0]
         var northEntrance = [0, 0]
@@ -206,30 +206,36 @@ export default function map(props: mapProps) {
         var left = 0
         var top = 0
         if (prevRoom.north[0] > 0) {
-            southEntrance = rooms[roomIndex].north
-            prevEntrance = 'SOUTH'
+            if(prevRoom.entrance != 'NORTH') {
+                southEntrance = rooms[roomIndex].north
+                prevEntrance = 'SOUTH'
+                left = prevRoom.left
+                top = prevRoom.top-10
+            }
+
         } else if (prevRoom.south[0] > 0) {
-            northEntrance = rooms[roomIndex].south
-            prevEntrance = 'NORTH'
+            if(prevRoom.entrance != 'SOUTH') {
+                northEntrance = rooms[roomIndex].south
+                prevEntrance = 'NORTH'
+                left = prevRoom.left
+                top = prevRoom.height
+            }
+
         } else if (prevRoom.east[0] > 0) {
-            westEntrance = rooms[roomIndex].east
-            prevEntrance = 'WEST'
+            if(prevRoom.entrance != 'EAST') {
+                westEntrance = rooms[roomIndex].east
+                prevEntrance = 'WEST'
+                left = prevRoom.width
+                top = prevRoom.top
+            }
+
         } else if (prevRoom.west[0] > 0) {
-            eastEntrance = rooms[roomIndex].west
-            prevEntrance = 'EAST'
-        }
-        if (prevEntrance == 'SOUTH') {
-            left = prevRoom.left
-            top = prevRoom.top-10
-        } else if(prevEntrance == 'WEST') {
-            left = prevRoom.width
-            top = prevRoom.top
-        } else if(prevEntrance == 'EAST') {
-            left = prevRoom.left-10
-            top = prevRoom.top
-        } else if(prevEntrance == 'NORTH') {
-            left = prevRoom.left
-            top = prevRoom.height
+            if(prevRoom.entrance != 'WEST') {
+                eastEntrance = rooms[roomIndex].west
+                prevEntrance = 'EAST'
+                left = prevRoom.left-10
+                top = prevRoom.top
+            }
         }
         var possibleEntrances = []
         if(prevEntrance != 'NORTH' && top > 0) {
@@ -270,7 +276,7 @@ export default function map(props: mapProps) {
                 break;
             }
         }
-        no2 = possibleEntrances.length
+        pRoom = prevRoom.entrance
 
         // if (prevEntrance != 'NORTH' && Math.random() < 0.5 && top > 0) {
         //     northEntrance = [4, 6]
@@ -282,7 +288,7 @@ export default function map(props: mapProps) {
         //     westEntrance = [4, 6]
         // }
 
-        rooms.splice(roomIndex + 1, 0, new Room(left, top, left + 10, top + 10, northEntrance, southEntrance, eastEntrance, westEntrance))
+        rooms.splice(roomIndex + 1, 0, new Room(left, top, left + 10, top + 10, northEntrance, southEntrance, eastEntrance, westEntrance,prevEntrance))
         roomIndex++;
         // if(left == 30 && top == 20) {
         //     foundExit = true;
@@ -315,7 +321,7 @@ export default function map(props: mapProps) {
 
             {makeImages()}
             {pixelDisplay}
-            {no2}
+            {pRoom}
         </div>
     )
 }
@@ -341,7 +347,8 @@ class Room {
         [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
         [8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
     ];
-    constructor(startLeft: number, startTop: number, width: number, height: number, northDoor: number[], southDoor: number[], eastDoor: number[], westDoor: number[]) {
+    entrance: String
+    constructor(startLeft: number, startTop: number, width: number, height: number, northDoor: number[], southDoor: number[], eastDoor: number[], westDoor: number[], originalEntrance: String) {
         this.north = northDoor;
         this.south = southDoor;
         this.east = eastDoor;
@@ -351,6 +358,7 @@ class Room {
         this.width = width;
         this.height = height;
         this.assignEntrances();
+        this.entrance = originalEntrance
     }
 
     private assignEntrances() {
