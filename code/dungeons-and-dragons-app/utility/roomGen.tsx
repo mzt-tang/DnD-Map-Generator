@@ -1,4 +1,3 @@
-
 const EMPTY = 0;
 const ROOM_TILE = 1;
 const ENTRANCE = 2;
@@ -21,10 +20,6 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
     // if only single entrance, grow probability increased and decreases with distance.
     // no corner entrances
 
-    //todo if we want to maintain the walls around the room we need to implement changes to the grow function and
-    // disallow corner room entrances as this would break it. Also if we want entrances to NOT be room edge pieces or
-    // if the room to be generated is not a perfect square this might break the generation algorithm.
-
     const singleEntrance = entrances.length == 1;
 
     //todo handle single entrances with simple/modified grow function
@@ -38,15 +33,15 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
         let col = entrances[i][1];
 
         //Checks entrance isn't a corner entrance and is on the edge.
-        let isCornerTile = (row == 0 || row == rowSize-1) && (col == 0 || col == colSize-1);
-        console.assert (!isCornerTile,"Entrances can't be corner tiles! row: " + row + " col: " + col);
+        let isCornerTile = (row == 0 || row == rowSize - 1) && (col == 0 || col == colSize - 1);
+        console.assert(!isCornerTile, "Entrances can't be corner tiles! row: " + row + " col: " + col);
         console.assert(checkEdgeTile(row, col), "Entrances must be an edge tile!")
 
         room[row][col] = ENTRANCE;
     }
 
-    //todo we could grow horizontally instead of vertically for more variation if we wanted
-    // this would involve using the middleY value instead of the middleX value.
+    /** we could grow horizontally instead of vertically for more variation if we wanted
+     this would involve using the middleY value instead of the middleX value. */
 
     // figure out middle row and col if entrances > 1
     let middleX = 0;
@@ -71,7 +66,7 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
         if (entranceCol == 0) {
             entranceCol++;
             room[entranceRow][entranceCol] = ROOM_TILE;
-        } else if (entranceCol == room[0].length) {
+        } else if (entranceCol == room[0].length-1) {
             entranceCol--;
             room[entranceRow][entranceCol] = ROOM_TILE;
         }
@@ -88,7 +83,7 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
     }
 
     // ensure middle cols grow to size of rows bounds.
-    let colMin = colSize;
+    let colMin = colSize-1;
     let colMax = 0;
 
     for (let i = 0; i < entrances.length; i++) {
@@ -99,7 +94,7 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
     }
 
     // grow cols to connect all entrances
-    while (colMin < colMax) {
+    while (colMin < colMax-1) {
         colMin++;
         room[middleX][colMin] = ROOM_TILE;
     }
@@ -178,11 +173,7 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
     }
 
     function checkEdgeTile(row: number, col: number): boolean {
-        return (((row == 0 || row == room.length-1) && (col != 0 && col != room[0].length-1))
-            || ((col == 0 || col == room.length-1) && (row != 0 && row != room[0].length-1)));
-
-        // This actually creates some interesting rooms
-        // return (((row == 0 || row == room.length) && (col != 0 && col != room[0].length))
-        //     || ((col == 0 || col == room.length) && (row != 0 && row != room[0].length)));
+        return (((row == 0 || row == room.length - 1) && (col != 0 && col != room[0].length - 1))
+            || ((col == 0 || col == room.length - 1) && (row != 0 && row != room[0].length - 1)));
     }
 }
