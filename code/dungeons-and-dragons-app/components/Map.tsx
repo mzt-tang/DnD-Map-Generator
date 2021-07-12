@@ -190,20 +190,21 @@ export default function map(props: mapProps) {
             roomTop++;
         }
     }
-    var rooms: Room[] = [(new Room(0, 0, 10, 10, [0, 0], [0, 0], [4, 6], [0, 0])), (new Room(30, 20, 40, 30, [4, 6], [0, 0], [0, 0], [0, 0]))]
+    var rooms: Room[] = [(new Room(0, 0, 10, 10, [0, 0], [0, 0], [4, 6], [0, 0])), (new Room(30, 20, 40, 30, [4, 6], [0, 0], [0, 0], [4, 6]))]
 
     var foundExit: Boolean = false;
     var roomIndex = 0;
     var no = 0;
-    while (!foundExit) {
+    var no2 = 0;
+    while (no < 4) {
         var prevRoom: Room = rooms[roomIndex]
         var southEntrance = [0, 0]
         var northEntrance = [0, 0]
         var eastEntrance = [0, 0]
         var westEntrance = [0, 0]
         var prevEntrance: String = ''
-        var left
-        var top
+        var left = 0
+        var top = 0
         if (prevRoom.north[0] > 0) {
             southEntrance = rooms[roomIndex].north
             prevEntrance = 'SOUTH'
@@ -217,65 +218,69 @@ export default function map(props: mapProps) {
             eastEntrance = rooms[roomIndex].west
             prevEntrance = 'EAST'
         }
-        if (prevEntrance == 'SOUTH' || prevEntrance == 'NORTH') {
+        if (prevEntrance == 'SOUTH') {
             left = prevRoom.left
-            top = prevRoom.height
-        } else {
+            top = prevRoom.top-10
+        } else if(prevEntrance == 'WEST') {
             left = prevRoom.width
             top = prevRoom.top
+        } else if(prevEntrance == 'EAST') {
+            left = prevRoom.left-10
+            top = prevRoom.top
+        } else if(prevEntrance == 'NORTH') {
+            left = prevRoom.left
+            top = prevRoom.height
         }
-        switch (prevEntrance) {
-            case 'NORTH':
-                var rand = Math.random()
-                if (rand <= 0.3) {
-                    southEntrance = [4, 6]
-                } else if (rand > 0.3 && rand < 0.6) {
-                    eastEntrance = [4, 6]
-                } else {
-                    westEntrance = [4, 6]
-                }
-                break;
-            case 'SOUTH':
-                var rand = Math.random()
-                if (rand <= 0.3) {
-                    northEntrance = [4, 6]
-                } else if (rand > 0.3 && rand < 0.6) {
-                    eastEntrance = [4, 6]
-                } else {
-                    westEntrance = [4, 6]
-                }
-                break;
-            case 'EAST':
-                var rand = Math.random()
-                if (rand <= 0.3) {
-                    northEntrance = [4, 6]
-                } else if (rand > 0.3 && rand < 0.6) {
-                    southEntrance = [4, 6]
-                } else {
-                    westEntrance = [4, 6]
-                }
-                break;
-            case 'WEST':
-                var rand = Math.random()
-                if (rand <= 0.3) {
-                    northEntrance = [4, 6]
-                } else if (rand > 0.3 && rand < 0.6) {
-                    southEntrance = [4, 6]
-                } else {
-                    eastEntrance = [4, 6]
-                }
-                break;
+        var possibleEntrances = []
+        if(prevEntrance != 'NORTH' && top > 0) {
+            possibleEntrances.push('NORTH')
+        }
+        if(prevEntrance != 'SOUTH' && top < 20) {
+            possibleEntrances.push('SOUTH')
+        }
+        if(prevEntrance != 'EAST' && left < 30) {
+            possibleEntrances.push('EAST')
+        }
+        if(prevEntrance != 'WEST' && left > 0) {
+            possibleEntrances.push('WEST')
+        }
 
+        for(var i = 0; i < possibleEntrances.length; i++) {
+            if(i == possibleEntrances.length-1) {
+                if(possibleEntrances[i] == 'NORTH') {
+                    northEntrance = [4,6]
+                } else if(possibleEntrances[i] == 'SOUTH') {
+                    southEntrance = [4,6]
+                } else if(possibleEntrances[i] == 'EAST') {
+                    eastEntrance = [4,6]
+                } else if(possibleEntrances[i] == 'WEST') {
+                    westEntrance = [4,6]
+                }
+            }
+            if(Math.random() > 0.5) {
+                if(possibleEntrances[i] == 'NORTH') {
+                    northEntrance = [4,6]
+                } else if(possibleEntrances[i] == 'SOUTH') {
+                    southEntrance = [4,6]
+                } else if(possibleEntrances[i] == 'EAST') {
+                    eastEntrance = [4,6]
+                } else if(possibleEntrances[i] == 'WEST') {
+                    westEntrance = [4,6]
+                }
+                break;
+            }
         }
-        if (prevEntrance != 'NORTH' && Math.random() < 0.5 && top > 0) {
-            northEntrance = [4, 6]
-        } else if (prevEntrance != 'SOUTH' && Math.random() < 0.5 && top < 30) {
-            southEntrance = [4, 6]
-        } else if (prevEntrance != 'EAST' && Math.random() < 0.5 && left < 40) {
-            eastEntrance = [4, 6]
-        } else if (prevEntrance != 'WEST' && Math.random() < 0.5 && left > 0) {
-            westEntrance = [4, 6]
-        }
+        no2 = possibleEntrances.length
+
+        // if (prevEntrance != 'NORTH' && Math.random() < 0.5 && top > 0) {
+        //     northEntrance = [4, 6]
+        // } else if (prevEntrance != 'SOUTH' && Math.random() < 0.5 && top < 30) {
+        //     southEntrance = [4, 6]
+        // } else if (prevEntrance != 'EAST' && Math.random() < 0.5 && left < 40) {
+        //     eastEntrance = [4, 6]
+        // } else if (prevEntrance != 'WEST' && Math.random() < 0.5 && left > 0) {
+        //     westEntrance = [4, 6]
+        // }
 
         rooms.splice(roomIndex + 1, 0, new Room(left, top, left + 10, top + 10, northEntrance, southEntrance, eastEntrance, westEntrance))
         roomIndex++;
@@ -283,6 +288,7 @@ export default function map(props: mapProps) {
         //     foundExit = true;
         // }
         foundExit = true;
+        no++
     }
 
 
@@ -309,6 +315,7 @@ export default function map(props: mapProps) {
 
             {makeImages()}
             {pixelDisplay}
+            {no2}
         </div>
     )
 }

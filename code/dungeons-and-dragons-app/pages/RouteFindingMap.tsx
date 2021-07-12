@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import {Text, TouchableOpacity} from 'react-native';
-import { BrowserRouter, Route } from "react-router-dom";
 
 import Image1 from '../assets/TLCorner.png';
 import Image2 from '../assets/BLCorner.png';
