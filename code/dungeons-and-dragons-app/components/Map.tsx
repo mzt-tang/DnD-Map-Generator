@@ -190,118 +190,80 @@ export default function map(props: mapProps) {
             roomTop++;
         }
     }
-    var rooms: Room[] = [(new Room(0, 0, 10, 10, [0, 0], [0, 0], [4, 6], [0, 0],'NULL')), (new Room(30, 20, 40, 30, [4, 6], [0, 0], [0, 0], [4, 6],'NULL'))]
+    var rooms: Room[] = [(new Room(0, 0, 10, 10, [0, 0], [0, 0], [0, 0], [0, 0],'NULL'))]
+    // rooms.forEach(function (e1: Room, index: number) {
+    //     addRoom(e1.left, e1.top, e1.width, e1.height, e1.room)
+    // })
 
-    var foundExit: Boolean = false;
-    var roomIndex = 0;
-    var no = 0;
-    var pRoom:String = ''
-    while (no < 3) {
-        var prevRoom: Room = rooms[roomIndex]
-        var southEntrance = [0, 0]
-        var northEntrance = [0, 0]
-        var eastEntrance = [0, 0]
-        var westEntrance = [0, 0]
-        var prevEntrance: String = ''
-        var left = 0
-        var top = 0
-        if (prevRoom.north[0] > 0) {
-            if(prevRoom.entrance != 'NORTH') {
-                southEntrance = rooms[roomIndex].north
-                prevEntrance = 'SOUTH'
-                left = prevRoom.left
-                top = prevRoom.top-10
-            }
-
-        } else if (prevRoom.south[0] > 0) {
-            if(prevRoom.entrance != 'SOUTH') {
-                northEntrance = rooms[roomIndex].south
-                prevEntrance = 'NORTH'
-                left = prevRoom.left
-                top = prevRoom.height
-            }
-
-        } else if (prevRoom.east[0] > 0) {
-            if(prevRoom.entrance != 'EAST') {
-                westEntrance = rooms[roomIndex].east
-                prevEntrance = 'WEST'
-                left = prevRoom.width
-                top = prevRoom.top
-            }
-
-        } else if (prevRoom.west[0] > 0) {
-            if(prevRoom.entrance != 'WEST') {
-                eastEntrance = rooms[roomIndex].west
-                prevEntrance = 'EAST'
-                left = prevRoom.left-10
-                top = prevRoom.top
-            }
-        }
-        var possibleEntrances = []
-        if(prevEntrance != 'NORTH' && top > 0) {
-            possibleEntrances.push('NORTH')
-        }
-        if(prevEntrance != 'SOUTH' && top < 20) {
-            possibleEntrances.push('SOUTH')
-        }
-        if(prevEntrance != 'EAST' && left < 30) {
-            possibleEntrances.push('EAST')
-        }
-        if(prevEntrance != 'WEST' && left > 0) {
-            possibleEntrances.push('WEST')
-        }
-
-        for(var i = 0; i < possibleEntrances.length; i++) {
-            if(i == possibleEntrances.length-1) {
-                if(possibleEntrances[i] == 'NORTH') {
-                    northEntrance = [4,6]
-                } else if(possibleEntrances[i] == 'SOUTH') {
-                    southEntrance = [4,6]
-                } else if(possibleEntrances[i] == 'EAST') {
-                    eastEntrance = [4,6]
-                } else if(possibleEntrances[i] == 'WEST') {
-                    westEntrance = [4,6]
-                }
-            }
+    var roomX = 0;
+    var roomY = 0;
+    while (roomX <= 30 && roomY <= 20) {
+        var origX = roomX;
+        var origY = roomY;
+        var southEntrance = [0,0]
+        var eastEntrance = [0,0]
+        if(roomX != 30 && roomY != 20) {
             if(Math.random() > 0.5) {
-                if(possibleEntrances[i] == 'NORTH') {
-                    northEntrance = [4,6]
-                } else if(possibleEntrances[i] == 'SOUTH') {
-                    southEntrance = [4,6]
-                } else if(possibleEntrances[i] == 'EAST') {
-                    eastEntrance = [4,6]
-                } else if(possibleEntrances[i] == 'WEST') {
-                    westEntrance = [4,6]
-                }
-                break;
+                roomX += 10;
+                eastEntrance = [4,6]
+            } else {
+                roomY += 10;
+                southEntrance = [4,6]
+            }
+        } else {
+            if(roomX == 30 && roomY == 20) {
+                roomY+=10;
+            } else if(roomX == 30) {
+                roomY +=10;
+                southEntrance = [4,6]
+            } else {
+                roomX +=10;
+                eastEntrance = [4,6]
             }
         }
-        pRoom = prevRoom.entrance
+        var roomToAdd:Room = new Room(origX,origY,origX+10,origY+10,[0,0],southEntrance,eastEntrance,[0,0],'NULL')
+        addRoom(roomToAdd.left,roomToAdd.top,roomToAdd.width,roomToAdd.height,roomToAdd.room)
 
-        // if (prevEntrance != 'NORTH' && Math.random() < 0.5 && top > 0) {
-        //     northEntrance = [4, 6]
-        // } else if (prevEntrance != 'SOUTH' && Math.random() < 0.5 && top < 30) {
-        //     southEntrance = [4, 6]
-        // } else if (prevEntrance != 'EAST' && Math.random() < 0.5 && left < 40) {
-        //     eastEntrance = [4, 6]
-        // } else if (prevEntrance != 'WEST' && Math.random() < 0.5 && left > 0) {
-        //     westEntrance = [4, 6]
-        // }
 
-        rooms.splice(roomIndex + 1, 0, new Room(left, top, left + 10, top + 10, northEntrance, southEntrance, eastEntrance, westEntrance,prevEntrance))
-        roomIndex++;
-        // if(left == 30 && top == 20) {
-        //     foundExit = true;
-        // }
-        foundExit = true;
-        no++
     }
+    // var roomID:String[] = [];
 
+    // rooms.forEach(function (e1: Room, index: number) {
+    //     addRoom(e1.left, e1.top, e1.width, e1.height, e1.room)
+    // })
+    // rooms.forEach(function (e1: Room, index: number) {
+    //     roomID.push(e1.entrance)
+    // })
 
-    rooms.forEach(function (e1: Room, index: number) {
-        addRoom(e1.left, e1.top, e1.width, e1.height, e1.room)
-    })
+    let mapGridTest: number[][] = [
+        [10,10,10,10,10,10],
+        [10,10,10,10,10,10],
+        [10,10,10,10,10,10],
+        [10,10,10,10,10,10],
+    ]
 
+    var x = 1;
+    var y = 0;
+    mapGridTest[0][0] = 9;
+    var n = 0
+    while(x < 6 && y < 4) {
+        mapGridTest[y][x] = 9;
+        if(x != 5 && y != 3) {
+            if(Math.random() > 0.5) {
+                x++;
+            } else {
+                y++;
+            }
+        } else {
+            if(x == 5) {
+                y++;
+            } else {
+                x++;
+            }
+        }
+        
+        n++;
+    }
     let pixelDisplay: JSX.Element[][] = []
     function makeImages() {
         mapGrid.forEach(function (e1: number[], index: number) {
@@ -316,12 +278,26 @@ export default function map(props: mapProps) {
             pixelDisplay.push(row)
         })
     }
+    let pixelDisplayTest: JSX.Element[][] = []
+    function makeImagesTest() {
+        mapGridTest.forEach(function (e1: number[], index: number) {
+            //  row
+            let row: JSX.Element[] = []
+            e1.forEach(function (e2: number, index2: number) {
+                //  col
+                // numbers should reference a tile in images
+                const imagelink = props.images[e2]
+                row.push(imagelink)
+            })
+            pixelDisplayTest.push(row)
+        })
+    }
     return (
         <div id="map" style={mapStyle(40, 25)}>
 
             {makeImages()}
             {pixelDisplay}
-            {pRoom}
+            {/* {roomID} */}
         </div>
     )
 }
