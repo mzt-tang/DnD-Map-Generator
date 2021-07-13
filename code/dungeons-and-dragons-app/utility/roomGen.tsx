@@ -42,7 +42,11 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
         handleSingleEntrance()
     } else {
         // pick randomly from a selection of entrance connection methods here
-        growRoomInwards();
+        if (Math.random() > 0.5) {
+            growRoomInwards();
+        } else {
+            growRoomEdgeWise();
+        }
     }
 
     spreadRoomTiles();
@@ -109,6 +113,113 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
         if (clean) cleanFinish();
     }
 
+    function growRoomEdgeWise() {
+
+        const numEntrances = entrances.length;
+
+        //Get the first entrance room tile iteration
+        let firstEntranceRow = IterateFirstRoomTile(entrances[0][0], entrances[0][1], false);
+        let firstEntranceCol = IterateFirstRoomTile(entrances[0][0], entrances[0][1], true);
+
+        //Iterate the other entrances' first tiles
+        for (let i = 1; i < entrances.length; i++) {
+            let entrance = entrances[i];
+            IterateFirstRoomTile(entrance[0], entrance[1], false);
+            IterateFirstRoomTile(entrance[0], entrance[1], true);
+        }
+
+        //If row edge, pick a direction = vertical. Else horizontal.
+        if (firstEntranceRow == 1 || firstEntranceRow == rowSize - 2) {
+            growHorizontal(firstEntranceRow, firstEntranceCol, (Math.random() < 0.5), 1, numEntrances);
+        } else {
+            growVertical(firstEntranceRow, firstEntranceCol, (Math.random() < 0.5), 1, numEntrances);
+        }
+    }
+
+    function growVertical(row: number, col: number, isUp: boolean, coveredEntrances: number, numEntrances: number) {
+        if (isUp) {
+            for (let i = row; i > 0; i--) {
+                if (i != row && room[i][col] == ROOM_TILE) {
+                    coveredEntrances++
+                    if (coveredEntrances == numEntrances) {
+                        return;
+                    }
+                }
+                room[i][col] = ROOM_TILE;
+            }
+
+            growHorizontal(1, col, col != 1, coveredEntrances, numEntrances);
+        } else {
+            for (let i = row; i < rowSize - 1 ; i++) {
+                if (i != row && room[i][col] == ROOM_TILE) {
+                    coveredEntrances++
+                    if (coveredEntrances == numEntrances) {
+                        return;
+                    }
+                }
+                room[i][col] = ROOM_TILE;
+            }
+
+            growHorizontal(rowSize - 2, col, col != 1, coveredEntrances, numEntrances);
+        }
+    }
+
+    function growHorizontal(row: number, col: number, isLeft: boolean, coveredEntrances: number, numEntrances: number) {
+        if (isLeft) {
+            for (let i = col; i > 0; i--) {
+                if (i != col && room[row][i] == ROOM_TILE) {
+                    coveredEntrances++
+                    if (coveredEntrances == numEntrances) {
+                        return;
+                    }
+                }
+                room[row][i] = ROOM_TILE;
+            }
+
+            growVertical(row, 1, row != 1, coveredEntrances, numEntrances);
+        } else {
+            for (let i = col; i < colSize - 1 ; i++) {
+                if (i != col && room[row][i] == ROOM_TILE) {
+                    coveredEntrances++
+                    if (coveredEntrances == numEntrances) {
+                        return;
+                    }
+                }
+                room[row][i] = ROOM_TILE;
+            }
+
+            growVertical(row, colSize - 2, row != 1, coveredEntrances, numEntrances);
+        }
+    }
+
+    function IterateFirstRoomTile(entranceRow: number, entranceCol: number, isCol: boolean) {
+        let enRow = entranceRow;
+        let enCol = entranceCol;
+
+        if (isCol) {
+            //Checks if entrance is on column edge. If it is move it 1 over to avoid a edge path.
+            if (enCol == 0) {
+                enCol++;
+                room[enRow][enCol] = ROOM_TILE;
+            } else if (enCol == room[0].length - 1) {
+                enCol--;
+                room[enRow][enCol] = ROOM_TILE;
+            }
+
+            return enCol;
+        } else {
+            if (enRow == 0) {
+                enRow++;
+                room[enRow][enCol] = ROOM_TILE;
+            } else if (enRow == room.length - 1) {
+                enRow--;
+                room[enRow][enCol] = ROOM_TILE;
+            }
+
+            return enRow;
+        }
+    }
+
     /**
      * This specific function is for multiple entrances and grows inwards towards the middle to connect the entrances.
      */
@@ -130,16 +241,7 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
         for (let i = 0; i < entrances.length; i++) {
             let entrance = entrances[i];
             let entranceRow = entrance[0];
-            let entranceCol = entrance[1];
-
-            //Checks if entrance is on column edge. If it is move it 1 over to avoid a edge path.
-            if (entranceCol == 0) {
-                entranceCol++;
-                room[entranceRow][entranceCol] = ROOM_TILE;
-            } else if (entranceCol == room[0].length - 1) {
-                entranceCol--;
-                room[entranceRow][entranceCol] = ROOM_TILE;
-            }
+            let entranceCol = IterateFirstRoomTile(entrance[0], entrance[1], true);
 
             // grow towards middle, whichever way that is.
             while (entranceRow < middleX) {
