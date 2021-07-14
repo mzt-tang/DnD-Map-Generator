@@ -191,40 +191,60 @@ export default function map(props: mapProps) {
         }
     }
     var rooms: Room[] = [(new Room(0, 0, 10, 10, [0, 0], [0, 0], [0, 0], [0, 0],'NULL'))]
-    // rooms.forEach(function (e1: Room, index: number) {
-    //     addRoom(e1.left, e1.top, e1.width, e1.height, e1.room)
-    // })
 
     var roomX = 0;
     var roomY = 0;
-    while (roomX <= 30 && roomY <= 20) {
+    var roomIndex = 0;
+
+    var exitX = 30
+    var exitY = 10
+    /* Generates the Path */
+    while (roomX <= exitX && roomY <= exitY) {
         var origX = roomX;
         var origY = roomY;
         var southEntrance = [0,0]
         var eastEntrance = [0,0]
-        if(roomX != 30 && roomY != 20) {
-            if(Math.random() > 0.5) {
+        var westEntrance = [0,0]
+        var northEntrance = [0,0]
+        var entrance = 'NULL'
+        if(roomX != exitX && roomY != exitY) {
+            if(Math.random() >= 0.5) {
                 roomX += 10;
                 eastEntrance = [4,6]
+                entrance = 'EAST'
             } else {
                 roomY += 10;
                 southEntrance = [4,6]
+                entrance = 'SOUTH'
             }
         } else {
-            if(roomX == 30 && roomY == 20) {
+            if(roomX == exitX && roomY == exitY) {
                 roomY+=10;
-            } else if(roomX == 30) {
+            } else if(roomX == exitX) {
                 roomY +=10;
                 southEntrance = [4,6]
+                entrance = 'SOUTH'
             } else {
                 roomX +=10;
                 eastEntrance = [4,6]
+                entrance = 'EAST'
             }
         }
-        var roomToAdd:Room = new Room(origX,origY,origX+10,origY+10,[0,0],southEntrance,eastEntrance,[0,0],'NULL')
-        addRoom(roomToAdd.left,roomToAdd.top,roomToAdd.width,roomToAdd.height,roomToAdd.room)
-
-
+        switch(rooms[roomIndex].entrance) {
+            case 'SOUTH':
+                northEntrance = [4,6]
+                break;
+            case 'EAST':
+                westEntrance = [4,6]
+                break;
+        }
+        var roomToAdd:Room = new Room(origX,origY,origX+10,origY+10,northEntrance,southEntrance,eastEntrance,westEntrance,entrance)
+        roomIndex++
+        rooms.splice(roomIndex,0,roomToAdd)
+    }
+    for(var i = 0; i <rooms.length; i++) {
+        var currentRoom:Room = rooms[i]
+        addRoom(currentRoom.left,currentRoom.top,currentRoom.width,currentRoom.height,currentRoom.room)
     }
     // var roomID:String[] = [];
 
