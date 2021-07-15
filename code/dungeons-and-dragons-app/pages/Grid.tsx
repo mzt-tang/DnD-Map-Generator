@@ -40,32 +40,34 @@ class TileData {
     cols: number = 1;
 
     constructor(type: number) {
-        if (type == 1){
-            this.img = Image1;
-        }
-        else if (type == 2){
-            this.img = Image2;
-        }
-        else if (type == 3){
-            this.img = Image1;
-        }
-        else if (type == 4){
-            this.img = Image1;
-        }
-        else if (type == 5){
-            this.img = Image1;
-        }
-        else if (type == 6){
-            this.img = Image1;
-        }
-        else if (type == 7){
-            this.img = Image1;
-        }
-        else if (type == 8){
-            this.img = Image1;
-        }
-        else if (type == 9){
-            this.img = Image1;
+        switch (type) {
+            case 1:
+                this.img = Image1;
+                break;
+            case 2:
+                this.img = Image2;
+                break;
+            case 3:
+                this.img = Image3;
+                break;
+            case 4:
+                this.img = Image4;
+                break;
+            case 5:
+                this.img = Image5;
+                break;
+            case 6:
+                this.img = Image6;
+                break;
+            case 7:
+                this.img = Image7;
+                break;
+            case 8:
+                this.img = Image8;
+                break;
+            case 9:
+                this.img = Image9;
+                break;
         }
     }
     
