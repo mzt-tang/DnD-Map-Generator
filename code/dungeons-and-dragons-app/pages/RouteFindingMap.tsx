@@ -30,7 +30,7 @@ export default function routeFindingMap () {
         <img className="grid_img" src={Image8}/>,
         <img className="grid_img" src={Image9}/>,
         <img className="grid_img" src={Image10}/>,
-        <img className="grid_img" src={Image11}/>
+        <img className="grid_img" src={Image11}/>,
     ]
     var room : number[][] = [
         [8,8,8,8,8,8,8,8,8,8],

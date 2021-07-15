@@ -178,6 +178,19 @@ export default function map(props: mapProps) {
     // ]
     // //===
 
+    var routeRoom: number[][] = [
+        [8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
+        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
+        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
+        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
+        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
+        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
+        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
+        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
+        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
+        [8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
+    ];
+
     function addRoom(startLeft: number, startTop: number, width: number, height: number, room: number[][]) {
         var roomLeft = 0;
         var roomTop = 0;
@@ -190,14 +203,14 @@ export default function map(props: mapProps) {
             roomTop++;
         }
     }
-    var rooms: Room[] = [(new Room(0, 0, 10, 10, [0, 0], [0, 0], [0, 0], [0, 0],'NULL'))]
+    var rooms: Room[] = [(new Room(0, 0, 10, 10, [0, 0], [0, 0], [0, 0], [0, 0],'NULL',2))]
 
     var roomX = 0;
     var roomY = 0;
     var roomIndex = 0;
 
     var exitX = 30
-    var exitY = 10
+    var exitY = 20
     /* Generates the Path */
     while (roomX <= exitX && roomY <= exitY) {
         var origX = roomX;
@@ -238,52 +251,26 @@ export default function map(props: mapProps) {
                 westEntrance = [4,6]
                 break;
         }
-        var roomToAdd:Room = new Room(origX,origY,origX+10,origY+10,northEntrance,southEntrance,eastEntrance,westEntrance,entrance)
+        var roomToAdd:Room = new Room(origX,origY,origX+10,origY+10,northEntrance,southEntrance,eastEntrance,westEntrance,entrance,2)
         roomIndex++
         rooms.splice(roomIndex,0,roomToAdd)
     }
     for(var i = 0; i <rooms.length; i++) {
         var currentRoom:Room = rooms[i]
-        addRoom(currentRoom.left,currentRoom.top,currentRoom.width,currentRoom.height,currentRoom.room)
+        addRoom(currentRoom.left,currentRoom.top,currentRoom.width,currentRoom.height,currentRoom.routeRoom)
     }
-    // var roomID:String[] = [];
-
-    // rooms.forEach(function (e1: Room, index: number) {
-    //     addRoom(e1.left, e1.top, e1.width, e1.height, e1.room)
-    // })
-    // rooms.forEach(function (e1: Room, index: number) {
-    //     roomID.push(e1.entrance)
-    // })
-
-    let mapGridTest: number[][] = [
-        [10,10,10,10,10,10],
-        [10,10,10,10,10,10],
-        [10,10,10,10,10,10],
-        [10,10,10,10,10,10],
-    ]
-
-    var x = 1;
-    var y = 0;
-    mapGridTest[0][0] = 9;
-    var n = 0
-    while(x < 6 && y < 4) {
-        mapGridTest[y][x] = 9;
-        if(x != 5 && y != 3) {
-            if(Math.random() > 0.5) {
-                x++;
-            } else {
-                y++;
-            }
-        } else {
-            if(x == 5) {
-                y++;
-            } else {
-                x++;
+    for(var i = 0; i < mapGrid.length; i++) {
+        for(var j = 0; j < mapGrid[i].length; j++) {
+            if(mapGrid[i][j] == 10) {
+                var south = [0,0]
+                var north = [0,0]
+                var east = [0,0]
+                var west = [0,0]
+                
             }
         }
-        
-        n++;
     }
+
     let pixelDisplay: JSX.Element[][] = []
     function makeImages() {
         mapGrid.forEach(function (e1: number[], index: number) {
@@ -298,26 +285,12 @@ export default function map(props: mapProps) {
             pixelDisplay.push(row)
         })
     }
-    let pixelDisplayTest: JSX.Element[][] = []
-    function makeImagesTest() {
-        mapGridTest.forEach(function (e1: number[], index: number) {
-            //  row
-            let row: JSX.Element[] = []
-            e1.forEach(function (e2: number, index2: number) {
-                //  col
-                // numbers should reference a tile in images
-                const imagelink = props.images[e2]
-                row.push(imagelink)
-            })
-            pixelDisplayTest.push(row)
-        })
-    }
     return (
         <div id="map" style={mapStyle(40, 25)}>
 
             {makeImages()}
             {pixelDisplay}
-            {/* {roomID} */}
+            {/* {text} */}
         </div>
     )
 }
@@ -331,6 +304,7 @@ class Room {
     south: number[];
     east: number[];
     west: number[];
+    route: number;
     room: number[][] = [
         [8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
         [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
@@ -343,8 +317,20 @@ class Room {
         [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
         [8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
     ];
+    routeRoom: number[][] = [
+        [8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
+        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
+        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
+        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
+        [8, 9, 9, 9, 5, 5, 9, 9, 9, 8],
+        [8, 9, 9, 9, 5, 5, 9, 9, 9, 8],
+        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
+        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
+        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
+        [8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
+    ];
     entrance: String
-    constructor(startLeft: number, startTop: number, width: number, height: number, northDoor: number[], southDoor: number[], eastDoor: number[], westDoor: number[], originalEntrance: String) {
+    constructor(startLeft: number, startTop: number, width: number, height: number, northDoor: number[], southDoor: number[], eastDoor: number[], westDoor: number[], originalEntrance: String,route:number) {
         this.north = northDoor;
         this.south = southDoor;
         this.east = eastDoor;
@@ -355,20 +341,37 @@ class Room {
         this.height = height;
         this.assignEntrances();
         this.entrance = originalEntrance
+        this.route = route
     }
 
     private assignEntrances() {
         for (var i: number = this.north[0]; i < this.north[1]; i++) {
-            this.room[0][i] = 9
+            if(true) {
+                this.routeRoom[0][i] = 9
+            } else {
+                this.room[0][i] = 9
+            }
         }
         for (var i = this.south[0]; i < this.south[1]; i++) {
-            this.room[9][i] = 9
+            if(true) {
+                this.routeRoom[9][i] = 9
+            } else {
+                this.room[9][i] = 9
+            }
         }
         for (var i = this.east[0]; i < this.east[1]; i++) {
-            this.room[i][9] = 9
+            if(true) {
+                this.routeRoom[i][9] = 9
+            } else {
+                this.room[i][9] = 9
+            }
         }
         for (var i = this.west[0]; i < this.west[1]; i++) {
-            this.room[i][0] = 9
+            if(true) {
+                this.routeRoom[i][0] = 9
+            } else {
+                this.room[i][0] = 9
+            }
         }
     }
 }
