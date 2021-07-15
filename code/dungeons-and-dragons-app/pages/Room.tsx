@@ -47,6 +47,8 @@ const Room = () => {
 
     return (
         <View>
+            <h1>Room Generation Testing</h1>
+
             <GridOther width={cols} height={rows} images={images} tiles={tiles} />
             <div style={{width:300,margin:30}}>
                 <Typography id="probability-slider" gutterBottom>
