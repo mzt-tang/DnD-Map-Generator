@@ -1,88 +1,54 @@
-import React, { useState } from 'react';
-import {Text, TouchableOpacity} from 'react-native';
+import React from 'react';
 
-class Room {
+export class Room {
+    left: number
+    top: number
+    width: number
+    height: number
     north: number[];
     south: number[];
     east: number[];
     west: number[];
-    room: number[][] = [
-        [8,8,8,8,8,8,8,8,8,8],
-        [8,9,9,9,9,9,9,9,9,8],
-        [8,9,9,9,9,9,9,9,9,8],
-        [8,9,9,9,9,9,9,9,9,8],
-        [8,9,9,9,9,9,9,9,9,8],
-        [8,9,9,9,9,9,9,9,9,8],
-        [8,9,9,9,9,9,9,9,9,8],
-        [8,9,9,9,9,9,9,9,9,8],
-        [8,9,9,9,9,9,9,9,9,8],
-        [8,8,8,8,8,8,8,8,8,8],
+    route: number;
+    entrance: String
+    routeRoom: number[][] = [
+        [8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
+        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
+        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
+        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
+        [8, 9, 9, 9, 5, 5, 9, 9, 9, 8],
+        [8, 9, 9, 9, 5, 5, 9, 9, 9, 8],
+        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
+        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
+        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
+        [8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
     ];
-    constructor(northDoor:number[],southDoor:number[],eastDoor:number[],westDoor:number[]) {
+    constructor(startLeft: number, startTop: number, width: number, height: number, northDoor: number[], southDoor: number[], eastDoor: number[], westDoor: number[], originalEntrance: String,route:number) {
         this.north = northDoor;
         this.south = southDoor;
         this.east = eastDoor;
         this.west = westDoor;
+        this.left = startLeft;
+        this.top = startTop;
+        this.width = width;
+        this.height = height;
+        this.assignEntrances();
+        this.entrance = originalEntrance
+        this.route = route
     }
 
-    private assignEntrances () {
-        for (var i = this.north[0]; i < this.north[1]; i++) {
-            
+    private assignEntrances() {
+        for (let i: number = this.north[0]; i < this.north[1]; i++) {
+            this.routeRoom[0][i] = 9
         }
-        for (var i = this.south[0]; i < this.south[1]; i++) {
-            
+        for (let i = this.south[0]; i < this.south[1]; i++) {
+            this.routeRoom[9][i] = 9
         }
-        for (var i = this.east[0]; i < this.east[1]; i++) {
-            
+        for (let i = this.east[0]; i < this.east[1]; i++) {
+            this.routeRoom[i][9] = 9
         }
-        for (var i = this.west[0]; i < this.west[1]; i++) {
-            
+        for (let i = this.west[0]; i < this.west[1]; i++) {
+            this.routeRoom[i][0] = 9
         }
     }
-
-
-
 }
-
-
-// interface roomProps {
-//     north: number[]
-//     south: number[]
-//     east: number[]
-//     west: number[]
-// }
-
-// export default function room (props:roomProps) {
-    
-//     var room : number[][] = [
-//         [8,8,8,8,8,8,8,8,8,8],
-//         [8,9,9,9,9,9,9,9,9,8],
-//         [8,9,9,9,9,9,9,9,9,8],
-//         [8,9,9,9,9,9,9,9,9,8],
-//         [8,9,9,9,9,9,9,9,9,8],
-//         [8,9,9,9,9,9,9,9,9,8],
-//         [8,9,9,9,9,9,9,9,9,8],
-//         [8,9,9,9,9,9,9,9,9,8],
-//         [8,9,9,9,9,9,9,9,9,8],
-//         [8,8,8,8,8,8,8,8,8,8],
-//     ]
-
-//     for (var i = props.north[0]; i < props.north[1]; i++) {
-//         room[0][i] = 20
-//     }
-//     for (var i = props.south[0]; i < props.south[1]; i++) {
-//         room[8][i] = 20
-//     }
-//     for (var i = props.east[0]; i < props.east[1]; i++) {
-//         room[i][9] = 20
-//     }
-//     for (var i = props.west[0]; i < props.west[1]; i++) {
-//         room[i][0] = 20
-//     }
-    
-//     return (
-//         <div id="room">
-//             {room}
-//         </div>
-//     );
-// }

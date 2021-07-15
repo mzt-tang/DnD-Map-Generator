@@ -1,5 +1,5 @@
 import React from "react";
-
+import {Room} from "./Room"
 
 interface mapProps {
     images: JSX.Element[]
@@ -18,7 +18,7 @@ export default function map(props: mapProps) {
         }
     }
 
-    var mapGrid: number[][] = [
+    let mapGrid: number[][] = [
         [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
         [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
         [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
@@ -50,152 +50,12 @@ export default function map(props: mapProps) {
         [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
         [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
     ]
-
-    var room: number[][] = [
-        [8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
-        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
-        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
-        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
-        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
-        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
-        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
-        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
-        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
-        [8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
-    ]
-
-    //===
-    //Copy and paste predefined rooms
-    // const room1 : number[][] = [ //enterance
-    //     [10,10,10,10,10,10,10,10,10,10,10,10],
-    //     [10,10,10,10,10,10,10,10,1,8,8,8],
-    //     [8,8,8,8,8,8,8,8,8,9,9,8],
-    //     [9,9,9,9,9,9,9,9,9,9,9,8],
-    //     [9,9,9,9,9,9,9,9,9,8,9,9],
-    //     [8,8,8,8,8,8,9,8,8,9,9,8],
-    //     [10,10,10,10,8,9,9,9,9,9,9,8],
-    //     [10,10,10,10,8,9,9,9,9,9,9,8],
-    //     [10,10,10,10,8,9,8,8,8,8,8,8]
-    // ]
-
-    // const room2 : number[][] = [
-    //     [10,10,8,8,8,8,8,8,8,8,8,10],
-    //     [10,10,8,9,9,9,9,9,9,9,8,10],
-    //     [10,10,8,9,9,9,9,9,9,9,8,10],
-    //     [8,8,8,9,9,9,9,9,9,9,8,10],
-    //     [9,9,9,9,9,9,9,9,9,9,8,8],
-    //     [8,8,8,9,9,9,9,9,9,9,9,9],
-    //     [10,10,8,9,9,9,9,9,9,9,9,9],
-    //     [10,10,8,9,9,9,9,9,9,9,8,8],
-    //     [10,10,8,8,8,9,9,8,8,8,8,10],
-    // ]
-
-    // const room3 : number[][] = [
-    //     [10,10,10,10,10,10,10,10],
-    //     [10,10,10,10,8,8,8,8],
-    //     [8,8,8,8,8,9,9,8],
-    //     [8,9,9,9,9,9,9,8],
-    //     [8,9,9,9,9,9,9,8],
-    //     [9,9,8,8,8,9,9,8],
-    //     [9,9,8,10,8,9,9,8],
-    //     [8,8,8,10,8,9,9,8],
-    //     [10,10,10,10,8,8,8,8]
-    // ]
-
-    // const room4 : number[][] = [ //exit
-    //     [10,8,8,8,8,8,8,10],
-    //     [10,8,9,9,9,9,8,10],
-    //     [10,8,9,9,9,9,8,10],
-    //     [10,8,9,8,8,8,8,10],
-    // ]
-
-    // const room5 : number[][] = [
-    //     [10, 10, 10, 9, 10, 10, 10, 10],
-    //     [10, 9, 9, 9, 9, 9, 9, 10],
-    //     [10, 9, 9, 9, 9, 10, 9, 10],
-    //     [10, 9, 9, 9, 9, 10, 10, 10],
-    //     [10, 10, 10, 10, 9, 10, 10, 10]
-    // ]
-
-    // const room6 : number[][] = [
-    //     [10,10,10,10,8,9,8,10,10,10,10,10],
-    //     [10,8,8,8,8,9,8,8,8,8,10,10],
-    //     [10,8,9,9,9,9,9,9,9,8,10,10],
-    //     [10,8,9,8,9,9,9,8,9,8,10,10],
-    //     [10,8,9,9,9,9,9,9,9,8,10,10],
-    //     [10,8,8,8,8,8,8,8,8,8,10,10],
-    //     [10,10,10,10,10,10,10,10,10,10,10,10],
-    // ]
-
-    // const room7 : number[][] = [ //Prison Cells     12x9
-    //     [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
-    //     [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
-    //     [10, 10, 9, 9, 9, 10, 9, 9, 9, 10, 10, 10],
-    //     [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
-    //     [10, 10, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
-    //     [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
-    //     [10, 10, 9, 9, 9, 10, 9, 9, 9, 10, 10, 10],
-    //     [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
-    //     [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
-    // ]
-
-    // const room8 : number[][] = [ //15x16, incomplete. big open room.
-    //     [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
-    //     [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
-    //     [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
-    //     [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
-    //     [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
-    //     [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
-    //     [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
-    //     [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
-    //     [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
-    //     [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
-    //     [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
-    //     [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
-    //     [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
-    //     [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
-    //     [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
-    //     [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
-    // ]
-
-    // const room9 : number[][] = [ //Boss chamber
-    //     [10,10,10,10,10,10,10,10,8,9,8,10,10],
-    //     [10,10,10,10,10,10,10,10,8,9,8,10,10],
-    //     [8,8,8,8,8,8,10,10,8,9,8,10,10],
-    //     [9,9,9,9,9,8,10,10,8,9,8,8,8],
-    //     [8,8,8,8,9,8,8,8,8,9,9,9,8],
-    //     [10,10,10,8,9,9,9,9,9,9,9,9,8],
-    //     [10,8,8,8,9,9,9,9,9,9,9,9,8],
-    //     [10,8,9,9,9,9,9,9,9,9,9,9,8],
-    //     [10,8,9,9,9,9,9,9,9,9,9,9,8],
-    //     [10,8,9,9,9,9,9,9,9,9,9,9,8],
-    //     [10,8,9,9,9,9,9,9,9,9,9,9,8],
-    //     [10,8,9,9,9,9,9,9,9,9,8,8,8],
-    //     [10,8,8,8,8,9,9,9,9,8,8,10,10],
-    //     [10,10,10,8,8,8,8,8,8,8,10,10,10],
-    //     [10,10,10,10,10,10,10,10,10,10,10,10,10],
-    //     [10,10,10,10,10,10,10,10,10,10,10,10,10]
-    // ]
-    // //===
-
-    var routeRoom: number[][] = [
-        [8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
-        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
-        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
-        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
-        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
-        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
-        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
-        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
-        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
-        [8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
-    ];
 
     function addRoom(startLeft: number, startTop: number, width: number, height: number, room: number[][]) {
-        var roomLeft = 0;
-        var roomTop = 0;
-        for (var i = startTop; i < height; i++) {
-            for (var j = startLeft; j < width; j++) {
+        let roomLeft = 0;
+        let roomTop = 0;
+        for (let i = startTop; i < height; i++) {
+            for (let j = startLeft; j < width; j++) {
                 mapGrid[i][j] = room[roomTop][roomLeft];
                 roomLeft++;
             }
@@ -203,23 +63,23 @@ export default function map(props: mapProps) {
             roomTop++;
         }
     }
-    var rooms: Room[] = [(new Room(0, 0, 10, 10, [0, 0], [0, 0], [0, 0], [0, 0],'NULL',2))]
+    let rooms: Room[] = [(new Room(0, 0, 10, 10, [0, 0], [0, 0], [0, 0], [0, 0],'NULL',2))]
 
-    var roomX = 0;
-    var roomY = 0;
-    var roomIndex = 0;
+    let roomX = 0;
+    let roomY = 0;
+    let roomIndex = 0;
 
-    var exitX = 30
-    var exitY = 20
+    let exitX = 30
+    let exitY = 20
     /* Generates the Path */
     while (roomX <= exitX && roomY <= exitY) {
-        var origX = roomX;
-        var origY = roomY;
-        var southEntrance = [0,0]
-        var eastEntrance = [0,0]
-        var westEntrance = [0,0]
-        var northEntrance = [0,0]
-        var entrance = 'NULL'
+        let origX = roomX;
+        let origY = roomY;
+        let southEntrance = [0,0]
+        let eastEntrance = [0,0]
+        let westEntrance = [0,0]
+        let northEntrance = [0,0]
+        let entrance = 'NULL'
         if(roomX != exitX && roomY != exitY) {
             if(Math.random() >= 0.5) {
                 roomX += 10;
@@ -251,22 +111,28 @@ export default function map(props: mapProps) {
                 westEntrance = [4,6]
                 break;
         }
-        var roomToAdd:Room = new Room(origX,origY,origX+10,origY+10,northEntrance,southEntrance,eastEntrance,westEntrance,entrance,2)
+        let roomToAdd:Room = new Room(origX,origY,origX+10,origY+10,northEntrance,southEntrance,eastEntrance,westEntrance,entrance,2)
         roomIndex++
         rooms.splice(roomIndex,0,roomToAdd)
     }
-    for(var i = 0; i <rooms.length; i++) {
-        var currentRoom:Room = rooms[i]
+    for(let i = 0; i <rooms.length; i++) {
+        let currentRoom:Room = rooms[i]
         addRoom(currentRoom.left,currentRoom.top,currentRoom.width,currentRoom.height,currentRoom.routeRoom)
     }
-    for(var i = 0; i < mapGrid.length; i++) {
-        for(var j = 0; j < mapGrid[i].length; j++) {
+    for(let i = 0; i < mapGrid.length; i++) {
+        for(let j = 0; j < mapGrid[i].length; j++) {
             if(mapGrid[i][j] == 10) {
-                var south = [0,0]
-                var north = [0,0]
-                var east = [0,0]
-                var west = [0,0]
+                let south = [0,0]
+                let north = [0,0]
+                let east = [0,0]
+                let west = [0,0]
+                let rand = Math.random()
                 
+
+
+                let randRoom = new Room(j,i,j+10,i+10,north,south,east,west,'NULL',1)
+                rooms.push(randRoom)
+                addRoom(randRoom.left,randRoom.top,randRoom.width,randRoom.height,randRoom.routeRoom)
             }
         }
     }
@@ -293,85 +159,4 @@ export default function map(props: mapProps) {
             {/* {text} */}
         </div>
     )
-}
-
-class Room {
-    left: number
-    top: number
-    width: number
-    height: number
-    north: number[];
-    south: number[];
-    east: number[];
-    west: number[];
-    route: number;
-    room: number[][] = [
-        [8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
-        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
-        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
-        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
-        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
-        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
-        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
-        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
-        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
-        [8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
-    ];
-    routeRoom: number[][] = [
-        [8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
-        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
-        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
-        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
-        [8, 9, 9, 9, 5, 5, 9, 9, 9, 8],
-        [8, 9, 9, 9, 5, 5, 9, 9, 9, 8],
-        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
-        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
-        [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
-        [8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
-    ];
-    entrance: String
-    constructor(startLeft: number, startTop: number, width: number, height: number, northDoor: number[], southDoor: number[], eastDoor: number[], westDoor: number[], originalEntrance: String,route:number) {
-        this.north = northDoor;
-        this.south = southDoor;
-        this.east = eastDoor;
-        this.west = westDoor;
-        this.left = startLeft;
-        this.top = startTop;
-        this.width = width;
-        this.height = height;
-        this.assignEntrances();
-        this.entrance = originalEntrance
-        this.route = route
-    }
-
-    private assignEntrances() {
-        for (var i: number = this.north[0]; i < this.north[1]; i++) {
-            if(true) {
-                this.routeRoom[0][i] = 9
-            } else {
-                this.room[0][i] = 9
-            }
-        }
-        for (var i = this.south[0]; i < this.south[1]; i++) {
-            if(true) {
-                this.routeRoom[9][i] = 9
-            } else {
-                this.room[9][i] = 9
-            }
-        }
-        for (var i = this.east[0]; i < this.east[1]; i++) {
-            if(true) {
-                this.routeRoom[i][9] = 9
-            } else {
-                this.room[i][9] = 9
-            }
-        }
-        for (var i = this.west[0]; i < this.west[1]; i++) {
-            if(true) {
-                this.routeRoom[i][0] = 9
-            } else {
-                this.room[i][0] = 9
-            }
-        }
-    }
 }
