@@ -9,7 +9,6 @@ export class Room {
     south: number[];
     east: number[];
     west: number[];
-    route: number;
     entrance: String
     routeRoom: number[][] = [
         [8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
@@ -132,7 +131,7 @@ export class Room {
 
     ];
 
-    constructor(startLeft: number, startTop: number, width: number, height: number, northDoor: number[], southDoor: number[], eastDoor: number[], westDoor: number[], originalEntrance: String,route:number) {
+    constructor(startLeft: number, startTop: number, width: number, height: number, northDoor: number[], southDoor: number[], eastDoor: number[], westDoor: number[], originalEntrance: String) {
         this.north = northDoor;
         this.south = southDoor;
         this.east = eastDoor;
@@ -147,7 +146,23 @@ export class Room {
         
         this.assignEntrances();
         this.entrance = originalEntrance
-        this.route = route
+    }
+
+    public addNorthEntrance(newEntrance:number[]) {
+        this.north = [4,6];
+        this.assignEntrances
+    }
+    public addSouthEntrance(newEntrance:number[]) {
+        this.south = [4,6];
+        this.assignEntrances
+    }
+    public addEastEntrance(newEntrance:number[]) {
+        this.east = [4,6];
+        this.assignEntrances
+    }
+    public addWestEntrance(newEntrance:number[]) {
+        this.west = [4,6];
+        this.assignEntrances
     }
 
     private assignEntrances() {
