@@ -5,6 +5,7 @@ const ENTRANCE = 2;
 
 /**
  * Generates a random room with a change to grow
+ *
  * @param rowSize the number of rows
  * @param colSize the number of columns
  * @param entrances the entrances (array of x,y coordinates eg [[0,3],[3,7]])
@@ -113,6 +114,11 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
         if (clean) cleanFinish();
     }
 
+    /**
+     * A method to connect multiple entrances by joining them at the edges of the map instead of growing inwards.
+     * Method takes the first entrance and randomly moves towards the next exit in either direction along the edge
+     * until they are all connected.
+     */
     function growRoomEdgeWise() {
 
         const numEntrances = entrances.length;
@@ -136,6 +142,16 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
         }
     }
 
+    /**
+     * Grows vertically along the edge until it hits a wall while joining edges, then calls growHorizontal.
+     * Will terminate if all edges are connected.
+     *
+     * @param row The row to grow vertically on.
+     * @param col The col to grow vertically on.
+     * @param isUp True if growing upwards, false otherwise.
+     * @param coveredEntrances The number of entrances currently connected.
+     * @param numEntrances The number of entrances needed to cover.
+     */
     function growVertical(row: number, col: number, isUp: boolean, coveredEntrances: number, numEntrances: number) {
         if (isUp) {
             for (let i = row; i > 0; i--) {
@@ -164,6 +180,17 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
         }
     }
 
+    /**
+     *
+     * Grows horizontally along the edge until it hits a wall while joining edges, then calls growVertical.
+     * Will terminate if all edges are connected.
+     *
+     * @param row The row to grow horizontally on.
+     * @param col The col to grow horizontally on.
+     * @param isLeft True if growing left, false otherwise.
+     * @param coveredEntrances The number of entrances connected.
+     * @param numEntrances The number of entrances to connect.
+     */
     function growHorizontal(row: number, col: number, isLeft: boolean, coveredEntrances: number, numEntrances: number) {
         if (isLeft) {
             for (let i = col; i > 0; i--) {
@@ -192,11 +219,18 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
         }
     }
 
-    function IterateFirstRoomTile(entranceRow: number, entranceCol: number, isCol: boolean) {
+    /**
+     * Ensures the tile opposite of the entrance becomes a room tile.
+     *
+     * @param entranceRow row of the entrance
+     * @param entranceCol col of the entrance
+     * @param isColumnEdge true if it is a col edge, false otherwise.
+     */
+    function IterateFirstRoomTile(entranceRow: number, entranceCol: number, isColumnEdge: boolean) : number {
         let enRow = entranceRow;
         let enCol = entranceCol;
 
-        if (isCol) {
+        if (isColumnEdge) {
             //Checks if entrance is on column edge. If it is move it 1 over to avoid a edge path.
             if (enCol == 0) {
                 enCol++;
@@ -221,7 +255,7 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
     }
 
     /**
-     * This specific function is for multiple entrances and grows inwards towards the middle to connect the entrances.
+     * This is for multiple entrances and grows inwards towards the middle to connect the entrances.
      */
     function growRoomInwards() {
         // figure out middle row and col if entrances > 1
@@ -302,16 +336,24 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
             for (let col = 1; col < room[row].length - 1; col++) {
                 if (room[row][col] != EMPTY) continue;
 
+                // check each surrounding tile for a room tile if it is empty
                 let left = room[row][col - 1] == ROOM_TILE;
                 let right = room[row][col + 1] == ROOM_TILE;
                 let up = room[row - 1][col] == ROOM_TILE;
                 let down = room[row + 1][col] == ROOM_TILE;
 
+                // change to a room tile if all surrounding tiles are room tiles.
                 if (left && right && up && down) room[row][col] = ROOM_TILE;
             }
         }
     }
 
+    /**
+     * Checks if the tile at row, col is an edge tile. Returns true if it is, false otherwise.
+     *
+     * @param row the row number
+     * @param col the col number
+     */
     function checkEdgeTile(row: number, col: number): boolean {
         return (((row == 0 || row == room.length - 1) && (col != 0 && col != room[0].length - 1))
             || ((col == 0 || col == room.length - 1) && (row != 0 && row != room[0].length - 1)));
