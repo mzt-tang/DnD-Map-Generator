@@ -13,6 +13,17 @@ import GridOther from "../components/GridOther";
 import '../styles/style.css';
 import {roomGen} from "../utility/roomGen";
 
+// class RoomRand {
+//     tiles: number[][]
+//     constructor(width: number, height: number) {
+//         this.tiles = getTiles();
+//     }
+
+//     getRoom(): number[][]{
+//         return this.tiles;
+//     }
+// }
+
 const Room = () => {
     const[rows, setRows] = useState(20);
     const[cols,setCols] = useState(20);
@@ -25,6 +36,21 @@ const Room = () => {
         <img className="grid_img" src={floor}/>,    // floor tile
         <img className="grid_img" src={entrance}/>, // entrance tile
     ]
+
+    class RoomRand {
+        tiles: number[][]
+        constructor(width: number, height: number) {
+            this.tiles = getTiles();
+        }
+    
+        getRoom(): number[][]{
+            return this.tiles;
+        }
+    }
+
+    function getTiles() : number[][]{
+        return roomGen(rows, cols, entrances, probability, clean);
+    }
 
     // const entrances = [[10, 0], [0, 12], [19, 19]];
     // const rows = 20;
@@ -79,3 +105,4 @@ const Room = () => {
     );
 }
 export default Room
+
