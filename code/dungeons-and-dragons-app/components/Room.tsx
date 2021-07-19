@@ -3,10 +3,6 @@ export class Room {
     top: number
     width: number
     height: number
-    north: number[];
-    south: number[];
-    east: number[];
-    west: number[];
     entrance: String
     entrances: number[][];
     routeRoom: number[][] = [
@@ -130,16 +126,13 @@ export class Room {
 
     ];
 
-    constructor(startLeft: number, startTop: number, width: number, height: number, northDoor: number[], southDoor: number[], eastDoor: number[], westDoor: number[], originalEntrance: String) {
-        this.north = northDoor;
-        this.south = southDoor;
-        this.east = eastDoor;
-        this.west = westDoor;
+    constructor(startLeft: number, startTop: number, width: number, height: number,entrances:number[][], originalEntrance: String) {
         this.left = startLeft;
         this.top = startTop;
         this.width = width;
         this.height = height;
-        this.entrances = [this.north,this.south,this.east,this.west];
+        this.entrances = entrances;
+        
 
         //Pick a random room from list for routeRoom
         this.routeRoom = this.rooms[Math.floor(Math.random()*this.rooms.length)];

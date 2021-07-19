@@ -73,7 +73,7 @@ export default function map(props: mapProps) {
     /*
     The array of rooms in the map, includes a placeholder room (so that the entrance doesn't have a doorway to connect to). It is removed when the route is made.
     */
-    let rooms: Room[] = [(new Room(0, 0, 10, 10, [0, 0], [0, 0], [0, 0], [0, 0], 'NULL'))]
+    let rooms: Room[] = [(new Room(0, 0, 10, 10, [], 'NULL'))]
     let roomX = 0;
     let roomY = 0;
     let roomIndex = 0;
@@ -86,12 +86,25 @@ export default function map(props: mapProps) {
     the map). The room is then added to the map and to the rooms array. 
     */
     while (roomX <= exitX && roomY <= exitY) {
+        let entrances:number[][] = []
         let origX = roomX;
         let origY = roomY;
         var southEntrance = [0,4]
         var eastEntrance = [4,0]
         var westEntrance = [4,9]
         var northEntrance = [9,4]
+        if(roomY > 0) {
+            entrances.splice(0,0,southEntrance)
+        }
+        if(roomY < 20) {
+            entrances.splice(0,0,northEntrance)
+        }
+        if(roomX > 0) { 
+            entrances.splice(0,0,eastEntrance)
+        }
+        if(roomX < 30) {
+            entrances.splice(0,0,westEntrance)
+        }
         let entrance = 'NULL'
         // checks if room is not on the far left or bottom of map, if it is randomly decides to advance left or down
         if (roomX != exitX && roomY != exitY) {
@@ -127,7 +140,7 @@ export default function map(props: mapProps) {
                 rooms[roomIndex].entrances[0] = westEntrance;
                 break;
         }
-        let roomToAdd: Room = new Room(origX, origY, origX + 10, origY + 10, northEntrance, southEntrance, eastEntrance, westEntrance, entrance)
+        let roomToAdd: Room = new Room(origX, origY, origX + 10, origY + 10, entrances,entrance)
         roomIndex++
         rooms.splice(roomIndex, 0, roomToAdd)
         var r = roomGen(ROOM_SIZE, ROOM_SIZE, roomToAdd.entrances, 0.4, true);
