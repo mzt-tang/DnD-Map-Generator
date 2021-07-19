@@ -56,7 +56,7 @@ export default function map(props: mapProps) {
     let height: number = mapGrid.length + 1;
     let width: number = mapGrid[0].length + 1;
     /*
-    A Function that adds the room 2d array to the map grid, going from startLeft to width, and startTop to height. 
+    A Function that adds the room 2d array to the map grid, going from startLeft to width, and startTop to height.
     */
     function addRoom(startLeft: number, startTop: number, width: number, height: number, room: number[][]) {
         let roomLeft = 0;
@@ -83,7 +83,7 @@ export default function map(props: mapProps) {
     /*
     This while loop generates the rooms that follow the route from the start room to end room. Starting room is currently at top left position and end is at bottom
     right. Each time it randomly decides whether to generate a room to the right or downwards along the path (as long as the room isn't at the bottom or far right of
-    the map). The room is then added to the map and to the rooms array. 
+    the map). The room is then added to the map and to the rooms array.
     */
     while (roomX <= exitX && roomY <= exitY) {
         let origX = roomX;
@@ -153,7 +153,7 @@ export default function map(props: mapProps) {
     /*
     Assigns the numbers in mapGrid to the tiles from the images array. This generates the array that will be displayed
     */
-    let pixelDisplay: JSX.Element[][] = []
+    /*let pixelDisplay: JSX.Element[][] = []
     mapGrid.forEach(function (e1: number[], index: number) {
         //  row
         let row: JSX.Element[] = []
@@ -165,82 +165,96 @@ export default function map(props: mapProps) {
             console.log("e1 index:" + index + ", e2 index:" + index2);
         })
         pixelDisplay.push(row)
-    })
-
-    /*for (let i: number = 0; i < width; i++) {
+    })*/
+    let pixelDisplay: JSX.Element[][] = []
+    for (let i: number = 0; i < height-1; i++) {
         //  row
         let row: JSX.Element[] = []
-        for (let j: number = 0; j < height; j++) {
+        for (let j: number = 0; j < width-1; j++) {
             //  col
             // numbers should reference a tile in images
-            let num = mapGrid[i][j];
-            let imagelink = props.images[num]
-            if (num == 0) {
- 
-                if (i == 0 || j == 0 || i == width - 1 || j == height - 1) {
-                    imagelink = props.images[12]
-                }
- 
-                if (i > 0 && j > 0 && i < width - 1 && j < height - 1) {
-                    // Need to check tiles left, right, above, below, above left, above right, below left, below right
- 
-                    // Checks for tiles in the corners, if there is one floor tile in one corner only
-                    // Check for three tiles, in a corner formation around the current tile
-                    if (mapGrid[i - 1][j] == 1 && mapGrid[i - 1][j - 1] == 1 && mapGrid[i][j - 1] == 1) {
-                        imagelink = props.images[3]
-                    } else if (mapGrid[i - 1][j] == 1 && mapGrid[i - 1][j + 1] == 1 && mapGrid[i][j + 1] == 1) {
-                        imagelink = props.images[6]
-                    } else if (mapGrid[i + 1][j] == 1 && mapGrid[i + 1][j - 1] == 1 && mapGrid[i][j - 1] == 1) {
-                        imagelink = props.images[4]
-                    } else if (mapGrid[i + 1][j] == 1 && mapGrid[i + 1][j + 1] == 1 && mapGrid[i][j + 1] == 1) {
-                        imagelink = props.images[5]
-                    }// Checks for if there are floor tiles adjacent to the current tile
-                    else if (mapGrid[i - 1][j] == 1) {
-                        imagelink = props.images[8]
-                    } else if (mapGrid[i + 1][j] == 1) {
-                        imagelink = props.images[7]
-                    } else if (mapGrid[i][j - 1] == 1) {
-                        imagelink = props.images[9]
-                    } else if (mapGrid[i][j + 1] == 1) {
-                        imagelink = props.images[10]
-                    } else if (mapGrid[i - 1][j - 1] == 1 && mapGrid[i - 1][j] == 0 && mapGrid[i - 1][j + 1] == 0 && mapGrid[i][j - 1] == 0 && mapGrid[i][j + 1] == 0 && mapGrid[i + 1][j - 1] == 0 && mapGrid[i + 1][j + 1] == 0) {
-                        imagelink = props.images[5]
-                    } else if (mapGrid[i + 1][j - 1] == 1 && mapGrid[i - 1][j] == 0 && mapGrid[i - 1][j + 1] == 0 && mapGrid[i][j - 1] == 0 && mapGrid[i][j + 1] == 0 && mapGrid[i - 1][j - 1] == 0 && mapGrid[i + 1][j + 1] == 0) {
-                        imagelink = props.images[6]
-                    } else if (mapGrid[i - 1][j + 1] == 1 && mapGrid[i - 1][j] == 0 && mapGrid[i - 1][j - 1] == 0 && mapGrid[i][j - 1] == 0 && mapGrid[i][j + 1] == 0 && mapGrid[i + 1][j - 1] == 0 && mapGrid[i + 1][j + 1] == 0) {
-                        imagelink = props.images[4]
-                    } else if (mapGrid[i + 1][j + 1] == 1 && mapGrid[i - 1][j] == 0 && mapGrid[i - 1][j + 1] == 0 && mapGrid[i][j - 1] == 0 && mapGrid[i][j + 1] == 0 && mapGrid[i + 1][j - 1] == 0 && mapGrid[i - 1][j - 1] == 0) {
-                        imagelink = props.images[3]
-                    } else {
-                        let countCorners = 0;
-                        if (mapGrid[i - 1][j - 1] == 1) {
-                            countCorners++;
-                        }
-                        if (mapGrid[i + 1][j - 1] == 1) {
-                            countCorners++;
-                        }
-                        if (mapGrid[i - 1][j + 1] == 1) {
-                            countCorners++;
-                        }
-                        if (mapGrid[i + 1][j + 1] == 1) {
-                            countCorners++;
-                        }
- 
-                        if (countCorners > 0) {
-                            imagelink = props.images[11]
-                        }
-                    }
- 
-                    // Check and count how many corner tiles there are around the current tile, if there are more than two,
-                    // and none of the other conditions are met, put in another tile type.
- 
-                }
+            console.log("0");
+            let imagelink = props.images[0];
+
+            if (i == 0 || j == 0 || i == width - 1 || j == height - 1) {
+
+                imagelink = props.images[12]
             }
+
+            if (i > 0 && j > 0 && i < width - 1 && j < height - 1) {
+                // Need to check tiles left, right, above, below, above left, above right, below left, below right
+
+                // Checks for tiles in the corners, if there is one floor tile in one corner only
+                // Check for three tiles, in a corner formation around the current tile
+                if (mapGrid[i - 1][j] == 8 && mapGrid[i - 1][j - 1] == 8 && mapGrid[i][j - 1] == 8) {
+                    console.log("1")
+                    imagelink = props.images[3]
+                } else if (mapGrid[i - 1][j] == 8 && mapGrid[i - 1][j + 1] == 8 && mapGrid[i][j + 1] == 8) {
+                    console.log("2")
+                    imagelink = props.images[6]
+                } else if (mapGrid[i + 1][j] == 8 && mapGrid[i + 1][j - 1] == 8 && mapGrid[i][j - 1] == 8) {
+                    console.log("3")
+                    imagelink = props.images[4]
+                } else if (mapGrid[i + 1][j] == 8 && mapGrid[i + 1][j + 1] == 8 && mapGrid[i][j + 1] == 8) {
+                    console.log("4")
+                    imagelink = props.images[5]
+                }// Checks for if there are floor tiles adjacent to the current tile
+                else if (mapGrid[i - 1][j] == 8) {
+                    console.log("5")
+                    imagelink = props.images[8]
+                } else if (mapGrid[i + 1][j] == 8) {
+                    console.log("6")
+                    imagelink = props.images[7]
+                } else if (mapGrid[i][j - 1] == 8) {
+                    console.log("7")
+                    imagelink = props.images[9]
+                } else if (mapGrid[i][j + 1] == 8) {
+                    console.log("8")
+                    imagelink = props.images[10]
+                } else if (mapGrid[i - 1][j - 1] == 8 && mapGrid[i - 1][j] == 9 && mapGrid[i - 1][j + 1] == 9 && mapGrid[i][j - 1] == 9 && mapGrid[i][j + 1] == 9 && mapGrid[i + 1][j - 1] == 9 && mapGrid[i + 1][j + 1] == 9) {
+                    console.log("9")
+                    imagelink = props.images[5]
+                } else if (mapGrid[i + 1][j - 1] == 8 && mapGrid[i - 1][j] == 9 && mapGrid[i - 1][j + 1] == 9 && mapGrid[i][j - 1] == 9 && mapGrid[i][j + 1] == 9 && mapGrid[i - 1][j - 1] == 9 && mapGrid[i + 1][j + 1] == 9) {
+                    console.log("10")
+                    imagelink = props.images[6]
+                } else if (mapGrid[i - 1][j + 1] == 8 && mapGrid[i - 1][j] == 9 && mapGrid[i - 1][j - 1] == 9 && mapGrid[i][j - 1] == 9 && mapGrid[i][j + 1] == 9 && mapGrid[i + 1][j - 1] == 9 && mapGrid[i + 1][j + 1] == 9) {
+                    console.log("11")
+                    imagelink = props.images[4]
+                } else if (mapGrid[i + 1][j + 1] == 8 && mapGrid[i - 1][j] == 9 && mapGrid[i - 1][j + 1] == 9 && mapGrid[i][j - 1] == 9 && mapGrid[i][j + 1] == 9 && mapGrid[i + 1][j - 1] == 9 && mapGrid[i - 1][j - 1] == 9) {
+                    console.log("12")
+                    imagelink = props.images[3]
+                } else {
+                    let countCorners = 0;
+                    if (mapGrid[i - 1][j - 1] == 8) {
+                        countCorners++;
+                    }
+                    if (mapGrid[i + 1][j - 1] == 8) {
+                        countCorners++;
+                    }
+                    if (mapGrid[i - 1][j + 1] == 8) {
+                        countCorners++;
+                    }
+                    if (mapGrid[i + 1][j + 1] == 8) {
+                        countCorners++;
+                    }
+
+                    if (countCorners > 0) {
+                        console.log("13")
+                        imagelink = props.images[11]
+                    }
+                }
+
+                // Check and count how many corner tiles there are around the current tile, if there are more than two,
+                // and none of the other conditions are met, put in another tile type.
+
+            }
+            console.log("Img: "+imagelink+", Y: "+i+", Y: "+j);
+
             row.push(imagelink)
         }
         pixelDisplay.push(row)
- 
-    }*/
+
+    }
 
     return (
         <div id="map" style={mapStyle(40, 25)}>
@@ -248,3 +262,4 @@ export default function map(props: mapProps) {
         </div>
     )
 }
+
