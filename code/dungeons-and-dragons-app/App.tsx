@@ -4,6 +4,7 @@ import React from 'react';
 import Home from "./pages/Home";
 import Map from "./pages/Map";
 import RouteFindingMap from "./pages/RouteFindingMap";
+import Room from "./pages/Room";
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
           <Route path = "/" component = {Home} />
           <Route path = "/map" component = {Map}/>
           <Route path = "/route" component = {RouteFindingMap} />
+          <Route path = "/room" component = {Room} />
       </BrowserRouter>
   );
 }
