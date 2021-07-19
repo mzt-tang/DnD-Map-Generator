@@ -149,23 +149,6 @@ export default function map(props: mapProps) {
         }
     }
 
-
-    /*
-    Assigns the numbers in mapGrid to the tiles from the images array. This generates the array that will be displayed
-    */
-    /*let pixelDisplay: JSX.Element[][] = []
-    mapGrid.forEach(function (e1: number[], index: number) {
-        //  row
-        let row: JSX.Element[] = []
-        e1.forEach(function (e2: number, index2: number) {
-            //  col
-            // numbers should reference a tile in images
-            const imagelink = props.images[e2]
-            row.push(imagelink)
-            console.log("e1 index:" + index + ", e2 index:" + index2);
-        })
-        pixelDisplay.push(row)
-    })*/
     let pixelDisplay: JSX.Element[][] = []
     for (let i: number = 0; i < height-1; i++) { //Rows
         let row: JSX.Element[] = []
@@ -259,7 +242,7 @@ export default function map(props: mapProps) {
                 imagelink = props.images[12]; //todo change based on image num
             }
 
-            console.log("Img: "+imagelink+", Y: "+i+", Y: "+j);
+            console.log("Img: "+imagelink+", Y: "+i+", X: "+j);
             row.push(imagelink)
         }
         pixelDisplay.push(row)
