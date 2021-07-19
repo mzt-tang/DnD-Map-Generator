@@ -8,6 +8,7 @@ export class Room {
     east: number[];
     west: number[];
     entrance: String
+    entrances: number[][];
     routeRoom: number[][] = [
         [8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
         [8, 9, 9, 9, 9, 9, 9, 9, 9, 8],
@@ -138,6 +139,7 @@ export class Room {
         this.top = startTop;
         this.width = width;
         this.height = height;
+        this.entrances = [this.north,this.south,this.east,this.west];
 
         //Pick a random room from list for routeRoom
         this.routeRoom = this.rooms[Math.floor(Math.random()*this.rooms.length)];

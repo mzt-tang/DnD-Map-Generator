@@ -1,5 +1,6 @@
 import React from "react";
 import { Room } from "./Room"
+import { roomGen } from "../utility/roomGen"
 
 interface mapProps {
     images: JSX.Element[]
@@ -129,7 +130,8 @@ export default function map(props: mapProps) {
         let roomToAdd: Room = new Room(origX, origY, origX + 10, origY + 10, northEntrance, southEntrance, eastEntrance, westEntrance, entrance)
         roomIndex++
         rooms.splice(roomIndex, 0, roomToAdd)
-        addRoom(origX, origY, origX + 10, origY + 10, roomToAdd.routeRoom)
+        var r = roomGen(roomToAdd.width, roomToAdd.height, roomToAdd.entrances, 0.4, true);
+        addRoom(origX, origY, origX + 10, origY + 10, r)
     }
     rooms.splice(0, 1)
 
