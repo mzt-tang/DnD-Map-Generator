@@ -4,7 +4,7 @@ const ENTRANCE = 2;
 
 
 /**
- * Generates a random room with a change to grow
+ * Generates a random room with a chance to grow
  *
  * @param rowSize the number of rows
  * @param colSize the number of columns
