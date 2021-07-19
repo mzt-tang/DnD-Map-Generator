@@ -14,7 +14,7 @@ const Home = () => {
         <View>
             <div>
                 <p>
-                    Click buttons below to visit current pages.q
+                    Click buttons below to visit current pages.
                     <br/>
 
                 </p>
