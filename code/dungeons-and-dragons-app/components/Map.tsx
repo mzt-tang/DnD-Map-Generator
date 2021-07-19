@@ -6,7 +6,6 @@ interface mapProps {
 }
 
 export default function map(props: mapProps) {
-
     const mapStyle = function (width: number, height: number) {
         return {
             margin: 'auto',
@@ -56,7 +55,7 @@ export default function map(props: mapProps) {
     let height: number = mapGrid.length + 1;
     let width: number = mapGrid[0].length + 1;
     /*
-    A Function that adds a the room 2d array to the map grid, going from startLeft to width, and startTop to height. 
+    A Function that adds the room 2d array to the map grid, going from startLeft to width, and startTop to height. 
     */
     function addRoom(startLeft: number, startTop: number, width: number, height: number, room: number[][]) {
         let roomLeft = 0;
@@ -70,8 +69,10 @@ export default function map(props: mapProps) {
             roomTop++;
         }
     }
+    /*
+    The array of rooms in the map, includes a placeholder room (so that the entrance doesn't have a doorway to connect to). It is removed when the route is made.
+    */
     let rooms: Room[] = [(new Room(0, 0, 10, 10, [0, 0], [0, 0], [0, 0], [0, 0], 'NULL'))]
-
     let roomX = 0;
     let roomY = 0;
     let roomIndex = 0;
@@ -80,7 +81,8 @@ export default function map(props: mapProps) {
     let exitY = 20
     /*
     This while loop generates the rooms that follow the route from the start room to end room. Starting room is currently at top left position and end is at bottom
-    right.
+    right. Each time it randomly decides whether to generate a room to the right or downwards along the path (as long as the room isn't at the bottom or far right of
+    the map). The room is then added to the map and to the rooms array. 
     */
     while (roomX <= exitX && roomY <= exitY) {
         let origX = roomX;
@@ -102,6 +104,7 @@ export default function map(props: mapProps) {
                 entrance = 'SOUTH'
             }
         } else {
+            // if the room is on the exit room position, then doesn't make a new entrance, increases roomY to stop the loop
             if (roomX == exitX && roomY == exitY) {
                 roomY += 10;
             } else if (roomX == exitX) {
@@ -114,6 +117,7 @@ export default function map(props: mapProps) {
                 entrance = 'EAST'
             }
         }
+        // checks the whether the previous room is to the left or upwards, and makes a doorway
         switch (rooms[roomIndex].entrance) {
             case 'SOUTH':
                 northEntrance = [4, 6]
@@ -127,8 +131,12 @@ export default function map(props: mapProps) {
         rooms.splice(roomIndex, 0, roomToAdd)
         addRoom(origX, origY, origX + 10, origY + 10, roomToAdd.routeRoom)
     }
+    rooms.splice(0, 1)
 
 
+    /*
+    This for loop fills up the rest of the map with rooms.
+    */
     for (let i = 0; i < mapGrid.length; i += 10) {
         for (let j = 0; j < mapGrid[i].length; j += 10) {
             if (mapGrid[i][j] == 10) {
@@ -138,6 +146,8 @@ export default function map(props: mapProps) {
             }
         }
     }
+
+
     /*
     Assigns the numbers in mapGrid to the tiles from the images array. This generates the array that will be displayed
     */
@@ -154,6 +164,7 @@ export default function map(props: mapProps) {
         })
         pixelDisplay.push(row)
     })
+
     /*for (let i: number = 0; i < width; i++) {
         //  row
         let row: JSX.Element[] = []

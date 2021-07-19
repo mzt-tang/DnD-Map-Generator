@@ -1,5 +1,3 @@
-import React from 'react';
-
 export class Room {
     left: number
     top: number
@@ -164,7 +162,9 @@ export class Room {
         this.west = [4,6];
         this.assignEntrances
     }
-
+    /*
+    Replaces the tiles corresponding to the entrances with floor tiles.
+    */
     private assignEntrances() {
         for (let i: number = this.north[0]; i < this.north[1]; i++) {
             this.routeRoom[0][i] = 9
