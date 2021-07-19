@@ -14,7 +14,6 @@ export default function map(props: mapProps) {
             gridTemplateColumns: 'repeat(' + width + ',max-content)',
             gridTemplateRows: 'repeat(' + height + ',max-content)',
             gridGap: '0px'
-
         }
     }
     /*
@@ -88,20 +87,20 @@ export default function map(props: mapProps) {
     while (roomX <= exitX && roomY <= exitY) {
         let origX = roomX;
         let origY = roomY;
-        let southEntrance = [0, 0]
-        let eastEntrance = [0, 0]
-        let westEntrance = [0, 0]
-        let northEntrance = [0, 0]
+        var southEntrance = [0,4]
+        var eastEntrance = [4,0]
+        var westEntrance = [4,9]
+        var northEntrance = [9,4]
         let entrance = 'NULL'
         // checks if room is not on the far left or bottom of map, if it is randomly decides to advance left or down
         if (roomX != exitX && roomY != exitY) {
             if (Math.random() >= 0.5) {
                 roomX += 10;
-                eastEntrance = [4, 6]
+                rooms[roomIndex].entrances[0] = eastEntrance;
                 entrance = 'EAST'
             } else {
                 roomY += 10;
-                southEntrance = [4, 6]
+                rooms[roomIndex].entrances[0] = southEntrance;
                 entrance = 'SOUTH'
             }
         } else {
@@ -110,21 +109,21 @@ export default function map(props: mapProps) {
                 roomY += 10;
             } else if (roomX == exitX) {
                 roomY += 10;
-                southEntrance = [4, 6]
+                rooms[roomIndex].entrances[0] = southEntrance;
                 entrance = 'SOUTH'
             } else {
                 roomX += 10;
-                eastEntrance = [4, 6]
+                rooms[roomIndex].entrances[0] = eastEntrance;
                 entrance = 'EAST'
             }
         }
         // checks the whether the previous room is to the left or upwards, and makes a doorway
         switch (rooms[roomIndex].entrance) {
             case 'SOUTH':
-                northEntrance = [4, 6]
+                rooms[roomIndex].entrances[0] = northEntrance;
                 break;
             case 'EAST':
-                westEntrance = [4, 6]
+                rooms[roomIndex].entrances[0] = westEntrance;
                 break;
         }
         let roomToAdd: Room = new Room(origX, origY, origX + 10, origY + 10, northEntrance, southEntrance, eastEntrance, westEntrance, entrance)
