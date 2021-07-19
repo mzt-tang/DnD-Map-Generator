@@ -16,6 +16,7 @@ export default function map(props: mapProps) {
             gridGap: '0px'
         }
     }
+    const ROOM_SIZE = 10;
     /*
     The blank map
     */
@@ -129,7 +130,7 @@ export default function map(props: mapProps) {
         let roomToAdd: Room = new Room(origX, origY, origX + 10, origY + 10, northEntrance, southEntrance, eastEntrance, westEntrance, entrance)
         roomIndex++
         rooms.splice(roomIndex, 0, roomToAdd)
-        var r = roomGen(roomToAdd.width, roomToAdd.height, roomToAdd.entrances, 0.4, true);
+        var r = roomGen(ROOM_SIZE, ROOM_SIZE, roomToAdd.entrances, 0.4, true);
         addRoom(origX, origY, origX + 10, origY + 10, r)
     }
     rooms.splice(0, 1)
@@ -138,15 +139,15 @@ export default function map(props: mapProps) {
     /*
     This for loop fills up the rest of the map with rooms.
     */
-    for (let i = 0; i < mapGrid.length; i += 10) {
-        for (let j = 0; j < mapGrid[i].length; j += 10) {
-            if (mapGrid[i][j] == 10) {
-                let randRoom = new Room(j, i, j + 10, i + 10, [0, 0], [0, 0], [0, 0], [0, 0], 'NULL')
-                rooms.push(randRoom)
-                addRoom(randRoom.left, randRoom.top, randRoom.width, randRoom.height, randRoom.routeRoom)
-            }
-        }
-    }
+    // for (let i = 0; i < mapGrid.length; i += 10) {
+    //     for (let j = 0; j < mapGrid[i].length; j += 10) {
+    //         if (mapGrid[i][j] == 10) {
+    //             let randRoom = new Room(j, i, j + 10, i + 10, [0, 0], [0, 0], [0, 0], [0, 0], 'NULL')
+    //             rooms.push(randRoom)
+    //             addRoom(randRoom.left, randRoom.top, randRoom.width, randRoom.height, randRoom.routeRoom)
+    //         }
+    //     }
+    // }
 
 
     /*
@@ -247,3 +248,4 @@ export default function map(props: mapProps) {
         </div>
     )
 }
+

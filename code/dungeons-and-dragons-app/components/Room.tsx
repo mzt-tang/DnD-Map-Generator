@@ -143,42 +143,6 @@ export class Room {
 
         //Pick a random room from list for routeRoom
         this.routeRoom = this.rooms[Math.floor(Math.random()*this.rooms.length)];
-        
-        this.assignEntrances();
         this.entrance = originalEntrance
-    }
-
-    public addNorthEntrance(newEntrance:number[]) {
-        this.north = [4,6];
-        this.assignEntrances
-    }
-    public addSouthEntrance(newEntrance:number[]) {
-        this.south = [4,6];
-        this.assignEntrances
-    }
-    public addEastEntrance(newEntrance:number[]) {
-        this.east = [4,6];
-        this.assignEntrances
-    }
-    public addWestEntrance(newEntrance:number[]) {
-        this.west = [4,6];
-        this.assignEntrances
-    }
-    /*
-    Replaces the tiles corresponding to the entrances with floor tiles.
-    */
-    private assignEntrances() {
-        for (let i: number = this.north[0]; i < this.north[1]; i++) {
-            this.routeRoom[0][i] = 9
-        }
-        for (let i = this.south[0]; i < this.south[1]; i++) {
-            this.routeRoom[9][i] = 9
-        }
-        for (let i = this.east[0]; i < this.east[1]; i++) {
-            this.routeRoom[i][9] = 9
-        }
-        for (let i = this.west[0]; i < this.west[1]; i++) {
-            this.routeRoom[i][0] = 9
-        }
     }
 }
