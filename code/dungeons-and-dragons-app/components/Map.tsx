@@ -167,89 +167,99 @@ export default function map(props: mapProps) {
         pixelDisplay.push(row)
     })*/
     let pixelDisplay: JSX.Element[][] = []
-    for (let i: number = 0; i < height-1; i++) {
-        //  row
+    for (let i: number = 0; i < height-1; i++) { //Rows
         let row: JSX.Element[] = []
-        for (let j: number = 0; j < width-1; j++) {
-            //  col
-            // numbers should reference a tile in images
+        for (let j: number = 0; j < width-1; j++) { //Col
+
             console.log("0");
             let imagelink = props.images[0];
 
+            //Tile is on edge of screen, therefore make it a wall
             if (i == 0 || j == 0 || i == width - 1 || j == height - 1) {
-
                 imagelink = props.images[12]
-            }
 
-            if (i > 0 && j > 0 && i < width - 1 && j < height - 1) {
-                // Need to check tiles left, right, above, below, above left, above right, below left, below right
+            //Current tile is a wall, find what type
+            }else if(mapGrid[i][j] == 0){
+                //Create bool statements to find walls
+                let north: boolean = false;
+                let south: boolean = false;
+                let west: boolean = false;
+                let east: boolean = false;
 
-                // Checks for tiles in the corners, if there is one floor tile in one corner only
-                // Check for three tiles, in a corner formation around the current tile
-                if (mapGrid[i - 1][j] == 8 && mapGrid[i - 1][j - 1] == 8 && mapGrid[i][j - 1] == 8) {
-                    console.log("1")
-                    imagelink = props.images[3]
-                } else if (mapGrid[i - 1][j] == 8 && mapGrid[i - 1][j + 1] == 8 && mapGrid[i][j + 1] == 8) {
-                    console.log("2")
-                    imagelink = props.images[6]
-                } else if (mapGrid[i + 1][j] == 8 && mapGrid[i + 1][j - 1] == 8 && mapGrid[i][j - 1] == 8) {
-                    console.log("3")
-                    imagelink = props.images[4]
-                } else if (mapGrid[i + 1][j] == 8 && mapGrid[i + 1][j + 1] == 8 && mapGrid[i][j + 1] == 8) {
-                    console.log("4")
-                    imagelink = props.images[5]
-                }// Checks for if there are floor tiles adjacent to the current tile
-                else if (mapGrid[i - 1][j] == 8) {
-                    console.log("5")
-                    imagelink = props.images[8]
-                } else if (mapGrid[i + 1][j] == 8) {
-                    console.log("6")
-                    imagelink = props.images[7]
-                } else if (mapGrid[i][j - 1] == 8) {
-                    console.log("7")
-                    imagelink = props.images[9]
-                } else if (mapGrid[i][j + 1] == 8) {
-                    console.log("8")
-                    imagelink = props.images[10]
-                } else if (mapGrid[i - 1][j - 1] == 8 && mapGrid[i - 1][j] == 9 && mapGrid[i - 1][j + 1] == 9 && mapGrid[i][j - 1] == 9 && mapGrid[i][j + 1] == 9 && mapGrid[i + 1][j - 1] == 9 && mapGrid[i + 1][j + 1] == 9) {
-                    console.log("9")
-                    imagelink = props.images[5]
-                } else if (mapGrid[i + 1][j - 1] == 8 && mapGrid[i - 1][j] == 9 && mapGrid[i - 1][j + 1] == 9 && mapGrid[i][j - 1] == 9 && mapGrid[i][j + 1] == 9 && mapGrid[i - 1][j - 1] == 9 && mapGrid[i + 1][j + 1] == 9) {
-                    console.log("10")
-                    imagelink = props.images[6]
-                } else if (mapGrid[i - 1][j + 1] == 8 && mapGrid[i - 1][j] == 9 && mapGrid[i - 1][j - 1] == 9 && mapGrid[i][j - 1] == 9 && mapGrid[i][j + 1] == 9 && mapGrid[i + 1][j - 1] == 9 && mapGrid[i + 1][j + 1] == 9) {
-                    console.log("11")
-                    imagelink = props.images[4]
-                } else if (mapGrid[i + 1][j + 1] == 8 && mapGrid[i - 1][j] == 9 && mapGrid[i - 1][j + 1] == 9 && mapGrid[i][j - 1] == 9 && mapGrid[i][j + 1] == 9 && mapGrid[i + 1][j - 1] == 9 && mapGrid[i - 1][j - 1] == 9) {
-                    console.log("12")
-                    imagelink = props.images[3]
-                } else {
-                    let countCorners = 0;
-                    if (mapGrid[i - 1][j - 1] == 8) {
-                        countCorners++;
-                    }
-                    if (mapGrid[i + 1][j - 1] == 8) {
-                        countCorners++;
-                    }
-                    if (mapGrid[i - 1][j + 1] == 8) {
-                        countCorners++;
-                    }
-                    if (mapGrid[i + 1][j + 1] == 8) {
-                        countCorners++;
-                    }
+                //Check which directions have walls
+                if(mapGrid[i][j-1] == 0){ west = true;}
+                if(mapGrid[i][j+1] == 0){ east = true;}
+                if(mapGrid[i-1][j] == 0){ north = true;}
+                if(mapGrid[i+1][j] == 0){ south = true;}
 
-                    if (countCorners > 0) {
-                        console.log("13")
-                        imagelink = props.images[11]
-                    }
+                //Assign an image based on wall directions
+                switch([north, south, west, east]){
+                    case [true,false,false,false]: // Only north
+                        imagelink = props.images[0] //todo change based on image num
+                        break;
+                    case [false,true,false,false]: // Only south
+                        imagelink = props.images[0] //todo change based on image num
+                        break;
+                    case [false,false,true,false]: // Only west
+                        imagelink = props.images[0] //todo change based on image num
+                        break;
+                    case [false,false,false,true]: // Only east
+                        imagelink = props.images[0] //todo change based on image num
+                        break;
+                    case [true,false,true,false]: // north west
+                        imagelink = props.images[0] //todo change based on image num
+                        break;
+                    case [true,false,false,true]: // north east
+                        imagelink = props.images[0] //todo change based on image num
+                        break;
+                    case [false,true,true,false]: // south west
+                        imagelink = props.images[0] //todo change based on image num
+                        break;
+                    case [false,true,false,true]: // south east
+                        imagelink = props.images[0] //todo change based on image num
+                        break;
+                    case [true,true,false,false]: // vertical wall
+                        imagelink = props.images[0] //todo change based on image num
+                        break;
+                    case [false,false,true,true]: // Only south
+                        imagelink = props.images[0] //todo change based on image num
+                        break;
+                    default: // Solid wall, checks if its an inverted corner
+                        //Create corner booleans
+                        let nw: boolean = false;
+                        let sw: boolean = false;
+                        let ne: boolean = false;
+                        let se: boolean = false;
+
+                        //Check which directions have walls
+                        if(mapGrid[i-1][j-1] == 0){ nw = true;}
+                        if(mapGrid[i+1][j+1] == 0){ se = true;}
+                        if(mapGrid[i-1][j+1] == 0){ ne = true;}
+                        if(mapGrid[i+1][j-1] == 0){ sw = true;}
+
+                        switch([nw,ne,sw,se]){
+                            case [true,true,true,false]: // All but SE
+                                imagelink = props.images[0] //todo change based on image num
+                                break;
+                            case [true,true,false,true]: // All but SW
+                                imagelink = props.images[0] //todo change based on image num
+                                break;
+                            case [true,false,true,true]: // All but NE
+                                imagelink = props.images[0] //todo change based on image num
+                                break;
+                            case [false,true,true,true]: // All but NW
+                                imagelink = props.images[0] //todo change based on image num
+                                break;
+                        }
+                        break;
                 }
 
-                // Check and count how many corner tiles there are around the current tile, if there are more than two,
-                // and none of the other conditions are met, put in another tile type.
-
+            // Tile is a floor, grab floor image
+            } else{
+                imagelink = props.images[12]; //todo change based on image num
             }
-            console.log("Img: "+imagelink+", Y: "+i+", Y: "+j);
 
+            console.log("Img: "+imagelink+", Y: "+i+", Y: "+j);
             row.push(imagelink)
         }
         pixelDisplay.push(row)
