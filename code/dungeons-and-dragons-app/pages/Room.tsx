@@ -25,10 +25,10 @@ import {roomGen} from "../utility/roomGen";
 // }
 
 const Room = () => {
-    const[rows, setRows] = useState(20);
-    const[cols,setCols] = useState(20);
+    const[rows, setRows] = useState(10);
+    const[cols,setCols] = useState(10);
     const[probability,setProbability] = useState(0.35);
-    const[entrances,setEntrances] = useState([[0,9],[19,10],[9,0],[10,19]])
+    const[entrances,setEntrances] = useState([[0,5],[5,0],[9,5],[5,9]])
     const[clean, setClean] = useState(true)
 
     const images : JSX.Element[] = [
@@ -42,7 +42,7 @@ const Room = () => {
         constructor(width: number, height: number) {
             this.tiles = getTiles();
         }
-    
+
         getRoom(): number[][]{
             return this.tiles;
         }
