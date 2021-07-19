@@ -52,6 +52,9 @@ export default function map(props: mapProps) {
         [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
         [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
     ]
+
+    let height: number = mapGrid.length + 1;
+    let width: number = mapGrid[0].length + 1;
     /*
     A Function that adds a the room 2d array to the map grid, going from startLeft to width, and startTop to height. 
     */
@@ -76,8 +79,8 @@ export default function map(props: mapProps) {
     let exitX = 30
     let exitY = 20
     /*
-    This while loop generates the rooms that follow the route from the start room to end room. Each time it randomly decides whether to move right or down, if the 
-    room is 
+    This while loop generates the rooms that follow the route from the start room to end room. Starting room is currently at top left position and end is at bottom
+    right.
     */
     while (roomX <= exitX && roomY <= exitY) {
         let origX = roomX;
@@ -87,6 +90,7 @@ export default function map(props: mapProps) {
         let westEntrance = [0, 0]
         let northEntrance = [0, 0]
         let entrance = 'NULL'
+        // checks if room is not on the far left or bottom of map, if it is randomly decides to advance left or down
         if (roomX != exitX && roomY != exitY) {
             if (Math.random() >= 0.5) {
                 roomX += 10;
@@ -121,58 +125,110 @@ export default function map(props: mapProps) {
         let roomToAdd: Room = new Room(origX, origY, origX + 10, origY + 10, northEntrance, southEntrance, eastEntrance, westEntrance, entrance)
         roomIndex++
         rooms.splice(roomIndex, 0, roomToAdd)
-        addRoom(origX, origY, origX+10, origY+10, roomToAdd.routeRoom)
-
+        addRoom(origX, origY, origX + 10, origY + 10, roomToAdd.routeRoom)
     }
 
-    for (let i = 0; i < mapGrid.length; i++) {
-        for (let j = 0; j < mapGrid[i].length; j++) {
-            if (mapGrid[i][j] == 10) {
-                let south = [0, 0]
-                let north = [0, 0]
-                let east = [0, 0]
-                let west = [0, 0]
 
-                let randRoom = new Room(j, i, j + 10, i + 10, north, south, east, west, 'NULL')
+    for (let i = 0; i < mapGrid.length; i += 10) {
+        for (let j = 0; j < mapGrid[i].length; j += 10) {
+            if (mapGrid[i][j] == 10) {
+                let randRoom = new Room(j, i, j + 10, i + 10, [0, 0], [0, 0], [0, 0], [0, 0], 'NULL')
                 rooms.push(randRoom)
                 addRoom(randRoom.left, randRoom.top, randRoom.width, randRoom.height, randRoom.routeRoom)
-            }
-        }
-    }
-    for (let i = 0; i < rooms.length; i++) {
-        let room = rooms[i]
-        if(room.north == [0,0] && room.south == [0,0] && room.east == [0,0] && room.west == [0,0]) {
-            let viableRooms:string[] = []
-            if(room.top > 0) {
-                viableRooms.push('NORTH')
-            }
-            if(room.top < 20) {
-                viableRooms.push('SOUTH')
-            }
-            if(room.left > 0) {
-                viableRooms.push('WEST')
-            }
-            if(room.left < 30) {
-                viableRooms.push('EAST')
             }
         }
     }
     /*
     Assigns the numbers in mapGrid to the tiles from the images array. This generates the array that will be displayed
     */
-    let pixelDisplay:JSX.Element[][] =[]
-        mapGrid.forEach(function (e1: number[], index: number) {
-            //  row
-            let row: JSX.Element[] = []
-            e1.forEach(function (e2: number, index2: number) {
-                //  col
-                // numbers should reference a tile in images
-                const imagelink = props.images[e2]
-                row.push(imagelink)
-            })
-            pixelDisplay.push(row)
+    let pixelDisplay: JSX.Element[][] = []
+    mapGrid.forEach(function (e1: number[], index: number) {
+        //  row
+        let row: JSX.Element[] = []
+        e1.forEach(function (e2: number, index2: number) {
+            //  col
+            // numbers should reference a tile in images
+            const imagelink = props.images[e2]
+            row.push(imagelink)
+            console.log("e1 index:" + index + ", e2 index:" + index2);
         })
-    
+        pixelDisplay.push(row)
+    })
+    /*for (let i: number = 0; i < width; i++) {
+        //  row
+        let row: JSX.Element[] = []
+        for (let j: number = 0; j < height; j++) {
+            //  col
+            // numbers should reference a tile in images
+            let num = mapGrid[i][j];
+            let imagelink = props.images[num]
+            if (num == 0) {
+ 
+                if (i == 0 || j == 0 || i == width - 1 || j == height - 1) {
+                    imagelink = props.images[12]
+                }
+ 
+                if (i > 0 && j > 0 && i < width - 1 && j < height - 1) {
+                    // Need to check tiles left, right, above, below, above left, above right, below left, below right
+ 
+                    // Checks for tiles in the corners, if there is one floor tile in one corner only
+                    // Check for three tiles, in a corner formation around the current tile
+                    if (mapGrid[i - 1][j] == 1 && mapGrid[i - 1][j - 1] == 1 && mapGrid[i][j - 1] == 1) {
+                        imagelink = props.images[3]
+                    } else if (mapGrid[i - 1][j] == 1 && mapGrid[i - 1][j + 1] == 1 && mapGrid[i][j + 1] == 1) {
+                        imagelink = props.images[6]
+                    } else if (mapGrid[i + 1][j] == 1 && mapGrid[i + 1][j - 1] == 1 && mapGrid[i][j - 1] == 1) {
+                        imagelink = props.images[4]
+                    } else if (mapGrid[i + 1][j] == 1 && mapGrid[i + 1][j + 1] == 1 && mapGrid[i][j + 1] == 1) {
+                        imagelink = props.images[5]
+                    }// Checks for if there are floor tiles adjacent to the current tile
+                    else if (mapGrid[i - 1][j] == 1) {
+                        imagelink = props.images[8]
+                    } else if (mapGrid[i + 1][j] == 1) {
+                        imagelink = props.images[7]
+                    } else if (mapGrid[i][j - 1] == 1) {
+                        imagelink = props.images[9]
+                    } else if (mapGrid[i][j + 1] == 1) {
+                        imagelink = props.images[10]
+                    } else if (mapGrid[i - 1][j - 1] == 1 && mapGrid[i - 1][j] == 0 && mapGrid[i - 1][j + 1] == 0 && mapGrid[i][j - 1] == 0 && mapGrid[i][j + 1] == 0 && mapGrid[i + 1][j - 1] == 0 && mapGrid[i + 1][j + 1] == 0) {
+                        imagelink = props.images[5]
+                    } else if (mapGrid[i + 1][j - 1] == 1 && mapGrid[i - 1][j] == 0 && mapGrid[i - 1][j + 1] == 0 && mapGrid[i][j - 1] == 0 && mapGrid[i][j + 1] == 0 && mapGrid[i - 1][j - 1] == 0 && mapGrid[i + 1][j + 1] == 0) {
+                        imagelink = props.images[6]
+                    } else if (mapGrid[i - 1][j + 1] == 1 && mapGrid[i - 1][j] == 0 && mapGrid[i - 1][j - 1] == 0 && mapGrid[i][j - 1] == 0 && mapGrid[i][j + 1] == 0 && mapGrid[i + 1][j - 1] == 0 && mapGrid[i + 1][j + 1] == 0) {
+                        imagelink = props.images[4]
+                    } else if (mapGrid[i + 1][j + 1] == 1 && mapGrid[i - 1][j] == 0 && mapGrid[i - 1][j + 1] == 0 && mapGrid[i][j - 1] == 0 && mapGrid[i][j + 1] == 0 && mapGrid[i + 1][j - 1] == 0 && mapGrid[i - 1][j - 1] == 0) {
+                        imagelink = props.images[3]
+                    } else {
+                        let countCorners = 0;
+                        if (mapGrid[i - 1][j - 1] == 1) {
+                            countCorners++;
+                        }
+                        if (mapGrid[i + 1][j - 1] == 1) {
+                            countCorners++;
+                        }
+                        if (mapGrid[i - 1][j + 1] == 1) {
+                            countCorners++;
+                        }
+                        if (mapGrid[i + 1][j + 1] == 1) {
+                            countCorners++;
+                        }
+ 
+                        if (countCorners > 0) {
+                            imagelink = props.images[11]
+                        }
+                    }
+ 
+                    // Check and count how many corner tiles there are around the current tile, if there are more than two,
+                    // and none of the other conditions are met, put in another tile type.
+ 
+                }
+            }
+            row.push(imagelink)
+        }
+        pixelDisplay.push(row)
+ 
+    }*/
+
     return (
         <div id="map" style={mapStyle(40, 25)}>
             {pixelDisplay}
