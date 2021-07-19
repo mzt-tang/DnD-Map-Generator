@@ -152,15 +152,35 @@ export default function map(props: mapProps) {
     /*
     This for loop fills up the rest of the map with rooms.
     */
-    // for (let i = 0; i < mapGrid.length; i += 10) {
-    //     for (let j = 0; j < mapGrid[i].length; j += 10) {
-    //         if (mapGrid[i][j] == 10) {
-    //             let randRoom = new Room(j, i, j + 10, i + 10, [0, 0], [0, 0], [0, 0], [0, 0], 'NULL')
-    //             rooms.push(randRoom)
-    //             addRoom(randRoom.left, randRoom.top, randRoom.width, randRoom.height, randRoom.routeRoom)
-    //         }
-    //     }
-    // }
+    for (let i = 0; i < mapGrid.length; i += 10) {
+        for (let j = 0; j < mapGrid[i].length; j += 10) {
+            if (mapGrid[i][j] == 10) {
+                let entrances:number[][] = []
+
+                var southEntrance = [0,4]
+                var eastEntrance = [4,0]
+                var westEntrance = [4,9]
+                var northEntrance = [9,4]
+                if(roomY > 0) {
+                    entrances.splice(0,0,southEntrance)
+                }
+                if(roomY < 20) {
+                    entrances.splice(0,0,northEntrance)
+                }
+                if(roomX > 0) { 
+                    entrances.splice(0,0,eastEntrance)
+                }
+                if(roomX < 30) {
+                    entrances.splice(0,0,westEntrance)
+                }
+                let randRoom = new Room(j, i, j + 10, i + 10, entrances, 'NULL')
+                rooms.push(randRoom)
+                var r = roomGen(ROOM_SIZE, ROOM_SIZE, entrances, 0.4, true);
+
+                addRoom(randRoom.left, randRoom.top, randRoom.width, randRoom.height, r)
+            }
+        }
+    }
 
 
     /*
