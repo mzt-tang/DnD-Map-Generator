@@ -211,6 +211,12 @@ export default function map(props: mapProps) {
             }
         }
 
+        // if we got here and we have no entrances than the room has no entrances and we can exit.
+        if (roomEntrances.length == 0){
+            allRooms[i] = Array.from(Array(ROOM_SIZE), _ => Array(ROOM_SIZE).fill(0));
+            return;
+        }
+
         // Make possible new entrances for non generated rooms
         if (hasNorthNeighbour && !hasNorthGenerated){
             if (Math.random() < ENTRANCE_PROBABILITY){
@@ -231,12 +237,6 @@ export default function map(props: mapProps) {
             if (Math.random() < ENTRANCE_PROBABILITY){
                 roomEntrances.push([getRandomDoorLocation(),ROOM_SIZE-1]);
             }
-        }
-
-        // if we got here and we have no entrances than the room has no entrances and we can exit??
-        if (roomEntrances.length == 0){
-            allRooms[i] = Array.from(Array(ROOM_SIZE), _ => Array(ROOM_SIZE).fill(0));
-            return;
         }
 
         allRooms[i] = roomGen(ROOM_SIZE,ROOM_SIZE,roomEntrances,ROOM_GROW_PROBABILITY,true);
