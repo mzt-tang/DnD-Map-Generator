@@ -8,8 +8,11 @@ interface mapProps {
 const ROOM_SIZE = 10;
 const MAP_ROOM_ROWS = 3;
 const MAP_ROOM_COLS = 4;
-const ENTRANCE_CHANCE = 0.5;
+const ENTRANCE_PROBABILITY= 0.7;
 const ROOM_GROW_PROBABILITY = 0.42;
+
+//todo double doors.
+const DOUBLE_DOORS = false;
 
 export default function map(props: mapProps) {
     const mapStyle = function (width: number, height: number) {
@@ -89,7 +92,7 @@ export default function map(props: mapProps) {
                 southEntrances.push([9, getRandomDoorLocation()]);
 
                 // Chance for a north
-                if (Math.random() > ENTRANCE_CHANCE) northEntrances.push([0, getRandomDoorLocation()]);
+                if (Math.random() < ENTRANCE_PROBABILITY) northEntrances.push([0, getRandomDoorLocation()]);
             } else if (previousWasUp){
                 for (let i = 0; i < previousRoomEntrances.length; i++){
                     if (previousRoomEntrances[i][0] == ROOM_SIZE-1) northEntrances.push([0,previousRoomEntrances[i][1]]);
@@ -100,12 +103,8 @@ export default function map(props: mapProps) {
                 southEntrances.push([9, getRandomDoorLocation()]);
 
                 // chance for a west
-                if (Math.random() > ENTRANCE_CHANCE) westEntrances.push([getRandomDoorLocation(), 0]);
+                if (Math.random() < ENTRANCE_PROBABILITY) westEntrances.push([getRandomDoorLocation(), 0]);
             }
-
-            // create new entrances for the directions with no rooms.
-
-
 
             previousRoomIndex = currentRoomIndex;
         }
@@ -151,6 +150,99 @@ export default function map(props: mapProps) {
             break;
         }
     }
+
+    // Generate any left over rooms
+    for (let i = 0; i < allRooms.length; i++){
+        if (allRooms[i].length == 0) generateRoom(i);
+    }
+
+    /**
+     * Used to generate the rooms after the initial path from entrance to exit is made.
+     *
+     * @param i the room number
+     */
+    function generateRoom(i: number) {
+        let roomRow = getRoomRow(i);
+        let roomCol = getRoomCol(i);
+        let roomEntrances : number[][] = [];
+
+        // Check if it is possible to have the neighbour
+        let hasNorthNeighbour = roomRow > 0;
+        let hasSouthNeighbour = roomRow < MAP_ROOM_ROWS-1;
+        let hasWestNeighbour = roomCol > 0;
+        let hasEastNeighbour = roomCol < MAP_ROOM_COLS-1;
+
+        // If it is possible, check they have a generated room otherwise no point in looking for entrances.
+        let hasNorthGenerated = hasNorthNeighbour && allRooms[i - MAP_ROOM_COLS].length != 0;
+        let hasSouthGenerated = hasSouthNeighbour && allRooms[i + MAP_ROOM_COLS].length != 0;
+        let hasWestGenerated = hasWestNeighbour && allRooms[i - 1].length != 0;
+        let hasEastGenerated = hasEastNeighbour && allRooms[i + 1].length != 0;
+
+        // check each neighbour for entrances and add them if they exist.
+        if (hasNorthGenerated){
+            let northNeighbourEntrances = getRoomEntrances(i - MAP_ROOM_COLS);
+
+            for (let i = 0; i < northNeighbourEntrances.length; i++){
+                if (northNeighbourEntrances[i][0] == ROOM_SIZE-1) roomEntrances.push([0,northNeighbourEntrances[i][1]]);
+            }
+        }
+
+        if (hasSouthGenerated){
+            let southNeighbourEntrances = getRoomEntrances(i + MAP_ROOM_COLS);
+
+            for (let i = 0; i < southNeighbourEntrances.length; i++){
+                if (southNeighbourEntrances[i][0] == 0) roomEntrances.push([ROOM_SIZE-1,southNeighbourEntrances[i][1]]);
+            }
+        }
+
+        if (hasWestGenerated){
+            let westNeighbourEntrances = getRoomEntrances(i - 1);
+
+            for (let i = 0; i < westNeighbourEntrances.length; i++){
+                if (westNeighbourEntrances[i][1] == ROOM_SIZE-1) roomEntrances.push([westNeighbourEntrances[i][0],0]);
+            }
+        }
+
+        if (hasEastGenerated){
+            let eastNeighbourEntrances = getRoomEntrances(i + 1);
+
+            for (let i = 0; i < eastNeighbourEntrances.length; i++){
+                if (eastNeighbourEntrances[i][1] == 0) roomEntrances.push([eastNeighbourEntrances[i][0],ROOM_SIZE-1]);
+            }
+        }
+
+        // Make possible new entrances for non generated rooms
+        if (hasNorthNeighbour && !hasNorthGenerated){
+            if (Math.random() < ENTRANCE_PROBABILITY){
+                roomEntrances.push([0,getRandomDoorLocation()]);
+            }
+        }
+        if (hasSouthNeighbour && !hasSouthGenerated){
+            if (Math.random() < ENTRANCE_PROBABILITY){
+                roomEntrances.push([ROOM_SIZE-1,getRandomDoorLocation()]);
+            }
+        }
+        if (hasWestNeighbour && !hasWestGenerated){
+            if (Math.random() < ENTRANCE_PROBABILITY){
+                roomEntrances.push([getRandomDoorLocation(),0]);
+            }
+        }
+        if (hasEastNeighbour && !hasEastGenerated){
+            if (Math.random() < ENTRANCE_PROBABILITY){
+                roomEntrances.push([getRandomDoorLocation(),ROOM_SIZE-1]);
+            }
+        }
+
+        // if we got here and we have no entrances than the room has no entrances and we can exit??
+        if (roomEntrances.length == 0){
+            allRooms[i] = Array.from(Array(ROOM_SIZE), _ => Array(ROOM_SIZE).fill(0));
+            return;
+        }
+
+        allRooms[i] = roomGen(ROOM_SIZE,ROOM_SIZE,roomEntrances,ROOM_GROW_PROBABILITY,true);
+    }
+
+
 
     addRooms();
     let pixelDisplay = doPixelDisplay();
