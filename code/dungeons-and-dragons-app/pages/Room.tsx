@@ -2,7 +2,7 @@ import React, {ChangeEvent, useState} from 'react';
 import { View } from 'react-native';
 import {Checkbox, Slider, Typography} from '@material-ui/core';
 import empty from '../assets/Dark.png';
-import floor from '../assets//Light.png';
+import floor from '../assets/New Tile Assets/floor_default.png';
 import entrance from '../assets/Floor.png';
 
 

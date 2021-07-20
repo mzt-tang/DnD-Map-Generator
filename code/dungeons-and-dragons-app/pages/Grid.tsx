@@ -9,8 +9,8 @@ import Image4 from '../assets/TRCorner.png';
 import Image5 from '../assets/WallBottom.png';
 import Image6 from '../assets/WallTop.png';
 import Image7 from '../assets/WallLeft.png';
-import Image8 from '../assets/WallRight.png';
-import Image9 from '../assets/Floor.png';
+import Image8 from '../assets/New Tile Assets/wall.png';
+import Image9 from '../assets/New Tile Assets/floor_default.png';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
