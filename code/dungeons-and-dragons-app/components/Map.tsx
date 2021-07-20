@@ -9,6 +9,7 @@ const ROOM_SIZE = 10;
 const MAP_ROOM_ROWS = 3;
 const MAP_ROOM_COLS = 4;
 const ENTRANCE_CHANCE = 0.5;
+const ROOM_GROW_PROBABILITY = 0.42;
 
 export default function map(props: mapProps) {
     const mapStyle = function (width: number, height: number) {
@@ -32,11 +33,8 @@ export default function map(props: mapProps) {
     // create a 2D array rows * cols filled with the value 10.
     let mapGrid = Array.from(Array(MAP_ROOM_ROWS * ROOM_SIZE), _ => Array(MAP_ROOM_COLS * ROOM_SIZE).fill(10));
 
-    let height: number = mapGrid.length + 1;
-    let width: number = mapGrid[0].length + 1;
-
     let previousRoomIndex = -1; // the previous room generated
-    let nextRoomIndex = 0; // the next room to generate
+    let currentRoomIndex = 0; // the next room to generate
 
     // these are used for the path from entry to exit.
     let row = 0;
@@ -51,70 +49,102 @@ export default function map(props: mapProps) {
 
         let entrances: number[][] = []
 
+        // figure out which row and col this room belongs to in the map.
+        let roomRow = getRoomRow(currentRoomIndex);
+        let roomCol = getRoomCol(currentRoomIndex);
+
         //todo change to allow multiple.
-        let northEntrances: number[] = []
-        let westEntrances: number[] = []
-        let eastEntrances: number[] = []
-        let southEntrances: number[] = []
+        let northEntrances: number[][] = []
+        let westEntrances: number[][] = []
+        let eastEntrances: number[][] = []
+        let southEntrances: number[][] = []
 
 
         if (previousRoomIndex == -1) { // this is the first room we are generating.
             // place first entrances in
-            northEntrances.push(0, 4);
-            westEntrances.push(4, 0);
-            eastEntrances.push(4, 9);
-            southEntrances.push(9, 4);
+            northEntrances.push([0, getRandomDoorLocation()]);
+            westEntrances.push([getRandomDoorLocation(), 0]);
+            eastEntrances.push([getRandomDoorLocation(), 9]);
+            southEntrances.push([9, getRandomDoorLocation()]);
 
-            previousRoomIndex = nextRoomIndex;
+            previousRoomIndex = currentRoomIndex;
         } else {
-            // figure out where previous entrances were.
-            northEntrances.push(0, 4);
-            westEntrances.push(4, 0);
-            eastEntrances.push(4, 9);
-            southEntrances.push(9, 4);
+            // Figure out where previous entrances were.
+            let previousRoomEntrances = getRoomEntrances(previousRoomIndex);
 
-            previousRoomIndex = nextRoomIndex;
+            let previousRow = getRoomRow(previousRoomIndex);
+            let previousCol = getRoomCol(previousRoomIndex);
+
+            // Match the previous entrances - must be left or up.
+            let previousWasLeft = previousCol == roomCol - 1;
+            let previousWasUp = previousRow == roomRow - 1;
+
+            if (previousWasLeft){
+                for (let i = 0; i < previousRoomEntrances.length; i++){
+                    if (previousRoomEntrances[i][1] == ROOM_SIZE-1) westEntrances.push([previousRoomEntrances[i][0],0]);
+                }
+
+                // Push random east and south entrances
+                eastEntrances.push([getRandomDoorLocation(), 9]);
+                southEntrances.push([9, getRandomDoorLocation()]);
+
+                // Chance for a north
+                if (Math.random() > ENTRANCE_CHANCE) northEntrances.push([0, getRandomDoorLocation()]);
+            } else if (previousWasUp){
+                for (let i = 0; i < previousRoomEntrances.length; i++){
+                    if (previousRoomEntrances[i][0] == ROOM_SIZE-1) northEntrances.push([0,previousRoomEntrances[i][1]]);
+                }
+
+                // Push random east and south entrances
+                eastEntrances.push([getRandomDoorLocation(), 9]);
+                southEntrances.push([9, getRandomDoorLocation()]);
+
+                // chance for a west
+                if (Math.random() > ENTRANCE_CHANCE) westEntrances.push([getRandomDoorLocation(), 0]);
+            }
+
+            // create new entrances for the directions with no rooms.
+
+
+
+            previousRoomIndex = currentRoomIndex;
         }
-
-        // figure out which row and col this room belongs to in the map.
-        let roomRow = getRoomRow(nextRoomIndex);
-        let roomCol = getRoomCol(nextRoomIndex);
 
         if (roomRow > 0) {
-            entrances.push(northEntrances)
+            northEntrances.forEach(e => entrances.push(e));
         }
         if (roomRow < MAP_ROOM_ROWS - 1) {
-            entrances.push(southEntrances)
+            southEntrances.forEach(e => entrances.push(e));
         }
         if (roomCol > 0) {
-            entrances.push(westEntrances)
+            westEntrances.forEach(e => entrances.push(e));
         }
         if (roomCol < MAP_ROOM_COLS - 1) {
-            entrances.push(eastEntrances)
+            eastEntrances.forEach(e => entrances.push(e));
         }
 
         // Generate the room and add it to allRooms.
-        allRooms[nextRoomIndex] = roomGen(ROOM_SIZE, ROOM_SIZE, entrances, 0.4, true);
+        allRooms[currentRoomIndex] = roomGen(ROOM_SIZE, ROOM_SIZE, entrances, ROOM_GROW_PROBABILITY, true);
 
         // calculate the next room to make.
         if (row < MAP_ROOM_ROWS - 1 && col < MAP_ROOM_COLS - 1) {
             // can grow south or east
             if (Math.random() < 0.5) {
                 // grow south
-                nextRoomIndex = nextRoomIndex + MAP_ROOM_COLS
+                currentRoomIndex = currentRoomIndex + MAP_ROOM_COLS
                 row++;
             } else {
                 // grow east
-                nextRoomIndex = nextRoomIndex + 1;
+                currentRoomIndex = currentRoomIndex + 1;
                 col++;
             }
         } else if (row < MAP_ROOM_ROWS - 1) {
             // must grow south
-            nextRoomIndex = nextRoomIndex + MAP_ROOM_COLS
+            currentRoomIndex = currentRoomIndex + MAP_ROOM_COLS
             row++;
         } else if (col < MAP_ROOM_COLS - 1) {
             // must grow east
-            nextRoomIndex = nextRoomIndex + 1;
+            currentRoomIndex = currentRoomIndex + 1;
             col++;
         } else {
             // no further places we can travel.
@@ -188,6 +218,33 @@ export default function map(props: mapProps) {
     }
 
     /**
+     * Returns the entrances of a room from the all rooms.
+     *
+     * @param index the index of the room you want the entrances from.
+     */
+    function getRoomEntrances(index : number) : number[][] {
+        let room = allRooms[index]
+        const entrances : number[][] = [];
+
+        for (let row = 0; row < room.length; row++){
+            for (let col = 0; col < room[row].length; col++){
+                if (room[row][col] == 2) entrances.push([row,col]);
+            }
+        }
+
+        return entrances;
+    }
+
+    /**
+     * Returns a random int between 1 - RoomSize-1
+     *
+     * Eg for room size 10 it will return 1 - 8.
+     */
+    function getRandomDoorLocation() : number {
+        return Math.floor(Math.random() * (ROOM_SIZE-2)) + 1;
+    }
+
+    /**
      * Takes in the 2D array representing the main map and returns a 2D array of JSX.Elements representing the tile
      * elements.
      */
@@ -213,7 +270,6 @@ export default function map(props: mapProps) {
             {pixelDisplay}
         </div>
     )
-
 
 }
 
