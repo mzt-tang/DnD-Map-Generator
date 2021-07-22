@@ -8,6 +8,8 @@ interface mapProps {
 const ROOM_SIZE = 10;
 const MAP_ROOM_ROWS = 3;
 const MAP_ROOM_COLS = 4;
+const height = ROOM_SIZE*MAP_ROOM_ROWS;
+const width = ROOM_SIZE*MAP_ROOM_COLS;
 const ENTRANCE_PROBABILITY= 0.7;
 const ROOM_GROW_PROBABILITY = 0.42;
 
@@ -341,21 +343,127 @@ export default function map(props: mapProps) {
      * elements.
      */
     function doPixelDisplay() : JSX.Element[][] {
-        let pixelDisplay : JSX.Element[][] = [];
-
-        mapGrid.forEach(function (e1: number[], index: number) {
-            //  row
+        let pixelDisplay: JSX.Element[][] = []
+        for (let i: number = 0; i < height-1; i++) { //Rows
             let row: JSX.Element[] = []
-            e1.forEach(function (e2: number, index2: number) {
-                //  col
-                // numbers should reference a tile in images
-                const imagelink = props.images[e2]
+            for (let j: number = 0; j < width - 1; j++) { //Col
+
+                console.log("0");
+                let imagelink = props.images[0];
+
+                //Tile is on edge of screen, therefore make it a wall
+                if (i == 0 || j == 0 || i == width - 1 || j == height - 1) {
+                    imagelink = props.images[12]
+
+                    //Current tile is a wall, find what type
+                } else if (mapGrid[i][j] == 0) {
+                    //Create bool statements to find walls
+                    let north: boolean = false;
+                    let south: boolean = false;
+                    let west: boolean = false;
+                    let east: boolean = false;
+
+                    //Check which directions have walls
+                    if (mapGrid[i][j - 1] == 0) {
+                        west = true;
+                    }
+                    if (mapGrid[i][j + 1] == 0) {
+                        east = true;
+                    }
+                    if (mapGrid[i - 1][j] == 0) {
+                        north = true;
+                    }
+                    if (mapGrid[i + 1][j] == 0) {
+                        south = true;
+                    }
+
+                    //Assign an image based on wall directions
+                    switch ([north, south, west, east]) {
+                        case [true, false, false, false]: // Only north
+                            imagelink = props.images[0] //todo change based on image num
+                            break;
+                        case [false, true, false, false]: // Only south
+                            imagelink = props.images[0] //todo change based on image num
+                            break;
+                        case [false, false, true, false]: // Only west
+                            imagelink = props.images[0] //todo change based on image num
+                            break;
+                        case [false, false, false, true]: // Only east
+                            imagelink = props.images[0] //todo change based on image num
+                            break;
+                        case [true, false, true, false]: // north & west
+                            imagelink = props.images[0] //todo change based on image num
+                            break;
+                        case [true, false, false, true]: // north & east
+                            imagelink = props.images[0] //todo change based on image num
+                            break;
+                        case [false, true, true, false]: // south & west
+                            imagelink = props.images[0] //todo change based on image num
+                            break;
+                        case [false, true, false, true]: // south & east
+                            imagelink = props.images[0] //todo change based on image num
+                            break;
+                        case [true, true, false, false]: // vertical wall
+                            imagelink = props.images[0] //todo change based on image num
+                            break;
+                        case [false, false, true, true]: // horizontal wall
+                            imagelink = props.images[0] //todo change based on image num
+                            break;
+                        default: // Solid wall, checks if its an inverted corner
+                            //Create corner booleans
+                            let nw: boolean = false;
+                            let sw: boolean = false;
+                            let ne: boolean = false;
+                            let se: boolean = false;
+
+                            //Check which directions have walls
+                            if (mapGrid[i - 1][j - 1] == 0) {
+                                nw = true;
+                            }
+                            if (mapGrid[i + 1][j + 1] == 0) {
+                                se = true;
+                            }
+                            if (mapGrid[i - 1][j + 1] == 0) {
+                                ne = true;
+                            }
+                            if (mapGrid[i + 1][j - 1] == 0) {
+                                sw = true;
+                            }
+
+                            switch ([nw, ne, sw, se]) {
+                                case [true, true, true, false]: // All but SE
+                                    imagelink = props.images[0] //todo change based on image num
+                                    break;
+                                case [true, true, false, true]: // All but SW
+                                    imagelink = props.images[0] //todo change based on image num
+                                    break;
+                                case [true, false, true, true]: // All but NE
+                                    imagelink = props.images[0] //todo change based on image num
+                                    break;
+                                case [false, true, true, true]: // All but NW
+                                    imagelink = props.images[0] //todo change based on image num
+                                    break;
+                                default:
+                                    imagelink = props.images[0] //todo change based on image num
+                                    break;
+
+                            }
+                            break;
+                    }
+
+                    // Tile is a floor, grab floor image
+                } else {
+                    imagelink = props.images[12]; //todo change based on image num
+                }
+
+                console.log("Img: " + imagelink + ", Y: " + i + ", X: " + j);
                 row.push(imagelink)
-            })
+            }
             pixelDisplay.push(row)
-        });
+        }
         return pixelDisplay;
     }
+
 
     return (
         <div id="map" style={mapStyle(MAP_ROOM_COLS*ROOM_SIZE, MAP_ROOM_ROWS*ROOM_SIZE)}>
