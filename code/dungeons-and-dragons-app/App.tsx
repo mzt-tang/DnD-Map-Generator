@@ -1,21 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
+import { BrowserRouter, Route } from "react-router-dom";
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import Home from "./pages/Home";
+import RouteFindingMap from "./pages/RouteFindingMap";
+import Room from "./pages/Room";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+      <BrowserRouter>
+        <Route path = "/home" component = {Home} />
+          <Route path = "/" component = {Home} />
+          <Route path = "/route" component = {RouteFindingMap} />
+          <Route path = "/room" component = {Room} />
+      </BrowserRouter>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
