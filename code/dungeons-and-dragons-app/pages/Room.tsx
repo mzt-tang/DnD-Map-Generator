@@ -3,18 +3,16 @@ import { View } from 'react-native';
 import {Checkbox, Slider, Typography} from '@material-ui/core';
 import empty from '../assets/Dark.png';
 import floor from '../assets//Light.png';
-import entrance from '../assets/ImageSet4/Floor.png';
-import Image1 from '../assets/ImageSet2/TRCorner.png';
-import Image2 from '../assets/ImageSet2/BLCorner.png';
-import Image3 from '../assets/ImageSet2/BRCorner.png';
-import Image4 from '../assets/ImageSet2/TLCorner.png';
-import Image5 from '../assets/ImageSet2/BottomWall.png';
-import Image6 from '../assets/ImageSet2/TopWall.png';
-import Image7 from '../assets/ImageSet2/LeftWall.png';
-import Image8 from '../assets/ImageSet2/RightWall.png';
-import Image9 from '../assets/ImageSet2/Floor.png';
-import Image10 from '../assets/Leftovers/LeftOver1.png';
-import Image11 from '../assets/Leftovers/LeftOver5.png';
+import entrance from '../assets/Images4/Floor.png';
+import Image1 from '../assets/Images2/TRCorner.png';
+import Image2 from '../assets/Images2/BLCorner.png';
+import Image3 from '../assets/Images2/BRCorner.png';
+import Image4 from '../assets/Images2/TLCorner.png';
+import Image5 from '../assets/Images2/BottomWall.png';
+import Image6 from '../assets/Images2/TopWall.png';
+import Image7 from '../assets/Images2/LeftWall.png';
+import Image8 from '../assets/Images2/RightWall.png';
+import Image9 from '../assets/Images2/Floor.png';
 
 // Import styles
 import GridOther from "../components/GridOther1";
@@ -41,8 +39,6 @@ const Room = () => {
         <img className="grid_img" src={Image7}/>, // left wall tile
         <img className="grid_img" src={Image8}/>, // right wall tile
         <img className="grid_img" src={Image9}/>, // another floor tile
-        <img className="grid_img" src={Image10}/>, // boarder tile
-        <img className="grid_img" src={Image11}/>, // Misc tile
     ]
 
     // const entrances = [[10, 0], [0, 12], [19, 19]];
