@@ -1,21 +1,46 @@
-# image: gradle:alpine
-
+# 3 Stages to run through
 stages:
   - Build
   - Test
+  - Deploy
 
+# Uses the node docker image for JS applications
+image: node:alpine
+
+#Changes directory from home to the code directory
+before_script:
+  - cd code/dungeons-and-dragons-app
+
+# Perform the 3 stages
 build:
   stage: Build
   tags:
     - shell
   script:
-    - echo "build"
+    - echo "Building stage 1/1"
   allow_failure: false
+
+# Boosts performance
+cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - ~/.npm
 
 unit_testing:
   stage: Test
   tags:
     - shell
   script:
-   - echo "test"
+    - echo "Testing stage 1/1"
+    - yarn add jest-expo
+    - npx jest --ci
+  allow_failure: false
+
+deploy:
+  stage: Deploy
+  tags:
+    - shell
+  script:
+    - echo "Deployment stage 1/1"
   allow_failure: true
+
