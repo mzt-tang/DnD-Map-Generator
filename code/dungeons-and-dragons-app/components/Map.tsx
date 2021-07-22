@@ -189,22 +189,22 @@ export default function map(props: mapProps) {
                     case [false,false,false,true]: // Only east
                         imagelink = props.images[0] //todo change based on image num
                         break;
-                    case [true,false,true,false]: // north west
+                    case [true,false,true,false]: // north & west
                         imagelink = props.images[0] //todo change based on image num
                         break;
-                    case [true,false,false,true]: // north east
+                    case [true,false,false,true]: // north & east
                         imagelink = props.images[0] //todo change based on image num
                         break;
-                    case [false,true,true,false]: // south west
+                    case [false,true,true,false]: // south & west
                         imagelink = props.images[0] //todo change based on image num
                         break;
-                    case [false,true,false,true]: // south east
+                    case [false,true,false,true]: // south & east
                         imagelink = props.images[0] //todo change based on image num
                         break;
                     case [true,true,false,false]: // vertical wall
                         imagelink = props.images[0] //todo change based on image num
                         break;
-                    case [false,false,true,true]: // Only south
+                    case [false,false,true,true]: // horizontal wall
                         imagelink = props.images[0] //todo change based on image num
                         break;
                     default: // Solid wall, checks if its an inverted corner
@@ -233,6 +233,10 @@ export default function map(props: mapProps) {
                             case [false,true,true,true]: // All but NW
                                 imagelink = props.images[0] //todo change based on image num
                                 break;
+                            default:
+                                imagelink = props.images[0] //todo change based on image num
+                                break;
+
                         }
                         break;
                 }
