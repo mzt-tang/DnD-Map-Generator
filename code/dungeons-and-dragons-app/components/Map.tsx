@@ -356,101 +356,95 @@ export default function map(props: mapProps) {
                     //Current tile is a wall, find what type
                 } else if (mapGrid[i][j] == 0) {
                     //Create bool statements to find walls
-                    let north: boolean = false;
-                    let south: boolean = false;
-                    let west: boolean = false;
-                    let east: boolean = false;
+                    let compass: string = "";
 
                     //Check which directions have walls
-                    if (mapGrid[i][j - 1] == 0) {
-                        west = true;
+                    if (mapGrid[i - 1][j] == 0) {
+                        compass += "N"
                     }
                     if (mapGrid[i][j + 1] == 0) {
-                        east = true;
-                    }
-                    if (mapGrid[i - 1][j] == 0) {
-                        north = true;
+                        compass += "E"
                     }
                     if (mapGrid[i + 1][j] == 0) {
-                        south = true;
+                        compass += "S"
+                    }
+                    if (mapGrid[i][j - 1] == 0) {
+                        compass += "W";
                     }
 
                     //Assign an image based on wall directions
-                    switch ([north, south, west, east]) {
-                        case [true, false, false, false]: // Only north
+                    switch (compass) {
+                        case "N": // Only north
                             imagelink = props.images[13]
                             break;
-                        case [false, true, false, false]: // Only south
+                        case "S": // Only south
                             imagelink = props.images[12]
                             break;
-                        case [false, false, true, false]: // Only west
+                        case "W": // Only west
                             imagelink = props.images[10]
                             break;
-                        case [false, false, false, true]: // Only east
+                        case "E": // Only east
                             imagelink = props.images[11]
                             break;
-                        case [true, false, true, false]: // north & west
+                        case "NW": // north & west
                             imagelink = props.images[6]
                             break;
-                        case [true, false, false, true]: // north & east
+                        case "NE": // north & east
                             imagelink = props.images[7]
                             break;
-                        case [false, true, true, false]: // south & west
+                        case "SW": // south & west
                             imagelink = props.images[8]
                             break;
-                        case [false, true, false, true]: // south & east
+                        case "ES": // south & east
                             imagelink = props.images[9]
                             break;
-                        case [true, true, false, false]: // vertical wall
+                        case "NS": // vertical wall
                             imagelink = props.images[19]
                             break;
-                        case [false, false, true, true]: // horizontal wall
+                        case "EW": // horizontal wall
                             imagelink = props.images[18]
                             break;
-                        case [true, false, true, true]: // north & east & west
+                        case "NEW": // north & east & west
                             imagelink = props.images[5]
                             break;
-                        case [true, true, true, false]: // north & west & south
+                        case "NSW": // north & west & south
                             imagelink = props.images[2]
                             break;
-                        case [true, true, false, true]: // north & east & south
+                        case "NES": // north & east & south
                             imagelink = props.images[3]
                             break;
-                        case [false, true, true, true]: // west & south & east
+                        case "ESW": // west & south & east
                             imagelink = props.images[4]
                             break;
                         default: // Solid wall, checks if its an inverted corner
                             //Create corner booleans
-                            let nw: boolean = false;
-                            let sw: boolean = false;
-                            let ne: boolean = false;
-                            let se: boolean = false;
+                            let cornerCompass:string = "";
 
                             //Check which directions have walls
                             if (mapGrid[i - 1][j - 1] == 0) {
-                                nw = true;
-                            }
-                            if (mapGrid[i + 1][j + 1] == 0) {
-                                se = true;
+                                cornerCompass += "NW";
                             }
                             if (mapGrid[i - 1][j + 1] == 0) {
-                                ne = true;
+                                cornerCompass += "NE";
                             }
                             if (mapGrid[i + 1][j - 1] == 0) {
-                                sw = true;
+                                cornerCompass += "SW";
+                            }
+                            if (mapGrid[i + 1][j + 1] == 0) {
+                                cornerCompass += "SE";
                             }
 
-                            switch ([nw, ne, sw, se]) {
-                                case [true, true, true, false]: // All but SE
+                            switch (cornerCompass) {
+                                case "NWNESW": // All but SE
                                     imagelink = props.images[14]
                                     break;
-                                case [true, true, false, true]: // All but SW
+                                case "NWNESE": // All but SW
                                     imagelink = props.images[15]
                                     break;
-                                case [true, false, true, true]: // All but NE
+                                case "NWSWSE": // All but NE
                                     imagelink = props.images[16]
                                     break;
-                                case [false, true, true, true]: // All but NW
+                                case "NESWSE": // All but NW
                                     imagelink = props.images[17]
                                     break;
                                 default:
