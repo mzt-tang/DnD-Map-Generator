@@ -409,16 +409,16 @@ export default function map(props: mapProps) {
                         case [false, false, true, true]: // horizontal wall
                             imagelink = props.images[19] //todo change based on image num
                             break;
-                        case [true, false, false, false]: // north & east & west
+                        case [true, false, true, true]: // north & east & west
                             imagelink = props.images[6] //todo change based on image num
                             break;
-                        case [true, false, false, false]: // north & west & south
+                        case [true, true, true, false]: // north & west & south
                             imagelink = props.images[3] //todo change based on image num
                             break;
-                        case [true, false, false, false]: // north & east & south
+                        case [true, true, false, true]: // north & east & south
                             imagelink = props.images[4] //todo change based on image num
                             break;
-                        case [true, false, false, false]: // west & south & east
+                        case [false, true, true, true]: // west & south & east
                             imagelink = props.images[5] //todo change based on image num
                             break;
                         default: // Solid wall, checks if its an inverted corner
