@@ -344,13 +344,13 @@ export default function map(props: mapProps) {
      */
     function doPixelDisplay() : JSX.Element[][] {
         let pixelDisplay: JSX.Element[][] = []
-        for (let i: number = 0; i < height-1; i++) { //Rows
+        for (let i: number = 0; i < height; i++) { //Rows
             let row: JSX.Element[] = []
-            for (let j: number = 0; j < width - 1; j++) { //Col
+            for (let j: number = 0; j < width; j++) { //Col
                 let imagelink = props.images[0];
 
                 //Tile is on edge of screen, therefore make it a wall
-                if (i == 0 || j == 0 || i == width - 1 || j == height - 1) {
+                if (i == 0 || j == 0 || j == width - 1 || i == height - 1) {
                     imagelink = props.images[12]
 
                     //Current tile is a wall, find what type
