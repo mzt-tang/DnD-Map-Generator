@@ -347,8 +347,6 @@ export default function map(props: mapProps) {
         for (let i: number = 0; i < height-1; i++) { //Rows
             let row: JSX.Element[] = []
             for (let j: number = 0; j < width - 1; j++) { //Col
-
-                console.log("0");
                 let imagelink = props.images[0];
 
                 //Tile is on edge of screen, therefore make it a wall
@@ -380,46 +378,46 @@ export default function map(props: mapProps) {
                     //Assign an image based on wall directions
                     switch ([north, south, west, east]) {
                         case [true, false, false, false]: // Only north
-                            imagelink = props.images[14] //todo change based on image num
+                            imagelink = props.images[14]
                             break;
                         case [false, true, false, false]: // Only south
-                            imagelink = props.images[13] //todo change based on image num
+                            imagelink = props.images[13]
                             break;
                         case [false, false, true, false]: // Only west
-                            imagelink = props.images[11] //todo change based on image num
+                            imagelink = props.images[11]
                             break;
                         case [false, false, false, true]: // Only east
-                            imagelink = props.images[12] //todo change based on image num
+                            imagelink = props.images[12]
                             break;
                         case [true, false, true, false]: // north & west
-                            imagelink = props.images[7] //todo change based on image num
+                            imagelink = props.images[7]
                             break;
                         case [true, false, false, true]: // north & east
-                            imagelink = props.images[8] //todo change based on image num
+                            imagelink = props.images[8]
                             break;
                         case [false, true, true, false]: // south & west
-                            imagelink = props.images[9] //todo change based on image num
+                            imagelink = props.images[9]
                             break;
                         case [false, true, false, true]: // south & east
-                            imagelink = props.images[10] //todo change based on image num
+                            imagelink = props.images[10]
                             break;
                         case [true, true, false, false]: // vertical wall
-                            imagelink = props.images[20] //todo change based on image num
+                            imagelink = props.images[20]
                             break;
                         case [false, false, true, true]: // horizontal wall
-                            imagelink = props.images[19] //todo change based on image num
+                            imagelink = props.images[19]
                             break;
                         case [true, false, true, true]: // north & east & west
-                            imagelink = props.images[6] //todo change based on image num
+                            imagelink = props.images[6]
                             break;
                         case [true, true, true, false]: // north & west & south
-                            imagelink = props.images[3] //todo change based on image num
+                            imagelink = props.images[3]
                             break;
                         case [true, true, false, true]: // north & east & south
-                            imagelink = props.images[4] //todo change based on image num
+                            imagelink = props.images[4]
                             break;
                         case [false, true, true, true]: // west & south & east
-                            imagelink = props.images[5] //todo change based on image num
+                            imagelink = props.images[5]
                             break;
                         default: // Solid wall, checks if its an inverted corner
                             //Create corner booleans
@@ -444,19 +442,19 @@ export default function map(props: mapProps) {
 
                             switch ([nw, ne, sw, se]) {
                                 case [true, true, true, false]: // All but SE
-                                    imagelink = props.images[15] //todo change based on image num
+                                    imagelink = props.images[15]
                                     break;
                                 case [true, true, false, true]: // All but SW
-                                    imagelink = props.images[16] //todo change based on image num
+                                    imagelink = props.images[16]
                                     break;
                                 case [true, false, true, true]: // All but NE
-                                    imagelink = props.images[17] //todo change based on image num
+                                    imagelink = props.images[17]
                                     break;
                                 case [false, true, true, true]: // All but NW
-                                    imagelink = props.images[18] //todo change based on image num
+                                    imagelink = props.images[18]
                                     break;
                                 default:
-                                    imagelink = props.images[21] //todo change based on image num
+                                    imagelink = props.images[21]
                                     break;
 
                             }
@@ -465,7 +463,7 @@ export default function map(props: mapProps) {
 
                     // Tile is a floor, grab floor image
                 } else {
-                    imagelink = props.images[22]; //todo change based on image num
+                    imagelink = props.images[22];
                 }
 
                 console.log("Img: " + imagelink + ", Y: " + i + ", X: " + j);
