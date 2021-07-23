@@ -18,8 +18,10 @@ import Image15 from '../assets/New Tile Assets/floor_se2.png';
 import Image16 from '../assets/New Tile Assets/floor_sw2.png';
 import Image17 from '../assets/New Tile Assets/floor_ne2.png';
 import Image18 from '../assets/New Tile Assets/floor_nw2.png';
-import Image19 from '../assets/New Tile Assets/floor_default.png';
-import Image20 from '../assets/New Tile Assets/wall.png';
+import Image19 from '../assets/New Tile Assets/floor_ns.png';
+import Image20 from '../assets/New Tile Assets/floor_ew.png';
+import Image21 from '../assets/New Tile Assets/floor_default.png';
+import Image22 from '../assets/New Tile Assets/wall.png';
 
 import Map from '../components/Map';
 
@@ -47,7 +49,9 @@ export default function routeFindingMap () {
         <img className="grid_img" src={Image17}/>,
         <img className="grid_img" src={Image18}/>,
         <img className="grid_img" src={Image19}/>,
-        <img className="grid_img" src={Image20}/>
+        <img className="grid_img" src={Image20}/>,
+        <img className="grid_img" src={Image21}/>,
+        <img className="grid_img" src={Image22}/>
     ]
     var room : number[][] = [
         [8,8,8,8,8,8,8,8,8,8],

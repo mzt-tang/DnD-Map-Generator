@@ -380,34 +380,46 @@ export default function map(props: mapProps) {
                     //Assign an image based on wall directions
                     switch ([north, south, west, east]) {
                         case [true, false, false, false]: // Only north
-                            imagelink = props.images[0] //todo change based on image num
+                            imagelink = props.images[14] //todo change based on image num
                             break;
                         case [false, true, false, false]: // Only south
-                            imagelink = props.images[0] //todo change based on image num
+                            imagelink = props.images[13] //todo change based on image num
                             break;
                         case [false, false, true, false]: // Only west
-                            imagelink = props.images[0] //todo change based on image num
+                            imagelink = props.images[11] //todo change based on image num
                             break;
                         case [false, false, false, true]: // Only east
-                            imagelink = props.images[0] //todo change based on image num
+                            imagelink = props.images[12] //todo change based on image num
                             break;
                         case [true, false, true, false]: // north & west
-                            imagelink = props.images[0] //todo change based on image num
+                            imagelink = props.images[7] //todo change based on image num
                             break;
                         case [true, false, false, true]: // north & east
-                            imagelink = props.images[0] //todo change based on image num
+                            imagelink = props.images[8] //todo change based on image num
                             break;
                         case [false, true, true, false]: // south & west
-                            imagelink = props.images[0] //todo change based on image num
+                            imagelink = props.images[9] //todo change based on image num
                             break;
                         case [false, true, false, true]: // south & east
-                            imagelink = props.images[0] //todo change based on image num
+                            imagelink = props.images[10] //todo change based on image num
                             break;
                         case [true, true, false, false]: // vertical wall
-                            imagelink = props.images[0] //todo change based on image num
+                            imagelink = props.images[20] //todo change based on image num
                             break;
                         case [false, false, true, true]: // horizontal wall
-                            imagelink = props.images[0] //todo change based on image num
+                            imagelink = props.images[19] //todo change based on image num
+                            break;
+                        case [true, false, false, false]: // north & east & west
+                            imagelink = props.images[6] //todo change based on image num
+                            break;
+                        case [true, false, false, false]: // north & west & south
+                            imagelink = props.images[3] //todo change based on image num
+                            break;
+                        case [true, false, false, false]: // north & east & south
+                            imagelink = props.images[4] //todo change based on image num
+                            break;
+                        case [true, false, false, false]: // west & south & east
+                            imagelink = props.images[5] //todo change based on image num
                             break;
                         default: // Solid wall, checks if its an inverted corner
                             //Create corner booleans
@@ -432,19 +444,19 @@ export default function map(props: mapProps) {
 
                             switch ([nw, ne, sw, se]) {
                                 case [true, true, true, false]: // All but SE
-                                    imagelink = props.images[0] //todo change based on image num
+                                    imagelink = props.images[15] //todo change based on image num
                                     break;
                                 case [true, true, false, true]: // All but SW
-                                    imagelink = props.images[0] //todo change based on image num
+                                    imagelink = props.images[16] //todo change based on image num
                                     break;
                                 case [true, false, true, true]: // All but NE
-                                    imagelink = props.images[0] //todo change based on image num
+                                    imagelink = props.images[17] //todo change based on image num
                                     break;
                                 case [false, true, true, true]: // All but NW
-                                    imagelink = props.images[0] //todo change based on image num
+                                    imagelink = props.images[18] //todo change based on image num
                                     break;
                                 default:
-                                    imagelink = props.images[0] //todo change based on image num
+                                    imagelink = props.images[21] //todo change based on image num
                                     break;
 
                             }
@@ -453,7 +465,7 @@ export default function map(props: mapProps) {
 
                     // Tile is a floor, grab floor image
                 } else {
-                    imagelink = props.images[12]; //todo change based on image num
+                    imagelink = props.images[22]; //todo change based on image num
                 }
 
                 console.log("Img: " + imagelink + ", Y: " + i + ", X: " + j);
