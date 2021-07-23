@@ -351,7 +351,23 @@ export default function map(props: mapProps) {
 
                 //Tile is on edge of screen, therefore make it a wall
                 if (i == 0 || j == 0 || j == width - 1 || i == height - 1) {
-                    imagelink = props.images[20]
+                    if(i == 0 && j == 0){ // Top left corner
+                        imagelink = props.images[14]
+                    } else if (i == 0 && j == width - 1) { // Top right corner
+                        imagelink = props.images[15]
+                    } else if (i == height - 1 && j == 0) { // Bottom left corner
+                        imagelink = props.images[16]
+                    } else if (i == height - 1 && j == width - 1) { // Bottom right corner
+                        imagelink = props.images[17]
+                    } else if (i == 0){ // Top row
+                        imagelink = props.images[5]
+                    } else if (i == height - 1){ // Bottom row
+                        imagelink = props.images[4]
+                    } else if (j == 0){ // Left column
+                        imagelink = props.images[2]
+                    } else { // Right column
+                        imagelink = props.images[3]
+                    }
 
                     //Current tile is a wall, find what type
                 } else if (mapGrid[i][j] == 0) {
