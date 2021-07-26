@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-// We establish Props as our "Parameters" for the GridOther
+// We establish Props as our "Parameters" for the Grid
 interface GridOtherProps {
     width : number,
     height : number,
@@ -9,7 +9,7 @@ interface GridOtherProps {
     tiles : number[][]
 }
 
-const GridOther = (props : GridOtherProps) => {
+const Grid = (props : GridOtherProps) => {
 
 
     const mapStyle = function(width: number, height: number)
@@ -48,4 +48,4 @@ const GridOther = (props : GridOtherProps) => {
 
 
 
-export default GridOther
+export default Grid

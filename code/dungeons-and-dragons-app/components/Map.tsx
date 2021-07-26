@@ -247,7 +247,7 @@ export default function map(props: mapProps) {
 
 
     addRooms();
-    let pixelDisplay = doPixelDisplay();
+    let pixelDisplay = assignAutoTiledWalls();
 
     /**
      * Iterates through all the rooms, finds their coordinates on the main map, and calls addRoom
@@ -342,49 +342,28 @@ export default function map(props: mapProps) {
      * Takes in the 2D array representing the main map and returns a 2D array of JSX.Elements representing the tile
      * elements.
      */
-    function doPixelDisplay() : JSX.Element[][] {
+    function assignAutoTiledWalls() : JSX.Element[][] {
         let pixelDisplay: JSX.Element[][] = []
         for (let i: number = 0; i < height; i++) { //Rows
             let row: JSX.Element[] = []
             for (let j: number = 0; j < width; j++) { //Col
                 let imagelink = props.images[0];
 
-                //Tile is on edge of screen, therefore make it a wall
-                if (i == 0 || j == 0 || j == width - 1 || i == height - 1) {
-                    if(i == 0 && j == 0){ // Top left corner
-                        imagelink = props.images[14]
-                    } else if (i == 0 && j == width - 1) { // Top right corner
-                        imagelink = props.images[15]
-                    } else if (i == height - 1 && j == 0) { // Bottom left corner
-                        imagelink = props.images[16]
-                    } else if (i == height - 1 && j == width - 1) { // Bottom right corner
-                        imagelink = props.images[17]
-                    } else if (i == 0){ // Top row
-                        imagelink = props.images[5]
-                    } else if (i == height - 1){ // Bottom row
-                        imagelink = props.images[4]
-                    } else if (j == 0){ // Left column
-                        imagelink = props.images[2]
-                    } else { // Right column
-                        imagelink = props.images[3]
-                    }
-
-                    //Current tile is a wall, find what type
-                } else if (mapGrid[i][j] == 0) {
+                if (mapGrid[i][j] == 0) {
                     //Create bool statements to find walls
                     let compass: string = "";
 
-                    //Check which directions have walls
-                    if (mapGrid[i - 1][j] == 0) {
+                    //Check which directions have walls, or edge of the grid
+                    if (i == 0 || mapGrid[i - 1][j] == 0) {
                         compass += "N"
                     }
-                    if (mapGrid[i][j + 1] == 0) {
+                    if (j == mapGrid[0].length-1 || mapGrid[i][j + 1] == 0) {
                         compass += "E"
                     }
-                    if (mapGrid[i + 1][j] == 0) {
+                    if (i == mapGrid.length-1 || mapGrid[i + 1][j] == 0) {
                         compass += "S"
                     }
-                    if (mapGrid[i][j - 1] == 0) {
+                    if (j == 0 || mapGrid[i][j - 1] == 0) {
                         compass += "W";
                     }
 
@@ -437,16 +416,16 @@ export default function map(props: mapProps) {
                             let cornerCompass:string = "";
 
                             //Check which directions have walls
-                            if (mapGrid[i - 1][j - 1] == 0) {
+                            if (i != 0 && j != 0 && mapGrid[i - 1][j - 1] == 0) {
                                 cornerCompass += "NW";
                             }
-                            if (mapGrid[i - 1][j + 1] == 0) {
+                            if (i != 0 && j != mapGrid[0].length-1 && mapGrid[i - 1][j + 1] == 0) {
                                 cornerCompass += "NE";
                             }
-                            if (mapGrid[i + 1][j - 1] == 0) {
+                            if (i != mapGrid.length-1 && j != 0 && mapGrid[i + 1][j - 1] == 0) {
                                 cornerCompass += "SW";
                             }
-                            if (mapGrid[i + 1][j + 1] == 0) {
+                            if (i != mapGrid.length-1 && j != mapGrid[0].length-1 && mapGrid[i + 1][j + 1] == 0) {
                                 cornerCompass += "SE";
                             }
 
@@ -468,15 +447,12 @@ export default function map(props: mapProps) {
                                     break;
 
                             }
-                            break;
                     }
 
                     // Tile is a floor, grab floor image
                 } else {
                     imagelink = props.images[21];
                 }
-
-                console.log("Img: " + imagelink + ", Y: " + i + ", X: " + j);
                 row.push(imagelink)
             }
             pixelDisplay.push(row)
