@@ -17,7 +17,7 @@ const LargeButton = (props : Props) => {
     const history = useHistory();
 
     return (
-        <Button variant="outlined" size="large" color="primary" onClick={() => {
+        <Button variant="outlined" size="large" color="primary" className="largeButton" onClick={() => {
             history.push(buttonRoute)
         }}>
             {buttonString}
