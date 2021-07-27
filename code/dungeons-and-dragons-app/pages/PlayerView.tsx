@@ -63,7 +63,7 @@ if (map.length == 1) {
     return (
         <View>
             <h1>
-                This is the player view
+                Waiting for map to generate
             </h1>
         </View>
     );
@@ -71,7 +71,6 @@ if (map.length == 1) {
     return (
         <View>
             <h1>
-                This is the player view with updated map
                 <div className={'map'}>
                 <GridOther width={map[0].length} height={map.length} images={images} tiles={map}/>
                 </div>
