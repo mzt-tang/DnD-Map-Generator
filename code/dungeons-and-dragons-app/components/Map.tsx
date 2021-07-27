@@ -1,15 +1,133 @@
-import React from "react";
+import React, { Component } from "react";
 import {roomGen} from "../utility/roomGen"
 
 interface mapProps {
     images: JSX.Element[]
+    ALL_ROOMS: number [][]
+}
+
+import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
+import Collapse from '@material-ui/core/Collapse';
+import IconButton from '@material-ui/core/IconButton';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+
+const useRowStyles = makeStyles({
+  root: {
+    '& > *': {
+      borderBottom: 'unset',
+    },
+  },
+});
+
+function createData(
+  name: string,
+) {
+  return {
+    name,
+  };
+}
+
+function Row(props: { row: ReturnType<typeof createData> }) { // Will need to be called by map, passing in number of rooms
+  const { row } = props;
+  const [open, setOpen] = React.useState(false);
+  const classes = useRowStyles();
+
+  let room: string[] = fillRooms([]);// Passes in array of rooms from map, gets rooms
+
+    let mons: string[] = getMonsters();
+
+    function getMonsters(): string[] {
+        // calls database to get an array of monsters
+        return [];
+    }
+
+    let roomToMon:string[][] = [] // 2d array of rooms, then monsters in the room
+
+    roomToMon = fillRoomsWithMons();
+
+    function fillRoomsWithMons() :string[][]{
+        // loops through all rooms, gets a random monster, adds it to roomToMon with that room as the first element, gets the rest of the monsters and checks if they can be in the same room as og monster
+        return []
+    }
+
+    let monMap = new Map<string, Array<string>>(
+        // alternative way to store monsters by map
+    )
+
+  let monsters: string[] = ["snek", "sln", "gost", "mand"] // only here to get something to display
+
+  return (
+    <React.Fragment>
+      <TableRow className={classes.root}>
+        <TableCell>
+          <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
+            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+          </IconButton>
+        </TableCell>
+        <TableCell component="th" scope="row">
+          {row.name}
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <Box margin={1}>
+              <Typography variant="h6" gutterBottom component="div">
+                Monster
+              </Typography>
+              <Table size="small" aria-label="purchases">
+                <TableHead>
+                  <TableRow>
+                      {monsters.map((mon => (
+                        <TableCell>{mon}</TableCell>
+                      )))}
+                  </TableRow>
+                </TableHead>
+              </Table>
+            </Box>
+          </Collapse>
+        </TableCell>
+      </TableRow>
+    </React.Fragment>
+  );
+}
+
+const rows = [
+    createData('Room 1'),
+    createData('Room 2'),
+    createData('Room 3'),
+    createData('Room 4'),
+    createData('Room 5'),
+    createData('Room 6'),
+    createData('Room 7'),
+    createData('Room 8'),
+    createData('Room 9'),
+    createData('Room 10'),
+    createData('Room 11'),
+    createData('Room 12'),
+  ];
+
+function fillRooms(rooms: number[][][]) : string[] {
+    let row: string[] = [];
+    for (var i:number = 0; i < rooms.length; i++){
+        row[i] = "Room: " + i;
+    }
+    return row;
 }
 
 const ROOM_SIZE = 10;
 const MAP_ROOM_ROWS = 3;
 const MAP_ROOM_COLS = 4;
-const height = ROOM_SIZE*MAP_ROOM_ROWS;
-const width = ROOM_SIZE*MAP_ROOM_COLS;
 const ENTRANCE_PROBABILITY= 0.7;
 const ROOM_GROW_PROBABILITY = 0.42;
 
@@ -27,11 +145,15 @@ export default function map(props: mapProps) {
         }
     }
 
-    let allRooms : number[][][] = []; // holds all the rooms making up the map in order.
+    function getRooms():number[][][]{
+        return ALL_ROOMS;
+    }
+
+    let ALL_ROOMS : number[][][] = []; // holds all the rooms making up the map in order.
 
     for (let row = 0; row < MAP_ROOM_ROWS; row++) { // push the total empty rooms needed to make the map.
         for (let col = 0; col < MAP_ROOM_COLS; col++) {
-            allRooms.push([]);
+            ALL_ROOMS.push([]);
         }
     }
 
@@ -125,7 +247,7 @@ export default function map(props: mapProps) {
         }
 
         // Generate the room and add it to allRooms.
-        allRooms[currentRoomIndex] = roomGen(ROOM_SIZE, ROOM_SIZE, entrances, ROOM_GROW_PROBABILITY, true);
+        ALL_ROOMS[currentRoomIndex] = roomGen(ROOM_SIZE, ROOM_SIZE, entrances, ROOM_GROW_PROBABILITY, true);
 
         // calculate the next room to make.
         if (row < MAP_ROOM_ROWS - 1 && col < MAP_ROOM_COLS - 1) {
@@ -154,8 +276,8 @@ export default function map(props: mapProps) {
     }
 
     // Generate any left over rooms
-    for (let i = 0; i < allRooms.length; i++){
-        if (allRooms[i].length == 0) generateRoom(i);
+    for (let i = 0; i < ALL_ROOMS.length; i++){
+        if (ALL_ROOMS[i].length == 0) generateRoom(i);
     }
 
     /**
@@ -175,10 +297,10 @@ export default function map(props: mapProps) {
         let hasEastNeighbour = roomCol < MAP_ROOM_COLS-1;
 
         // If it is possible, check they have a generated room otherwise no point in looking for entrances.
-        let hasNorthGenerated = hasNorthNeighbour && allRooms[i - MAP_ROOM_COLS].length != 0;
-        let hasSouthGenerated = hasSouthNeighbour && allRooms[i + MAP_ROOM_COLS].length != 0;
-        let hasWestGenerated = hasWestNeighbour && allRooms[i - 1].length != 0;
-        let hasEastGenerated = hasEastNeighbour && allRooms[i + 1].length != 0;
+        let hasNorthGenerated = hasNorthNeighbour && ALL_ROOMS[i - MAP_ROOM_COLS].length != 0;
+        let hasSouthGenerated = hasSouthNeighbour && ALL_ROOMS[i + MAP_ROOM_COLS].length != 0;
+        let hasWestGenerated = hasWestNeighbour && ALL_ROOMS[i - 1].length != 0;
+        let hasEastGenerated = hasEastNeighbour && ALL_ROOMS[i + 1].length != 0;
 
         // check each neighbour for entrances and add them if they exist.
         if (hasNorthGenerated){
@@ -215,7 +337,7 @@ export default function map(props: mapProps) {
 
         // if we got here and we have no entrances than the room has no entrances and we can exit.
         if (roomEntrances.length == 0){
-            allRooms[i] = Array.from(Array(ROOM_SIZE), _ => Array(ROOM_SIZE).fill(0));
+            ALL_ROOMS[i] = Array.from(Array(ROOM_SIZE), _ => Array(ROOM_SIZE).fill(0));
             return;
         }
 
@@ -241,25 +363,25 @@ export default function map(props: mapProps) {
             }
         }
 
-        allRooms[i] = roomGen(ROOM_SIZE,ROOM_SIZE,roomEntrances,ROOM_GROW_PROBABILITY,true);
+        ALL_ROOMS[i] = roomGen(ROOM_SIZE,ROOM_SIZE,roomEntrances,ROOM_GROW_PROBABILITY,true);
     }
 
 
 
     addRooms();
-    let pixelDisplay = assignAutoTiledWalls();
+    let pixelDisplay = doPixelDisplay();
 
     /**
      * Iterates through all the rooms, finds their coordinates on the main map, and calls addRoom
      * to add them to the main map.
      */
     function addRooms() {
-        for (let i = 0; i < allRooms.length; i++) {
-            if (allRooms[i].length == 0){
+        for (let i = 0; i < ALL_ROOMS.length; i++) {
+            if (ALL_ROOMS[i].length == 0){
                 continue;
             }
 
-            let room = allRooms[i];
+            let room = ALL_ROOMS[i];
 
             let roomRow = getRoomRow(i);
             let roomCol = getRoomCol(i);
@@ -317,7 +439,7 @@ export default function map(props: mapProps) {
      * @param index the index of the room you want the entrances from.
      */
     function getRoomEntrances(index : number) : number[][] {
-        let room = allRooms[index]
+        let room = ALL_ROOMS[index]
         const entrances : number[][] = [];
 
         for (let row = 0; row < room.length; row++){
@@ -342,132 +464,50 @@ export default function map(props: mapProps) {
      * Takes in the 2D array representing the main map and returns a 2D array of JSX.Elements representing the tile
      * elements.
      */
-    function assignAutoTiledWalls() : JSX.Element[][] {
-        let pixelDisplay: JSX.Element[][] = []
-        for (let i: number = 0; i < height; i++) { //Rows
+    function doPixelDisplay() : JSX.Element[][] {
+        let pixelDisplay : JSX.Element[][] = [];
+
+        mapGrid.forEach(function (e1: number[], index: number) {
+            //  row
             let row: JSX.Element[] = []
-            for (let j: number = 0; j < width; j++) { //Col
-                let imagelink = props.images[0];
-
-                if (mapGrid[i][j] == 0) {
-                    //Create bool statements to find walls
-                    let compass: string = "";
-
-                    //Check which directions have walls, or edge of the grid
-                    if (i == 0 || mapGrid[i - 1][j] == 0) {
-                        compass += "N"
-                    }
-                    if (j == mapGrid[0].length-1 || mapGrid[i][j + 1] == 0) {
-                        compass += "E"
-                    }
-                    if (i == mapGrid.length-1 || mapGrid[i + 1][j] == 0) {
-                        compass += "S"
-                    }
-                    if (j == 0 || mapGrid[i][j - 1] == 0) {
-                        compass += "W";
-                    }
-
-                    //Assign an image based on wall directions
-                    switch (compass) {
-                        case "N": // Only north
-                            imagelink = props.images[13]
-                            break;
-                        case "S": // Only south
-                            imagelink = props.images[12]
-                            break;
-                        case "W": // Only west
-                            imagelink = props.images[10]
-                            break;
-                        case "E": // Only east
-                            imagelink = props.images[11]
-                            break;
-                        case "NW": // north & west
-                            imagelink = props.images[6]
-                            break;
-                        case "NE": // north & east
-                            imagelink = props.images[7]
-                            break;
-                        case "SW": // south & west
-                            imagelink = props.images[8]
-                            break;
-                        case "ES": // south & east
-                            imagelink = props.images[9]
-                            break;
-                        case "NS": // vertical wall
-                            imagelink = props.images[19]
-                            break;
-                        case "EW": // horizontal wall
-                            imagelink = props.images[18]
-                            break;
-                        case "NEW": // north & east & west
-                            imagelink = props.images[5]
-                            break;
-                        case "NSW": // north & west & south
-                            imagelink = props.images[2]
-                            break;
-                        case "NES": // north & east & south
-                            imagelink = props.images[3]
-                            break;
-                        case "ESW": // west & south & east
-                            imagelink = props.images[4]
-                            break;
-                        default: // Solid wall, checks if its an inverted corner
-                            //Create corner booleans
-                            let cornerCompass:string = "";
-
-                            //Check which directions have walls
-                            if (i != 0 && j != 0 && mapGrid[i - 1][j - 1] == 0) {
-                                cornerCompass += "NW";
-                            }
-                            if (i != 0 && j != mapGrid[0].length-1 && mapGrid[i - 1][j + 1] == 0) {
-                                cornerCompass += "NE";
-                            }
-                            if (i != mapGrid.length-1 && j != 0 && mapGrid[i + 1][j - 1] == 0) {
-                                cornerCompass += "SW";
-                            }
-                            if (i != mapGrid.length-1 && j != mapGrid[0].length-1 && mapGrid[i + 1][j + 1] == 0) {
-                                cornerCompass += "SE";
-                            }
-
-                            switch (cornerCompass) {
-                                case "NWNESW": // All but SE
-                                    imagelink = props.images[14]
-                                    break;
-                                case "NWNESE": // All but SW
-                                    imagelink = props.images[15]
-                                    break;
-                                case "NWSWSE": // All but NE
-                                    imagelink = props.images[16]
-                                    break;
-                                case "NESWSE": // All but NW
-                                    imagelink = props.images[17]
-                                    break;
-                                default:
-                                    imagelink = props.images[20]
-                                    break;
-
-                            }
-                    }
-
-                    // Tile is a floor, grab floor image
-                } else {
-                    imagelink = props.images[21];
-                }
+            e1.forEach(function (e2: number, index2: number) {
+                //  col
+                // numbers should reference a tile in images
+                const imagelink = props.images[e2]
                 row.push(imagelink)
-            }
+            })
             pixelDisplay.push(row)
-        }
+        });
         return pixelDisplay;
     }
 
-
     return (
+        <div>
         <div id="map" style={mapStyle(MAP_ROOM_COLS*ROOM_SIZE, MAP_ROOM_ROWS*ROOM_SIZE)}>
             {pixelDisplay}
         </div>
+        <TableContainer component={Paper}>
+      <Table aria-label="collapsible table">
+        <TableHead>
+          <TableRow>
+            <TableCell />
+            <TableCell>Room</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <Row key={row.name} row={row} />
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+        </div>
+        
     )
 
 }
 
-
+function mountNode(arg0: JSX.Element, mountNode: any) {
+    throw new Error("Function not implemented.");
+}
 
