@@ -5,23 +5,47 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 
 import App from './App';
+import {roomGen} from "./utility/roomGen";
+import map from "./components/Map"
+import {fade} from "@material-ui/core";
+import routeFindingMap from "./pages/RouteFindingMap";
+
+interface mapProps {
+    images: JSX.Element[]
+}
 
 describe('<App />', () => {
-    //This is an example of a test
-    /*it('has 1 child', () => {
-        const tree = renderer.create(<App />).toJSON();
-        expect(tree.children.length).toBe(1);
-    });*/
+    /**
+     * ROOM GENERATION TESTS
+     */
+    test('corner entrance not allowed.', () => {
+        const entrances:number[][] = [[0,0], [4,0]];
+        try {
+            const roomArray = roomGen(10, 10, entrances, 0.2, false);
+            assert.fail();
+        } catch (error) {
+            console.log("Did not allow the [0,0] entrance to pass");
+        }
+    });
 
-    //This is an example of a snapshot test (states of UI)
-    /*it('renders correctly', () => {
-        const tree = renderer.create(<App />).toJSON();
-        expect(tree).toMatchSnapshot();
-    });*/
+    test('entrances must be on at the edge.', () => {
+        const entrances:number[][] = [[5,6], [4,0]];
+        try {
+            const roomArray = roomGen(10, 10, entrances, 0.2, false);
+            console.assert(false);
+        } catch (error) {
+            console.log("Did not allow the [5,6] entrance to pass");
+        }
+    });
 
-    //An empty test to make the pipeline pass
-    //todo: get rid of this test once actual tests exist
-    it('empty test', () => {
+    test('There must be at least 1 entrance', () => {
+        const entrances:number[][] = [];
+        try {
+            const roomArray = roomGen(10, 10, entrances, 0.2, false);
+            console.assert(false);
+        } catch (error) {
+            console.log("Did not allow the [5,6] entrance to pass");
+        }
+    });
 
-    })
 });
