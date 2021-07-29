@@ -24,8 +24,12 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 const useRowStyles = makeStyles({
   root: {
     '& > *': {
-      borderBottom: 'unset',
+        borderBottom: 'unset',
     },
+    position: "relative",
+    top: 0,
+    left: 1000,
+    width: 2000,
   },
 });
 
@@ -87,7 +91,7 @@ function Row(props: { row: ReturnType<typeof createData> }) { // Will need to be
               </Typography>
               <Table size="small" aria-label="purchases">
                 <TableHead>
-                  <TableRow>
+                  <TableRow style={{position: "relative",top: 0, left: 1000, width: 2000,}}>
                       {monsters.map((mon => (
                         <TableCell>{mon}</TableCell>
                       )))}
@@ -137,6 +141,9 @@ const DOUBLE_DOORS = false;
 export default function map(props: mapProps) {
     const mapStyle = function (width: number, height: number) {
         return {
+            position: "absolute",
+            left: 0,
+            top: 0,
             margin: 'auto',
             display: 'grid',
             gridTemplateColumns: 'repeat(' + width + ',max-content)',
