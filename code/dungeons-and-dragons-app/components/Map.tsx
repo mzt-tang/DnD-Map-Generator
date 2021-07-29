@@ -28,8 +28,7 @@ const useRowStyles = makeStyles({
     },
     position: "relative",
     top: 0,
-    left: 1000,
-    width: 2000,
+    width: 800,
   },
 });
 
@@ -91,7 +90,7 @@ function Row(props: { row: ReturnType<typeof createData> }) { // Will need to be
               </Typography>
               <Table size="small" aria-label="purchases">
                 <TableHead>
-                  <TableRow style={{position: "relative",top: 0, left: 1000, width: 2000,}}>
+                  <TableRow style={{position: "relative",top: 0, width: 700, display: "flex", flexDirection: "column"}}>
                       {monsters.map((mon => (
                         <TableCell>{mon}</TableCell>
                       )))}
@@ -489,10 +488,11 @@ export default function map(props: mapProps) {
     }
 
     return (
-        <div>
+        <div style={{position: "relative",top: 0, width: 1000, display: "flex", flexDirection: "row"}}>
         <div id="map" style={mapStyle(MAP_ROOM_COLS*ROOM_SIZE, MAP_ROOM_ROWS*ROOM_SIZE)}>
             {pixelDisplay}
         </div>
+        <div style={{position: "relative",top: 0, left:1000, width: 800, display: "flex", flexDirection: "row"}}>
         <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
         <TableHead>
@@ -508,6 +508,7 @@ export default function map(props: mapProps) {
         </TableBody>
       </Table>
     </TableContainer>
+    </div>
         </div>
         
     )
