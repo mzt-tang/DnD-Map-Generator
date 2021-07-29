@@ -1,6 +1,10 @@
 import React from "react";
 import {roomGen} from "../utility/roomGen"
 
+import { db } from '.././firebaseConfig';
+import firebase from 'firebase';
+
+
 interface mapProps {
     images: JSX.Element[]
 }
@@ -15,6 +19,12 @@ const ROOM_GROW_PROBABILITY = 0.42;
 
 //todo double doors.
 const DOUBLE_DOORS = false;
+
+//Firebase
+//todo this is needed to init the firebase database connection. We need to change this in future.
+const reference = db;
+const dbRefObject = firebase.database().ref().child('maps');
+
 
 export default function map(props: mapProps) {
     const mapStyle = function (width: number, height: number) {
@@ -38,6 +48,9 @@ export default function map(props: mapProps) {
     // create a 2D array rows * cols filled with the value 10.
     let mapGrid = Array.from(Array(MAP_ROOM_ROWS * ROOM_SIZE), _ => Array(MAP_ROOM_COLS * ROOM_SIZE).fill(10));
 
+    // this is used to send to firebase where we need the final numbers stored
+    let fireBaseMapVersion = Array.from(Array(MAP_ROOM_ROWS * ROOM_SIZE), _ => Array(MAP_ROOM_COLS * ROOM_SIZE).fill(10));
+
     let previousRoomIndex = -1; // the previous room generated
     let currentRoomIndex = 0; // the next room to generate
 
@@ -58,7 +71,6 @@ export default function map(props: mapProps) {
         let roomRow = getRoomRow(currentRoomIndex);
         let roomCol = getRoomCol(currentRoomIndex);
 
-        //todo change to allow multiple.
         let northEntrances: number[][] = []
         let westEntrances: number[][] = []
         let eastEntrances: number[][] = []
@@ -344,6 +356,7 @@ export default function map(props: mapProps) {
      */
     function assignAutoTiledWalls() : JSX.Element[][] {
         let pixelDisplay: JSX.Element[][] = []
+
         for (let i: number = 0; i < height; i++) { //Rows
             let row: JSX.Element[] = []
             for (let j: number = 0; j < width; j++) { //Col
@@ -367,49 +380,64 @@ export default function map(props: mapProps) {
                         compass += "W";
                     }
 
+
                     //Assign an image based on wall directions
                     switch (compass) {
                         case "N": // Only north
-                            imagelink = props.images[13]
+                            imagelink = props.images[13];
+                            fireBaseMapVersion[i][j] = 13;
                             break;
                         case "S": // Only south
-                            imagelink = props.images[12]
+                            imagelink = props.images[12];
+                            fireBaseMapVersion[i][j] = 12;
                             break;
                         case "W": // Only west
-                            imagelink = props.images[10]
+                            imagelink = props.images[10];
+                            fireBaseMapVersion[i][j] = 10;
                             break;
                         case "E": // Only east
-                            imagelink = props.images[11]
+                            imagelink = props.images[11];
+                            fireBaseMapVersion[i][j] = 11;
                             break;
                         case "NW": // north & west
-                            imagelink = props.images[6]
+                            imagelink = props.images[6];
+                            fireBaseMapVersion[i][j] = 6;
                             break;
                         case "NE": // north & east
-                            imagelink = props.images[7]
+                            imagelink = props.images[7];
+                            fireBaseMapVersion[i][j] = 7;
                             break;
                         case "SW": // south & west
-                            imagelink = props.images[8]
+                            imagelink = props.images[8];
+                            fireBaseMapVersion[i][j] = 8;
                             break;
                         case "ES": // south & east
-                            imagelink = props.images[9]
+                            imagelink = props.images[9];
+                            fireBaseMapVersion[i][j] = 9;
                             break;
                         case "NS": // vertical wall
-                            imagelink = props.images[19]
+                            imagelink = props.images[19];
+                            fireBaseMapVersion[i][j] = 19;
                             break;
                         case "EW": // horizontal wall
-                            imagelink = props.images[18]
+                            imagelink = props.images[18];
+                            fireBaseMapVersion[i][j] = 18;
                             break;
                         case "NEW": // north & east & west
-                            imagelink = props.images[5]
+                            imagelink = props.images[5];
+                            fireBaseMapVersion[i][j] = 5;
                             break;
                         case "NSW": // north & west & south
-                            imagelink = props.images[2]
+                            imagelink = props.images[2];
+                            fireBaseMapVersion[i][j] = 2;
                             break;
                         case "NES": // north & east & south
-                            imagelink = props.images[3]
+                            imagelink = props.images[3];
+                            fireBaseMapVersion[i][j] = 3;
                             break;
                         case "ESW": // west & south & east
-                            imagelink = props.images[4]
+                            imagelink = props.images[4];
+                            fireBaseMapVersion[i][j] = 4;
                             break;
                         default: // Solid wall, checks if its an inverted corner
                             //Create corner booleans
@@ -431,19 +459,24 @@ export default function map(props: mapProps) {
 
                             switch (cornerCompass) {
                                 case "NWNESW": // All but SE
-                                    imagelink = props.images[14]
+                                    imagelink = props.images[14];
+                                    fireBaseMapVersion[i][j] = 14;
                                     break;
                                 case "NWNESE": // All but SW
-                                    imagelink = props.images[15]
+                                    imagelink = props.images[15];
+                                    fireBaseMapVersion[i][j] = 15;
                                     break;
                                 case "NWSWSE": // All but NE
-                                    imagelink = props.images[16]
+                                    imagelink = props.images[16];
+                                    fireBaseMapVersion[i][j] = 16;
                                     break;
                                 case "NESWSE": // All but NW
-                                    imagelink = props.images[17]
+                                    imagelink = props.images[17];
+                                    fireBaseMapVersion[i][j] = 17;
                                     break;
                                 default:
-                                    imagelink = props.images[20]
+                                    imagelink = props.images[20];
+                                    fireBaseMapVersion[i][j] = 20;
                                     break;
 
                             }
@@ -452,11 +485,18 @@ export default function map(props: mapProps) {
                     // Tile is a floor, grab floor image
                 } else {
                     imagelink = props.images[21];
+                    fireBaseMapVersion[i][j] = 21;
                 }
-                row.push(imagelink)
+                row.push(imagelink);
             }
-            pixelDisplay.push(row)
+            pixelDisplay.push(row);
         }
+
+        // Send updated map to firebase
+        dbRefObject.set({
+            Map: fireBaseMapVersion
+        })
+
         return pixelDisplay;
     }
 

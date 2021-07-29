@@ -3,6 +3,31 @@
     height:25px;
 }
 
+.homeButtons {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.map {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.largeButton {
+
+}
+
+.container {
+    height: 100vh;
+    position: relative;
+    border: 3px solid green;
+}
+
 h1 {
     text-align:center;
 }
