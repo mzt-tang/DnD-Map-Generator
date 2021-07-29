@@ -15,7 +15,7 @@ import Image8 from '../assets/Images2/RightWall.png';
 import Image9 from '../assets/Images2/Floor.png';
 
 // Import styles
-import GridOther from "../components/GridOther";
+import Grid from "../components/Grid";
 import '../styles/style.css';
 import {roomGen} from "../utility/roomGen";
 
@@ -52,7 +52,7 @@ const Room = () => {
         <View>
             <h1>Room Generation Testing</h1>
 
-            <GridOther width={cols} height={rows} images={images} tiles={tiles} />
+            <Grid width={cols} height={rows} images={images} tiles={tiles} />
             <div style={{width:300,margin:30}}>
                 <Typography id="probability-slider" gutterBottom>
                     Probability
