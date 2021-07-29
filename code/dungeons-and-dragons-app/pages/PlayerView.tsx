@@ -2,25 +2,39 @@ import React, {ChangeEvent, useEffect, useState} from 'react';
 import { View } from 'react-native';
 import { db } from "../firebaseConfig";
 import firebase from 'firebase';
-import Image1 from "../assets/Dark.png";
-import Image2 from "../assets/Light.png";
-import Image3 from "../assets/TLCorner.png";
-import Image4 from "../assets/BLCorner.png";
-import Image5 from "../assets/BRCorner.png";
-import Image6 from "../assets/TRCorner.png";
-import Image7 from "../assets/WallBottom.png";
-import Image8 from "../assets/WallTop.png";
-import Image9 from "../assets/WallLeft.png";
-import Image10 from "../assets/WallRight.png";
-import Image11 from "../assets/Floor.png";
-import GridOther from "../components/GridOther";
+
+import Grid from "../components/Grid";
 import '../styles/style.css'
+
+import Image1 from '../assets/Dark.png';
+import Image2 from '../assets/Light.png';
+import Image3 from '../assets/New Tile Assets/floor_e.png';
+import Image4 from '../assets/New Tile Assets/floor_w.png';
+import Image5 from '../assets/New Tile Assets/floor_n.png';
+import Image6 from '../assets/New Tile Assets/floor_s.png';
+import Image7 from '../assets/New Tile Assets/floor_se.png';
+import Image8 from '../assets/New Tile Assets/floor_sw.png';
+import Image9 from '../assets/New Tile Assets/floor_ne.png';
+import Image10 from '../assets/New Tile Assets/floor_nw.png';
+import Image11 from '../assets/New Tile Assets/floor_e2.png';
+import Image12 from '../assets/New Tile Assets/floor_w2.png';
+import Image13 from '../assets/New Tile Assets/floor_n2.png';
+import Image14 from '../assets/New Tile Assets/floor_s2.png';
+import Image15 from '../assets/New Tile Assets/floor_se2.png';
+import Image16 from '../assets/New Tile Assets/floor_sw2.png';
+import Image17 from '../assets/New Tile Assets/floor_ne2.png';
+import Image18 from '../assets/New Tile Assets/floor_nw2.png';
+import Image19 from '../assets/New Tile Assets/floor_ns.png';
+import Image20 from '../assets/New Tile Assets/floor_ew.png';
+import Image21 from '../assets/New Tile Assets/floor_default.png';
+import Image22 from '../assets/New Tile Assets/wall.png';
+
 
 
 const PlayerView = () => {
 
     const[map, setMap] = useState([[0]]);
-    const[size, setSize] = useState(25); // set the tile size?
+    const[size, setSize] = useState(25); //todo set the tile size?
 
     //todo figure out a better way to init firebase
     const database = db;
@@ -44,6 +58,17 @@ const PlayerView = () => {
         <img className="grid_img" src={Image9}/>,
         <img className="grid_img" src={Image10}/>,
         <img className="grid_img" src={Image11}/>,
+        <img className="grid_img" src={Image12}/>,
+        <img className="grid_img" src={Image13}/>,
+        <img className="grid_img" src={Image14}/>,
+        <img className="grid_img" src={Image15}/>,
+        <img className="grid_img" src={Image16}/>,
+        <img className="grid_img" src={Image17}/>,
+        <img className="grid_img" src={Image18}/>,
+        <img className="grid_img" src={Image19}/>,
+        <img className="grid_img" src={Image20}/>,
+        <img className="grid_img" src={Image21}/>,
+        <img className="grid_img" src={Image22}/>
     ]
 
     useEffect(() => {
@@ -72,7 +97,7 @@ if (map.length == 1) {
         <View>
             <h1>
                 <div className={'map'}>
-                <GridOther width={map[0].length} height={map.length} images={images} tiles={map}/>
+                <Grid width={map[0].length} height={map.length} images={images} tiles={map}/>
                 </div>
             </h1>
         </View>
