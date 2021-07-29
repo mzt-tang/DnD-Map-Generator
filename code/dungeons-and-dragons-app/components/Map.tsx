@@ -1,6 +1,10 @@
 import React from "react";
 import {roomGen} from "../utility/roomGen"
 
+import { db } from '.././firebaseConfig';
+import firebase from 'firebase';
+
+
 interface mapProps {
     images: JSX.Element[]
 }
@@ -13,6 +17,12 @@ const ROOM_GROW_PROBABILITY = 0.42;
 
 //todo double doors.
 const DOUBLE_DOORS = false;
+
+//Firebase
+//todo this is needed to init the firebase database connection. We need to change this in future.
+const reference = db;
+const dbRefObject = firebase.database().ref().child('maps');
+
 
 export default function map(props: mapProps) {
     const mapStyle = function (width: number, height: number) {
@@ -56,7 +66,6 @@ export default function map(props: mapProps) {
         let roomRow = getRoomRow(currentRoomIndex);
         let roomCol = getRoomCol(currentRoomIndex);
 
-        //todo change to allow multiple.
         let northEntrances: number[][] = []
         let westEntrances: number[][] = []
         let eastEntrances: number[][] = []
@@ -342,6 +351,10 @@ export default function map(props: mapProps) {
      */
     function doPixelDisplay() : JSX.Element[][] {
         let pixelDisplay : JSX.Element[][] = [];
+        //todo this pushes to firebase each time, change this when we are ready.
+        dbRefObject.set({
+            Map: mapGrid
+        })
 
         mapGrid.forEach(function (e1: number[], index: number) {
             //  row
