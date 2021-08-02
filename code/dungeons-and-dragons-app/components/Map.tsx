@@ -1,5 +1,5 @@
 import React from "react";
-import {roomGen} from "../utility/roomGen"
+import {roomGen} from "../utility/roomGen";
 
 import { db } from '.././firebaseConfig';
 import firebase from 'firebase';
