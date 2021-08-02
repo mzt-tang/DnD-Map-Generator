@@ -1,4 +1,4 @@
-import { Button } from '@material-ui/core';
+import {Button, Typography} from '@material-ui/core';
 import React from 'react';
 import { useHistory } from "react-router-dom";
 
@@ -20,7 +20,10 @@ const LargeButton = (props : Props) => {
         <Button variant="outlined" size="large" color="primary" className="largeButton" onClick={() => {
             history.push(buttonRoute)
         }}>
-            {buttonString}
+
+            <Typography variant={"h4"}>
+                {buttonString}
+            </Typography>
         </Button>
     );
 }
