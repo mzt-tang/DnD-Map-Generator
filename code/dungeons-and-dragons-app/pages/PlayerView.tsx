@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
 import { View } from 'react-native';
-import { db } from "../firebaseConfig";
+import { db } from "../FirebaseConfig";
 import firebase from 'firebase';
 
 import Grid from "../components/Grid";
