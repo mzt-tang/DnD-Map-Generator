@@ -34,9 +34,11 @@ const useRowStyles = makeStyles({
 
 function createData(
   name: string,
+  monsters: string[],
 ) {
   return {
     name,
+    monsters,
   };
 }
 
@@ -45,80 +47,52 @@ function Row(props: { row: ReturnType<typeof createData> }) { // Will need to be
   const [open, setOpen] = React.useState(false);
   const classes = useRowStyles();
 
-  let room: string[] = fillRooms([]);// Passes in array of rooms from map, gets rooms
-
-    let mons: string[] = getMonsters();
-
-    function getMonsters(): string[] {
-        // calls database to get an array of monsters
-        return [];
-    }
-
-    let roomToMon:string[][] = [] // 2d array of rooms, then monsters in the room
-
-    roomToMon = fillRoomsWithMons();
-
-    function fillRoomsWithMons() :string[][]{
-        // loops through all rooms, gets a random monster, adds it to roomToMon with that room as the first element, gets the rest of the monsters and checks if they can be in the same room as og monster
-        return []
-    }
-
-    let monMap = new Map<string, Array<string>>(
-        // alternative way to store monsters by map
-    )
-
-  let monsters: string[] = ["snek", "sln", "gost", "mand"] // only here to get something to display
-
   return (
     <React.Fragment>
-      <TableRow className={classes.root}>
-        <TableCell>
-          <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
-            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-          </IconButton>
-        </TableCell>
-        <TableCell component="th" scope="row">
-          {row.name}
-        </TableCell>
-      </TableRow>
-      <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <Box margin={1}>
-              <Typography variant="h6" gutterBottom component="div">
-                Monster
-              </Typography>
-              <Table size="small" aria-label="purchases">
-                <TableHead>
-                  <TableRow style={{position: "relative",top: 0, width: 700, display: "flex", flexDirection: "column"}}>
-                      {monsters.map((mon => (
-                        <TableCell>{mon}</TableCell>
-                      )))}
-                  </TableRow>
-                </TableHead>
-              </Table>
-            </Box>
-          </Collapse>
-        </TableCell>
-      </TableRow>
+        <TableRow className={classes.root}>
+            <TableCell>
+                <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
+                    {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                </IconButton>
+                    {row.name}
+            </TableCell>
+        </TableRow>
+        <TableRow>
+            <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                <Collapse in={open} timeout="auto" unmountOnExit>
+                    <Box margin={1}>
+                        <Typography variant="h6" gutterBottom component="div">
+                            Monster
+                        </Typography>
+                        <Table size="small" aria-label="purchases">
+                            <TableHead>
+                                    <TableRow style={{ position: "relative", top: 0, width: 700, display: "flex", flexDirection: "column" }}>
+                                        {row.monsters.map((m => (
+                                            <TableCell>{m}</TableCell>
+                                        )))}
+                                    </TableRow>
+                            </TableHead>
+                        </Table>
+                    </Box>
+                </Collapse>
+            </TableCell>
+        </TableRow>
     </React.Fragment>
   );
 }
 
-const rows = [
-    createData('Room 1'),
-    createData('Room 2'),
-    createData('Room 3'),
-    createData('Room 4'),
-    createData('Room 5'),
-    createData('Room 6'),
-    createData('Room 7'),
-    createData('Room 8'),
-    createData('Room 9'),
-    createData('Room 10'),
-    createData('Room 11'),
-    createData('Room 12'),
-  ];
+let rowr = [createData("Room 1", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
+createData("Room 2", ["Orc", "Grunk", "Bronk"]),
+createData("Room 3", ["Ghost", "Danny Phantom", "Caspar", "Dead Guy"]),
+createData("Room 4", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
+createData("Room 5", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
+createData("Room 6", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
+createData("Room 7", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
+createData("Room 8", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
+createData("Room 9", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
+createData("Room 10", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
+createData("Room 11", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
+createData("Room 12", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"])]
 
 function fillRooms(rooms: number[][][]) : string[] {
     let row: string[] = [];
@@ -494,20 +468,20 @@ export default function map(props: mapProps) {
         </div>
         <div style={{position: "relative",top: 0, left:1000, width: 800, display: "flex", flexDirection: "row"}}>
         <TableContainer component={Paper}>
-      <Table aria-label="collapsible table">
-        <TableHead>
-          <TableRow>
-            <TableCell />
-            <TableCell>Room</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <Row key={row.name} row={row} />
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+            <Table aria-label="collapsible table">
+                <TableHead>
+                <TableRow>
+                    <TableCell />
+                    <TableCell>Room</TableCell>
+                </TableRow>
+                </TableHead>
+                <TableBody>
+                {rowr.map((row) => (
+                    <Row key={row.name} row={row} />
+                ))}
+                </TableBody>
+            </Table>
+            </TableContainer>
     </div>
         </div>
         
