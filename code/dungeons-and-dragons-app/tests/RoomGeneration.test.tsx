@@ -1,20 +1,26 @@
 // This is template code for testing using jest for the CI part of CI/CD
 // The guide im following is: https://docs.expo.io/guides/testing-with-jest/
 
-import React from 'react';
-import renderer from 'react-test-renderer';
+// To install the jest test library: "yarn add jest-expo" or "npm install jest-expo"
+// To run all tests: "npx jest --ci"
 
-import App from '../App';
+import React from 'react';
+
+import './RoomGeneration.test';
 import {roomGen} from "../utility/roomGen";
-import map from "../components/Map"
-import {fade} from "@material-ui/core";
-import routeFindingMap from "../pages/RouteFindingMap";
 
 interface mapProps {
     images: JSX.Element[]
 }
 
-describe('<RoomGeneration />', () => {
+describe('<App />', () => {
+    /**
+     * RENDERING COMPONENT TESTS
+     */
+    /*test('can render map', () => {
+        render(<div id="map" />)
+    })*/
+
     /**
      * ROOM GENERATION TESTS
      */
@@ -22,7 +28,7 @@ describe('<RoomGeneration />', () => {
         const entrances:number[][] = [[0,0], [4,0]];
         try {
             const roomArray = roomGen(10, 10, entrances, 0.2, false);
-            assert.fail();
+            console.assert(false);
         } catch (error) {
             console.log("Did not allow the [0,0] entrance to pass");
         }
@@ -44,7 +50,7 @@ describe('<RoomGeneration />', () => {
             const roomArray = roomGen(10, 10, entrances, 0.2, false);
             console.assert(false);
         } catch (error) {
-            console.log("Did not allow the [5,6] entrance to pass");
+            console.log("Did not allow 0 entrances");
         }
     });
 
