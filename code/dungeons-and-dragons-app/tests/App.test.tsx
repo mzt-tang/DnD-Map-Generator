@@ -5,14 +5,9 @@
 // To run all tests: "npx jest --ci"
 
 import React from 'react';
-import renderer from 'react-test-renderer';
 
-import App from '../App';
-import './RoomGeneration.text';
+import './RoomGeneration.test';
 import {roomGen} from "../utility/roomGen";
-import map from "../components/Map"
-import {fade} from "@material-ui/core";
-import routeFindingMap from "../pages/RouteFindingMap";
 
 interface mapProps {
     images: JSX.Element[]
@@ -33,7 +28,7 @@ describe('<App />', () => {
         const entrances:number[][] = [[0,0], [4,0]];
         try {
             const roomArray = roomGen(10, 10, entrances, 0.2, false);
-            assert.fail();
+            console.assert(false);
         } catch (error) {
             console.log("Did not allow the [0,0] entrance to pass");
         }
@@ -55,7 +50,7 @@ describe('<App />', () => {
             const roomArray = roomGen(10, 10, entrances, 0.2, false);
             console.assert(false);
         } catch (error) {
-            console.log("Did not allow the [5,6] entrance to pass");
+            console.log("Did not allow 0 entrances");
         }
     });
 
