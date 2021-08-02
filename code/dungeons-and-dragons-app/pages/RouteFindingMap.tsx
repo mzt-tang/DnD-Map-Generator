@@ -67,7 +67,7 @@ export default function routeFindingMap () {
 
     return (
         <div id='route'>
-            <Map images={images} />
+            <Map images={images} ALL_ROOMS={[]} />
         </div>
     );
 }

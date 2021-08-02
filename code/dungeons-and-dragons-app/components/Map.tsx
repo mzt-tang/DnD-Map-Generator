@@ -69,7 +69,7 @@ function Row(props: { row: ReturnType<typeof createData> }) { // Will need to be
                         </Typography>
                         <Table size="small" aria-label="purchases">
                             <TableHead>
-                                    <TableRow style={{ position: "relative", top: 0, width: 700, display: "flex", flexDirection: "column" }}>
+                                    <TableRow style={{ position: "relative", top: 0, width: '100%', display: "flex", flexDirection: "column" }}>
                                         {row.monsters.map((m => (
                                             <TableCell>{m}</TableCell>
                                         )))}
@@ -601,11 +601,11 @@ export default function map(props: mapProps) {
         })
 
     return (
-        <div style={{position: "relative",top: 0, width: 1000, display: "flex", flexDirection: "row"}}>
+        <div style={{position: "relative",top: 0, width: 1400, display: "flex", flexDirection: "row"}}>
         <div id="map" style={mapStyle(MAP_ROOM_COLS*ROOM_SIZE, MAP_ROOM_ROWS*ROOM_SIZE)}>
             {pixelDisplay}
         </div>
-        <div style={{position: "relative",top: 0, left:1000, width: 800, display: "flex", flexDirection: "row"}}>
+        <div style={{position: "relative",top: 0, left:'0%', width: 800, display: "flex", flexDirection: "row"}}>
         <TableContainer component={Paper}>
             <Table aria-label="collapsible table">
                 <TableHead>
