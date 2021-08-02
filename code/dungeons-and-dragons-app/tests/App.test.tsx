@@ -4,11 +4,12 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import App from './App';
-import {roomGen} from "./utility/roomGen";
-import map from "./components/Map"
+import App from '../App';
+import './RoomGeneration.text';
+import {roomGen} from "../utility/roomGen";
+import map from "../components/Map"
 import {fade} from "@material-ui/core";
-import routeFindingMap from "./pages/RouteFindingMap";
+import routeFindingMap from "../pages/RouteFindingMap";
 
 interface mapProps {
     images: JSX.Element[]
