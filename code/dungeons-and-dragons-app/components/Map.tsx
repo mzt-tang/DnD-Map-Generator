@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import {roomGen} from "../utility/roomGen"
 
+import { db } from '.././firebaseConfig';
+import firebase from 'firebase';
+
 interface mapProps {
     images: JSX.Element[]
     ALL_ROOMS: number [][]
@@ -105,18 +108,22 @@ function fillRooms(rooms: number[][][]) : string[] {
 const ROOM_SIZE = 10;
 const MAP_ROOM_ROWS = 3;
 const MAP_ROOM_COLS = 4;
+const height = ROOM_SIZE*MAP_ROOM_ROWS;
+const width = ROOM_SIZE*MAP_ROOM_COLS;
 const ENTRANCE_PROBABILITY= 0.7;
 const ROOM_GROW_PROBABILITY = 0.42;
 
 //todo double doors.
 const DOUBLE_DOORS = false;
 
+//Firebase
+//todo this is needed to init the firebase database connection. We need to change this in future.
+const reference = db;
+const dbRefObject = firebase.database().ref().child('maps');
+
 export default function map(props: mapProps) {
     const mapStyle = function (width: number, height: number) {
         return {
-            position: "absolute",
-            left: 0,
-            top: 0,
             margin: 'auto',
             display: 'grid',
             gridTemplateColumns: 'repeat(' + width + ',max-content)',
@@ -125,20 +132,19 @@ export default function map(props: mapProps) {
         }
     }
 
-    function getRooms():number[][][]{
-        return ALL_ROOMS;
-    }
-
-    let ALL_ROOMS : number[][][] = []; // holds all the rooms making up the map in order.
+    let allRooms : number[][][] = []; // holds all the rooms making up the map in order.
 
     for (let row = 0; row < MAP_ROOM_ROWS; row++) { // push the total empty rooms needed to make the map.
         for (let col = 0; col < MAP_ROOM_COLS; col++) {
-            ALL_ROOMS.push([]);
+            allRooms.push([]);
         }
     }
 
     // create a 2D array rows * cols filled with the value 10.
     let mapGrid = Array.from(Array(MAP_ROOM_ROWS * ROOM_SIZE), _ => Array(MAP_ROOM_COLS * ROOM_SIZE).fill(10));
+
+    // this is used to send to firebase where we need the final numbers stored
+    let fireBaseMapVersion = Array.from(Array(MAP_ROOM_ROWS * ROOM_SIZE), _ => Array(MAP_ROOM_COLS * ROOM_SIZE).fill(10));
 
     let previousRoomIndex = -1; // the previous room generated
     let currentRoomIndex = 0; // the next room to generate
@@ -160,7 +166,6 @@ export default function map(props: mapProps) {
         let roomRow = getRoomRow(currentRoomIndex);
         let roomCol = getRoomCol(currentRoomIndex);
 
-        //todo change to allow multiple.
         let northEntrances: number[][] = []
         let westEntrances: number[][] = []
         let eastEntrances: number[][] = []
@@ -227,7 +232,7 @@ export default function map(props: mapProps) {
         }
 
         // Generate the room and add it to allRooms.
-        ALL_ROOMS[currentRoomIndex] = roomGen(ROOM_SIZE, ROOM_SIZE, entrances, ROOM_GROW_PROBABILITY, true);
+        allRooms[currentRoomIndex] = roomGen(ROOM_SIZE, ROOM_SIZE, entrances, ROOM_GROW_PROBABILITY, true);
 
         // calculate the next room to make.
         if (row < MAP_ROOM_ROWS - 1 && col < MAP_ROOM_COLS - 1) {
@@ -256,8 +261,8 @@ export default function map(props: mapProps) {
     }
 
     // Generate any left over rooms
-    for (let i = 0; i < ALL_ROOMS.length; i++){
-        if (ALL_ROOMS[i].length == 0) generateRoom(i);
+    for (let i = 0; i < allRooms.length; i++){
+        if (allRooms[i].length == 0) generateRoom(i);
     }
 
     /**
@@ -277,10 +282,10 @@ export default function map(props: mapProps) {
         let hasEastNeighbour = roomCol < MAP_ROOM_COLS-1;
 
         // If it is possible, check they have a generated room otherwise no point in looking for entrances.
-        let hasNorthGenerated = hasNorthNeighbour && ALL_ROOMS[i - MAP_ROOM_COLS].length != 0;
-        let hasSouthGenerated = hasSouthNeighbour && ALL_ROOMS[i + MAP_ROOM_COLS].length != 0;
-        let hasWestGenerated = hasWestNeighbour && ALL_ROOMS[i - 1].length != 0;
-        let hasEastGenerated = hasEastNeighbour && ALL_ROOMS[i + 1].length != 0;
+        let hasNorthGenerated = hasNorthNeighbour && allRooms[i - MAP_ROOM_COLS].length != 0;
+        let hasSouthGenerated = hasSouthNeighbour && allRooms[i + MAP_ROOM_COLS].length != 0;
+        let hasWestGenerated = hasWestNeighbour && allRooms[i - 1].length != 0;
+        let hasEastGenerated = hasEastNeighbour && allRooms[i + 1].length != 0;
 
         // check each neighbour for entrances and add them if they exist.
         if (hasNorthGenerated){
@@ -317,7 +322,7 @@ export default function map(props: mapProps) {
 
         // if we got here and we have no entrances than the room has no entrances and we can exit.
         if (roomEntrances.length == 0){
-            ALL_ROOMS[i] = Array.from(Array(ROOM_SIZE), _ => Array(ROOM_SIZE).fill(0));
+            allRooms[i] = Array.from(Array(ROOM_SIZE), _ => Array(ROOM_SIZE).fill(0));
             return;
         }
 
@@ -343,25 +348,25 @@ export default function map(props: mapProps) {
             }
         }
 
-        ALL_ROOMS[i] = roomGen(ROOM_SIZE,ROOM_SIZE,roomEntrances,ROOM_GROW_PROBABILITY,true);
+        allRooms[i] = roomGen(ROOM_SIZE,ROOM_SIZE,roomEntrances,ROOM_GROW_PROBABILITY,true);
     }
 
 
 
     addRooms();
-    let pixelDisplay = doPixelDisplay();
+    let pixelDisplay = assignAutoTiledWalls();
 
     /**
      * Iterates through all the rooms, finds their coordinates on the main map, and calls addRoom
      * to add them to the main map.
      */
     function addRooms() {
-        for (let i = 0; i < ALL_ROOMS.length; i++) {
-            if (ALL_ROOMS[i].length == 0){
+        for (let i = 0; i < allRooms.length; i++) {
+            if (allRooms[i].length == 0){
                 continue;
             }
 
-            let room = ALL_ROOMS[i];
+            let room = allRooms[i];
 
             let roomRow = getRoomRow(i);
             let roomCol = getRoomCol(i);
@@ -419,7 +424,7 @@ export default function map(props: mapProps) {
      * @param index the index of the room you want the entrances from.
      */
     function getRoomEntrances(index : number) : number[][] {
-        let room = ALL_ROOMS[index]
+        let room = allRooms[index]
         const entrances : number[][] = [];
 
         for (let row = 0; row < room.length; row++){
@@ -444,22 +449,156 @@ export default function map(props: mapProps) {
      * Takes in the 2D array representing the main map and returns a 2D array of JSX.Elements representing the tile
      * elements.
      */
-    function doPixelDisplay() : JSX.Element[][] {
-        let pixelDisplay : JSX.Element[][] = [];
+    function assignAutoTiledWalls() : JSX.Element[][] {
+        let pixelDisplay: JSX.Element[][] = []
 
-        mapGrid.forEach(function (e1: number[], index: number) {
-            //  row
+        for (let i: number = 0; i < height; i++) { //Rows
             let row: JSX.Element[] = []
-            e1.forEach(function (e2: number, index2: number) {
-                //  col
-                // numbers should reference a tile in images
-                const imagelink = props.images[e2]
-                row.push(imagelink)
-            })
-            pixelDisplay.push(row)
-        });
+            for (let j: number = 0; j < width; j++) { //Col
+                let imagelink = props.images[0];
+
+                if (mapGrid[i][j] == 0) {
+                    //Create bool statements to find walls
+                    let compass: string = "";
+
+                    //Check which directions have walls, or edge of the grid
+                    if (i == 0 || mapGrid[i - 1][j] == 0) {
+                        compass += "N"
+                    }
+                    if (j == mapGrid[0].length-1 || mapGrid[i][j + 1] == 0) {
+                        compass += "E"
+                    }
+                    if (i == mapGrid.length-1 || mapGrid[i + 1][j] == 0) {
+                        compass += "S"
+                    }
+                    if (j == 0 || mapGrid[i][j - 1] == 0) {
+                        compass += "W";
+                    }
+
+
+                    //Assign an image based on wall directions
+                    switch (compass) {
+                        case "N": // Only north
+                            imagelink = props.images[13];
+                            fireBaseMapVersion[i][j] = 13;
+                            break;
+                        case "S": // Only south
+                            imagelink = props.images[12];
+                            fireBaseMapVersion[i][j] = 12;
+                            break;
+                        case "W": // Only west
+                            imagelink = props.images[10];
+                            fireBaseMapVersion[i][j] = 10;
+                            break;
+                        case "E": // Only east
+                            imagelink = props.images[11];
+                            fireBaseMapVersion[i][j] = 11;
+                            break;
+                        case "NW": // north & west
+                            imagelink = props.images[6];
+                            fireBaseMapVersion[i][j] = 6;
+                            break;
+                        case "NE": // north & east
+                            imagelink = props.images[7];
+                            fireBaseMapVersion[i][j] = 7;
+                            break;
+                        case "SW": // south & west
+                            imagelink = props.images[8];
+                            fireBaseMapVersion[i][j] = 8;
+                            break;
+                        case "ES": // south & east
+                            imagelink = props.images[9];
+                            fireBaseMapVersion[i][j] = 9;
+                            break;
+                        case "NS": // vertical wall
+                            imagelink = props.images[19];
+                            fireBaseMapVersion[i][j] = 19;
+                            break;
+                        case "EW": // horizontal wall
+                            imagelink = props.images[18];
+                            fireBaseMapVersion[i][j] = 18;
+                            break;
+                        case "NEW": // north & east & west
+                            imagelink = props.images[5];
+                            fireBaseMapVersion[i][j] = 5;
+                            break;
+                        case "NSW": // north & west & south
+                            imagelink = props.images[2];
+                            fireBaseMapVersion[i][j] = 2;
+                            break;
+                        case "NES": // north & east & south
+                            imagelink = props.images[3];
+                            fireBaseMapVersion[i][j] = 3;
+                            break;
+                        case "ESW": // west & south & east
+                            imagelink = props.images[4];
+                            fireBaseMapVersion[i][j] = 4;
+                            break;
+                        default: // Solid wall, checks if its an inverted corner
+                            //Create corner booleans
+                            let cornerCompass:string = "";
+
+                            //Check which directions have walls
+                            if (i != 0 && j != 0 && mapGrid[i - 1][j - 1] == 0) {
+                                cornerCompass += "NW";
+                            }
+                            if (i != 0 && j != mapGrid[0].length-1 && mapGrid[i - 1][j + 1] == 0) {
+                                cornerCompass += "NE";
+                            }
+                            if (i != mapGrid.length-1 && j != 0 && mapGrid[i + 1][j - 1] == 0) {
+                                cornerCompass += "SW";
+                            }
+                            if (i != mapGrid.length-1 && j != mapGrid[0].length-1 && mapGrid[i + 1][j + 1] == 0) {
+                                cornerCompass += "SE";
+                            }
+
+                            switch (cornerCompass) {
+                                case "NWNESW": // All but SE
+                                    imagelink = props.images[14];
+                                    fireBaseMapVersion[i][j] = 14;
+                                    break;
+                                case "NWNESE": // All but SW
+                                    imagelink = props.images[15];
+                                    fireBaseMapVersion[i][j] = 15;
+                                    break;
+                                case "NWSWSE": // All but NE
+                                    imagelink = props.images[16];
+                                    fireBaseMapVersion[i][j] = 16;
+                                    break;
+                                case "NESWSE": // All but NW
+                                    imagelink = props.images[17];
+                                    fireBaseMapVersion[i][j] = 17;
+                                    break;
+                                default:
+                                    imagelink = props.images[20];
+                                    fireBaseMapVersion[i][j] = 20;
+                                    break;
+
+                            }
+                    }
+
+                    // Tile is a floor, grab floor image
+                } else {
+                    imagelink = props.images[21];
+                    fireBaseMapVersion[i][j] = 21;
+                }
+                row.push(imagelink);
+            }
+            pixelDisplay.push(row);
+        }
+
+        // Send updated map to firebase
+        dbRefObject.set({
+            Map: fireBaseMapVersion
+        })
+
         return pixelDisplay;
     }
+
+        // Send updated map to firebase
+        dbRefObject.set({
+            Map: fireBaseMapVersion
+        })
 
     return (
         <div style={{position: "relative",top: 0, width: 1000, display: "flex", flexDirection: "row"}}>
