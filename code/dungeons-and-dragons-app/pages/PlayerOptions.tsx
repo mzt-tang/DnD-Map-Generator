@@ -13,7 +13,7 @@ const PlayerOptions = () => {
                     <Typography variant={"h2"}>
                         Player Options
                     </Typography>
-                    <CodeInput defaultText={"123"} labelText={"Input Game Code"} />
+                    <CodeInput defaultText={"123"} labelText={"Enter a Game Code Here*"} helperText={"*Required"} />
                     <LargeButton buttonString={"Join game"} buttonRoute={"/player"} />
                 </div>
             </div>

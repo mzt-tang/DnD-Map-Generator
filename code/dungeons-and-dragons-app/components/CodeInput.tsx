@@ -5,19 +5,24 @@ import TextField from "@material-ui/core/TextField";
 interface Props {
     defaultText : string
     labelText : string
+    helperText : string
 }
 
 const CodeInput = (props : Props) => {
     // Props Initialisations
     const defaultText : string = props.defaultText;
     const labelText : string = props.labelText;
+    const underText : string = props.helperText
 
     return (
         <TextField
             required
+            className={"styles.CodeInput"}
             id="outlined-required"
             label={labelText}
             defaultValue={defaultText}
+            helperText={underText}
+            fullWidth
             variant="outlined"
         />
     );

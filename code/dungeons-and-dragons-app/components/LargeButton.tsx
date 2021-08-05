@@ -1,6 +1,7 @@
 import {Button, Typography} from '@material-ui/core';
 import React from 'react';
 import { useHistory } from "react-router-dom";
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 // We establish Props as our "Parameters" for the Button
 interface Props {
@@ -8,7 +9,18 @@ interface Props {
     buttonRoute : string
 }
 
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        largeButton: {
+            padding: 20,
+            alignSelf: 'center'
+        },
+    }),
+);
+
 const LargeButton = (props : Props) => {
+    const classes = useStyles();
+
     // Props Initialisations
     const buttonString : string = props.buttonString;
     const buttonRoute : string = props.buttonRoute;
@@ -17,7 +29,8 @@ const LargeButton = (props : Props) => {
     const history = useHistory();
 
     return (
-        <Button variant="outlined" size="large" color="primary" className="largeButton" onClick={() => {
+        <div className={"LargeButton"}>
+        <Button variant="outlined" size="large" color="primary" className={classes.largeButton} onClick={() => {
             history.push(buttonRoute)
         }}>
 
@@ -25,6 +38,7 @@ const LargeButton = (props : Props) => {
                 {buttonString}
             </Typography>
         </Button>
+        </div>
     );
 }
 
