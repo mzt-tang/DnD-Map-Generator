@@ -7,11 +7,13 @@ import {Typography} from "@material-ui/core";
 const DmOptions = () => {
     return (
         <View>
+            <div className={"backgroundImage"} >
             <Typography variant={"h2"}>
                 Player Options
             </Typography>
             <LargeButton buttonString={"Load existing game"} buttonRoute={"/dm"} />
             <LargeButton buttonString={"Create new game"} buttonRoute={"/dm"} />
+            </div>
         </View>
     );
 }

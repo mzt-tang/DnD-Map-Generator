@@ -8,7 +8,7 @@ import {Typography} from "@material-ui/core";
 const PlayerOptions = () => {
     return (
         <View>
-            <div className={"container"} >
+            <div className={"backgroundImage"} >
                 <div className={"playerOptionBox"} >
                     <Typography variant={"h2"}>
                         Player Options

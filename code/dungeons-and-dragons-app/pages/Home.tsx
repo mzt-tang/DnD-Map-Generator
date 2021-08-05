@@ -11,7 +11,7 @@ const Home = () => {
 
     return (
         <View>
-            <div className={"container"}>
+            <div className={"backgroundImage"}>
                 <div className={"homeButtons"}>
                     <Typography variant={"h2"}>
                         I am a ...
