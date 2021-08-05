@@ -1,9 +1,12 @@
 import React, {ChangeEvent, useState} from 'react';
 import { View } from 'react-native';
-import {makeStyles, Paper} from "@material-ui/core";
+import {Button, makeStyles, Paper} from "@material-ui/core";
 import {AppBar, Grid, IconButton, Link, Toolbar, Typography} from "@material-ui/core";
 import {Title} from "@material-ui/icons";
 import Map from '../components/Map';
+import '../styles/style.css'
+import { useHistory } from "react-router-dom";
+
 
 import Image1 from '../assets/Dark.png';
 import Image2 from '../assets/Light.png';
@@ -68,16 +71,21 @@ const useStyles = makeStyles((theme) => ({
 
 function DmView() {
     const classes = useStyles();
-
+    const history = useHistory();
     return (
-        <Grid container spacing={2} className={classes.grid}>
-            <Grid item xs={6}>
-                <Paper className={classes.paper}>1</Paper>
-            </Grid>
-            <div id='route'>
-                <Map images={images} />
+        <div id='dmView'>
+            <div id="topBar">
+                <Button id="topButton" style={{width:'40px'}} onClick={() => {
+                    history.push('/home')
+                }}>X</Button>
+                <Button id="topButton" style={{width:'200px'}}>Save</Button>
+                <Button id="topButton" style={{width:'200px'}}>Level</Button>
             </div>
-        </Grid>
+            <div id='route'>
+                <Map images={images} ALL_ROOMS = {[]}/>
+            </div>
+        </div>
+
     )
 }
 

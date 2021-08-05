@@ -1,9 +1,11 @@
 import React from "react";
 import {roomGen} from "../utility/roomGen";
 
-
+import { Text} from 'react-native';
 import { db } from '.././FirebaseConfig';
 import firebase from 'firebase';
+
+import '../styles/style.css'
 
 interface mapProps {
     images: JSX.Element[]
@@ -602,29 +604,29 @@ export default function map(props: mapProps) {
         })
 
     return (
-        <div style={{position: "relative",top: 0, width: 1400, display: "flex", flexDirection: "row"}}>
-        <div id="map" style={mapStyle(MAP_ROOM_COLS*ROOM_SIZE, MAP_ROOM_ROWS*ROOM_SIZE)}>
-            {pixelDisplay}
+        <div id="page">
+            <div id="left" style={mapStyle(MAP_ROOM_COLS * ROOM_SIZE, MAP_ROOM_ROWS * ROOM_SIZE)}>
+                {pixelDisplay}
+            </div>
+            <div id="right" style={{ position: "relative", top: 0, left: '0%', width: 800, display: "flex", flexDirection: "row" }}>
+                <TableContainer component={Paper}>
+                    <Table aria-label="collapsible table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell />
+                                <TableCell>Room</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {rowr.map((row) => (
+                                <Row key={row.name} row={row} />
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </div>
         </div>
-        <div style={{position: "relative",top: 0, left:'0%', width: 800, display: "flex", flexDirection: "row"}}>
-        <TableContainer component={Paper}>
-            <Table aria-label="collapsible table">
-                <TableHead>
-                <TableRow>
-                    <TableCell />
-                    <TableCell>Room</TableCell>
-                </TableRow>
-                </TableHead>
-                <TableBody>
-                {rowr.map((row) => (
-                    <Row key={row.name} row={row} />
-                ))}
-                </TableBody>
-            </Table>
-            </TableContainer>
-    </div>
-        </div>
-        
+
     )
 
 }

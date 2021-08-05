@@ -5,9 +5,6 @@ import '../styles/style.css'
 
 
 const Home = () => {
-
-
-
     return (
         <View>
             <div className={"container"}>
