@@ -13,7 +13,7 @@ const Home = () => {
         <View>
             <div className={"container"}>
                 <div className={"homeButtons"}>
-                    <Typography variant={"h1"}>
+                    <Typography variant={"h2"}>
                         I am a ...
                     </Typography>
                      <LargeButton buttonString={"Player"} buttonRoute={"/playeroptions"} />
