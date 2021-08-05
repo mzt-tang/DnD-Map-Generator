@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useState} from 'react';
 import { View } from 'react-native';
-import {Box, Button, Collapse, makeStyles, Paper, Slider, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
+import {Box, Button, Collapse, hexToRgb, makeStyles, Paper, Slider, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
 import {AppBar, Grid, IconButton, Link, Toolbar, Typography} from "@material-ui/core";
 import {ArrowDropDown, RadioButtonChecked, RadioButtonUnchecked, Title} from "@material-ui/icons";
 import Map from '../components/Map';
@@ -80,7 +80,7 @@ function DmView(this: any) {
     const [open, setOpen] = React.useState(false);
 
     return (
-        <div id='dmView'>
+        <div id='dmView' style={{backgroundColor:hexToRgb("#b37bb3")}}>
             <div id="topBar">
                 <Button id="topButton" style={{width:'40px'}} onClick={() => {
                     history.push('/home')
@@ -102,7 +102,7 @@ function DmView(this: any) {
                                     <Table size="small" aria-label="purchases">
                                         <TableHead>
                                             <TableRow style={{ position: "relative", top: 0, width: '100%', display: "flex", flexDirection: "column" }}>
-                                                {// Get the levels from the firebase, loop through all of them
+                                                {// Get the levels from the firebase, loop through all of them, adding a button per level and attaching a link to load that level to the button
                                                     <><Button>Level 1</Button><Button>Level 2</Button><Button>Level 3</Button></>
                                                 }
                                             </TableRow>
@@ -125,7 +125,7 @@ function DmView(this: any) {
 
                 }}></Slider>
             </div>
-            <div id='route'>
+            <div id='route' style={{backgroundColor:hexToRgb("#AAAABB")}}>
                 <Map images={images} ALL_ROOMS = {[]}/>
             </div>
         </div>
