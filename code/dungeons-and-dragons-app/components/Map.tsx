@@ -608,7 +608,7 @@ export default function map(props: mapProps) {
             <div id="left" style={mapStyle(MAP_ROOM_COLS * ROOM_SIZE, MAP_ROOM_ROWS * ROOM_SIZE)}>
                 {pixelDisplay}
             </div>
-            <div id="right" style={{ position: "relative", top: 0, left: '0%', width: 800, display: "flex", flexDirection: "row" }}>
+            <div id="right" style={{ position: "relative", top: 0, left: '0%', width: 400, display: "flex", flexDirection: "row" }}>
                 <TableContainer component={Paper}>
                     <Table aria-label="collapsible table">
                         <TableHead>

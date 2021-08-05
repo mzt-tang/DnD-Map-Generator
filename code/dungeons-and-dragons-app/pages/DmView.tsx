@@ -1,11 +1,13 @@
 import React, {ChangeEvent, useState} from 'react';
 import { View } from 'react-native';
-import {Button, makeStyles, Paper} from "@material-ui/core";
+import {Box, Button, Collapse, makeStyles, Paper, Slider, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
 import {AppBar, Grid, IconButton, Link, Toolbar, Typography} from "@material-ui/core";
-import {Title} from "@material-ui/icons";
+import {ArrowDropDown, RadioButtonChecked, RadioButtonUnchecked, Title} from "@material-ui/icons";
 import Map from '../components/Map';
 import '../styles/style.css'
 import { useHistory } from "react-router-dom";
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
 
 import Image1 from '../assets/Dark.png';
@@ -30,6 +32,8 @@ import Image19 from '../assets/New Tile Assets/floor_ns.png';
 import Image20 from '../assets/New Tile Assets/floor_ew.png';
 import Image21 from '../assets/New Tile Assets/floor_default.png';
 import Image22 from '../assets/New Tile Assets/wall.png';
+import Row from '../components/Row';
+import row from '../components/Row';
 
 const images : JSX.Element[] = [
     <img className="grid_img" src={Image1}/>,
@@ -69,9 +73,12 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function DmView() {
+
+function DmView(this: any) {
     const classes = useStyles();
     const history = useHistory();
+    const [open, setOpen] = React.useState(false);
+
     return (
         <div id='dmView'>
             <div id="topBar">
@@ -79,13 +86,49 @@ function DmView() {
                     history.push('/home')
                 }}>X</Button>
                 <Button id="topButton" style={{width:'200px'}}>Save</Button>
-                <Button id="topButton" style={{width:'200px'}}>Level</Button>
+                <React.Fragment>
+                    <TableRow>
+                        <TableCell>
+                            <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
+                                {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                            </IconButton>
+                            Level
+                        </TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                            <Collapse in={open} timeout="auto" unmountOnExit>
+                                <Box margin={1}>
+                                    <Table size="small" aria-label="purchases">
+                                        <TableHead>
+                                            <TableRow style={{ position: "relative", top: 0, width: '100%', display: "flex", flexDirection: "column" }}>
+                                                {// Get the levels from the firebase, loop through all of them
+                                                    <><Button>Level 1</Button><Button>Level 2</Button><Button>Level 3</Button></>
+                                                }
+                                            </TableRow>
+                                        </TableHead>
+                                    </Table>
+                                </Box>
+                            </Collapse>
+                        </TableCell>
+                    </TableRow>
+                </React.Fragment>
+            </div>
+            <div id='fogBar' style={{position:"absolute", left:"700px", top:10}}>
+                FOG ON/OFF
+                <Button id="fogToggle">Toggle Fog</Button>
+                <Button id="fogEdit">add fog</Button>
+            </div>
+            <div id='sliderBar' style={{position:"absolute", left:"1100px", top:10, width:300}}>
+                ZOOM
+                <Slider onChange={() => {
+
+                }}></Slider>
             </div>
             <div id='route'>
                 <Map images={images} ALL_ROOMS = {[]}/>
             </div>
         </div>
-
     )
 }
 
