@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {roomGen} from "../utility/roomGen";
 
 import { db } from '.././firebaseConfig';
@@ -9,6 +9,7 @@ interface mapProps {
     images: JSX.Element[]
 }
 
+//Map constants
 const ROOM_SIZE = 10;
 const MAP_ROOM_ROWS = 3;
 const MAP_ROOM_COLS = 4;
@@ -25,7 +26,12 @@ const DOUBLE_DOORS = false;
 const reference = db;
 const dbRefObject = firebase.database().ref().child('maps');
 
-
+/**
+ * Map component. The very meat of this file.
+ * At the moment, it just composes a 2d array of images...
+ * @param props 
+ * @returns map 'style'.
+ */
 export default function map(props: mapProps) {
     const mapStyle = function (width: number, height: number) {
         return {
