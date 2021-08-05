@@ -45,9 +45,14 @@
     justify-content: center
 }
 
-.container {
-    height: 100vh;
-    position: relative;
+html {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-image: url("../assets/Menu Images/Underdark.jpg");
+    background-repeat: no-repeat;
+    background-size: auto;
+    /*background-color: #C21F39;*/
 }
 
 h2 {
