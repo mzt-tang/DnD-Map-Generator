@@ -1,5 +1,5 @@
 interface MapData {
-    map : JSX.Element[][],      // the map tile elements.
+    map : number[][],      // the map tile elements.
     visibility : number[][],    // the map visibility where 0 = hidden, 1 = visible
     monsters : string[],        // the monsters in each room.
     roomRows : number,          // the number of rooms per row on the map
