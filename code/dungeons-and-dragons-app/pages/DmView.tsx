@@ -80,7 +80,7 @@ function DmView(this: any) {
     const [open, setOpen] = React.useState(false);
 
     return (
-        <div id='dmView' style={{backgroundColor:hexToRgb("#b37bb3")}}>
+        <div id='dmView' style={{backgroundColor:hexToRgb("#8b5f8c")}}>
             <div id="topBar">
                 <Button id="topButton" style={{width:'40px'}} onClick={() => {
                     history.push('/home')
@@ -103,7 +103,9 @@ function DmView(this: any) {
                                         <TableHead>
                                             <TableRow style={{ position: "relative", top: 0, width: '100%', display: "flex", flexDirection: "column" }}>
                                                 {// Get the levels from the firebase, loop through all of them, adding a button per level and attaching a link to load that level to the button
-                                                    <><Button>Level 1</Button><Button>Level 2</Button><Button>Level 3</Button></>
+                                                    <><Button id="topButton" style={{width:'100px'}}>Level 1</Button>
+                                                    <Button id="topButton" style={{width:'100px'}}>Level 2</Button>
+                                                    <Button id="topButton" style={{width:'100px'}}>Level 3</Button></>
                                                 }
                                             </TableRow>
                                         </TableHead>
@@ -113,13 +115,16 @@ function DmView(this: any) {
                         </TableCell>
                     </TableRow>
                 </React.Fragment>
+                <Button id="topButton" style={{width:'200px'}} onClick={() => {
+                    // Generate new map
+                }}>New Level</Button>
             </div>
-            <div id='fogBar' style={{position:"absolute", left:"700px", top:10}}>
+            <div id="topButton" style={{position:"absolute", left:"900px", top:10}}>
                 FOG ON/OFF
-                <Button id="fogToggle">Toggle Fog</Button>
-                <Button id="fogEdit">add fog</Button>
+                <Button>Toggle Fog</Button>
+                <Button>add fog</Button>
             </div>
-            <div id='sliderBar' style={{position:"absolute", left:"1100px", top:10, width:300}}>
+            <div id='sliderBar' style={{position:"absolute", left:"1300px", top:10, width:300}}>
                 ZOOM
                 <Slider onChange={() => {
 
