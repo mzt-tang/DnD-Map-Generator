@@ -105,7 +105,7 @@ function DmView(this: any) {
                                                 {// Get the levels from the firebase, loop through all of them, adding a button per level and attaching a link to load that level to the button
                                                     <><Button id="topButton" style={{width:'100px'}}>Level 1</Button>
                                                     <Button id="topButton" style={{width:'100px'}}>Level 2</Button>
-                                                    <Button id="topButton" style={{width:'100px'}}>Level 3</Button></>
+                                                    <Button id="topButton" style={{width:'100px'}}>Level 3</Button></> // Retrieve each level, and display the level
                                                 }
                                             </TableRow>
                                         </TableHead>
