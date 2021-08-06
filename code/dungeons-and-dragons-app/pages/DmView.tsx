@@ -9,6 +9,8 @@ import { useHistory } from "react-router-dom";
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
+import saveImage from '../assets/saveIcon.png'
+
 
 import Image1 from '../assets/Dark.png';
 import Image2 from '../assets/Light.png';
@@ -85,7 +87,7 @@ function DmView(this: any) {
                 <Button id="topButton" style={{width:'40px'}} onClick={() => {
                     history.push('/home')
                 }}>X</Button>
-                <Button id="topButton" style={{width:'200px'}}>Save</Button>
+                <Button id="topButton" style={{width:'200px'}}><img src = {saveImage} style ={{width:'17px',marginRight:'10px'}}/>Save</Button>
                 <React.Fragment>
                     <TableRow>
                         <TableCell>
