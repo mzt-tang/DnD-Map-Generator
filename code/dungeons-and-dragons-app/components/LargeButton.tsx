@@ -12,6 +12,9 @@ interface Props {
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         largeButton: {
+            background: '#FFFFFF',
+            opacity: 0.8,
+            margin: 25,
             padding: 20,
             alignSelf: 'center'
         },
