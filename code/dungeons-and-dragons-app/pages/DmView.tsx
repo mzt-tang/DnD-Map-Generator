@@ -130,7 +130,7 @@ function DmView(this: any) {
                 <Button>Toggle Fog</Button>
                 <Button>add fog</Button>
             </div>
-            <div id='route' style={{backgroundColor:hexToRgb("#AAAABB")}}>
+            <div id='route' style={{backgroundColor:hexToRgb("#AAAABB"), position:"absolute", top:100, alignSelf:"center", right:"35%"}}>
                 <Map images={images} ALL_ROOMS = {[]}/>
             </div>
 

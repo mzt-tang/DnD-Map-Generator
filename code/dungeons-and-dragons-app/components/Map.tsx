@@ -32,8 +32,6 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
 import Image4 from '../assets/New Tile Assets/floor_w.png';
 
-import { MapInteractionCSS } from 'react-map-interaction';
-
 const useRowStyles = makeStyles({
   root: {
     '& > *': {
@@ -632,7 +630,7 @@ export default function map(props: mapProps) {
                 </section>
 
             </div>
-            <div id="right" style={{ position: "relative", top: 0, left: '0%', width: 400, display: "flex", flexDirection: "row" }}>
+            <div id="right" style={{ position: "absolute", top: 0, left: '101%', width:"40%", display: "flex", flexDirection: "row" }}>
                 <TableContainer component={Paper}>
                     <Table aria-label="collapsible table">
                         <TableHead>
