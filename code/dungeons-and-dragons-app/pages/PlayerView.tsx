@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import {db} from "../firebaseConfig";
 import firebase from 'firebase';
@@ -12,9 +12,8 @@ let mapDataInitial: MapData = {
     map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: []
 };
 
-//todo figure out a better way to init firebase
-const database = db;
-const playerViewDatabase = async () => await firebase.database().ref().child('adamtest');
+// firebase
+const playerViewDatabase = async () => await db.database().ref().child('adamtest');
 const tileSize = firebase.database().ref().child('tileSize');
 
 const PlayerView = () => {

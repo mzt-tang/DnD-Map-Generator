@@ -1,22 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import MapData from "../interfaces/MapData";
 import {makeImageArray} from '../utility/MapTilerHelper'
 
 interface mapProps {
     mapData: MapData
 }
-
-//Map constants
-const ROOM_SIZE = 10;
-const MAP_ROOM_ROWS = 3;
-const MAP_ROOM_COLS = 4;
-const height = ROOM_SIZE*MAP_ROOM_ROWS;
-const width = ROOM_SIZE*MAP_ROOM_COLS;
-const ENTRANCE_PROBABILITY= 0.7;
-const ROOM_GROW_PROBABILITY = 0.42;
-
-//todo double doors.
-const DOUBLE_DOORS = false;
 
 /**
  * Map component. The very meat of this file.
