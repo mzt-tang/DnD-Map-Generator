@@ -84,10 +84,10 @@ function DmView(this: any) {
     return (
         <div id='dmView' style={{backgroundColor:hexToRgb("#8b5f8c")}}>
             <div id="topBar">
-                <Button id="topButton" style={{width:'40px'}} onClick={() => {
+                <Button id="topButton" style={{width:'40px', top:10}} onClick={() => {
                     history.push('/home')
                 }}>X</Button>
-                <Button id="topButton" style={{width:'200px'}}><img src = {saveImage} style ={{width:'17px',marginRight:'10px'}}/>Save</Button>
+                <Button id="topButton" style={{width:'200px', top:10}}><img src = {saveImage} style ={{width:'17px',marginRight:'10px'}}/>Save</Button>
                 <React.Fragment>
                     <TableRow>
                         <TableCell>
@@ -117,7 +117,7 @@ function DmView(this: any) {
                         </TableCell>
                     </TableRow>
                 </React.Fragment>
-                <Button id="topButton" style={{width:'200px'}} onClick={() => {
+                <Button id="topButton" style={{width:'200px',top:10}} onClick={() => {
                     // Generate new map
                 }}>New Level</Button>
             </div>
@@ -126,7 +126,7 @@ function DmView(this: any) {
                 <Button>Toggle Fog</Button>
                 <Button>add fog</Button>
             </div>
-            <div id='sliderBar' style={{position:"absolute", left:"1300px", top:10, width:300}}>
+            <div id='sliderBar' style={{position:"absolute", left:"1300px", top:10, width:100}}>
                 ZOOM
                 <Slider onChange={() => {
 

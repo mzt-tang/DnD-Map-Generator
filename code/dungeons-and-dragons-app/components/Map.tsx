@@ -131,7 +131,7 @@ export default function map(props: mapProps) {
             display: 'grid',
             gridTemplateColumns: 'repeat(' + width + ',max-content)',
             gridTemplateRows: 'repeat(' + height + ',max-content)',
-            gridGap: '0px'
+            gridGap: '0px',
         }
     }
 
@@ -604,7 +604,7 @@ export default function map(props: mapProps) {
         })
 
     return (
-        <div id="page">
+        <div id="page" style={{position: 'relative', display: 'flex', flexDirection: "row"}}>
             <div id="left" style={mapStyle(MAP_ROOM_COLS * ROOM_SIZE, MAP_ROOM_ROWS * ROOM_SIZE)}>
                 {pixelDisplay}
             </div>
