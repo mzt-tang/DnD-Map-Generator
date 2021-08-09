@@ -28,6 +28,7 @@ import Image19 from '../assets/New Tile Assets/floor_ns.png';
 import Image20 from '../assets/New Tile Assets/floor_ew.png';
 import Image21 from '../assets/New Tile Assets/floor_default.png';
 import Image22 from '../assets/New Tile Assets/wall.png';
+import { hexToRgb } from '@material-ui/core';
 
 
 
@@ -94,7 +95,7 @@ if (map.length == 1) {
     );
 }
     return (
-        <View>
+        <View style={{backgroundColor:hexToRgb("#AAAABB")}}>
             <h1>
                 <div className={'map'}>
                 <Grid width={map[0].length} height={map.length} images={images} tiles={map}/>

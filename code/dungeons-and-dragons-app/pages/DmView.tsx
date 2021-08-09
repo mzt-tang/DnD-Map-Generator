@@ -83,7 +83,7 @@ function DmView(this: any) {
     let levels:Number[][][] = [getFirebaseMap()]
 
     return (
-        <div id='dmView' style={{backgroundColor:hexToRgb("#8b5f8c")}}>
+        <div id='dmView' style={{backgroundColor:hexToRgb("#8b5f8c"), height:"100%"}}>
             <div id="topBar">
                 <Button id="topButton" style={{width:'40px', top:10}} onClick={() => {
                     history.push('/home')
