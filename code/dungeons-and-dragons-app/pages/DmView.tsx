@@ -92,7 +92,7 @@ function DmView(this: any) {
                 <React.Fragment>
                     <TableRow>
                         <TableCell>
-                            <IconButton aria-label="expand row" size="small" onClick={() => {setOpen(!open); console.log(levels.length)}}>
+                            <IconButton aria-label="expand row" size="small" onClick={() => {setOpen(!open)}}>
                                 {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                             </IconButton>
                             Level
@@ -121,10 +121,8 @@ function DmView(this: any) {
                 </React.Fragment>
                 <Button id="topButton" style={{width:'200px',top:10}} onClick={() => {
                     // Generate new map
-                    console.log(levels.length)
                     //window.location.reload() reloads a page, generating a new map
                     levels[levels.length] = getFirebaseMap()
-                    console.log(levels.length)
                 }}>New Level</Button>
             </div>
             <div id="topButton" style={{position:"absolute", left:"900px", top:10}}>
