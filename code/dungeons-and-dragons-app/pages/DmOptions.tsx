@@ -22,7 +22,7 @@ const DmOptions = () => {
                         <CodeInput defaultText={""} labelText={"Enter a Game Code Here"} helperText={"*Required"} />
                         <div className={"loadGameButtons"}>
                             <SmallBackButton buttonString={"Back"} buttonRoute={""} />
-                            <SmallMenuButton buttonString={"Load"} buttonRoute={"/dm"} />
+                            <SmallMenuButton buttonString={"Load Game"} buttonRoute={"/dm"} />
                         </div>
                     </div>
                     <div className={"dmOptionRight"}>
@@ -30,7 +30,9 @@ const DmOptions = () => {
                             New Game
                         </Typography>
                         <ThemeSelect themeList={["Caves","Dungeon","Underground Mansion"]} />
-                        <SmallMenuButton buttonString={"Create"} buttonRoute={"/dm"} />
+                        <div className={"createButton"}>
+                            <SmallMenuButton buttonString={"Create"} buttonRoute={"/dm"} />
+                        </div>
                     </div>
                 </div>
             </div>

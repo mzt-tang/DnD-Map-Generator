@@ -19,8 +19,13 @@ const useStyles = makeStyles((theme: Theme) =>
             opacity: 0.8,
             margin: 25,
             padding: 20,
-            alignSelf: 'center'
-
+            alignSelf: 'center',
+            '&:hover': {
+                backgroundColor: '#b348b1',
+                borderColor: '#Eddded',
+                borderWidth: 2,
+                boxShadow: 'none',
+            }
         },
         buttonText: {
             fontSize: 16,

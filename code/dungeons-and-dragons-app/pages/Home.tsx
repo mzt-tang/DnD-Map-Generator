@@ -14,7 +14,7 @@ const Home = () => {
             <div className={"backgroundImage"}>
                 <div className={"homeButtons"}>
                     <Typography variant={"h2"}>
-                        I am a ...
+                        What are you ..?
                     </Typography>
                      <LargeButton buttonString={"Player"} buttonRoute={"/playeroptions"} />
                      <LargeButton buttonString={"Dungeon Master"} buttonRoute={"/dmoptions"}/>

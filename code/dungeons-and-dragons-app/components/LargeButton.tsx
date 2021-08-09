@@ -16,7 +16,8 @@ const useStyles = makeStyles((theme: Theme) =>
             opacity: 0.8,
             margin: 25,
             padding: 20,
-            alignSelf: 'center'
+            alignSelf: 'center',
+            float: 'left'
         },
     }),
 );

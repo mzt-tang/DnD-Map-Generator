@@ -14,10 +14,16 @@ const useStyles = makeStyles((theme: Theme) =>
             background: '#000000',
             borderColor: '#Eddded',
             borderWidth: 2,
-            opacity: 0.8,
+            opacity: 0.7,
             margin: 25,
             padding: 20,
-            alignSelf: 'center'
+            alignSelf: 'center',
+            '&:hover': {
+                backgroundColor: '#b348b1',
+                borderColor: '#Eddded',
+                borderWidth: 2,
+                boxShadow: 'none',
+            }
         },
         buttonText: {
             color: '#Eddded'
