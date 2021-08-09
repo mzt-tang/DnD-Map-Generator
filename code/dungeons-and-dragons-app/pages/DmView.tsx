@@ -6,13 +6,10 @@ import Map from '../components/Map';
 import MapGen from '../utility/MapGen';
 import MapData from "../interfaces/MapData";
 import {db} from '.././firebaseConfig';
-import firebase from 'firebase';
 import {View} from "react-native";
 
 //Firebase
-//todo this is needed to init the firebase database connection. We need to change this in future.
-const reference = db;
-const dbRefObject = firebase.database().ref().child('adamtest');
+const dbRefObject = db.database().ref().child('adamtest');
 
 let mapDataInitial: MapData = {
     map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: []
