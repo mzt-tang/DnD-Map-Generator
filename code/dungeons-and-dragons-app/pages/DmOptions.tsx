@@ -1,8 +1,10 @@
 import {View} from "react-native";
 import React from "react";
-import LargeButton from "../components/LargeButton";
 import {Typography} from "@material-ui/core";
 import ThemeSelect from "../components/ThemeSelect";
+import CodeInput from "../components/CodeInput";
+import SmallMenuButton from "../components/SmallMenuButton";
+import SmallBackButton from "../components/SmallBackButton";
 
 
 const DmOptions = () => {
@@ -10,13 +12,26 @@ const DmOptions = () => {
         <View>
             <div className={"backgroundImage"} >
                 <div className={"dmOptionBox"} >
-                    <Typography variant={"h2"}>
+                    <Typography variant={"h2"} className={"dmTitle"}>
                         Dungeon Master Options
                     </Typography>
-                    <LargeButton buttonString={"Load existing game"} buttonRoute={"/dm"} />
-                    <ThemeSelect themeList={["Caves","Dungeon","Underground Mansion"]} />
-                    <LargeButton buttonString={"Create new game"} buttonRoute={"/dm"} />
-                    <LargeButton buttonString={"Back"} buttonRoute={""} />
+                    <div className={"dmOptionLeft"}>
+                        <Typography variant={"h4"} className={"dmSubtitle"}>
+                            Load Exisiting Game
+                        </Typography>
+                        <CodeInput defaultText={""} labelText={"Enter a Game Code Here"} helperText={"*Required"} />
+                        <div className={"loadGameButtons"}>
+                            <SmallBackButton buttonString={"Back"} buttonRoute={""} />
+                            <SmallMenuButton buttonString={"Load"} buttonRoute={"/dm"} />
+                        </div>
+                    </div>
+                    <div className={"dmOptionRight"}>
+                        <Typography variant={"h4"} className={"dmSubtitle"}>
+                            New Game
+                        </Typography>
+                        <ThemeSelect themeList={["Caves","Dungeon","Underground Mansion"]} />
+                        <SmallMenuButton buttonString={"Create"} buttonRoute={"/dm"} />
+                    </div>
                 </div>
             </div>
         </View>
