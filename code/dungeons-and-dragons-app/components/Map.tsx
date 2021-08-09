@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import {roomGen} from "../utility/roomGen";
 
-import { db } from '.././firebaseConfig';
+import { db } from '../FirebaseConfig';
 import firebase from 'firebase';
 
 
 interface mapProps {
     images: JSX.Element[]
 }
+
+import {Monster} from "../interfaces/MapData"
+import {AppRegistry} from "react-native";
+import unmountApplicationComponentAtRootTag = AppRegistry.unmountApplicationComponentAtRootTag;
 
 //Map constants
 const ROOM_SIZE = 10;
@@ -267,6 +271,35 @@ export default function map(props: mapProps) {
     addRooms();
     let pixelDisplay = assignAutoTiledWalls();
 
+
+    function assignMonstersToRooms(monsters: number[][]) {
+        //Notes
+        //This only takes a set of monsters and assigns them to the rooms
+        //Try to avoid spawning monsters at the start of the map
+
+        //Randomly select a monster from the map
+        //Randomly select a room
+        let chosenMonster = monsters[getRandomInt(0, monsters.length-1)];
+        let chosenRoom = getRandomInt(0, ROOM_SIZE-1)
+
+        while(chosenMonster)
+
+        //populate the room
+        //if number of monsters != (the sum of all monsters' loneliness/number of monsters)
+        //  iterate and filter all monster's friends
+        //  give the filtered monster an equal chance to be chosen.
+        //  add the chosen monster to the room
+
+
+        return null;
+    }
+
+    function getRandomInt(min: number, max: number) {
+        min = Math.ceil(min);
+         max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+    }
+
     /**
      * Iterates through all the rooms, finds their coordinates on the main map, and calls addRoom
      * to add them to the main map.
@@ -363,9 +396,9 @@ export default function map(props: mapProps) {
     function assignAutoTiledWalls() : JSX.Element[][] {
         let pixelDisplay: JSX.Element[][] = []
 
-        for (let i: number = 0; i < height; i++) { //Rows
+        for (let i: number = 0; i < mapGrid.length; i++) { //Rows
             let row: JSX.Element[] = []
-            for (let j: number = 0; j < width; j++) { //Col
+            for (let j: number = 0; j < mapGrid[i].length; j++) { //Col
                 let imagelink = props.images[0];
 
                 if (mapGrid[i][j] == 0) {
@@ -484,7 +517,6 @@ export default function map(props: mapProps) {
                                     imagelink = props.images[20];
                                     fireBaseMapVersion[i][j] = 20;
                                     break;
-
                             }
                     }
 

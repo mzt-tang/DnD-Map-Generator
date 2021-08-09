@@ -8,3 +8,12 @@ interface MapData {
 }
 
 export default MapData
+
+export interface Monster {
+    id: number
+    name: string
+    stats: string[][]
+    loneliness: number
+    friends: number[]
+    enemies: number[]
+}
