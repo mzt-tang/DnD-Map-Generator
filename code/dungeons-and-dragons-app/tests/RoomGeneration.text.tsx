@@ -1,3 +1,3 @@
 import React from "react";
-import {roomGen} from "../utility/roomGen";
+import {roomGen} from "../utility/RoomGen";
 
