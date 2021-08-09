@@ -18,7 +18,7 @@ const DOUBLE_DOORS = false;
 /**
  * Returns a map data object containing all the information needed for a level.
  */
-export default function map() : MapData{
+export default async function map() : Promise<MapData> {
 
     let allRooms : number[][][] = []; // holds all the rooms making up the map in order.
 

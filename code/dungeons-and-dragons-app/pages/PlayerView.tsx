@@ -14,7 +14,7 @@ let mapDataInitial: MapData = {
 
 //todo figure out a better way to init firebase
 const database = db;
-const playerViewDatabase = firebase.database().ref().child('adamtest');
+const playerViewDatabase = async () => await firebase.database().ref().child('adamtest');
 const tileSize = firebase.database().ref().child('tileSize');
 
 const PlayerView = () => {
@@ -23,12 +23,10 @@ const PlayerView = () => {
     const [size, setSize] = useState(25); //todo set the tile size?
 
     useEffect(() => {
-        playerViewDatabase.on('value', mapData => {
-            console.log('new map data');
-            console.log(mapData.val());
-            setMap(mapData.val().mapData);
-        })
-    }, [])
+        playerViewDatabase().then(connection => {
+            connection.on('value', update => setMap(update.val()))
+        });
+    },[]);
 
     if (map == null || map.roomSize == 0 || map.map == undefined) {
         return (
