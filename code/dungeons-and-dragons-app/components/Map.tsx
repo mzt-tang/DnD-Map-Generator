@@ -3,7 +3,7 @@ import MapData from "../interfaces/MapData";
 import {makeImageArray} from '../utility/MapTilerHelper'
 
 interface mapProps {
-    mapData: MapDataq
+    mapData: MapData
 }
 
 /**
