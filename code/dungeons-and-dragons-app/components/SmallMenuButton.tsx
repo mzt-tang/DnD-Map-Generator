@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme: Theme) =>
             background: '#000000',
             borderColor: '#Eddded',
             borderWidth: 2,
-            opacity: 0.7,
+            opacity: 0.8,
             margin: 25,
             padding: 20,
             alignSelf: 'center',
@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
             }
         },
         buttonText: {
+            fontSize: 16,
             color: '#Eddded'
         },
     }),

@@ -1,10 +1,10 @@
 import {View} from "react-native";
 import React from "react";
 import SmallMenuButton from "../components/SmallMenuButton";
+import SmallBackButton from "../components/SmallBackButton"
 import CodeInput from "../components/CodeInput";
 import {Typography} from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -24,9 +24,9 @@ const PlayerOptions = () => {
                     <Typography className={classes.headerTextStyle} variant={"h2"}>
                         Player Options
                     </Typography>
-                    <CodeInput defaultText={""} labelText={"Enter a Game Code Here"} helperText={"*Required"} />
-                    <div>
-                        
+                    <CodeInput defaultText={""} labelText={"Enter a Game Code Here"} />
+                    <div className={"playerOptionButtonDiv"}>
+                        <SmallBackButton buttonString={"Back"} buttonRoute={"/home"} />
                         <SmallMenuButton buttonString={"Join game"} buttonRoute={"/player"} />
                     </div>
                 </div>

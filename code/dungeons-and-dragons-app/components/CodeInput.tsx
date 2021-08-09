@@ -6,14 +6,14 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 interface Props {
     defaultText : string
     labelText : string
-    helperText : string
 }
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         gameCodeInput: {
             background: '#FFFFFF',
-            opacity: 0.9   
+            opacity: 0.9,
+            marginTop: 10
         },
     }),
 );
@@ -21,10 +21,8 @@ const useStyles = makeStyles((theme: Theme) =>
 const CodeInput = (props : Props) => {
     const classes = useStyles();
 
-    // Props Initialisations
     const defaultText : string = props.defaultText;
     const labelText : string = props.labelText;
-    const underText : string = props.helperText
 
     return (
         <TextField
@@ -33,7 +31,6 @@ const CodeInput = (props : Props) => {
             id="outlined-required"
             label={labelText}
             defaultValue={defaultText}
-            helperText={underText}
             fullWidth
             variant="outlined"
             InputLabelProps={{
