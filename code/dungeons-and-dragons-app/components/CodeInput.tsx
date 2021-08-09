@@ -12,8 +12,8 @@ interface Props {
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         gameCodeInput: {
-            background: '#574f74',
-            opacity: 0.75   
+            background: '#FFFFFF',
+            opacity: 0.9   
         },
     }),
 );
@@ -36,6 +36,9 @@ const CodeInput = (props : Props) => {
             helperText={underText}
             fullWidth
             variant="outlined"
+            InputLabelProps={{
+                style: { color: '#403940' },
+            }}
         />
     );
 }
