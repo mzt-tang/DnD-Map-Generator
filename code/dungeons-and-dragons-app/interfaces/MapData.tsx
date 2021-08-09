@@ -15,5 +15,5 @@ export interface Monster {
     stats: string[][]
     loneliness: number
     friends: number[]
-    enemies: number[]
+    //enemies: number[]
 }
