@@ -132,15 +132,10 @@ function DmView(this: any) {
                 <Button>Toggle Fog</Button>
                 <Button>add fog</Button>
             </div>
-            <div id='sliderBar' style={{position:"absolute", left:"1300px", top:10, width:100}}>
-                ZOOM
-                <Slider onChange={() => {
-
-                }}></Slider>
-            </div>
             <div id='route' style={{backgroundColor:hexToRgb("#AAAABB")}}>
                 <Map images={images} ALL_ROOMS = {[]}/>
             </div>
+
         </div>
     )
 }
