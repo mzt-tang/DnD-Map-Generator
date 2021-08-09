@@ -36,7 +36,7 @@ export default function map(props: mapProps) {
     }
 
     const data = props.mapData;
-    const images = makeImageArray(data.map,[]);
+    const images = makeImageArray(data.map,data.visibility);
 
     return (
         <div id="map" style={mapStyle(data.roomCols*data.roomSize, data.roomRows*data.roomSize)}>
