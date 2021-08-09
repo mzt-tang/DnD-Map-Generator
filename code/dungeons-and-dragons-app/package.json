@@ -48,6 +48,7 @@
     "babel-jest": "^27.0.6",
     "jest": "^27.0.6",
     "jest-expo": "^42.1.0",
+    "react-prismazoom": "^2.0.3",
     "react-test-renderer": "^17.0.2",
     "typescript": "~4.0.0"
   },

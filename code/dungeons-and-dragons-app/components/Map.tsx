@@ -7,6 +7,8 @@ import firebase from 'firebase';
 
 import '../styles/style.css'
 
+import PrismaZoom from 'react-prismazoom'
+
 interface mapProps {
     images: JSX.Element[]
     ALL_ROOMS: number [][]
@@ -26,6 +28,9 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+
+
+import Image4 from '../assets/New Tile Assets/floor_w.png';
 
 import { MapInteractionCSS } from 'react-map-interaction';
 
@@ -614,15 +619,18 @@ export default function map(props: mapProps) {
     return (
         <div id="page">
             <div id="left" style={mapStyle(MAP_ROOM_COLS * ROOM_SIZE, MAP_ROOM_ROWS * ROOM_SIZE)}>
-            <MapInteractionCSS
-                minScale={1}
-                maxScale={3}
-                showControls={true}
+                <section style={{overflow:'hidden', borderStyle:'solid', borderColor:'gray'}}>
+                <PrismaZoom
+                    minZoom={1}
+                    maxZoom={3}
                 >
-                    <div id="left" style={mapStyle(MAP_ROOM_COLS * ROOM_SIZE, MAP_ROOM_ROWS * ROOM_SIZE)}>
-                        {pixelDisplay}
-                    </div>
-                </MapInteractionCSS>
+                        <div id="left" style={mapStyle(MAP_ROOM_COLS * ROOM_SIZE, MAP_ROOM_ROWS * ROOM_SIZE)}>
+                            {pixelDisplay}
+                        </div>
+
+                </PrismaZoom>
+                </section>
+
             </div>
             <div id="right" style={{ position: "relative", top: 0, left: '0%', width: 400, display: "flex", flexDirection: "row" }}>
                 <TableContainer component={Paper}>
