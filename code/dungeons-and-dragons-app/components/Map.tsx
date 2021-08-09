@@ -124,6 +124,12 @@ const DOUBLE_DOORS = false;
 const reference = db;
 const dbRefObject = firebase.database().ref().child('maps');
 
+let fireBaseMapVersion: any[][] = []
+
+export function getFirebaseMap() : any[][]{
+    return fireBaseMapVersion
+}
+
 export default function map(props: mapProps) {
     const mapStyle = function (width: number, height: number) {
         return {
@@ -131,7 +137,7 @@ export default function map(props: mapProps) {
             display: 'grid',
             gridTemplateColumns: 'repeat(' + width + ',max-content)',
             gridTemplateRows: 'repeat(' + height + ',max-content)',
-            gridGap: '0px',
+            gridGap: '0px'
         }
     }
 
@@ -147,7 +153,7 @@ export default function map(props: mapProps) {
     let mapGrid = Array.from(Array(MAP_ROOM_ROWS * ROOM_SIZE), _ => Array(MAP_ROOM_COLS * ROOM_SIZE).fill(10));
 
     // this is used to send to firebase where we need the final numbers stored
-    let fireBaseMapVersion = Array.from(Array(MAP_ROOM_ROWS * ROOM_SIZE), _ => Array(MAP_ROOM_COLS * ROOM_SIZE).fill(10));
+    fireBaseMapVersion = Array.from(Array(MAP_ROOM_ROWS * ROOM_SIZE), _ => Array(MAP_ROOM_COLS * ROOM_SIZE).fill(10));
 
     let previousRoomIndex = -1; // the previous room generated
     let currentRoomIndex = 0; // the next room to generate
@@ -604,7 +610,7 @@ export default function map(props: mapProps) {
         })
 
     return (
-        <div id="page" style={{position: 'relative', display: 'flex', flexDirection: "row"}}>
+        <div id="page">
             <div id="left" style={mapStyle(MAP_ROOM_COLS * ROOM_SIZE, MAP_ROOM_ROWS * ROOM_SIZE)}>
                 {pixelDisplay}
             </div>

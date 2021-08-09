@@ -1,13 +1,13 @@
-import React, {ChangeEvent, useState} from 'react';
-import { View } from 'react-native';
-import {Box, Button, Collapse, hexToRgb, makeStyles, Paper, Slider, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
-import {AppBar, Grid, IconButton, Link, Toolbar, Typography} from "@material-ui/core";
-import {ArrowDropDown, RadioButtonChecked, RadioButtonUnchecked, Title} from "@material-ui/icons";
-import Map from '../components/Map';
+import React from 'react';
+import {Box, Button, Collapse, hexToRgb, makeStyles, Slider, Table, TableCell, TableHead, TableRow} from "@material-ui/core";
+import {IconButton} from "@material-ui/core";
+import Map, { getFirebaseMap } from '../components/Map';
 import '../styles/style.css'
 import { useHistory } from "react-router-dom";
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import firebase from 'firebase'
+import { db } from '.././FirebaseConfig';
 
 import saveImage from '../assets/saveIcon.png'
 
@@ -34,8 +34,7 @@ import Image19 from '../assets/New Tile Assets/floor_ns.png';
 import Image20 from '../assets/New Tile Assets/floor_ew.png';
 import Image21 from '../assets/New Tile Assets/floor_default.png';
 import Image22 from '../assets/New Tile Assets/wall.png';
-import Row from '../components/Row';
-import row from '../components/Row';
+import { Refresh } from '@material-ui/icons';
 
 const images : JSX.Element[] = [
     <img className="grid_img" src={Image1}/>,
@@ -75,13 +74,13 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+const dbRefObject = firebase.database().ref().child('maps');
 
 function DmView(this: any) {
-    const classes = useStyles();
     const history = useHistory();
     const [open, setOpen] = React.useState(false);
 
-    let levels:Number[][][] = [[[1, 2], [1, 2]], [[3, 4], [3, 4]]] // gets from database
+    let levels:Number[][][] = [getFirebaseMap()]
 
     return (
         <div id='dmView' style={{backgroundColor:hexToRgb("#8b5f8c")}}>
@@ -93,7 +92,7 @@ function DmView(this: any) {
                 <React.Fragment>
                     <TableRow>
                         <TableCell>
-                            <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
+                            <IconButton aria-label="expand row" size="small" onClick={() => {setOpen(!open); console.log(levels.length)}}>
                                 {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                             </IconButton>
                             Level
@@ -108,7 +107,9 @@ function DmView(this: any) {
                                             <TableRow style={{ position: "relative", top: 0, width: '100%', display: "flex", flexDirection: "column" }}>
                                                 {levels.map((l => (
                                                     // Get the levels from the firebase, loop through all of them, adding a button per level and attaching a link to load that level to the button
-                                                    <Button id="topButton" style={{width:'100px'}}>Level {levels.indexOf(l) + 1}</Button> // Retrieve each level, and display the level
+                                                    <Button id="topButton" style={{width:'100px'}} onClick={() => {
+                                                        //load the levels
+                                                    }}>Level {levels.indexOf(l) + 1}</Button> // Retrieve each level, and display the level
                                                 )))}
                                             </TableRow>
                                         </TableHead>
@@ -120,6 +121,10 @@ function DmView(this: any) {
                 </React.Fragment>
                 <Button id="topButton" style={{width:'200px',top:10}} onClick={() => {
                     // Generate new map
+                    console.log(levels.length)
+                    //window.location.reload() reloads a page, generating a new map
+                    levels[levels.length] = getFirebaseMap()
+                    console.log(levels.length)
                 }}>New Level</Button>
             </div>
             <div id="topButton" style={{position:"absolute", left:"900px", top:10}}>
