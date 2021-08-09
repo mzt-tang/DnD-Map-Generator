@@ -27,6 +27,8 @@ import Paper from '@material-ui/core/Paper';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
+import { MapInteractionCSS } from 'react-map-interaction';
+
 const useRowStyles = makeStyles({
   root: {
     '& > *': {
@@ -612,7 +614,15 @@ export default function map(props: mapProps) {
     return (
         <div id="page">
             <div id="left" style={mapStyle(MAP_ROOM_COLS * ROOM_SIZE, MAP_ROOM_ROWS * ROOM_SIZE)}>
-                {pixelDisplay}
+            <MapInteractionCSS
+                minScale={1}
+                maxScale={3}
+                showControls={true}
+                >
+                    <div id="left" style={mapStyle(MAP_ROOM_COLS * ROOM_SIZE, MAP_ROOM_ROWS * ROOM_SIZE)}>
+                        {pixelDisplay}
+                    </div>
+                </MapInteractionCSS>
             </div>
             <div id="right" style={{ position: "relative", top: 0, left: '0%', width: 400, display: "flex", flexDirection: "row" }}>
                 <TableContainer component={Paper}>
