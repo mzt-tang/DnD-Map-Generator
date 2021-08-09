@@ -4,12 +4,10 @@
  * Should be a simple one...
  *  
  * TODO:
- * + Array of rooms
- * + Room setter
  * + (initial) feed system, feed the map and set the rooms(?)
  * + Room storage on firebase? (talk to the others about this)
  */
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 
 /**
  * x and y is the starting offset (top left corner).
@@ -25,6 +23,9 @@ interface roomArea {
 /**
  * Use this for maps that are uniformly square...
  * 
+ * Returns an array of RoomAreas.
+ * RoomArea has x and y coordinates for the top left offset, and a width and height variable for the area.
+ * 
  * NOTE: unit of measurement is in tile squares!
  * @param mapXSize The width of the entire map
  * @param mapYSize The height of the entire map
@@ -34,12 +35,10 @@ interface roomArea {
  */
 export default function roomSegrigator(mapXSize: number, mapYSize: number, roomXSize: number, roomYSize: number) : roomArea[] {
     //List of Rooms
-    const [rooms, setRoom] = useState<roomArea[]>([]);
+    let roomsArray : Array<roomArea> = [];
 
     const horizontalRoomCount = mapXSize / roomXSize;
     const verticalRoomCount = mapYSize / roomYSize;
-
-    let roomsArray : Array<roomArea> = [];
 
     //for every room there is on the map...
     for(let col = 0; col < horizontalRoomCount; col+roomXSize) {
