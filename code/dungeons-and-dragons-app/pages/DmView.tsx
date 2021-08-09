@@ -81,6 +81,8 @@ function DmView(this: any) {
     const history = useHistory();
     const [open, setOpen] = React.useState(false);
 
+    let levels:Number[][][] = [[[1, 2], [1, 2]], [[3, 4], [3, 4]]] // gets from database
+
     return (
         <div id='dmView' style={{backgroundColor:hexToRgb("#8b5f8c")}}>
             <div id="topBar">
@@ -104,11 +106,10 @@ function DmView(this: any) {
                                     <Table size="small" aria-label="purchases">
                                         <TableHead>
                                             <TableRow style={{ position: "relative", top: 0, width: '100%', display: "flex", flexDirection: "column" }}>
-                                                {// Get the levels from the firebase, loop through all of them, adding a button per level and attaching a link to load that level to the button
-                                                    <><Button id="topButton" style={{width:'100px'}}>Level 1</Button>
-                                                    <Button id="topButton" style={{width:'100px'}}>Level 2</Button>
-                                                    <Button id="topButton" style={{width:'100px'}}>Level 3</Button></> // Retrieve each level, and display the level
-                                                }
+                                                {levels.map((l => (
+                                                    // Get the levels from the firebase, loop through all of them, adding a button per level and attaching a link to load that level to the button
+                                                    <Button id="topButton" style={{width:'100px'}}>Level {levels.indexOf(l) + 1}</Button> // Retrieve each level, and display the level
+                                                )))}
                                             </TableRow>
                                         </TableHead>
                                     </Table>
