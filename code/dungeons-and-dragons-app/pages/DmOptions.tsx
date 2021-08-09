@@ -19,7 +19,7 @@ const DmOptions = () => {
                         <Typography variant={"h4"} className={"dmSubtitle"}>
                             Load Exisiting Game
                         </Typography>
-                        <CodeInput defaultText={""} labelText={"Enter a Game Code Here"} helperText={"*Required"} />
+                        <CodeInput defaultText={""} labelText={"Enter a Game Code Here"}/>
                         <div className={"loadGameButtons"}>
                             <SmallBackButton buttonString={"Back"} buttonRoute={""} />
                             <SmallMenuButton buttonString={"Load Game"} buttonRoute={"/dm"} />
