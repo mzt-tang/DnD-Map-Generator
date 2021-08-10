@@ -8,16 +8,17 @@ import {Typography} from "@material-ui/core";
 const Home = () => {
 
 
-
     return (
         <View>
             <div className={"backgroundImage"}>
-                <div className={"homeButtons"}>
-                    <Typography variant={"h2"}>
+                <div className={"homeBox"}>
+                    <Typography variant={"h2"} className={"homeTitle"}>
                         What are you ..?
                     </Typography>
-                     <LargeButton buttonString={"Player"} buttonRoute={"/playeroptions"} />
-                     <LargeButton buttonString={"Dungeon Master"} buttonRoute={"/dmoptions"}/>
+                    <div className={"homeButtons"}>
+                        <LargeButton buttonString={"Player"} buttonRoute={"/playeroptions"} />
+                        <LargeButton buttonString={"Dungeon Master"} buttonRoute={"/dmoptions"}/>
+                    </div>
                 </div>
             </div>
         </View>

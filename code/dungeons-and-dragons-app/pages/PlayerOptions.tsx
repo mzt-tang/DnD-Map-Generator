@@ -9,7 +9,7 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         headerTextStyle: {
-            color: "#Eddded"
+            color: "#EA9DE4"
         },
     }),
 );

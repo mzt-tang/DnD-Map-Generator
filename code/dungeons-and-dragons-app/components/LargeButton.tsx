@@ -12,12 +12,23 @@ interface Props {
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         largeButton: {
-            background: '#FFFFFF',
+            background: '#000000',
+            borderColor: '#Eddded',
+            borderWidth: 2,
             opacity: 0.8,
             margin: 25,
             padding: 20,
             alignSelf: 'center',
-            float: 'left'
+            float: 'left',
+            '&:hover': {
+                backgroundColor: '#b348b1',
+                borderColor: '#Eddded',
+                borderWidth: 2,
+                boxShadow: 'none',
+            }
+        },
+        buttonText: {
+            color: '#Eddded'
         },
     }),
 );
@@ -38,7 +49,7 @@ const LargeButton = (props : Props) => {
             history.push(buttonRoute)
         }}>
 
-            <Typography variant={"h4"}>
+            <Typography variant={"h4"} className={classes.buttonText}>
                 {buttonString}
             </Typography>
         </Button>

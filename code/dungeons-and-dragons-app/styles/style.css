@@ -3,13 +3,29 @@
     height:25px;
 }
 
-.homeButtons {
+.homeBox {
     margin: 0;
     position: absolute;
     top: 50%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+    padding-top: 20px;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-bottom: 20px;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.homeButtons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding-top: 10px;
+}
+
+.homeTitle {
+    color: rgb(234,157,228);
+    padding: 30px 30px 5px 30px;
 }
 
 /* Player Options Screen */
