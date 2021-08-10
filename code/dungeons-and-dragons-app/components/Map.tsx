@@ -281,47 +281,58 @@ export default function map(props: mapProps) {
         //Notes
         //This only takes a set of monsters and assigns them to the rooms
         //Try to avoid spawning monsters at the start of the map
+        let eligibleRooms = []
 
-        //Randomly select a monster from the map
-        //Randomly select a room
-        let chosenMonster = assignableMonsters[getRandomInt(0, assignableMonsters.length-1)];
-        let firstMonster: Monster = getMonsterById(chosenMonster[0]);
-        let chosenRoom = getRandomInt(0, ROOM_SIZE-1);
-        let currentMonsInRoom:Monster[] = [];
+        while (eligibleRooms.length != 0 || assignableMonsters.length != 0) {
+            //Randomly select a monster from the map
+            //Randomly select a room
+            let chosenMonster = assignableMonsters[getRandomInt(0, assignableMonsters.length - 1)];
+            let chosenRoom = getRandomInt(0, eligibleRooms.length - 1);
+            let currentMonsInRoom: Monster[] = [getMonsterById(chosenMonster[0])];
 
-        let combinedLoneliness = (monsterList: Monster[]): number => {
-            let total = 0;
-            for (let i = 0; i < monsterList.length; i++) {
-                total += monsterList[i].loneliness;
+            let combinedLoneliness = (monsterList: Monster[]): number => {
+                let total = 0;
+                for (let i = 0; i < monsterList.length; i++) {
+                    total += monsterList[i].loneliness;
+                }
+                return total;
             }
-            return total;
-        }
 
-        while(currentMonsInRoom.length <= (combinedLoneliness(currentMonsInRoom)/currentMonsInRoom.length)) {
-            let eligibleMonsters: number[] = []
-            for (let i = 0; i < currentMonsInRoom.length; i++) {
-                let friends = currentMonsInRoom[i].friends;
+            // A room isn't fully populated unless the number of monsters is
+            // more than the average of the sum of the monsters' loneliness
+            while (currentMonsInRoom.length >= (combinedLoneliness(currentMonsInRoom) / currentMonsInRoom.length)) {
+                let eligibleMonsters: number[] = []
 
-                //
-                for (let j = 0; j < friends.length; j++) {
-                    let eligible:boolean = true;
-                    for (let k = 0; k < currentMonsInRoom.length; k++) {
-                        //if an enemy of another monster in the room, skip to the next friend
-                        if (currentMonsInRoom[k].friends.indexOf(friends[j]) == -1) {
-                            eligible = false;
-                            break;
+                // Iterate and filter through all the monsters that can be in the room.
+                for (let i = 0; i < currentMonsInRoom.length; i++) {
+                    let friends = currentMonsInRoom[i].friends;
+
+                    for (let j = 0; j < friends.length; j++) {
+                        let eligible: boolean = true;
+                        for (let k = 0; k < currentMonsInRoom.length; k++) {
+                            //if an enemy of another monster in the room, skip to the next friend
+                            if (currentMonsInRoom[k].friends.indexOf(friends[j]) == -1) {
+                                eligible = false;
+                                break;
+                            }
+                        }
+                        if (eligible) {
+                            eligibleMonsters.push(friends[j]);
                         }
                     }
-                    if (eligible) {
-                        eligibleMonsters.push(friends[j]);
-                    }
                 }
-            }
 
+                //Choose and add an eligible monster (given equal chance)
+                currentMonsInRoom.push(getMonsterById(eligibleMonsters[getRandomInt(0, eligibleMonsters.length - 1)]));
+                //todo This algorithm could be potentially more efficient
+                // if it checks if the current monsters' types have increased
+                // and if not then keep adding from the eligible monsters
+                // todo assign monster to the actual room to the map data
+            }
         }
 
-        //populate the room
-        //if number of monsters <= (the sum of all monsters' loneliness/number of monsters)
+        // populate the room
+        // if number of monsters <= (the sum of all monsters' loneliness/number of monsters)
         //  iterate and filter all monster's friends
         //  give the filtered monster an equal chance to be chosen.
         //  add the chosen monster to the room
