@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import firebase from 'firebase'
-import { db } from '.././FirebaseConfig';
+import { db } from '.././firebaseConfig';
 
 import saveImage from '../assets/saveIcon.png'
 
@@ -109,6 +109,7 @@ const DmView = () => {
                 <Button id="topButton" style={{ width: '200px', top: 10 }} onClick={() => {
                     // Generate new map
                     //window.location.reload() reloads a page, generating a new map
+                    generateMap()
                     levels[levels.length] = getFirebaseMap()
                 }}>New Level</Button>
                 <div id="topButton" style={{ position: "absolute", left: "900px", top: 10 }}>

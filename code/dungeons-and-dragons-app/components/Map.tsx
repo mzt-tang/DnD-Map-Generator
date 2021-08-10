@@ -2,7 +2,7 @@ import React from "react";
 import {roomGen} from "../utility/roomGen";
 
 import { Text} from 'react-native';
-import { db } from '.././FirebaseConfig';
+import { db } from '.././firebaseConfig';
 import firebase from 'firebase';
 
 import '../styles/style.css'
@@ -121,8 +121,8 @@ const DOUBLE_DOORS = false;
 
 //Firebase
 //todo this is needed to init the firebase database connection. We need to change this in future.
-const reference = db;
-const dbRefObject = firebase.database().ref().child('maps');
+
+const dbRefObject = db.database().ref().child('maps');
 
 let fireBaseMapVersion: any[][] = []
 
