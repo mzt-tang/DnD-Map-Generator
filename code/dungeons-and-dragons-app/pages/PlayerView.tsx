@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { db } from "../FirebaseConfig";
 import firebase from 'firebase';
 
@@ -98,6 +98,9 @@ if (map.length == 1) {
             <h1>
                 <div className={'map'}>
                 <Grid width={map[0].length} height={map.length} images={images} tiles={map}/>
+                </div>
+                <div className={'test'}>
+                    <Text>Test</Text>
                 </div>
             </h1>
         </View>
