@@ -42,10 +42,14 @@ const SmallMenuButton = (props : Props) => {
     //Other Variable Initialisations
     const history = useHistory();
 
+
     return (
         <div className={"SmallMenuButton"}>
         <Button variant="outlined" size="small" color="primary" className={classes.smallMenuButton} onClick={() => {
-            history.push(buttonRoute)
+            history.push({
+                pathname: buttonRoute+"/$Game=123",
+                    state: "gamecode" //data parsed between pages
+            })
         }}>
 
             <Typography variant={"button"} className={classes.buttonText} >
