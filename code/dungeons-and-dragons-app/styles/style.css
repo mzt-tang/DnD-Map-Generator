@@ -128,6 +128,9 @@
     display: flex;
     align-items: center;
     justify-content: center
+.dmView {
+    display: flex;
+    flex-direction: column;
 }
 
 .backgroundImage {
@@ -144,4 +147,38 @@ h2 {
     text-align:center;
     color: #000088;
     padding-bottom: 20px;
+}
+
+#page {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    top: 0;
+    width: 1400;
+}
+
+#left {
+    display: flex;
+    flex-direction: column;
+}
+
+#dmView {
+    display : flex;
+    flex-direction: column;
+}
+
+#route {
+    border-style:solid;
+    border-color: black;
+}
+
+#topBar {
+    display: flex;
+    flex-direction: row;
+}
+
+#topButton {
+    height:40px;
+    background-color: gray;
+    margin-right:2%;
 }

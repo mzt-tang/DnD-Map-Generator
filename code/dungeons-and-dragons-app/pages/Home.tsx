@@ -6,8 +6,6 @@ import {Typography} from "@material-ui/core";
 
 
 const Home = () => {
-
-
     return (
         <View>
             <div className={"backgroundImage"}>
