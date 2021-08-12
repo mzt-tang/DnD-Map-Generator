@@ -101,25 +101,6 @@ let rowr = [createData("Room 1", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
     createData("Room 11", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
     createData("Room 12", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"])]
 
-function fillRooms(rooms: number[][][]): string[] {
-    let row: string[] = [];
-    for (var i: number = 0; i < rooms.length; i++) {
-        row[i] = "Room: " + i;
-    }
-    return row;
-}
-
-//Firebase
-const dbRefObject = db.database().ref().child('maps');
-
-let fireBaseMapVersion: any[][] = []
-
-export function getFirebaseMap(): number[][] {
-    return fireBaseMapVersion
-}
-
-
-
 interface mapProps {
     mapData: MapData
 }
@@ -140,20 +121,6 @@ export default function map(props: mapProps) {
             gridGap: '0px'
         }
     }
-
-    let allRooms: number[][][] = []; // holds all the rooms making up the map in order.
-
-    // Send updated map to firebase
-    dbRefObject.set({
-        Map: fireBaseMapVersion
-    })
-
-
-    // Send updated map to firebase
-    dbRefObject.set({
-        Map: fireBaseMapVersion
-    })
-
 
     const data = props.mapData;
     const images = makeImageArray(data.map, data.visibility);
@@ -199,9 +166,5 @@ export default function map(props: mapProps) {
                 </TableContainer>
             </div>
         </div>);
-}
-
-function mountNode(arg0: JSX.Element, mountNode: any) {
-    throw new Error("Function not implemented.");
 }
 
