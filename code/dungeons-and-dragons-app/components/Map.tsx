@@ -101,6 +101,22 @@ let rowr = [createData("Room 1", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
     createData("Room 11", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
     createData("Room 12", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"])]
 
+function fillRooms(rooms: number[][][]): string[] {
+    let row: string[] = [];
+    for (var i: number = 0; i < rooms.length; i++) {
+        row[i] = "Room: " + i;
+    }
+    return row;
+}
+
+let fireBaseMapVersion: any[][] = []
+
+export function getFirebaseMap(): number[][] {
+    return fireBaseMapVersion
+}
+
+
+
 interface mapProps {
     mapData: MapData
 }
