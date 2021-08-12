@@ -32,6 +32,7 @@ unit_testing:
     - shell
   script:
     - echo "Testing stage 1/1"
+    - npm i jest-expo --save-dev
     - npx jest --ci
   allow_failure: false
 
