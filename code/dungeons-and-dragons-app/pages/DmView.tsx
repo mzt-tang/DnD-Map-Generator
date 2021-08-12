@@ -21,7 +21,7 @@ import { View } from "react-native";
 const dbRefObject = db.database().ref().child('adamtest');
 
 let mapDataInitial: MapData = {
-    map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: []
+    map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: [], roomNum: 1
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -108,7 +108,6 @@ const DmView = () => {
                 </React.Fragment>
                 <Button id="topButton" style={{ width: '200px', top: 10 }} onClick={() => {
                     // Generate new map
-                    //window.location.reload() reloads a page, generating a new map
                     generateMap()
                     levels[levels.length] = getFirebaseMap()
                 }}>New Level</Button>
