@@ -97,7 +97,7 @@ if (map.length == 1) {
         <View>
             <h1>
                 <div className={'test'}>
-                    <Text>Test4</Text>
+                    <Text>Test5</Text>
                 </div>
                 <div className={'map'}>
                 <Grid width={map[0].length} height={map.length} images={images} tiles={map}/>
