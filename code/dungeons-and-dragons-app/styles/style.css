@@ -3,13 +3,117 @@
     height:25px;
 }
 
-.homeButtons {
+.homeBox {
     margin: 0;
     position: absolute;
     top: 50%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+    padding-top: 20px;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-bottom: 20px;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.homeButtons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding-top: 10px;
+}
+
+.homeTitle {
+    color: rgb(234,157,228);
+    padding: 30px 30px 5px 30px;
+}
+
+/* Player Options Screen */
+.playerOptionBox {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    align-content: center;
+    align-self: center;
+    align-items: center;
+    padding-top: 35px;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-bottom: 20px;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.playerOptionButtonDiv {
+    padding-top: 20px;
+    align-content: center;
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+/* Player Option End */
+
+/* DM Options Screen */
+.dmOptionBox {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    align-content: center;
+    align-self: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.dmOptionBox * {
+    padding: 0px 5px;
+}
+
+.dmOptionLeft {
+    float: left;
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+.dmOptionRight {
+    float: right;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+.dmTitle {
+    color: rgb(234,157,228);
+    padding: 30px 30px 5px 30px;
+}
+
+.dmSubtitle {
+    color: rgb(234,157,228);
+    padding: 20px 10px 15px 10px;
+}
+
+.loadGameButtons {
+    padding-top: 60px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+.createButton {
+    padding-left: 15px;
+}
+
+/* End of Dm options */
+
+.CodeInput {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color: #FFFFFF;
+    opacity: 0.9;
 }
 
 .map {
@@ -18,19 +122,33 @@
     align-items: center;
 }
 
+.LargeButton {
+    position: relative;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
 .dmView {
     display: flex;
     flex-direction: column;
 }
 
-.container {
-    height: 100vh;
-    position: relative;
-    border: 3px solid green;
+.backgroundImage {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background-image: url("../assets/Menu Images/Underdark.jpg");
+    background-repeat: no-repeat;
+    background-size: auto;
+    /*background-color: #C21F39;*/
 }
 
-h1 {
+h2 {
     text-align:center;
+    color: #000088;
+    padding-bottom: 20px;
 }
 
 #page {
