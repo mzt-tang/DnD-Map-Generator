@@ -10,7 +10,7 @@ image: node:alpine
 #Changes directory from home to the code directory
 before_script:
   - cd code/dungeons-and-dragons-app
-  - yarn install
+  - npm install -g firebase-tools
 
 # Perform the 3 stages
 build:
@@ -26,6 +26,13 @@ cache:
     key: ${CI_COMMIT_REF_SLUG}
     paths:
       - ~/.npm
+
+.deploy:
+  - npm install -g firebase-tools
+  - firebase use dungeon-in-a-jiffy-e9931 --token $FIREBASE_TOKEN
+  - yarn
+  - yarn build
+
 
 unit_testing:
   stage: Test
@@ -43,15 +50,35 @@ deploy:
     - shell
   script:
     - echo "Deployment stage 1/1"
-    - yarn global add firebase-tools
-    - echo "Building application"
+    - npm install -g firebase-tools
+    - firebase use dungeon-in-a-jiffy-e9931 --token $FIREBASE_TOKEN
+    - yarn
     - yarn build
-    - echo "Deploying"
-    - firebase use --token $FIREBASE_TOKEN
-    - firebase deploy -m "Pipeline $CI_PIPELINE_ID, build $CI_BUILD_ID" --non-interactive --token $FIREBASE_TOKEN --only functions,hosting
   only:
     refs:
       - master
     changes:
       - code/dungeons-and-dragons-app/**/*
   allow_failure: true
+
+staging:
+  stage: Deploy
+  before_script:
+    - *deploy
+  only:
+    - master
+  script:
+    - firebase deploy -m "Pipe $CI_PIPELINE_ID Build $CI_BUILD_ID" --only hosting:FIREBASE_TOKEN --non-interactive --token $FIREBASE_TOKEN
+
+production:
+  stage: Deploy
+  before_script:
+    - *deploy
+  only:
+    - master
+  when: manual
+  allow_failure: false
+  script:
+    - firebase deploy -m "Pipe $CI_PIPELINE_ID Build $CI_BUILD_ID" --only hosting:FIREBASE_TOKEN --non-interactive --token $FIREBASE_TOKEN
+
+
