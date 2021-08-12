@@ -7,9 +7,10 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 interface Props {
     buttonString : string
     buttonRoute : string
+    leftAndRightPadding : number
 }
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles<Theme, Props>((theme: Theme) =>
     createStyles({
         largeButton: {
             background: '#000000',
@@ -17,7 +18,10 @@ const useStyles = makeStyles((theme: Theme) =>
             borderWidth: 2,
             opacity: 0.8,
             margin: 25,
-            padding: 20,
+            paddingTop: 20,
+            paddingBottom: 20,
+            paddingLeft: props => props.leftAndRightPadding,
+            paddingRight: props => props.leftAndRightPadding,
             alignSelf: 'center',
             float: 'left',
             '&:hover': {
@@ -34,7 +38,8 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const LargeButton = (props : Props) => {
-    const classes = useStyles();
+    //const classes = useStyles(props);
+    const {largeButton, buttonText} = useStyles(props);
 
     // Props Initialisations
     const buttonString : string = props.buttonString;
@@ -45,11 +50,11 @@ const LargeButton = (props : Props) => {
 
     return (
         <div className={"LargeButton"}>
-        <Button variant="outlined" size="large" color="primary" className={classes.largeButton} onClick={() => {
+        <Button variant="outlined" size="large" color="primary" className={largeButton} onClick={() => {
             history.push(buttonRoute)
         }}>
 
-            <Typography variant={"h4"} className={classes.buttonText}>
+            <Typography variant={"h4"} className={buttonText}>
                 {buttonString}
             </Typography>
         </Button>

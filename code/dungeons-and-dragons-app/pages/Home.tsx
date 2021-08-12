@@ -16,8 +16,8 @@ const Home = () => {
                         What are you ..?
                     </Typography>
                     <div className={"homeButtons"}>
-                        <LargeButton buttonString={"Player"} buttonRoute={"/playeroptions"} />
-                        <LargeButton buttonString={"Dungeon Master"} buttonRoute={"/dmoptions"}/>
+                        <LargeButton buttonString={"Player"} buttonRoute={"/playeroptions"} leftAndRightPadding={110}/>
+                        <LargeButton buttonString={"Dungeon Master"} buttonRoute={"/dmoptions"} leftAndRightPadding={25}/>
                     </div>
                 </div>
             </div>
