@@ -7,6 +7,7 @@ import '../styles/style.css'
 
 import Map from "../components/Map";
 import MapData from "../interfaces/MapData";
+import { hexToRgb } from '@material-ui/core';
 
 let mapDataInitial: MapData = {
     map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: []
@@ -38,7 +39,7 @@ const PlayerView = () => {
     }
 
     return (
-        <View>
+        <View style={{backgroundColor:hexToRgb("#AAAABB")}}>
             <Map mapData={map}/>
         </View>
     );
