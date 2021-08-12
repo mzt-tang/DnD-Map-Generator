@@ -24,6 +24,8 @@ const CodeInput = (props : Props) => {
     const defaultText : string = props.defaultText;
     const labelText : string = props.labelText;
 
+    //Fetch the game code
+
     return (
         <TextField
             required
