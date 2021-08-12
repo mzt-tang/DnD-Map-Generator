@@ -27,13 +27,6 @@ cache:
     paths:
       - ~/.npm
 
-.deploy:
-  - npm install -g firebase-tools
-  - firebase use dungeon-in-a-jiffy-e9931 --token $FIREBASE_TOKEN
-  - yarn
-  - yarn build
-
-
 unit_testing:
   stage: Test
   tags:
@@ -64,7 +57,10 @@ deploy:
 staging:
   stage: Deploy
   before_script:
-    - *deploy
+  - npm install -g firebase-tools
+  - firebase use dungeon-in-a-jiffy-e9931 --token $FIREBASE_TOKEN
+  - yarn
+  - yarn build
   only:
     - master
   script:
@@ -73,7 +69,10 @@ staging:
 production:
   stage: Deploy
   before_script:
-    - *deploy
+  - npm install -g firebase-tools
+  - firebase use dungeon-in-a-jiffy-e9931 --token $FIREBASE_TOKEN
+  - yarn
+  - yarn build
   only:
     - master
   when: manual
