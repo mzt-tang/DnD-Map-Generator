@@ -12,7 +12,6 @@ export default function App() {
       <BrowserRouter>
         <Route path = "/home" component = {Home} />
           <Route path = "/" exact={true} component = {Home} />
-          <Route path = "/route" component = {RouteFindingMap} />
           <Route path = "/dmoptions" component = {DmOptions} />
           <Route path = "/playeroptions" component = {PlayerOptions} />
           <Route path = "/room" component = {Room} />
