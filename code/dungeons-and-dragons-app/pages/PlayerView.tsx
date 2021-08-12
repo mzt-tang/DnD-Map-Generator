@@ -96,12 +96,13 @@ if (map.length == 1) {
     return (
         <View>
             <h1>
-                <div className={'map'}>
-                <Grid width={map[0].length} height={map.length} images={images} tiles={map}/>
-                </div>
                 <div className={'test'}>
                     <Text>Test2</Text>
                 </div>
+                <div className={'map'}>
+                <Grid width={map[0].length} height={map.length} images={images} tiles={map}/>
+                </div>
+
             </h1>
         </View>
     );
