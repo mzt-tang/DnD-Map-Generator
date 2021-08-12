@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useState} from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import {makeStyles, Paper} from "@material-ui/core";
 import {AppBar, Grid, IconButton, Link, Toolbar, Typography} from "@material-ui/core";
 import {Title} from "@material-ui/icons";
@@ -76,6 +76,9 @@ function DmView() {
             </Grid>
             <div id='route'>
                 <Map images={images} />
+            </div>
+            <div id = 'test'>
+                <Text> Testing Automatic Deployment</Text>
             </div>
         </Grid>
     )
