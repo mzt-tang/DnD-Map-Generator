@@ -10,7 +10,6 @@ image: node:alpine
 #Changes directory from home to the code directory
 before_script:
   - cd code/dungeons-and-dragons-app
-  - npm i -g firebase-tools
 
 # Perform the 3 stages
 build:
@@ -43,13 +42,4 @@ deploy:
     - shell
   script:
     - echo "Deployment stage 1/1"
-    - cd code/dungeons-and-dragons-app
-    - npm install
-    - cd ..
-    - firebase deploy --only code/dungeons-and-dragons-app --token $FIREBASE_TOKEN
-  only:
-    refs:
-      - master
-    changes:
-      - code/dungeons-and-dragons-app/**/*
   allow_failure: true
