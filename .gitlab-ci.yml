@@ -46,11 +46,12 @@ deploy:
     - cd code/dungeons-and-dragons-app
     - npm install
     - cd ..
-    - firebase deploy --only code/dungeons-and-dragons-app --token $FIREBASE_TOKEN
+    - firebase deploy --token $FIREBASE_TOKEN
   only:
     refs:
       - master
     changes:
       - code/dungeons-and-dragons-app/**/*
   allow_failure: true
+
 
