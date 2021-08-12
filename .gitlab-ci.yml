@@ -44,7 +44,6 @@ deploy:
   script:
     - echo "Deployment stage 1/1"
     - npm install
-    - cd ..
     - firebase deploy --token $FIREBASE_TOKEN
   only:
     refs:
