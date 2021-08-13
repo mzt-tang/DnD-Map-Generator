@@ -24,8 +24,14 @@ const CodeInput = (props : Props) => {
     const defaultText : string = props.defaultText;
     const labelText : string = props.labelText;
 
-    //Fetch the game code
+    let code : string = "";
+    
+    const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+        code = event.target.value as string;
+        console.log(code);
+    }
 
+    //Fetch the game code
     return (
         <TextField
             required
@@ -38,6 +44,7 @@ const CodeInput = (props : Props) => {
             InputLabelProps={{
                 style: { color: '#403940' },
             }}
+            onChange={handleChange}
         />
     );
 }
