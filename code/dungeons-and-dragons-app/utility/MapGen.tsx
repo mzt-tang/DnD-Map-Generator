@@ -47,8 +47,6 @@ export default async function map() : Promise<MapData> {
     */
     while (col <= mapRoomCols && row <= mapRoomRows) {
         roomsInside++;
-        console.log(currentRoomIndex)
-        console.log(allRooms.length)
 
         let entrances: number[][] = []
 
@@ -355,8 +353,6 @@ export default async function map() : Promise<MapData> {
         visibility: [],
         roomNum: roomsInside,
     }
-
-    console.log("ROOM NUMBERS: " + roomsInside)
 
     return mapData;
 }

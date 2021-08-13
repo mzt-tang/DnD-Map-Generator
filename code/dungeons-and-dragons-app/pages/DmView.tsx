@@ -20,6 +20,8 @@ import { View } from "react-native";
 //Firebase
 const dbRefObject = db.database().ref().child('adamtest');
 
+let levelMaps = [getFirebaseMap()];
+
 let mapDataInitial: MapData = {
     map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: [], roomNum: 1
 };
@@ -41,7 +43,7 @@ const DmView = () => {
     const history = useHistory();
     const [open, setOpen] = React.useState(false);
 
-    let levels: Number[][][] = [getFirebaseMap()]
+    let levels: MapData[] = getFirebaseMap()
 
 
     const classes = useStyles();
@@ -55,19 +57,16 @@ const DmView = () => {
         MapGen().then(
             value => {
                 setMapData(value);
-                dbRefObject.set(value)
+                db.database().ref().child('games/code/map/levels/' + levels.length).set(value)
             }
         )
     };
 
-    if (mapData.map.length == 0) {
-        return (
-            <Grid>
-                <Button onClick={generateMap}>Update Map</Button>
-            </Grid>
-        )
-    }
+    console.log("Before return: " + levels.length)
 
+    levels = getFirebaseMap()
+
+    levels[0] = mapData
 
     return (
         <div id='dmView' style={{ backgroundColor: hexToRgb("#8b5f8c"), height: "100%" }}>
@@ -91,11 +90,12 @@ const DmView = () => {
                                 <Box margin={1}>
                                     <Table size="small" aria-label="purchases">
                                         <TableHead>
-                                            <TableRow style={{ position: "relative", top: 0, width: '100%', display: "flex", flexDirection: "column" }}>
+                                            <TableRow style={{ position: "relative", top: 0, width: '100%', display: "flex", flexDirection: "column", zIndex:10 }}>
                                                 {levels.map((l => (
                                                     // Get the levels from the firebase, loop through all of them, adding a button per level and attaching a link to load that level to the button
                                                     <Button id="topButton" style={{ width: '100px' }} onClick={() => {
                                                         //load the levels
+                                                        setMapData(levels[levels.indexOf(l)])
                                                     }}>Level {levels.indexOf(l) + 1}</Button> // Retrieve each level, and display the level
                                                 )))}
                                             </TableRow>
@@ -109,7 +109,8 @@ const DmView = () => {
                 <Button id="topButton" style={{ width: '200px', top: 10 }} onClick={() => {
                     // Generate new map
                     generateMap()
-                    levels[levels.length] = getFirebaseMap()
+                    levels[levels.length] = mapData
+                    console.log(levels.length)
                 }}>New Level</Button>
                 <div id="topButton" style={{ position: "absolute", left: "900px", top: 10 }}>
                     FOG ON/OFF
@@ -119,7 +120,6 @@ const DmView = () => {
                 <div id='route' style={{ backgroundColor: hexToRgb("#AAAABB"), position: "absolute", top: 100, alignSelf: "center", right: "35%" }}>
                     <Map mapData={mapData} />
                 </div>
-
             </div>
         </div>
     )

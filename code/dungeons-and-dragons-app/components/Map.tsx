@@ -99,11 +99,11 @@ const DOUBLE_DOORS = false;
 //Firebase
 //todo this is needed to init the firebase database connection. We need to change this in future.
 
-const dbRefObject = db.database().ref().child('maps');
+const dbRefObject = db.database().ref().child('games/code/map/levels/');
 
-let fireBaseMapVersion: any[][] = []
+let fireBaseMapVersion: MapData[] = []
 
-export function getFirebaseMap(): any[][] {
+export function getFirebaseMap(): MapData[] {
     return fireBaseMapVersion
 }
 
@@ -134,12 +134,6 @@ export default function map(props: mapProps) {
             gridGap: '0px'
         }
     }
-
-    // Send updated map to firebase
-    dbRefObject.set({
-        Map: fireBaseMapVersion
-    })
-
 
     // Send updated map to firebase
     dbRefObject.set({
@@ -191,8 +185,3 @@ export default function map(props: mapProps) {
             </div>
         </div>);
 }
-
-function mountNode(arg0: JSX.Element, mountNode: any) {
-    throw new Error("Function not implemented.");
-}
-
