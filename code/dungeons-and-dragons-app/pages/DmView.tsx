@@ -15,6 +15,7 @@ import React, { useEffect, useState } from 'react';
 import { Grid } from "@material-ui/core";
 import MapGen from '../utility/MapGen';
 import MapData from "../interfaces/MapData";
+import ParseURLData from "../utility/ParseURLData";
 import { View } from "react-native";
 
 //Firebase
@@ -39,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
 
 const DmView = () => {
     const history = useHistory();
+    console.log(ParseURLData(history.location.pathname));
     const [open, setOpen] = React.useState(false);
 
     let levels: Number[][][] = [getFirebaseMap()]
