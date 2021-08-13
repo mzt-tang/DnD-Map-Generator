@@ -42,4 +42,10 @@ deploy:
     - shell
   script:
     - echo "Deployment stage 1/1"
+    - npm i -g firebase-tools
+    - npm install
+    - firebase deploy --only functions --token $FIREBASE_TOKEN
+  only:
+    refs:
+      - master
   allow_failure: true
