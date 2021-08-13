@@ -66,8 +66,6 @@ const DmView = () => {
 
     levels = getFirebaseMap()
 
-    levels[0] = mapData
-
     return (
         <div id='dmView' style={{ backgroundColor: hexToRgb("#8b5f8c"), height: "100%" }}>
             <div id="topBar">
@@ -110,7 +108,6 @@ const DmView = () => {
                     // Generate new map
                     generateMap()
                     levels[levels.length] = mapData
-                    console.log(levels.length)
                 }}>New Level</Button>
                 <div id="topButton" style={{ position: "absolute", left: "900px", top: 10 }}>
                     FOG ON/OFF
