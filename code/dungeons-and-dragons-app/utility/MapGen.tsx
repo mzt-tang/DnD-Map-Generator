@@ -2,6 +2,7 @@ import React from "react";
 import {roomGen} from "./RoomGen";
 import {assignImageNumbers} from '../utility/MapTilerHelper';
 import MapData from "../interfaces/MapData";
+import { HeightOutlined } from "@material-ui/icons";
 
 
 const roomSize = 10;
@@ -30,6 +31,9 @@ export default async function map() : Promise<MapData> {
 
     // create a 2D array rows * cols filled with the value 10.
     let mapGrid : number[][] = Array.from(Array(mapRoomRows * roomSize), _ => Array(mapRoomCols * roomSize).fill(10));
+
+    // create a 2D array of rows * cols, filled with the value 0. For visiblity.    0:unexplored;  1:visible;   2:fog of war
+    let mapVisibility : number[][] = Array.from(Array(mapRoomRows * roomSize), _ => Array(mapRoomCols * roomSize).fill(0));
 
     let previousRoomIndex = -1; // the previous room generated
     let currentRoomIndex = 0; // the next room to generate
@@ -335,7 +339,7 @@ export default async function map() : Promise<MapData> {
         roomCols: mapRoomCols,
         roomRows: mapRoomRows,
         roomSize: roomSize,
-        visibility: []
+        visibility: mapVisibility
     }
 
     return mapData;
