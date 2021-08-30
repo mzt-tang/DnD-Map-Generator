@@ -8,6 +8,13 @@ import SmallBackButton from "../components/SmallBackButton";
 
 
 const DmOptions = () => {
+
+    let code : string = "";
+
+    function handleCodeChange(newcode : string){
+        code = newcode;
+    }
+
     return (
         <View>
             <div className={"backgroundImage"} >
@@ -19,10 +26,10 @@ const DmOptions = () => {
                         <Typography variant={"h4"} className={"dmSubtitle"}>
                             Load Exisiting Game
                         </Typography>
-                        <CodeInput defaultText={""} labelText={"Enter a Game Code Here"}/>
+                        <CodeInput defaultText={""} labelText={"Enter a Game Code Here"} onCodeChange={handleCodeChange} />
                         <div className={"loadGameButtons"}>
                             <SmallBackButton buttonString={"Back"} buttonRoute={""} />
-                            <SmallMenuButton buttonString={"Load Game"} buttonRoute={"/dm"} />
+                            <SmallMenuButton buttonString={"Load Game"} buttonRoute={"/dm"} code={code}/>
                         </div>
                     </div>
                     <div className={"dmOptionRight"}>
@@ -31,7 +38,7 @@ const DmOptions = () => {
                         </Typography>
                         <ThemeSelect themeList={["Caves","Dungeon","Underground Mansion"]} />
                         <div className={"createButton"}>
-                            <SmallMenuButton buttonString={"Create"} buttonRoute={"/dm"} />
+                            <SmallMenuButton buttonString={"Create"} buttonRoute={"/dm"} code={code}/>
                         </div>
                     </div>
                 </div>

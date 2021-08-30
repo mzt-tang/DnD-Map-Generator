@@ -23,6 +23,10 @@ const PlayerOptions = () => {
         code = newcode;
     }
 
+    function fetchCode() : string {
+        return code;
+    }
+
     return (
         <View>
             <div className={"backgroundImage"} >
@@ -33,7 +37,7 @@ const PlayerOptions = () => {
                     <CodeInput defaultText={""} labelText={"Enter a Game Code Here"} onCodeChange={handleCodeChange}/>
                     <div className={"playerOptionButtonDiv"}>
                         <SmallBackButton buttonString={"Back"} buttonRoute={"/home"} />
-                        <SmallMenuButton buttonString={"Join game"} buttonRoute={"/player"} code={code}/>
+                        <SmallMenuButton buttonString={"Join game"} buttonRoute={"/player"} code={fetchCode}/>
                     </div>
                 </div>
             </div>
