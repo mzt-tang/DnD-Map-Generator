@@ -17,6 +17,12 @@ const useStyles = makeStyles((theme: Theme) =>
 const PlayerOptions = () => {
     const classes = useStyles();
 
+    let code : string = "";
+
+    function handleCodeChange(newcode : string){
+        code = newcode;
+    }
+
     return (
         <View>
             <div className={"backgroundImage"} >
@@ -24,10 +30,10 @@ const PlayerOptions = () => {
                     <Typography className={classes.headerTextStyle} variant={"h2"}>
                         Player Options
                     </Typography>
-                    <CodeInput defaultText={""} labelText={"Enter a Game Code Here"} />
+                    <CodeInput defaultText={""} labelText={"Enter a Game Code Here"} onCodeChange={handleCodeChange}/>
                     <div className={"playerOptionButtonDiv"}>
                         <SmallBackButton buttonString={"Back"} buttonRoute={"/home"} />
-                        <SmallMenuButton buttonString={"Join game"} buttonRoute={"/player"} />
+                        <SmallMenuButton buttonString={"Join game"} buttonRoute={"/player"} code={code}/>
                     </div>
                 </div>
             </div>

@@ -6,6 +6,8 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 interface Props {
     defaultText : string
     labelText : string
+
+    onCodeChange(value: string): void;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -24,11 +26,8 @@ const CodeInput = (props : Props) => {
     const defaultText : string = props.defaultText;
     const labelText : string = props.labelText;
 
-    let code : string = "";
-    
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-        code = event.target.value as string;
-        console.log(code);
+        props.onCodeChange(event.target.value as string);
     }
 
     //Fetch the game code
