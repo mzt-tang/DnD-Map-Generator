@@ -1,5 +1,5 @@
 import React from "react";
-import {db} from '.././FirebaseConfig';
+import {db} from '../firebaseConfig';
 
 import '../styles/style.css'
 
