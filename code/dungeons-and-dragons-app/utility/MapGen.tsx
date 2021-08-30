@@ -1,6 +1,6 @@
 import React from "react";
-import {roomGen} from "./RoomGen";
-import {assignImageNumbers} from '../utility/MapTilerHelper';
+import {roomGen} from "./roomGen";
+import {assignImageNumbers} from './MapTilerHelper';
 import MapData from "../interfaces/MapData";
 import { HeightOutlined } from "@material-ui/icons";
 
