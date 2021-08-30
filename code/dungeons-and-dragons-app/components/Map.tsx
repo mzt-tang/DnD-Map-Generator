@@ -271,6 +271,38 @@ export default function map(props: mapProps) {
     addRooms();
     let pixelDisplay = assignAutoTiledWalls();
 
+    /**
+     *
+     */
+    function generateMonsters() {
+        // Options:
+        // 1. - doing this one
+        // Create pre determined sets of monsters to be in a group together
+        // Choose a random monster set based on level of difficulty
+        // Randomly generate monsters from that set
+        // Assign monsters to rooms
+
+        // 2.
+        // Randomly choose 2-3 monsters based on level difficulty
+        // Look at the monsters' friends and add monsters by 'branching out' from the monsters in the set
+        // Assign monsters to room
+
+        let dummySet: number[] = [100, 111, 222, 333, 555]; // dummy set. This part should call to firebase
+        // and grab a monster set based on the map level
+
+        let generatedMonsters: number[][] = [[]];
+
+        //Generate monsters from set
+        for (let i = 0; i < dummySet.length; i++) {
+            let monster: Monster = getMonsterById(dummySet[i]);
+            let commonalityDeviation: number = getRandomInt(monster.commonality - Math.floor(monster.commonality/2),
+                monster.commonality + Math.floor(monster.commonality/2)); //an operator to determine whether to add or minus from the commonality
+
+            generatedMonsters.push([dummySet[i], commonalityDeviation]);
+        }
+
+        assignMonstersToRooms(generatedMonsters);
+    }
 
     /**
      *
@@ -284,8 +316,8 @@ export default function map(props: mapProps) {
         let eligibleRooms = []
 
         while (eligibleRooms.length != 0 || assignableMonsters.length != 0) {
-            //Randomly select a monster from the map
-            //Randomly select a room
+            // Randomly select a monster from the map
+            // Randomly select a room
             let chosenMonster = assignableMonsters[getRandomInt(0, assignableMonsters.length - 1)];
             let chosenRoom = getRandomInt(0, eligibleRooms.length - 1);
             let currentMonsInRoom: Monster[] = [getMonsterById(chosenMonster[0])];
@@ -337,7 +369,6 @@ export default function map(props: mapProps) {
         //  give the filtered monster an equal chance to be chosen.
         //  add the chosen monster to the room
 
-
         return null;
     }
 
@@ -347,7 +378,7 @@ export default function map(props: mapProps) {
      */
     function getMonsterById(id: number): Monster {
         let someMonster: Monster = {id:151, name:"goblin", friends:[111,112,151],
-            loneliness:6, stats:[["someStatLikeHealth", "20"]]}
+            loneliness:6, stats:[["someStatLikeHealth", "20"]], commonality: 1}
         return someMonster;
     }
 
