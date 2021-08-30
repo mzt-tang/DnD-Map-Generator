@@ -11,6 +11,13 @@ const firebaseConfig = {
     databaseURL: "https://dungeon-in-a-jiffy-e9931-default-rtdb.asia-southeast1.firebasedatabase.app/"
 }; //this is where your firebase app values you copied will go
 
-firebase.initializeApp(firebaseConfig);
+const getFirebase = () => {
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+    }else {
+        firebase.app(); // if already initialized, use that one
+    }
+    return firebase;
+}
 
-export const db = firebase;
+export const db = getFirebase();
