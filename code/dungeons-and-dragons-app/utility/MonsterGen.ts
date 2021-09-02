@@ -1,43 +1,39 @@
 import {Monster} from "../interfaces/MapData";
 
 
-export const monsterGenAndRoomAssignment = () => {
-    /**
-     *
-     */
-    function generateMonsters() {
-        // Options:
-        // 1. - doing this one
-        // Create pre determined sets of monsters to be in a group together
-        // Choose a random monster set based on level of difficulty
-        // Randomly generate monsters from that set
-        // Assign monsters to rooms
+export function monsterGeneration (){
 
-        // 2.
-        // Randomly choose 2-3 monsters based on level difficulty
-        // Look at the monsters' friends and add monsters by 'branching out' from the monsters in the set
-        // Assign monsters to room
+    // Options:
+    // 1. - doing this one
+    // Create pre determined sets of monsters to be in a group together
+    // Choose a random monster set based on level of difficulty
+    // Randomly generate monsters from that set
+    // Assign monsters to rooms
 
-        //Set of monsters
-        //List of eligible
-        //Storing the assigned monsters.
+    // 2.
+    // Randomly choose 2-3 monsters based on level difficulty
+    // Look at the monsters' friends and add monsters by 'branching out' from the monsters in the set
+    // Assign monsters to room
 
-        let dummySet: string[] = ["100", "111", "222", "333", "555"]; // dummy set. This part should call to firebase
-        // and grab a monster set based on the map level
+    //Set of monsters
+    //List of eligible
+    //Storing the assigned monsters.
 
-        let generatedMonsters: string[][] = [[]];
+    let dummySet: string[] = ["100", "111", "222", "333", "555"]; // dummy set. This part should call to firebase
+    // and grab a monster set based on the map level
 
-        //Generate monsters from set
-        for (let i = 0; i < dummySet.length; i++) {
-            let monster: Monster = getMonsterById(dummySet[i]);
-            let commonalityDeviation: number = getRandomInt(monster.commonality - Math.floor(monster.commonality/2),
-                monster.commonality + Math.floor(monster.commonality/2)); //an operator to determine whether to add or minus from the commonality
+    let generatedMonsters: string[][] = [[]];
 
-            generatedMonsters.push([dummySet[i], commonalityDeviation + ""]);
-        }
+    //Generate monsters from set
+    for (let i = 0; i < dummySet.length; i++) {
+        let monster: Monster = getMonsterById(dummySet[i]);
+        let commonalityDeviation: number = getRandomInt(monster.commonality - Math.floor(monster.commonality/2),
+            monster.commonality + Math.floor(monster.commonality/2)); //an operator to determine whether to add or minus from the commonality
 
-        assignMonstersToRooms(generatedMonsters);
+        generatedMonsters.push([dummySet[i], commonalityDeviation + ""]);
     }
+
+    assignMonstersToRooms(generatedMonsters);
 
     /**
      *
