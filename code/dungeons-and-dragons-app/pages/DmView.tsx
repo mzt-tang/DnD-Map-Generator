@@ -5,12 +5,11 @@ import '../styles/style.css'
 import { useHistory } from "react-router-dom";
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import firebase from 'firebase'
 import { db } from '.././firebaseConfig';
 
 import saveImage from '../assets/saveIcon.png'
 
-import React, { useEffect, useState } from 'react';
+import React, {MouseEventHandler, useEffect, useState} from 'react';
 
 import { Grid } from "@material-ui/core";
 import MapGen from '../utility/MapGen';
@@ -40,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
 const DmView = () => {
     const history = useHistory();
     const [open, setOpen] = React.useState(false);
+    const [adjustingVisibility, setAdjustingVisibility] = React.useState(false);
 
     let levels: Number[][][] = [getFirebaseMap()]
 
@@ -66,6 +66,10 @@ const DmView = () => {
                 <Button onClick={generateMap}>Update Map</Button>
             </Grid>
         )
+    }
+
+    const clickVisibilityHandler : MouseEventHandler<HTMLImageElement> = (event : React.MouseEvent<HTMLImageElement>) => {
+        console.log(event.currentTarget.id);
     }
 
 
@@ -118,7 +122,7 @@ const DmView = () => {
                     <Button>add fog</Button>
                 </div>
                 <div id='route' style={{ backgroundColor: hexToRgb("#AAAABB"), position: "absolute", top: 100, alignSelf: "center", right: "35%" }}>
-                    <Map mapData={mapData} />
+                    <Map mapData={mapData} imagePressFunction={clickVisibilityHandler}/>
                 </div>
 
             </div>

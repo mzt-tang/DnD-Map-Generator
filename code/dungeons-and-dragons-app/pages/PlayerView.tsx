@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, MouseEvent, MouseEventHandler} from 'react';
 import {View} from 'react-native';
 import {db} from "../firebaseConfig";
 import firebase from 'firebase';
@@ -38,9 +38,15 @@ const PlayerView = () => {
         );
     }
 
+    const click : MouseEventHandler<HTMLImageElement> = (event : React.MouseEvent<HTMLImageElement>) => {
+        console.log(event.currentTarget.id);
+    }
+
+
+
     return (
-        <View style={{backgroundColor:hexToRgb("#AAAABB")}}>
-            <Map mapData={map}/>
+        <View style={{backgroundColor:hexToRgb("#AAAABB"),justifyContent:"center"}}>
+            <Map mapData={map} imagePressFunction={click}/>
         </View>
     );
 }

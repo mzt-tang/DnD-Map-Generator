@@ -116,9 +116,12 @@ export function getFirebaseMap(): number[][] {
 }
 
 
+// The callBackFunction is to be passed into the JSX elements onPush to ensure that when they are pushed we can trigger
+// the visibility on the DM side.
 
 interface mapProps {
-    mapData: MapData
+    mapData: MapData,
+    imagePressFunction: React.MouseEventHandler<HTMLImageElement>
 }
 
 /**
@@ -139,7 +142,7 @@ export default function map(props: mapProps) {
     }
 
     const data = props.mapData;
-    const images = makeImageArray(data.map, data.visibility);
+    const images = makeImageArray(data.map, data.visibility,props.imagePressFunction);
 
     return (
         <div id="page">
