@@ -1,4 +1,4 @@
-import images from '../utility/Images'
+import images, {getImageWithId} from '../utility/Images'
 
 /**
  * Takes in the basic generated map and generates the final map tiles to use as image indexes
@@ -132,7 +132,9 @@ export const makeImageArray = (map: number[][], visibility: number[][]): JSX.Ele
     for (let row = 0; row < map.length; row++) {
         let imageRow: JSX.Element[] = [];
         for (let col = 0; col < map[row].length; col++) {
-            imageRow.push(images[map[row][col]])
+            const id : string = `${row},${col}`;
+            let image : JSX.Element = getImageWithId(id,map[row][col])
+            imageRow.push(image)
         }
         imageArray.push(imageRow);
     }
