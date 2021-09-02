@@ -65,7 +65,8 @@ const DmView = () => {
         )
     };
 
-    if (mapData.map.length == 0) {
+    console.log(dbRefObject);
+    if (mapData == null) {
         return (
             <Grid>
                 <Button onClick={generateMap}>Update Map</Button>
