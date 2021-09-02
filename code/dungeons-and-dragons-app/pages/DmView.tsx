@@ -19,7 +19,7 @@ import ParseURLData from "../utility/ParseURLData";
 import { View } from "react-native";
 
 //Firebase
-const dbRefObject = db.database().ref().child('connortest');
+const dbRefObject = db.database().ref().child('adamtest');
 
 let mapDataInitial: MapData = {
     map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: []
