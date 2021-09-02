@@ -2,6 +2,7 @@ import {Button, Typography} from '@material-ui/core';
 import React from 'react';
 import { useHistory } from "react-router-dom";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import {db} from "../firebaseConfig";
 
 interface Props {
     buttonString : string
@@ -44,20 +45,23 @@ const SmallMenuButton = (props : Props) => {
     //Other Variable Initialisations
     const history = useHistory();
 
+    //const isValidCode = db.database().ref().child(props.code());
 
     return (
         <div className={"SmallMenuButton"}>
-        <Button variant="outlined" size="small" color="primary" className={classes.smallMenuButton} onClick={() => {
-            history.push({
-                pathname: buttonRoute+"/"+props.code(),
-                    state: "gamecode" //data parsed between pages
-            })
-        }}>
+            <Button variant="outlined" size="small" color="primary" className={classes.smallMenuButton} onClick={() => {
+                // Need to first check if a game with this gamecode exists
+                
+                history.push({
+                    pathname: buttonRoute+"/"+props.code(),
+                    state: props.code() //data parsed between pages
+                })
+            }}>
 
-            <Typography variant={"button"} className={classes.buttonText} >
-                {buttonString}
-            </Typography>
-        </Button>
+                <Typography variant={"button"} className={classes.buttonText} >
+                    {buttonString}
+                </Typography>
+            </Button>
         </div>
     );
 }

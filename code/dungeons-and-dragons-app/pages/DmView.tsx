@@ -18,8 +18,8 @@ import MapData from "../interfaces/MapData";
 import ParseURLData from "../utility/ParseURLData";
 import { View } from "react-native";
 
-//Firebase
-const dbRefObject = db.database().ref().child('adamtest');
+//Firebase (old, delete)
+//const dbRefObject = db.database().ref().child('adamtest');
 
 let mapDataInitial: MapData = {
     map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: []
@@ -41,10 +41,13 @@ const useStyles = makeStyles((theme) => ({
 const DmView = () => {
     const history = useHistory();
     console.log(ParseURLData(history.location.pathname));
+    let gamecode : string = history.location.state as string;
+    console.log(gamecode);
+
+    const dbRefObject = db.database().ref().child(gamecode); //Reference to map from Firebase Realtime Database
     const [open, setOpen] = React.useState(false);
 
     let levels: Number[][][] = [getFirebaseMap()]
-
 
     const classes = useStyles();
     const [mapData, setMapData] = useState(mapDataInitial);

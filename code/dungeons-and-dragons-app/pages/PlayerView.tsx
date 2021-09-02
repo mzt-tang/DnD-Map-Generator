@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
+import { useHistory } from "react-router-dom";
 import {db} from "../firebaseConfig";
 import firebase from 'firebase';
 
@@ -14,10 +15,14 @@ let mapDataInitial: MapData = {
 };
 
 // firebase
-const playerViewDatabase = async () => await db.database().ref().child('adamtest');
+//const playerViewDatabase = async () => await db.database().ref().child('adamtest');
 const tileSize = firebase.database().ref().child('tileSize');
 
 const PlayerView = () => {
+    const history = useHistory();
+
+    let gamecode : string = history.location.state as string;
+    const playerViewDatabase = async () => await db.database().ref().child(gamecode);
 
     const [map, setMap] = useState(mapDataInitial);
     const [size, setSize] = useState(25); //todo set the tile size?
