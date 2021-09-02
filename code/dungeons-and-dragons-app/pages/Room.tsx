@@ -9,7 +9,7 @@ import entrance from '../assets/Images4/Floor.png';
 // Import styles
 import Grid from "../components/Grid";
 import '../styles/style.css';
-import {roomGen} from "../utility/RoomGen";
+import {roomGen} from "../utility/roomGen";
 
 const Room = () => {
     const[rows, setRows] = useState(20);

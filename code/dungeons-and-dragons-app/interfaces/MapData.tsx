@@ -10,10 +10,10 @@ interface MapData {
 export default MapData
 
 export interface Monster {
-    id: number,
+    faction: string,
     name: string,
-    stats: string[][],
+    size: number,
     loneliness: number,
-    friends: number[],
+    friends: string[],
     commonality: number // The average amount of these monsters that appear on a map
 }
