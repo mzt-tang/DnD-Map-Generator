@@ -5,6 +5,8 @@ import {AppBar, Grid, IconButton, Link, Toolbar, Typography} from "@material-ui/
 import {Title} from "@material-ui/icons";
 import Map from '../components/Map';
 
+import { useLocation } from "react-router-dom";
+
 import Image1 from '../assets/Dark.png';
 import Image2 from '../assets/Light.png';
 import Image3 from '../assets/New Tile Assets/floor_e.png';
@@ -67,6 +69,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function DmView() {
+
+    const location = useLocation();
     const classes = useStyles();
 
     return (
@@ -77,9 +81,7 @@ function DmView() {
             <div id='route'>
                 <Map images={images} />
             </div>
-            <div id = 'test'>
-                <Text> Testing Automatic Deployment</Text>
-            </div>
+            <Text>{location.state.theme}</Text>
         </Grid>
     )
 }
