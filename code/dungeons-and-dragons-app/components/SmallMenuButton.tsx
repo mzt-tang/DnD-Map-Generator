@@ -35,6 +35,8 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
+
+
 const SmallMenuButton = (props : Props) => {
     const classes = useStyles();
 
@@ -43,20 +45,31 @@ const SmallMenuButton = (props : Props) => {
     const buttonRoute : string = props.buttonRoute;
 
     //Other Variable Initialisations
-    const history = useHistory();
+    let history = useHistory();
 
-    //const isValidCode = db.database().ref().child(props.code());
+    function isGameCodeValid(props : Props) : boolean {
+        let gameCode : string = props.code();
+        let isValidCode : boolean;
+        if (gameCode.length < 1) { isValidCode = false; }
+        else { 
+            console.log(db.database().ref().child(gameCode).toString());
+            isValidCode = db.database().ref().child(gameCode) != null;
+        }
+        console.log("code: '" + props.code() as string + "', isValidCode=" + isValidCode);
+        return isValidCode;
+    }
 
     return (
         <div className={"SmallMenuButton"}>
             <Button variant="outlined" size="small" color="primary" className={classes.smallMenuButton} onClick={() => {
                 // Need to first check if a game with this gamecode exists
-                
-                history.push({
-                    pathname: buttonRoute+"/"+props.code(),
-                    state: props.code() //data parsed between pages
-                })
-            }}>
+                isGameCodeValid(props) ? 
+                    history.push({
+                        pathname: buttonRoute+"/"+props.code(),
+                        state: props.code() //data parsed between pages
+                    })
+                : alert("The GameCode \"" + props.code() + "\" is not valid. Please enter a valid GameCode.") // placeholder, should ideally send a custom error message component
+            }}>  
 
                 <Typography variant={"button"} className={classes.buttonText} >
                     {buttonString}
