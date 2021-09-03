@@ -1,7 +1,12 @@
-import {Monster} from "../interfaces/MapData";
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 
+import {Monster} from "../interfaces/MapData";
+import {createData} from "../components/Map";
 
 export function monsterGeneration (){
+
+    const monsterPresetRef = firebase.firestore().collection('monsterPresets');
 
     // Options:
     // 1. - doing this one

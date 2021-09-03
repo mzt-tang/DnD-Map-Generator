@@ -33,7 +33,7 @@ const useRowStyles = makeStyles({
     },
 });
 
-function createData(
+export function createData(
     name: string,
     monsters: string[],
 ) {
