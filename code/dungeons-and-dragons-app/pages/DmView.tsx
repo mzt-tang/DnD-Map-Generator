@@ -16,11 +16,11 @@ import { Grid } from "@material-ui/core";
 import MapGen from '../utility/MapGen';
 import MapData from "../interfaces/MapData";
 import { View } from "react-native";
+import PlayerView from "./PlayerView";
+import { InsertInvitation } from "@material-ui/icons";
 
 //Firebase
 const dbRefObject = db.database().ref().child('adamtest');
-
-let levelMaps = [getFirebaseMap()];
 
 let mapDataInitial: MapData = {
     map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: [], roomNum: 1
@@ -38,6 +38,8 @@ const useStyles = makeStyles((theme) => ({
         background: theme.palette.success.light,
     }
 }));
+
+let lastMap: MapData
 
 const DmView = () => {
     const history = useHistory();
@@ -57,15 +59,20 @@ const DmView = () => {
         MapGen().then(
             value => {
                 setMapData(value);
+                //PlayerView.update(mapData) // Update the player view
                 db.database().ref().child('games/code/map/levels/' + levels.length).set(value)
             }
         )
     };
 
-    console.log("Before return: " + levels.length)
+    if (levels.length == 0) {
+        levels = getFirebaseMap()
+    }
 
+    if (!levels.includes(mapDataInitial)) {
+        levels.push(mapDataInitial)
+    }
     levels = getFirebaseMap()
-
     return (
         <div id='dmView' style={{ backgroundColor: hexToRgb("#8b5f8c"), height: "100%" }}>
             <div id="topBar">
@@ -73,6 +80,14 @@ const DmView = () => {
                     history.push('/home')
                 }}>X</Button>
                 <Button id="topButton" style={{ width: '200px', top: 10 }}><img src={saveImage} style={{ width: '17px', marginRight: '10px' }} />Save</Button>
+                <Button id="topButton" style={{ width: '200px', top: 10 }} onClick={() => {
+                    // Generate new map
+                    levels = getFirebaseMap()
+                    generateMap()
+                    levels.push(mapData)
+                    lastMap = mapData
+                    console.log(levels.length)
+                }}>New Level</Button>
                 <React.Fragment>
                     <TableRow>
                         <TableCell>
@@ -92,9 +107,24 @@ const DmView = () => {
                                                 {levels.map((l => (
                                                     // Get the levels from the firebase, loop through all of them, adding a button per level and attaching a link to load that level to the button
                                                     <Button id="topButton" style={{ width: '100px' }} onClick={() => {
+                                                        levels = getFirebaseMap()
                                                         //load the levels
-                                                        setMapData(levels[levels.indexOf(l)])
-                                                    }}>Level {levels.indexOf(l) + 1}</Button> // Retrieve each level, and display the level
+                                                        if (levels.indexOf(l) == levels.length-1) {
+                                                            levels = getFirebaseMap()
+                                                            console.log("last MAP IN ARRAY " + levels.length)
+                                                            console.log("ENTERING LEVEL " + (levels.length-1))
+                                                            levels.push(lastMap) // push a random map
+                                                            setMapData(levels[levels.indexOf(l)+1]) // safely access the correct map
+                                                            levels.pop() // remove previosly added map
+                                                            levels = getFirebaseMap()
+                                                        }
+                                                        else {
+                                                            console.log("ENTERING LEVEL " + (levels.indexOf(l)+1))
+                                                            levels = getFirebaseMap()
+                                                            setMapData(levels[levels.indexOf(l) + 1]) // works fine for all but last index
+                                                            levels = getFirebaseMap()
+                                                        }
+                                                    }}>Level {levels.indexOf(l)+1}</Button> // Retrieve each level, and display the level
                                                 )))}
                                             </TableRow>
                                         </TableHead>
@@ -104,11 +134,7 @@ const DmView = () => {
                         </TableCell>
                     </TableRow>
                 </React.Fragment>
-                <Button id="topButton" style={{ width: '200px', top: 10 }} onClick={() => {
-                    // Generate new map
-                    generateMap()
-                    levels[levels.length] = mapData
-                }}>New Level</Button>
+                
                 <div id="topButton" style={{ position: "absolute", left: "900px", top: 10 }}>
                     FOG ON/OFF
                     <Button>Toggle Fog</Button>
