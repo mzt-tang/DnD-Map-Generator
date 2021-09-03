@@ -1,5 +1,6 @@
 import {Button, Typography} from '@material-ui/core';
 import React from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import {db} from "../firebaseConfig";
@@ -49,13 +50,17 @@ const SmallMenuButton = (props : Props) => {
 
     function isGameCodeValid(props : Props) : boolean {
         let gameCode : string = props.code();
-        let isValidCode : boolean;
+        let isValidCode : boolean = false;
         if (gameCode.length < 1) { isValidCode = false; }
-        else { 
-            console.log(db.database().ref().child(gameCode).toString());
-            isValidCode = db.database().ref().child(gameCode) != null;
+        else {
+            isValidCode = true;
+            //let mapsDatabaseRef = db.database().ref();
+            //mapsDatabaseRef.get().then(value => console.log("Buroza: " + value.child(gameCode).exists()));
+            //console.log("ice code: '" + gameCode as string + "', isValidCode=" + isValidCode);
+            //mapsDatabaseRef.get().then(value => console.log(isValidCode = value.child(gameCode).exists()));
+            //console.log("fire code: '" + gameCode as string + "', isValidCode=" + isValidCode);
         }
-        console.log("code: '" + props.code() as string + "', isValidCode=" + isValidCode);
+        console.log("code: '" + gameCode as string + "', isValidCode=" + isValidCode);
         return isValidCode;
     }
 
@@ -69,7 +74,7 @@ const SmallMenuButton = (props : Props) => {
                         state: props.code() //data parsed between pages
                     })
                 : alert("The GameCode \"" + props.code() + "\" is not valid. Please enter a valid GameCode.") // placeholder, should ideally send a custom error message component
-            }}>  
+            }}>
 
                 <Typography variant={"button"} className={classes.buttonText} >
                     {buttonString}
