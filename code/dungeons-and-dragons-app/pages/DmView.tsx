@@ -1,21 +1,32 @@
-import { Box, Button, Collapse, hexToRgb, makeStyles, Slider, Table, TableCell, TableHead, TableRow } from "@material-ui/core";
-import { IconButton } from "@material-ui/core";
-import Map, { getFirebaseMap } from '../components/Map';
+import {
+    Box,
+    Button,
+    ButtonBaseProps,
+    Collapse,
+    hexToRgb,
+    makeStyles,
+    Slider,
+    Table,
+    TableCell,
+    TableHead,
+    TableRow
+} from "@material-ui/core";
+import {IconButton} from "@material-ui/core";
+import Map, {getFirebaseMap} from '../components/Map';
 import '../styles/style.css'
-import { useHistory } from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import firebase from 'firebase'
-import { db } from '.././firebaseConfig';
+import {db} from '.././firebaseConfig';
 
 import saveImage from '../assets/saveIcon.png'
 
-import React, { useEffect, useState } from 'react';
+import React, {MouseEventHandler, useEffect, useState} from 'react';
 
-import { Grid } from "@material-ui/core";
+import {Grid} from "@material-ui/core";
 import MapGen from '../utility/MapGen';
 import MapData from "../interfaces/MapData";
-import { View } from "react-native";
+
 
 //Firebase
 const dbRefObject = db.database().ref().child('adamtest');
@@ -40,6 +51,12 @@ const useStyles = makeStyles((theme) => ({
 const DmView = () => {
     const history = useHistory();
     const [open, setOpen] = React.useState(false);
+
+    const [showFog, setShowFog] = React.useState(false);
+    const [showFogColor, setShowFogColor] = React.useState("secondary");
+
+    const [addFog, setAddFog] = React.useState(false);
+    const [addFogColor, setAddFogColor] = React.useState("secondary");
 
     let levels: Number[][][] = [getFirebaseMap()]
 
@@ -68,33 +85,73 @@ const DmView = () => {
         )
     }
 
+    const clickMapTileHandler: MouseEventHandler<HTMLImageElement> = (event: React.MouseEvent<HTMLImageElement>) => {
+        if (!addFog) return;
+        const arr = event.currentTarget.id.split(",");
+        const row = Number.parseInt(arr[0]);
+        const col = Number.parseInt(arr[1]);
+        console.log("Row:",row,"Col:",col);
+        const newVisibility = mapData.visibility.slice();
+        newVisibility[row][col] = mapData.visibility[row][col] == 1 ? 0 : 1;
+        const newMapData = {
+            ...mapData,
+            visibility: newVisibility
+        };
+        dbRefObject.set(newMapData);
+        setMapData(newMapData);
+    }
+
+    const showFogButtonHandler = () => {
+        setShowFog((value) => {
+            !value ? setShowFogColor("primary") : setShowFogColor("secondary");
+            return !value;
+        });
+    }
+
+    const addFogButtonHandler = () => {
+        setAddFog((value) => {
+            !value ? setAddFogColor("primary") : setAddFogColor("secondary");
+            return !value
+        });
+    }
 
     return (
-        <div id='dmView' style={{ backgroundColor: hexToRgb("#8b5f8c"), height: "100%" }}>
+        <div id='dmView' style={{backgroundColor: hexToRgb("#8b5f8c"), height: "100%"}}>
             <div id="topBar">
-                <Button id="topButton" style={{ width: '40px', top: 10 }} onClick={() => {
+                <Button id="topButton" style={{width: '40px', top: 10}} onClick={() => {
                     history.push('/home')
                 }}>X</Button>
-                <Button id="topButton" style={{ width: '200px', top: 10 }}><img src={saveImage} style={{ width: '17px', marginRight: '10px' }} />Save</Button>
+                <Button id="topButton" style={{width: '200px', top: 10}}><img src={saveImage} style={{
+                    width: '17px',
+                    marginRight: '10px'
+                }}/>Save</Button>
                 <React.Fragment>
                     <TableRow>
                         <TableCell>
-                            <IconButton aria-label="expand row" size="small" onClick={() => { setOpen(!open) }}>
-                                {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                            <IconButton aria-label="expand row" size="small" onClick={() => {
+                                setOpen(!open)
+                            }}>
+                                {open ? <KeyboardArrowUpIcon/> : <KeyboardArrowDownIcon/>}
                             </IconButton>
                             Level
                         </TableCell>
                     </TableRow>
                     <TableRow>
-                        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                        <TableCell style={{paddingBottom: 0, paddingTop: 0}} colSpan={6}>
                             <Collapse in={open} timeout="auto" unmountOnExit>
                                 <Box margin={1}>
                                     <Table size="small" aria-label="purchases">
                                         <TableHead>
-                                            <TableRow style={{ position: "relative", top: 0, width: '100%', display: "flex", flexDirection: "column" }}>
+                                            <TableRow style={{
+                                                position: "relative",
+                                                top: 0,
+                                                width: '100%',
+                                                display: "flex",
+                                                flexDirection: "column"
+                                            }}>
                                                 {levels.map((l => (
                                                     // Get the levels from the firebase, loop through all of them, adding a button per level and attaching a link to load that level to the button
-                                                    <Button id="topButton" style={{ width: '100px' }} onClick={() => {
+                                                    <Button id="topButton" style={{width: '100px'}} onClick={() => {
                                                         //load the levels
                                                     }}>Level {levels.indexOf(l) + 1}</Button> // Retrieve each level, and display the level
                                                 )))}
@@ -106,19 +163,25 @@ const DmView = () => {
                         </TableCell>
                     </TableRow>
                 </React.Fragment>
-                <Button id="topButton" style={{ width: '200px', top: 10 }} onClick={() => {
+                <Button id="topButton" style={{width: '200px', top: 10}} onClick={() => {
                     // Generate new map
                     //window.location.reload() reloads a page, generating a new map
                     generateMap()
                     levels[levels.length] = getFirebaseMap()
                 }}>New Level</Button>
-                <div id="topButton" style={{ position: "absolute", left: "900px", top: 10 }}>
+                <div id="topButton" style={{position: "absolute", left: "900px", top: 10}}>
                     FOG ON/OFF
-                    <Button>Toggle Fog</Button>
-                    <Button>add fog</Button>
+                    <Button variant="contained" onClick={showFogButtonHandler} color={showFogColor}>Show Fog</Button>
+                    <Button variant="contained" onClick={addFogButtonHandler} color={addFogColor}>Add Fog</Button>
                 </div>
-                <div id='route' style={{ backgroundColor: hexToRgb("#AAAABB"), position: "absolute", top: 100, alignSelf: "center", right: "35%" }}>
-                    <Map mapData={mapData} />
+                <div id='route' style={{
+                    backgroundColor: hexToRgb("#AAAABB"),
+                    position: "absolute",
+                    top: 100,
+                    alignSelf: "center",
+                    right: "35%"
+                }}>
+                    <Map mapData={mapData} imagePressFunction={clickMapTileHandler} showFog={showFog}/>
                 </div>
 
             </div>
