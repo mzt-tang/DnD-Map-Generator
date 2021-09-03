@@ -6,6 +6,7 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 interface Props {
     buttonString : string
     buttonRoute : string
+    buttonProp : string
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -38,6 +39,7 @@ const SmallMenuButton = (props : Props) => {
     // Props Initialisations
     const buttonString : string = props.buttonString;
     const buttonRoute : string = props.buttonRoute;
+    const buttonProp : string = props.buttonProp;
 
     //Other Variable Initialisations
     const history = useHistory();
@@ -48,7 +50,10 @@ const SmallMenuButton = (props : Props) => {
         <Button variant="outlined" size="small" color="primary" className={classes.smallMenuButton} onClick={() => {
             history.push({
                 pathname: buttonRoute+"/$Game=123",
-                    state: "gamecode" //data parsed between pages
+                    state: {
+                        code: "gamecode",
+                        theme: buttonProp,
+                    } //data parsed between pages
             })
         }}>
 

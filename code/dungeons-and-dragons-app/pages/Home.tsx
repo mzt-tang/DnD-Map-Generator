@@ -6,18 +6,12 @@ import { Typography } from "@material-ui/core";
 
 
 const Home = () => {
-
-    const [theme, setTheme] = useState("cave");
-
     return (
         <View>
             <div className={"container"}>
                 <div className={"homeButtons"}>
-                    <LargeButton buttonString={"DM View"} buttonRoute={"/playeroptions"} leftAndRightPadding={110} buttonProps={theme} />
-                    <LargeButton buttonString={"Player View"} buttonRoute={"/dmoptions"} leftAndRightPadding={25} buttonProps={""} />
-                    <Pressable onPress={() => setTheme("sand")}>
-                        <Text>Sand Theme</Text>
-                    </Pressable>
+                    <LargeButton buttonString={"DM View"} buttonRoute={"/playeroptions"} leftAndRightPadding={110} buttonProps={""} />
+                    <LargeButton buttonString={"Player View"} buttonRoute={"/dmoptions"} leftAndRightPadding={25} buttonProps={""} /> 
                 </div>
             </div>
         </View>

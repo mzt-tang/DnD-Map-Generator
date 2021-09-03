@@ -16,10 +16,13 @@ const roomGrowProbability = 0.42;
 //todo double doors.
 const DOUBLE_DOORS = false;
 
+interface mapGenProps {
+    theme: string
+}
 /**
  * Returns a map data object containing all the information needed for a level.
  */
-export default async function map() : Promise<MapData> {
+export default async function map(props:mapGenProps) : Promise<MapData> {
 
     let allRooms : number[][][] = []; // holds all the rooms making up the map in order.
 

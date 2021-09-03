@@ -122,6 +122,7 @@ export function getFirebaseMap(): number[][] {
 interface mapProps {
     mapData: MapData,
     imagePressFunction: React.MouseEventHandler<HTMLImageElement>
+    mapTheme: string,
 }
 
 /**
@@ -142,7 +143,7 @@ export default function map(props: mapProps) {
     }
 
     const data = props.mapData;
-    const images = makeImageArray(data.map, data.visibility,props.imagePressFunction);
+    const images = makeImageArray(data.map, data.visibility,props.imagePressFunction, props.mapTheme);
 
     return (
         <div id="page">

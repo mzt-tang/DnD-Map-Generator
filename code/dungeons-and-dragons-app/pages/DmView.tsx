@@ -106,7 +106,7 @@ function DmView() {
     }, [])
 
     const generateMap = () => {
-        MapGen().then(
+        MapGen(location.state.theme).then(
             value => {
                 setMapData(value);
                 dbRefObject.set(value)
@@ -176,11 +176,11 @@ function DmView() {
                     <Button>add fog</Button>
                 </div>
                 <div id='route' style={{ backgroundColor: hexToRgb("#AAAABB"), position: "absolute", top: 100, alignSelf: "center", right: "35%" }}>
-                    <Map mapData={mapData} imagePressFunction={clickVisibilityHandler}/>
+                    <Map mapData={mapData} imagePressFunction={clickVisibilityHandler} mapTheme= {location.state.theme}/>
                 </div>
 
             </div>
-            <Text>{location.state.theme}</Text>
+            <Text>{}</Text>
         </div>
     )
 }

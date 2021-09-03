@@ -20,6 +20,7 @@ import Image19 from "../assets/New Tile Assets/floor_ns.png";
 import Image20 from "../assets/New Tile Assets/floor_ew.png";
 import Image21 from "../assets/New Tile Assets/floor_default.png";
 import Image22 from "../assets/New Tile Assets/wall.png";
+import Image23 from "../assets/New Tile Assets/floor_default2.png";
 import React, {MouseEvent, MouseEventHandler} from "react";
 import {Text} from "react-native";
 
@@ -50,9 +51,64 @@ const getImages = () => {
     ]
 }
 
+const caveImages = () => {
+    return [
+        <img className="grid_img" src={Image1}/>,
+        <img className="grid_img" src={Image2}/>,
+        <img className="grid_img" src={Image3}/>,
+        <img className="grid_img" src={Image4}/>,
+        <img className="grid_img" src={Image5}/>,
+        <img className="grid_img" src={Image6}/>,
+        <img className="grid_img" src={Image7}/>,
+        <img className="grid_img" src={Image8}/>,
+        <img className="grid_img" src={Image9}/>,
+        <img className="grid_img" src={Image10}/>,
+        <img className="grid_img" src={Image11}/>,
+        <img className="grid_img" src={Image12}/>,
+        <img className="grid_img" src={Image13}/>,
+        <img className="grid_img" src={Image14}/>,
+        <img className="grid_img" src={Image15}/>,
+        <img className="grid_img" src={Image16}/>,
+        <img className="grid_img" src={Image17}/>,
+        <img className="grid_img" src={Image18}/>,
+        <img className="grid_img" src={Image19}/>,
+        <img className="grid_img" src={Image20}/>,
+        <img className="grid_img" src={Image21}/>,
+        <img className="grid_img" src={Image22}/>
+    ]
+}
+
+const basementImages = () => {
+    return [
+        <img className="grid_img" src={Image1}/>,
+        <img className="grid_img" src={Image2}/>,
+        <img className="grid_img" src={Image3}/>,
+        <img className="grid_img" src={Image4}/>,
+        <img className="grid_img" src={Image5}/>,
+        <img className="grid_img" src={Image6}/>,
+        <img className="grid_img" src={Image7}/>,
+        <img className="grid_img" src={Image8}/>,
+        <img className="grid_img" src={Image9}/>,
+        <img className="grid_img" src={Image10}/>,
+        <img className="grid_img" src={Image11}/>,
+        <img className="grid_img" src={Image12}/>,
+        <img className="grid_img" src={Image13}/>,
+        <img className="grid_img" src={Image14}/>,
+        <img className="grid_img" src={Image15}/>,
+        <img className="grid_img" src={Image16}/>,
+        <img className="grid_img" src={Image17}/>,
+        <img className="grid_img" src={Image18}/>,
+        <img className="grid_img" src={Image19}/>,
+        <img className="grid_img" src={Image20}/>,
+        <img className="grid_img" src={Image21}/>,
+        <img className="grid_img" src={Image22}/>
+    ]
+}
 
 
-export const getImageWithId = (id : string, index : number, userClicked: MouseEventHandler<HTMLImageElement>) : JSX.Element  => {
+
+
+export const getImageWithId = (id : string, index : number, userClicked: MouseEventHandler<HTMLImageElement>,theme:string) : JSX.Element  => {
     switch (index){
         case 0:  return <img className="grid_img" src={Image1} id={id} onClick={userClicked}/>
         case 1:  return <img className="grid_img" src={Image2} id={id} onClick={userClicked}/>
@@ -74,7 +130,7 @@ export const getImageWithId = (id : string, index : number, userClicked: MouseEv
         case 17: return <img className="grid_img" src={Image18} id={id} onClick={userClicked}/>
         case 18: return <img className="grid_img" src={Image19} id={id} onClick={userClicked}/>
         case 19: return <img className="grid_img" src={Image20} id={id} onClick={userClicked}/>
-        case 20: return <img className="grid_img" src={Image21} id={id} onClick={userClicked}/>
+        case 20: return <img className="grid_img" src={theme == "cave" ? Image21 : Image23} id={id} onClick={userClicked}/>
         case 21: return <img className="grid_img" src={Image22} id={id} onClick={userClicked}/>
         default: return <Text>Error</Text>
     }
