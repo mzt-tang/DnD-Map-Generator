@@ -124,7 +124,7 @@ export default async function map(props:mapGenProps) : Promise<MapData> {
         }
 
         // Generate the room and add it to allRooms.
-        allRooms[currentRoomIndex] = roomGen(roomSize, roomSize, entrances, roomGrowProbability, true);
+        allRooms[currentRoomIndex] = roomGen(roomSize, roomSize, entrances, 0.10, true);
 
         // calculate the next room to make.
         if (row < mapRoomRows - 1 && col < mapRoomCols - 1) {

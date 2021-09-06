@@ -2,10 +2,12 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
+import { Pressable } from 'react-native';
 
 // We establish Props as our "Parameters" for the Button
 interface Props {
-    themeList : string[]
+    themeList : string[],
+    onChange : Function
 }
 
 const ThemeSelect = (props : Props) => {
@@ -17,9 +19,9 @@ const ThemeSelect = (props : Props) => {
         <div className={"themeSelect"}>
             <Paper>
                 <MenuList>
-                    <MenuItem>{themeList[0]}</MenuItem>
-                    <MenuItem >{themeList[1]}</MenuItem>
-                    <MenuItem>{themeList[2]}</MenuItem>
+                    <MenuItem onClick={() => props.onChange(themeList[0])}>{themeList[0]}</MenuItem>
+                    <MenuItem onClick={() => props.onChange(themeList[1])}>{themeList[1]}</MenuItem>
+                    <MenuItem onClick={() => props.onChange(themeList[2])}>{themeList[2]}</MenuItem>
                 </MenuList>
             </Paper>
         </div>

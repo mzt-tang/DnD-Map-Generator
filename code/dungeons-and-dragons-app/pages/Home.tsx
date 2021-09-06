@@ -10,8 +10,8 @@ const Home = () => {
         <View>
             <div className={"container"}>
                 <div className={"homeButtons"}>
-                    <LargeButton buttonString={"DM View"} buttonRoute={"/playeroptions"} leftAndRightPadding={110} buttonProps={""} />
-                    <LargeButton buttonString={"Player View"} buttonRoute={"/dmoptions"} leftAndRightPadding={25} buttonProps={""} /> 
+                    <LargeButton buttonString={"DM View"} buttonRoute={"/dmoptions"} leftAndRightPadding={110} buttonProps={""} />
+                    <LargeButton buttonString={"Player View"} buttonRoute={"/playeroptions"} leftAndRightPadding={25} buttonProps={""} /> 
                 </div>
             </div>
         </View>
