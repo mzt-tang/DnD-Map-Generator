@@ -8,37 +8,53 @@ export function monsterGeneration (){
 
     const monsterPresetRef = firebase.firestore().collection('monsterPresets');
 
-    // Options:
-    // 1. - doing this one
-    // Create pre determined sets of monsters to be in a group together
-    // Choose a random monster set based on level of difficulty
-    // Randomly generate monsters from that set
-    // Assign monsters to rooms
+    monsterPresetRef.get().then((snapshot) => {
+        const index: number = getRandomInt(0, snapshot.docs.length-1);
+        let counter: number = 0;
 
-    // 2.
-    // Randomly choose 2-3 monsters based on level difficulty
-    // Look at the monsters' friends and add monsters by 'branching out' from the monsters in the set
-    // Assign monsters to room
+        //todo it will be more appropriate for documents to be a specific level,
+        // then choose an random array from that document
+        snapshot.docs.every(doc => {
+            if (counter == index) { //If at the randomly chosen monster preset
+                //
+                generateAllMonsters(doc.data().monsters);
+                return false;
+            }
+            counter++;
+            return true; //Keep iterating
+        });
+    });
 
-    //Set of monsters
-    //List of eligible
-    //Storing the assigned monsters.
+    function generateAllMonsters(monsterPreset: string[]) {
+        // Options:
+        // 1. - doing this one
+        // Create pre determined sets of monsters to be in a group together
+        // Choose a random monster set based on level of difficulty
+        // Randomly generate monsters from that set
+        // Assign monsters to rooms
 
-    let dummySet: string[] = ["100", "111", "222", "333", "555"]; // dummy set. This part should call to firebase
-    // and grab a monster set based on the map level
+        // 2.
+        // Randomly choose 2-3 monsters based on level difficulty
+        // Look at the monsters' friends and add monsters by 'branching out' from the monsters in the set
+        // Assign monsters to room
 
-    let generatedMonsters: string[][] = [[]];
+        //Set of monsters
+        //List of eligible
+        //Storing the assigned monsters.
 
-    //Generate monsters from set
-    for (let i = 0; i < dummySet.length; i++) {
-        let monster: Monster = getMonsterById(dummySet[i]);
-        let commonalityDeviation: number = getRandomInt(monster.commonality - Math.floor(monster.commonality/2),
-            monster.commonality + Math.floor(monster.commonality/2)); //an operator to determine whether to add or minus from the commonality
+        let generatedMonsters: string[][] = [[]];
 
-        generatedMonsters.push([dummySet[i], commonalityDeviation + ""]);
+        //Generate monsters from set
+        for (let i = 0; i < monsterPreset.length; i++) {
+            let monster: Monster = getMonsterById(monsterPreset[i]);
+            let commonalityDeviation: number = getRandomInt(monster.commonality - Math.floor(monster.commonality / 2),
+                monster.commonality + Math.floor(monster.commonality / 2)); //an operator to determine whether to add or minus from the commonality
+
+            generatedMonsters.push([monsterPreset[i], commonalityDeviation + ""]);
+        }
+
+        assignMonstersToRooms(generatedMonsters);
     }
-
-    assignMonstersToRooms(generatedMonsters);
 
     /**
      *
