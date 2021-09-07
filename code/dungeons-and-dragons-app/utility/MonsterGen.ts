@@ -2,27 +2,31 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 import {Monster} from "../interfaces/MapData";
-import {createData} from "../components/Map";
 
-export function monsterGeneration (){
+export function monsterGeneration (level: string){
 
-    const monsterPresetRef = firebase.firestore().collection('monsterPresets');
+    level = "level1"; // todo temporary, to be removed later
+
+    const monsterPresetRef = firebase.firestore().collection('monsterPresets').doc(level);
 
     monsterPresetRef.get().then((snapshot) => {
-        const index: number = getRandomInt(0, snapshot.docs.length-1);
-        let counter: number = 0;
+        if (snapshot.exists) {
+            console.log("Document data:", snapshot.data());
+            const presetRef = snapshot.data();
+            let monsterPreset: Monster[] = [];
+            let len = snapshot.data()?.set1.length;
 
-        //todo it will be more appropriate for documents to be a specific level,
-        // then choose an random array from that document
-        snapshot.docs.every(doc => {
-            if (counter == index) { //If at the randomly chosen monster preset
-                //
-                generateAllMonsters(doc.data().monsters);
-                return false;
-            }
-            counter++;
-            return true; //Keep iterating
-        });
+            // for (let i = 0; i < presetRef.set1.length; i++) {
+            //
+            // }
+
+
+
+        } else {
+            console.log("No such document!");
+        }
+    }).catch((error) => {
+        console.log("Error getting document:", error);
     });
 
     function generateAllMonsters(monsterPreset: string[]) {
@@ -143,10 +147,12 @@ export function monsterGeneration (){
      * @param id
      */
     function getMonsterById(id: string): Monster {
-        let someMonster: Monster = {faction: "Humanoid", name:"goblin", size: 1, friends:["111","112","151"],
-            loneliness:6, commonality: 1}
-        return someMonster;
+        return {
+            faction: "test", name: "goblin", size: 1, friends: ["111", "112", "151"],
+            loneliness: 6, commonality: 1
+        };
     }
+
 
     function getRandomInt(min: number, max: number) {
         min = Math.ceil(min);
