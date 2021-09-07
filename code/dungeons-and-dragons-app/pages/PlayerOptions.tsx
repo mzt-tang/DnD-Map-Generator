@@ -37,7 +37,7 @@ const PlayerOptions = () => {
                     <CodeInput defaultText={""} labelText={"Enter a Game Code Here"} onCodeChange={handleCodeChange}/>
                     <div className={"playerOptionButtonDiv"}>
                         <SmallBackButton buttonString={"Back"} buttonRoute={"/home"} />
-                        <SmallMenuButton buttonString={"Join game"} buttonRoute={"/player"} code={fetchCode}/>
+                        <SmallMenuButton buttonString={"Join game"} buttonRoute={"/player"} code={fetchCode} creatingNewGame={false}/>
                     </div>
                 </div>
             </div>

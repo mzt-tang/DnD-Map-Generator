@@ -45,7 +45,7 @@ const DmOptions = () => {
                         <CodeInput defaultText={""} labelText={"Enter a Game Code Here"} onCodeChange={handleCodeChange} />
                         <div className={"loadGameButtons"}>
                             <SmallBackButton buttonString={"Back"} buttonRoute={""} />
-                            <SmallMenuButton buttonString={"Load Game"} buttonRoute={"/dm"} code={fetchCode}/>
+                            <SmallMenuButton buttonString={"Load Game"} buttonRoute={"/dm"} code={fetchCode} creatingNewGame={false}/>
                         </div>
                     </div>
                     <div className={"dmOptionRight"}>
@@ -54,7 +54,7 @@ const DmOptions = () => {
                         </Typography>
                         <ThemeSelect themeList={["Caves","Dungeon","Underground Mansion"]} />
                         <div className={"createButton"}>
-                            <SmallMenuButton buttonString={"Create"} buttonRoute={"/dm"} code={genRandomCode}/>
+                            <SmallMenuButton buttonString={"Create"} buttonRoute={"/dm"} code={genRandomCode} creatingNewGame={true}/>
                         </div>
                     </div>
                 </div>

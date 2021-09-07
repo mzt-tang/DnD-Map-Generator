@@ -10,6 +10,8 @@ interface Props {
     buttonRoute : string
 
     code(): string;
+
+    creatingNewGame : boolean
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -36,8 +38,6 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-
-
 const SmallMenuButton = (props : Props) => {
     const classes = useStyles();
 
@@ -48,34 +48,44 @@ const SmallMenuButton = (props : Props) => {
     //Other Variable Initialisations
     let history = useHistory();
 
-    function isGameCodeValid(props : Props) : boolean {
+    async function isGameCodeValid(props : Props) : Promise<boolean> {
         let gameCode : string = props.code();
-        let isValidCode : boolean = false;
-        if (gameCode.length < 1) { isValidCode = false; }
+        if (gameCode.length > 1 && props.creatingNewGame) { return true; }
         else {
-            isValidCode = true;
-            //let mapsDatabaseRef = db.database().ref();
-            //mapsDatabaseRef.get().then(value => console.log("Buroza: " + value.child(gameCode).exists()));
-            //console.log("ice code: '" + gameCode as string + "', isValidCode=" + isValidCode);
-            //mapsDatabaseRef.get().then(value => console.log(isValidCode = value.child(gameCode).exists()));
-            //console.log("fire code: '" + gameCode as string + "', isValidCode=" + isValidCode);
+            //Check if the gamecode is a valid path in Firebase (i.e., has length > 1, and does not have invalid characters like '$')
+            if (gameCode.length < 1 || gameCode.includes(".") || gameCode.includes("#") || gameCode.includes("$") || gameCode.includes("[") 
+                || gameCode.includes("]")) { return false; }
+
+            // Check if a GameCode matches an existing game
+            let isValidCode : boolean = false;
+            await gamecodeExists(gameCode).then((exists) => { isValidCode = exists; });
+            return Promise.resolve(isValidCode);
         }
-        console.log("code: '" + gameCode as string + "', isValidCode=" + isValidCode);
-        return isValidCode;
+    }
+
+    async function gamecodeExists(gameCode : string){
+        let codeExists : boolean = false;
+        try {
+            // Check whether the GameCode exists in the Firebase Realtime Database
+            const snapshot = await db.database().ref().get();
+            codeExists = snapshot.hasChild(gameCode);
+        }
+        catch (error) {
+            alert(error);
+        }
+        return Promise.resolve(codeExists);
     }
 
     return (
         <div className={"SmallMenuButton"}>
-            <Button variant="outlined" size="small" color="primary" className={classes.smallMenuButton} onClick={() => {
-                // Need to first check if a game with this gamecode exists
-                isGameCodeValid(props) ? 
+            <Button variant="outlined" size="small" color="primary" className={classes.smallMenuButton} onClick={async() => {
+                await isGameCodeValid(props) ? // Need to first check if a game with this gamecode exists
                     history.push({
                         pathname: buttonRoute+"/"+props.code(),
                         state: props.code() //data parsed between pages
                     })
                 : alert("The GameCode \"" + props.code() + "\" is not valid. Please enter a valid GameCode.") // placeholder, should ideally send a custom error message component
             }}>
-
                 <Typography variant={"button"} className={classes.buttonText} >
                     {buttonString}
                 </Typography>
