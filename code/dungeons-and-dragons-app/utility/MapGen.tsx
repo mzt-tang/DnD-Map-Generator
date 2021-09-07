@@ -2,7 +2,6 @@ import React from "react";
 import {roomGen} from "./RoomGen";
 import {assignImageNumbers} from '../utility/MapTilerHelper';
 import MapData from "../interfaces/MapData";
-import { HeightOutlined } from "@material-ui/icons";
 
 
 const roomSize = 10;
@@ -124,7 +123,7 @@ export default async function map(props:mapGenProps) : Promise<MapData> {
         }
 
         // Generate the room and add it to allRooms.
-        allRooms[currentRoomIndex] = roomGen(roomSize, roomSize, entrances, 0.10, true);
+        allRooms[currentRoomIndex] = roomGen(roomSize, roomSize, entrances, roomGrowProbability, true);
 
         // calculate the next room to make.
         if (row < mapRoomRows - 1 && col < mapRoomCols - 1) {

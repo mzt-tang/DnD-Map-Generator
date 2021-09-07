@@ -166,7 +166,7 @@ function DmView() {
                 </React.Fragment>
                 <Button id="topButton" style={{ width: '200px', top: 10 }} onClick={() => {
                     // Generate new map
-                    //window.location.reload() reloads a page, generating a new map
+                    window.location.reload() //reloads a page, generating a new map
                     generateMap()
                     levels[levels.length] = getFirebaseMap()
                 }}>New Level</Button>

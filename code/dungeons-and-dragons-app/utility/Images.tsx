@@ -21,7 +21,9 @@ import Image20 from "../assets/New Tile Assets/floor_ew.png";
 import Image21 from "../assets/New Tile Assets/floor_default.png";
 import Image22 from "../assets/New Tile Assets/wall.png";
 import Image23 from "../assets/New Tile Assets/wood_floor_default.png";
-import React, {MouseEvent, MouseEventHandler} from "react";
+import Image24 from "../assets/New Tile Assets/dungeon_wall.png";
+
+import React, {MouseEventHandler} from "react";
 import {Text} from "react-native";
 
 const getImages = () => {
@@ -75,7 +77,7 @@ export const getImageWithId = (id : string, index : number, userClicked: MouseEv
         case 18: return <img className="grid_img" src={Image19} id={id} onClick={userClicked}/>
         case 19: return <img className="grid_img" src={Image20} id={id} onClick={userClicked}/>
         case 20: return <img className="grid_img" src={Image21} id={id} onClick={userClicked}/>
-        case 21: return <img className="grid_img" src={theme == "Caves" ? Image22 : theme == "Underground Mansion" ? Image23 : Image22} id={id} onClick={userClicked}/>
+        case 21: return <img className="grid_img" src={theme == "Caves" ? Image22 : theme == "Underground Mansion" ? Image23 : Image24} id={id} onClick={userClicked}/>
         default: return <Text>Error</Text>
     }
 }
