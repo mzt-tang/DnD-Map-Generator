@@ -70,10 +70,6 @@
     background-color: rgba(0,0,0,0.7);
 }
 
-.dmOptionBox * {
-    padding: 0px 5px;
-}
-
 .dmOptionLeft {
     float: left;
     padding-left: 20px;
@@ -141,8 +137,8 @@
     position: fixed;
     background-image: url("../assets/Menu Images/Underdark.jpg");
     background-repeat: no-repeat;
-    background-size: auto;
-    /*background-color: #C21F39;*/
+    background-size: auto; 
+    background-color: #C21F39;
 }
 
 h2 {

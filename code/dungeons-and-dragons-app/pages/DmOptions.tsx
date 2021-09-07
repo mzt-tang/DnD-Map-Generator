@@ -1,6 +1,6 @@
-import {View, Pressable, Text} from "react-native";
-import React, {useState} from "react";
-import {Typography} from "@material-ui/core";
+import { View, Pressable, Text } from "react-native";
+import React, { useState } from "react";
+import { Typography, Radio } from "@material-ui/core";
 import ThemeSelect from "../components/ThemeSelect";
 import CodeInput from "../components/CodeInput";
 import SmallMenuButton from "../components/SmallMenuButton";
@@ -8,7 +8,7 @@ import SmallBackButton from "../components/SmallBackButton";
 
 
 const DmOptions = () => {
-    const [theme,setTheme] = useState("Cave");
+    const [theme, setTheme] = useState("Caves");
     return (
         <View>
             <div className={"backgroundImage"} >
@@ -20,7 +20,7 @@ const DmOptions = () => {
                         <Typography variant={"h4"} className={"dmSubtitle"}>
                             Load Exisiting Game
                         </Typography>
-                        <CodeInput defaultText={""} labelText={"Enter a Game Code Here"}/>
+                        <CodeInput defaultText={""} labelText={"Enter a Game Code Here"} />
                         <div className={"loadGameButtons"}>
                             <SmallBackButton buttonString={"Back"} buttonRoute={""} />
                             <SmallMenuButton buttonString={"Load Game"} buttonRoute={"/dm"} buttonProp={""} />
@@ -30,11 +30,12 @@ const DmOptions = () => {
                         <Typography variant={"h4"} className={"dmSubtitle"}>
                             New Game
                         </Typography>
-                        <ThemeSelect themeList={["Caves","Dungeon","Underground Mansion"]} onChange = {setTheme} />
+
+                        <ThemeSelect themeList={["Caves", "Dungeon", "Underground Mansion"]} onChange={setTheme} theme={theme} />
                         <div className={"createButton"}>
-                            <SmallMenuButton buttonString={"Create"} buttonRoute={"/dm"} buttonProp={theme}/>
+                            <SmallMenuButton buttonString={"Create"} buttonRoute={"/dm"} buttonProp={theme} />
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
