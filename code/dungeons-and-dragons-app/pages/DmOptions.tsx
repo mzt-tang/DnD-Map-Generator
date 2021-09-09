@@ -9,6 +9,7 @@ import SmallBackButton from "../components/SmallBackButton";
 
 const DmOptions = () => {
     const [theme, setTheme] = useState("Caves");
+    console.log(theme)
     return (
         <View>
             <div className={"backgroundImage"} >
@@ -34,7 +35,9 @@ const DmOptions = () => {
                         <ThemeSelect themeList={["Caves", "Dungeon", "Underground Mansion"]} onChange={setTheme} theme={theme} />
                         <div className={"createButton"}>
                             <SmallMenuButton buttonString={"Create"} buttonRoute={"/dm"} buttonProp={theme} />
+                            {console.log(theme)}
                         </div>
+                        
 
                     </div>
                 </div>
