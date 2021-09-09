@@ -101,8 +101,8 @@ const DmView = () => {
                 }}>Previous Map</Button>
                 <Button id="topButton" style={{ width: '100px', top: '10px' }} onClick={() => {
                     curMap = curMap + 1
-                    if (curMap == levels.length) {
-                        alert("This is the last level")
+                    if (curMap == levels.length || levels.length == 0) {
+                        alert("This is the last level, click \"NEW LEVEL\"")
                         curMap = curMap-1
                     }
                     else {
