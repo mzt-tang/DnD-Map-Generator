@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 let lastMap: MapData
-
+var curMap:number
 const DmView = () => {
     
     const history = useHistory();
@@ -65,11 +65,7 @@ const DmView = () => {
             }
         )
     };
-
-    if (levels.length == 0) {
-        levels = getFirebaseMap()
-    }
-
+    
     levels = getFirebaseMap()
     return (
         <div id='dmView' style={{ backgroundColor: hexToRgb("#8b5f8c"), height: "100%" }}>
@@ -83,36 +79,34 @@ const DmView = () => {
                     let newLevels = levels
                     if (levels.length > 0) {
                         setMapData(levels[levels.length-1])
-                        console.log("Adding level")
                     }
                     generateMap()
                     newLevels.push(mapData)
                     levels = getFirebaseMap()
                     lastMap = mapData
-                    console.log(levels.length)
-                    console.log("LEVEL ON: " + levels.indexOf(mapData))
+                    curMap = levels.length-1
+                    setMapData(levels[levels.length-1])
                 }}>New Level</Button>
                 <Button id="topButton" style={{ width: '100px', top: '10px' }} onClick={() => {
+                    curMap = curMap-1
                     if (levels.indexOf(mapData) == 0) {
-                        setMapData(levels[levels.length-1])
+                        setMapData(levels[curMap])
                     }
-                    console.log("LEVELS LENGTH: " + levels.length)
-                    if (levels.length > 1 && levels.indexOf(mapData) > 0) {
-                        setMapData(levels[levels.indexOf(mapData)-1])
+                    if (levels.length > 1 && curMap > 0) {
+                        setMapData(levels[curMap])
                     }
                     else {
                         alert("This is the first level")
                     }
-                    console.log(levels.indexOf(mapData)-1)
                 }}>Previous Map</Button>
                 <Button id="topButton" style={{ width: '100px', top: '10px' }} onClick={() => {
-                    console.log("LEVELS LENGTH: " + levels.length)
-                    console.log(levels.lastIndexOf(mapData)+1 )
-                    if (levels.lastIndexOf(mapData)+1 == levels.length) {
+                    curMap = curMap + 1
+                    if (curMap == levels.length) {
                         alert("This is the last level")
+                        curMap = curMap-1
                     }
                     else {
-                        setMapData(levels[levels.indexOf(mapData)+1])
+                        setMapData(levels[curMap])
                     }
                 }}>Next Map</Button>
                 
@@ -130,44 +124,3 @@ const DmView = () => {
 }
 
 export default DmView
-{/* <React.Fragment>
-                    <TableRow>
-                        <TableCell>
-                            <IconButton aria-label="expand row" size="small" onClick={() => { setOpen(!open) }}>
-                                {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-                            </IconButton>
-                            Level
-                        </TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-                            <Collapse in={open} timeout="auto" unmountOnExit>
-                                <Box margin={1}>
-                                    <Table size="small" aria-label="purchases">
-                                        <TableHead>
-                                            <TableRow style={{ position: "relative", top: 0, width: '100%', display: "flex", flexDirection: "column", zIndex:10 }}>
-                                                <>
-                                                {/* {levels.map((l => (
-                                                    // Get the levels from the firebase, loop through all of them, adding a button per level and attaching a link to load that level to the button
-                                                    <Button id="topButton" style={{ width: '100px' }} onClick={() => {
-                                                        levels = getFirebaseMap()
-                                                        //load the levels
-                                                        // if (levels.indexOf(l) == levels.length-1) {
-                                                        //     setMapData(lastMap)
-                                                        // }
-                                                        // else {
-                                                            console.log("ENTERING LEVEL " + (levels.indexOf(l)+1))
-                                                            levels = getFirebaseMap()
-                                                            setMapData(levels[levels.indexOf(l)]) // works fine for all but last index
-                                                            levels = getFirebaseMap()
-                                                        // }
-                                                    }}>Level {levels.lastIndexOf(l)+1}</Button> // Retrieve each level, and display the level
-                                                )))} */}
-                //                             </TableRow>
-                //                         </TableHead>
-                //                     </Table>
-                //                 </Box>
-                //             </Collapse>
-                //         </TableCell>
-                //     </TableRow>
-                // </React.Fragment> */}
