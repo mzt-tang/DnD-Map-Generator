@@ -2,6 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 import {Monster} from "../interfaces/MapData";
+import firestore = firebase.firestore;
 
 export function monsterGeneration (level: string){
 
@@ -9,17 +10,22 @@ export function monsterGeneration (level: string){
 
     const monsterPresetRef = firebase.firestore().collection('monsterPresets').doc(level);
 
-    monsterPresetRef.get().then((snapshot) => {
+    monsterPresetRef.get().then(async (snapshot) => {
         if (snapshot.exists) {
             console.log("Document data:", snapshot.data());
             const presetRef = snapshot.data();
             let monsterPreset: Monster[] = [];
-            let len = snapshot.data()?.set1.length;
+            let len = presetRef?.set1.length;
+            let set1 = presetRef?.set1;
 
-            // for (let i = 0; i < presetRef.set1.length; i++) {
-            //
-            // }
+            for (let i = 0; i < len; i++) {
+                let monster = await firebase.firestore().doc(set1[i]).get(); //
+                monsterPreset.push({
+                    faction: monster.data()?.faction, name: monster.data()?.name, size: monster.data()?.size, friends: monster.data()?.friends,
+                    loneliness: monster.data()?.loneliness, commonality: monster.data()?.size});
+            }
 
+            generateAllMonsters(monsterPreset);
 
 
         } else {
@@ -29,7 +35,7 @@ export function monsterGeneration (level: string){
         console.log("Error getting document:", error);
     });
 
-    function generateAllMonsters(monsterPreset: string[]) {
+    function generateAllMonsters(monsterPreset: Monster[]) {
         // Options:
         // 1. - doing this one
         // Create pre determined sets of monsters to be in a group together
@@ -50,11 +56,11 @@ export function monsterGeneration (level: string){
 
         //Generate monsters from set
         for (let i = 0; i < monsterPreset.length; i++) {
-            let monster: Monster = getMonsterById(monsterPreset[i]);
+            let monster: Monster = monsterPreset[i];
             let commonalityDeviation: number = getRandomInt(monster.commonality - Math.floor(monster.commonality / 2),
                 monster.commonality + Math.floor(monster.commonality / 2)); //an operator to determine whether to add or minus from the commonality
 
-            generatedMonsters.push([monsterPreset[i], commonalityDeviation + ""]);
+            generatedMonsters.push([monsterPreset[i].name, commonalityDeviation + ""]);
         }
 
         assignMonstersToRooms(generatedMonsters);
