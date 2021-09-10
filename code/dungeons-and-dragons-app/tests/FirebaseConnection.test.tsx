@@ -7,19 +7,20 @@
 import React, {useState} from 'react';
 import {db} from "../firebaseConfig";
 
+
 describe('<FirebaseConnection />', () => {
-    /**
-     * FIREBASE CONNECTION TESTS
-     */
-    test('Can connect to RTDB', () => {
-        try {
-            const dbRefObject = db.database().ref().child("abcde");
-            console.log(dbRefObject);
-            console.assert(dbRefObject != null);
-        } catch (error) {
-            console.error("Couldn't connect to RTDB");
-        }
-    });
+//     /**
+//      * FIREBASE CONNECTION TESTS
+//      */
+    // test('Can connect to RTDB', () => {
+    //     try {
+    //         const dbRefObject = db.database().ref().child("abcde");
+    //         console.log(dbRefObject);
+    //         console.assert(dbRefObject != null);
+    //     } catch (error) {
+    //         console.error("Couldn't connect to RTDB");
+    //     }
+    // });
 
     test('Can connect to Firestore', () => {
         try {
@@ -46,20 +47,37 @@ describe('<FirebaseConnection />', () => {
             }
 
             fetchData();
-            console.assert(monsterlist.length > 0);
+            expect(monsterlist.length == 0);
         } catch (error) {
             console.error("Couldn't fetch monster collection");
         }
     });
 
-    test('Retrieves collection of games', () => {
-        try {
-            const dbRefObject = db.database().ref();
-            const [mapData, setMapData] = useState([]);
-            dbRefObject.get().then(value => setMapData(value.val()))
-            console.assert(mapData != null);
-        } catch (error) {
-            console.error("Couldn't retrieve game collections");
-        }
-    });
+    // test('Retrieves collection of games', () => {
+    //     try {
+    //         const dbRefObject = db.database().ref();
+    //         const [mapData, setMapData] = useState([]);
+    //         dbRefObject.get().then(value => setMapData(value.val()))
+    //         console.assert(mapData != null);
+    //     } catch (error) {            
+    //         console.error("Couldn't retrieve game collections");
+    //     }
+    // });
+
+    test('can filter data', () => {
+            let monsterlist : any[] = [];
+            const ref = db.firestore().collection("monsters").where('faction', '==', 'Fiend');
+
+            async function fetchData() {
+                ref.onSnapshot((querySnapshot) => {
+                    const monsters : any[] = [];
+                    querySnapshot.forEach((doc) => {
+                        monsters.push(doc.data());
+                    });
+                    monsterlist = monsters
+                })
+            }
+            fetchData();
+            expect(monsterlist.includes('Barbed Devil') && !monsterlist.includes('Aboleth'))
+    })
 });
