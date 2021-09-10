@@ -5,6 +5,8 @@ import { useHistory } from "react-router-dom";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import {db} from "../firebaseConfig";
 
+import ValidateGameCode from "../utility/ValidateGameCode";
+
 interface Props {
     buttonString : string
     buttonRoute : string
@@ -48,38 +50,10 @@ const SmallMenuButton = (props : Props) => {
     //Other Variable Initialisations
     let history = useHistory();
 
-    async function isGameCodeValid(props : Props) : Promise<boolean> {
-        let gameCode : string = props.code();
-        if (gameCode.length > 1 && props.creatingNewGame) { return true; }
-        else {
-            //Check if the gamecode is a valid path in Firebase (i.e., has length > 1, and does not have invalid characters like '$')
-            if (gameCode.length < 1 || gameCode.includes(".") || gameCode.includes("#") || gameCode.includes("$") || gameCode.includes("[") 
-                || gameCode.includes("]")) { return false; }
-
-            // Check if a GameCode matches an existing game
-            let isValidCode : boolean = false;
-            await gamecodeExists(gameCode).then((exists) => { isValidCode = exists; });
-            return Promise.resolve(isValidCode);
-        }
-    }
-
-    async function gamecodeExists(gameCode : string){
-        let codeExists : boolean = false;
-        try {
-            // Check whether the GameCode exists in the Firebase Realtime Database
-            const snapshot = await db.database().ref().get();
-            codeExists = snapshot.hasChild(gameCode);
-        }
-        catch (error) {
-            alert(error);
-        }
-        return Promise.resolve(codeExists);
-    }
-
     return (
         <div className={"SmallMenuButton"}>
             <Button variant="outlined" size="small" color="primary" className={classes.smallMenuButton} onClick={async() => {
-                await isGameCodeValid(props) ? // Need to first check if a game with this gamecode exists
+                await ValidateGameCode(props.code(), props.creatingNewGame) ? // Need to first check if a game with this gamecode exists
                     history.push({
                         pathname: buttonRoute+"/"+props.code(),
                         state: props.code() //data parsed between pages
