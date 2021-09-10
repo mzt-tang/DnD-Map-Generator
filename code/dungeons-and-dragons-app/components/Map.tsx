@@ -5,8 +5,6 @@ import { roomGen } from "../utility/roomGen";
 import { Text } from 'react-native';
 import firebase from 'firebase';
 
-import '../styles/style.css'
-
 import PrismaZoom from 'react-prismazoom'
 
 import {makeStyles} from '@material-ui/core/styles';
