@@ -25,23 +25,37 @@ import saveImage from '../assets/saveIcon.png'
 
 import React, {DragEventHandler, MouseEventHandler, useEffect, useState} from 'react';
 
+
 import {Grid} from "@material-ui/core";
 import MapGen from '../utility/MapGen';
 import MapData from "../interfaces/MapData";
+
 import Typography from "@material-ui/core/Typography";
+
+import { View } from "react-native";
+import PlayerView from "./PlayerView";
+import { InsertInvitation } from "@material-ui/icons";
+
 
 
 // Firebase
 const dbRefObject = db.database().ref().child('adamtest');
 
-const mapDataInitial: MapData = {
-    map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: []
+
+let mapDataInitial: MapData = {
+    map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: [], roomNum: 1
 };
 
 
+
+
 const DmView = () => {
+    let lastMap: MapData
+    let curMap: number;
+    
     const history = useHistory();
     const [open, setOpen] = React.useState(false);
+
 
     // Fog Controls
     const [showFog, setShowFog] = React.useState(true);
@@ -49,11 +63,12 @@ const DmView = () => {
     const [addingFog, setAddingFog] = React.useState(true);
     const [fogAdjustSize, setFogAdjustSize] = React.useState(1);
 
+    let levels: MapData[] = getFirebaseMap()
+
+
     // Map Data
     const [mapData, setMapData] = useState(mapDataInitial);
     const [level, setLevel] = useState(1);
-
-    let levels: Number[][][] = [getFirebaseMap()]
 
     useEffect(() => {
         dbRefObject.get().then(value => setMapData(value.val()))
@@ -62,10 +77,12 @@ const DmView = () => {
     const generateMap = () => {
         MapGen().then(
             value => {
+                console.log(value);
                 setMapData(value);
-                dbRefObject.set(value)
+                //PlayerView.update(mapData) // Update the player view
+                db.database().ref().child('games/code/map/levels/' + levels.length).set(value).catch(e => console.log(e))
             }
-        )
+        ).catch(e => console.log(e))
     };
 
     if (mapData.map.length == 0) {
@@ -76,6 +93,9 @@ const DmView = () => {
         )
     }
 
+    const clickVisibilityHandler : MouseEventHandler<HTMLImageElement> = (event : React.MouseEvent<HTMLImageElement>) => {
+        console.log(event.currentTarget.id);
+    }
 
     const clickMapTileHandler: MouseEventHandler<HTMLImageElement> = (event: React.MouseEvent<HTMLImageElement>) => {
         if (!adjustingFog) return;
@@ -103,6 +123,7 @@ const DmView = () => {
             ...mapData,
             visibility: newVisibility
         };
+
         const visRef = db.database().ref().child('adamtest').child('visibility');
         visRef.set(newVisibility)
         setMapData(newMapData);
@@ -123,7 +144,8 @@ const DmView = () => {
     const fogAdjustmentValue = () => {
         return `${fogAdjustSize} x ${fogAdjustSize}`
     }
-
+    
+    levels = getFirebaseMap()
 
     return (
         <div id='dmView' style={{backgroundColor: hexToRgb("#8b5f8c"), height: "100%"}}>
@@ -174,11 +196,20 @@ const DmView = () => {
                     </TableRow>
                 </React.Fragment>
                 <Button id="topButton" style={{width: '200px', top: 10}} onClick={() => {
+
                     // Generate new map
-                    //window.location.reload() reloads a page, generating a new map
+                    let newLevels = levels
+                    if (levels.length > 0) {
+                        setMapData(levels[levels.length-1])
+                    }
                     generateMap()
-                    levels[levels.length] = getFirebaseMap()
+                    newLevels.push(mapData)
+                    levels = getFirebaseMap()
+                    lastMap = mapData
+                    curMap = levels.length-1
+                    setMapData(levels[levels.length-1])
                 }}>New Level</Button>
+
                 <div id="topButton" style={{position: "absolute", left: "900px", top: 10}}>
                     <p>FOG Controls</p>
                     <FormControlLabel
@@ -221,9 +252,31 @@ const DmView = () => {
                     right: "35%",
                 }}>
                     <Map mapData={mapData} imagePressFunction={clickMapTileHandler} showFog={showFog}/>
-                </div>
 
+                <Button id="topButton" style={{ width: '100px', top: '10px' }} onClick={() => {
+                    curMap = curMap-1
+                    if (levels.indexOf(mapData) == 0) {
+                        setMapData(levels[curMap])
+                    }
+                    if (levels.length > 1 && curMap > 0) {
+                        setMapData(levels[curMap])
+                    }
+                    else {
+                        alert("This is the first level")
+                    }
+                }}>Previous Map</Button>
+                <Button id="topButton" style={{ width: '100px', top: '10px' }} onClick={() => {
+                    curMap = curMap + 1
+                    if (curMap == levels.length || levels.length == 0) {
+                        alert("This is the last level, click \"NEW LEVEL\"")
+                        curMap = curMap-1
+                    }
+                    else {
+                        setMapData(levels[curMap])
+                    }
+                }}>Next Map</Button>
             </div>
+        </div>
         </div>
     )
 }

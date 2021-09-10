@@ -1,5 +1,9 @@
 import React from "react";
 import {db} from '../firebaseConfig';
+import { roomGen } from "../utility/roomGen";
+
+import { Text } from 'react-native';
+import firebase from 'firebase';
 
 import '../styles/style.css'
 
@@ -21,6 +25,8 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import MapData from "../interfaces/MapData";
 import {makeImageArray} from '../utility/MapTilerHelper'
+
+import Image4 from '../assets/New Tile Assets/floor_w.png';
 
 const useRowStyles = makeStyles({
     root: {
@@ -44,7 +50,7 @@ function createData(
 }
 
 function Row(props: { row: ReturnType<typeof createData> }) { // Will need to be called by map, passing in number of rooms
-    const {row} = props;
+    const { row } = props;
     const [open, setOpen] = React.useState(false);
     const classes = useRowStyles();
 
@@ -59,21 +65,12 @@ function Row(props: { row: ReturnType<typeof createData> }) { // Will need to be
                 </TableCell>
             </TableRow>
             <TableRow>
-                <TableCell style={{paddingBottom: 0, paddingTop: 0}} colSpan={6}>
+                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <Box margin={1}>
-                            <Typography variant="h6" gutterBottom component="div">
-                                Monster
-                            </Typography>
                             <Table size="small" aria-label="purchases">
                                 <TableHead>
-                                    <TableRow style={{
-                                        position: "relative",
-                                        top: 0,
-                                        width: '100%',
-                                        display: "flex",
-                                        flexDirection: "column"
-                                    }}>
+                                    <TableRow style={{ position: "relative", top: 0, width: '100%', display: "flex", flexDirection: "column" }}>
                                         {row.monsters.map((m => (
                                             <TableCell>{m}</TableCell>
                                         )))}
@@ -109,11 +106,20 @@ function fillRooms(rooms: number[][][]): string[] {
     return row;
 }
 
-let fireBaseMapVersion: any[][] = []
 
-export function getFirebaseMap(): number[][] {
-    return fireBaseMapVersion
-}
+// The callBackFunction is to be passed into the JSX elements onPush to ensure that when they are pushed we can trigger
+// the visibility on the DM side.
+
+const ROOM_SIZE = 10;
+const MAP_ROOM_ROWS = 3;
+const MAP_ROOM_COLS = 4;
+const height = ROOM_SIZE * MAP_ROOM_ROWS;
+const width = ROOM_SIZE * MAP_ROOM_COLS;
+const ENTRANCE_PROBABILITY = 0.7;
+const ROOM_GROW_PROBABILITY = 0.42;
+
+//todo double doors.
+const DOUBLE_DOORS = false;
 
 
 // The callBackFunction is to be passed into the JSX elements onPush to ensure that when they are pushed we can trigger
@@ -123,6 +129,21 @@ interface mapProps {
     mapData: MapData,
     imagePressFunction: React.MouseEventHandler<HTMLImageElement>,
     showFog: boolean
+}
+
+//Firebase
+const dbRefObject = db.database().ref().child('games/code/map/levels/');
+
+let fireBaseMapVersion: MapData[] = []
+
+export function getFirebaseMap(): MapData[] {
+    return fireBaseMapVersion
+}
+
+interface roomRows {
+    name: string,
+    monsters: string[]
+
 }
 
 /**
@@ -142,13 +163,25 @@ export default function map(props: mapProps) {
         }
     }
 
+    // Send updated map to firebase
+    dbRefObject.set({
+        Map: fireBaseMapVersion
+    })
+
+
     const data = props.mapData;
+
     const images = makeImageArray(data.map, data.visibility,props.imagePressFunction, props.showFog);
+
+    let rowr: roomRows[] = []
+    for (let i: number = 0; i < data.roomNum; i++) {
+        rowr[i] = createData("Room" + (i + 1), ["OOOOOOOHHH", "AHHHHHHH", "filler data"]);
+    }
 
     return (
         <div id="page">
-            <div id="left" style={mapStyle(props.mapData.roomCols * props.mapData.roomSize, props.mapData.roomRows * props.mapData.roomSize)}>
-                <section style={{overflow: 'hidden', borderStyle: 'solid', borderColor: 'gray'}}>
+            <div id="left" style={mapStyle(MAP_ROOM_COLS * ROOM_SIZE, MAP_ROOM_ROWS * ROOM_SIZE)}>
+                <section style={{ overflow: 'hidden', borderStyle: 'solid', borderColor: 'gray' }}>
                     <PrismaZoom
                         minZoom={1}
                         maxZoom={3}
@@ -187,4 +220,3 @@ export default function map(props: mapProps) {
             </div>
         </div>);
 }
-

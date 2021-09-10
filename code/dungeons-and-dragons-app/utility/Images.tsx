@@ -20,6 +20,7 @@ import Image19 from "../assets/New Tile Assets/floor_ns.png";
 import Image20 from "../assets/New Tile Assets/floor_ew.png";
 import Image21 from "../assets/New Tile Assets/floor_default.png";
 import Image22 from "../assets/New Tile Assets/wall.png";
+
 import React, {MouseEventHandler} from "react";
 import {Text} from 'react-native';
 
@@ -49,7 +50,6 @@ const getImages = () => {
         <img className="grid_img" src={Image22}/>
     ]
 }
-
 export const getImageWithId = (id: string, index: number, userClicked: MouseEventHandler<HTMLImageElement>): JSX.Element => {
     switch (index) {
         case 0:
@@ -100,6 +100,4 @@ export const getImageWithId = (id: string, index: number, userClicked: MouseEven
             return <Text>Error</Text>
     }
 }
-
-
 export default getImages();
