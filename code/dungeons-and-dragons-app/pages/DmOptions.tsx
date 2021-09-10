@@ -5,6 +5,7 @@ import ThemeSelect from "../components/ThemeSelect";
 import CodeInput from "../components/CodeInput";
 import SmallMenuButton from "../components/SmallMenuButton";
 import SmallBackButton from "../components/SmallBackButton";
+import GenRandomCode from "../utility/GenRandomCode";
 
 
 const DmOptions = () => {
@@ -19,16 +20,8 @@ const DmOptions = () => {
         return code;
     }
 
-    let characters = "abcdefghijklmnopqrstuvwxyz";
-    let charactersLength : number = 26;
-    let codeLength : number = 5;
-
     function genRandomCode() : string {
-        let result : string = '';
-        for ( var i = 0; i < codeLength; i++ ) {
-            result += characters.charAt(Math.floor(Math.random() * charactersLength));
-        }
-        return result;
+        return GenRandomCode()
     }
 
     return (
