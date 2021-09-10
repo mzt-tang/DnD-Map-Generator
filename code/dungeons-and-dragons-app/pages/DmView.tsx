@@ -46,12 +46,11 @@ let mapDataInitial: MapData = {
     map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: [], roomNum: 1
 };
 
-
-
+let lastMap: MapData
+let curMap: number;
 
 const DmView = () => {
-    let lastMap: MapData
-    let curMap: number;
+
     
     const history = useHistory();
     const [open, setOpen] = React.useState(false);
@@ -157,44 +156,7 @@ const DmView = () => {
                     width: '17px',
                     marginRight: '10px'
                 }}/>Save</Button>
-                <React.Fragment>
-                    <TableRow>
-                        <TableCell>
-                            <IconButton aria-label="expand row" size="small" onClick={() => {
-                                setOpen(!open)
-                            }}>
-                                {open ? <KeyboardArrowUpIcon/> : <KeyboardArrowDownIcon/>}
-                            </IconButton>
-                            Level
-                        </TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell style={{paddingBottom: 0, paddingTop: 0}} colSpan={6}>
-                            <Collapse in={open} timeout="auto" unmountOnExit>
-                                <Box margin={1}>
-                                    <Table size="small" aria-label="purchases">
-                                        <TableHead>
-                                            <TableRow style={{
-                                                position: "relative",
-                                                top: 0,
-                                                width: '100%',
-                                                display: "flex",
-                                                flexDirection: "column"
-                                            }}>
-                                                {levels.map((l => (
-                                                    // Get the levels from the firebase, loop through all of them, adding a button per level and attaching a link to load that level to the button
-                                                    <Button id="topButton" style={{width: '100px'}} onClick={() => {
-                                                        //load the levels
-                                                    }}>Level {levels.indexOf(l) + 1}</Button> // Retrieve each level, and display the level
-                                                )))}
-                                            </TableRow>
-                                        </TableHead>
-                                    </Table>
-                                </Box>
-                            </Collapse>
-                        </TableCell>
-                    </TableRow>
-                </React.Fragment>
+
                 <Button id="topButton" style={{width: '200px', top: 10}} onClick={() => {
 
                     // Generate new map
@@ -209,6 +171,29 @@ const DmView = () => {
                     curMap = levels.length-1
                     setMapData(levels[levels.length-1])
                 }}>New Level</Button>
+
+                <Button id="topButton" style={{ width: '100px', top: '10px' }} onClick={() => {
+                    curMap = curMap-1
+                    if (levels.indexOf(mapData) == 0) {
+                        setMapData(levels[curMap])
+                    }
+                    if (levels.length > 1 && curMap > 0) {
+                        setMapData(levels[curMap])
+                    }
+                    else {
+                        alert("This is the first level")
+                    }
+                }}>Previous Map</Button>
+                <Button id="topButton" style={{ width: '100px', top: '10px' }} onClick={() => {
+                    curMap = curMap + 1
+                    if (curMap == levels.length || levels.length == 0) {
+                        alert("This is the last level, click \"NEW LEVEL\"")
+                        curMap = curMap-1
+                    }
+                    else {
+                        setMapData(levels[curMap])
+                    }
+                }}>Next Map</Button>
 
                 <div id="topButton" style={{position: "absolute", left: "900px", top: 10}}>
                     <p>FOG Controls</p>
@@ -252,29 +237,6 @@ const DmView = () => {
                     right: "35%",
                 }}>
                     <Map mapData={mapData} imagePressFunction={clickMapTileHandler} showFog={showFog}/>
-
-                <Button id="topButton" style={{ width: '100px', top: '10px' }} onClick={() => {
-                    curMap = curMap-1
-                    if (levels.indexOf(mapData) == 0) {
-                        setMapData(levels[curMap])
-                    }
-                    if (levels.length > 1 && curMap > 0) {
-                        setMapData(levels[curMap])
-                    }
-                    else {
-                        alert("This is the first level")
-                    }
-                }}>Previous Map</Button>
-                <Button id="topButton" style={{ width: '100px', top: '10px' }} onClick={() => {
-                    curMap = curMap + 1
-                    if (curMap == levels.length || levels.length == 0) {
-                        alert("This is the last level, click \"NEW LEVEL\"")
-                        curMap = curMap-1
-                    }
-                    else {
-                        setMapData(levels[curMap])
-                    }
-                }}>Next Map</Button>
             </div>
         </div>
         </div>
