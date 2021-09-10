@@ -67,9 +67,10 @@ import React, {MouseEventHandler, useEffect, useState} from 'react';
 import { Grid } from "@material-ui/core";
 import MapGen from '../utility/MapGen';
 import MapData from "../interfaces/MapData";
+import ParseURLData from "../utility/ParseURLData";
 
-//Firebase
-const dbRefObject = db.database().ref().child('adamtest');
+//Firebase (old, delete)
+//const dbRefObject = db.database().ref().child('adamtest');
 
 let mapDataInitial: MapData = {
     map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: []
@@ -92,11 +93,15 @@ function DmView() {
 
     const location = useLocation();
     const history = useHistory();
+    console.log(ParseURLData(history.location.pathname));
+    let gamecode : string = history.location.state as string;
+    console.log(gamecode);
+
+    const dbRefObject = db.database().ref().child(gamecode); //Reference to map from Firebase Realtime Database
     const [open, setOpen] = React.useState(false);
     const [adjustingVisibility, setAdjustingVisibility] = React.useState(false);
 
     let levels: Number[][][] = [getFirebaseMap()]
-
 
     const classes = useStyles();
     const [mapData, setMapData] = useState(mapDataInitial);
@@ -114,7 +119,8 @@ function DmView() {
         )
     };
 
-    if (mapData.map.length == 0) {
+    console.log(dbRefObject);
+    if (mapData == null) {
         return (
             <Grid>
                 <Button onClick={generateMap}>Update Map</Button>

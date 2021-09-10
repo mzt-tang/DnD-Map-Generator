@@ -5,11 +5,27 @@ import ThemeSelect from "../components/ThemeSelect";
 import CodeInput from "../components/CodeInput";
 import SmallMenuButton from "../components/SmallMenuButton";
 import SmallBackButton from "../components/SmallBackButton";
+import GenRandomCode from "../utility/GenRandomCode";
 
 
 const DmOptions = () => {
     const [theme, setTheme] = useState("Caves");
     console.log(theme)
+
+    let code : string = "";
+
+    function handleCodeChange(newcode : string){
+        code = newcode;
+    }
+
+    function fetchCode() : string {
+        return code;
+    }
+
+    function genRandomCode() : string {
+        return GenRandomCode()
+    }
+
     return (
         <View>
             <div className={"backgroundImage"} >
@@ -19,12 +35,12 @@ const DmOptions = () => {
                     </Typography>
                     <div className={"dmOptionLeft"}>
                         <Typography variant={"h4"} className={"dmSubtitle"}>
-                            Load Exisiting Game
+                            Load Existing Game
                         </Typography>
-                        <CodeInput defaultText={""} labelText={"Enter a Game Code Here"} />
+                        <CodeInput defaultText={""} labelText={"Enter a Game Code Here"} onCodeChange={handleCodeChange} />
                         <div className={"loadGameButtons"}>
                             <SmallBackButton buttonString={"Back"} buttonRoute={""} />
-                            <SmallMenuButton buttonString={"Load Game"} buttonRoute={"/dm"} buttonProp={""} />
+                            <SmallMenuButton buttonString={"Load Game"} buttonRoute={"/dm"} code={fetchCode} buttonProp={""} creatingNewGame={false}/>
                         </div>
                     </div>
                     <div className={"dmOptionRight"}>
@@ -34,8 +50,7 @@ const DmOptions = () => {
 
                         <ThemeSelect themeList={["Caves", "Dungeon", "Underground Mansion"]} onChange={setTheme} theme={theme} />
                         <div className={"createButton"}>
-                            <SmallMenuButton buttonString={"Create"} buttonRoute={"/dm"} buttonProp={theme} />
-                            {console.log(theme)}
+                            <SmallMenuButton buttonString={"Create"} buttonRoute={"/dm"} code={genRandomCode} buttonProp={theme} creatingNewGame={true}/>
                         </div>
                         
 

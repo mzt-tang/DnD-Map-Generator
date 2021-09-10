@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { View, Pressable, Text } from "react-native";
 import LargeButton from "../components/LargeButton";
-import '../styles/style.css'
-import { Typography } from "@material-ui/core";
+import {Typography} from "@material-ui/core";
 
 
 const Home = () => {
