@@ -1,0 +1,157 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MainMenu_PlayerOptions /> Player options page renders correctly 1`] = `
+<View>
+  <div
+    className="backgroundImage"
+  >
+    <div
+      className="playerOptionBox"
+    >
+      <h2
+        className="MuiTypography-root makeStyles-headerTextStyle-1 MuiTypography-h2"
+      >
+        Player Options
+      </h2>
+      <div
+        className="MuiFormControl-root MuiTextField-root makeStyles-gameCodeInput-2 MuiFormControl-fullWidth"
+      >
+        <label
+          className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
+          data-shrink={false}
+          htmlFor="outlined-required"
+          id="outlined-required-label"
+          style={
+            Object {
+              "color": "#403940",
+            }
+          }
+        >
+          Enter a Game Code Here
+          <span
+            aria-hidden={true}
+            className="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+          >
+             
+            *
+          </span>
+        </label>
+        <div
+          className="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+          onClick={[Function]}
+        >
+          <input
+            aria-invalid={false}
+            autoFocus={false}
+            className="MuiInputBase-input MuiOutlinedInput-input"
+            defaultValue=""
+            disabled={false}
+            id="outlined-required"
+            onAnimationStart={[Function]}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            required={true}
+            type="text"
+          />
+          <fieldset
+            aria-hidden={true}
+            className="PrivateNotchedOutline-root-3 MuiOutlinedInput-notchedOutline"
+          >
+            <legend
+              className="PrivateNotchedOutline-legendLabelled-5"
+            >
+              <span>
+                Enter a Game Code Here
+                 *
+              </span>
+            </legend>
+          </fieldset>
+        </div>
+      </div>
+      <div
+        className="playerOptionButtonDiv"
+      >
+        <div
+          className="SmallMenuButton"
+        >
+          <button
+            className="MuiButtonBase-root MuiButton-root MuiButton-outlined makeStyles-smallBackButton-7 MuiButton-outlinedPrimary MuiButton-outlinedSizeSmall MuiButton-sizeSmall"
+            disabled={false}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex={0}
+            type="button"
+          >
+            <span
+              className="MuiButton-label"
+            >
+              <span
+                className="MuiButton-startIcon MuiButton-iconSizeSmall"
+              >
+                <svg
+                  aria-hidden={true}
+                  className="MuiSvgIcon-root"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11.67 3.87L9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"
+                  />
+                </svg>
+              </span>
+              <span
+                className="MuiTypography-root makeStyles-buttonText-8 MuiTypography-button"
+              >
+                Back
+              </span>
+            </span>
+          </button>
+        </div>
+        <div
+          className="SmallMenuButton"
+        >
+          <button
+            className="MuiButtonBase-root MuiButton-root MuiButton-outlined makeStyles-smallMenuButton-9 MuiButton-outlinedPrimary MuiButton-outlinedSizeSmall MuiButton-sizeSmall"
+            disabled={false}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex={0}
+            type="button"
+          >
+            <span
+              className="MuiButton-label"
+            >
+              <span
+                className="MuiTypography-root makeStyles-buttonText-10 MuiTypography-button"
+              >
+                Join game
+              </span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</View>
+`;
