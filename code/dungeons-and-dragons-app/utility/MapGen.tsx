@@ -354,7 +354,7 @@ export default async function map() : Promise<MapData> {
         roomCols: mapRoomCols,
         roomRows: mapRoomRows,
         roomSize: roomSize,
-        visibility: [],
+        visibility: mapVisibility,
         roomNum: roomsInside,
     }
 

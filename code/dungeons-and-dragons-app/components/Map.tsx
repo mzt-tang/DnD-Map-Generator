@@ -119,9 +119,17 @@ const ROOM_GROW_PROBABILITY = 0.42;
 //todo double doors.
 const DOUBLE_DOORS = false;
 
-//Firebase
-//todo this is needed to init the firebase database connection. We need to change this in future.
 
+// The callBackFunction is to be passed into the JSX elements onPush to ensure that when they are pushed we can trigger
+// the visibility on the DM side.
+
+interface mapProps {
+    mapData: MapData,
+    imagePressFunction: React.MouseEventHandler<HTMLImageElement>,
+    showFog: boolean
+}
+
+//Firebase
 const dbRefObject = db.database().ref().child('games/code/map/levels/');
 
 let fireBaseMapVersion: MapData[] = []
@@ -130,14 +138,10 @@ export function getFirebaseMap(): MapData[] {
     return fireBaseMapVersion
 }
 
-interface mapProps {
-    mapData: MapData,
-    imagePressFunction: React.MouseEventHandler<HTMLImageElement>
-}
-
 interface roomRows {
     name: string,
     monsters: string[]
+
 }
 
 /**
@@ -164,13 +168,13 @@ export default function map(props: mapProps) {
 
 
     const data = props.mapData;
-    const images = makeImageArray(data.map, data.visibility,props.imagePressFunction);
+
+    const images = makeImageArray(data.map, data.visibility,props.imagePressFunction, props.showFog);
 
     let rowr: roomRows[] = []
-    for (var i: number = 0; i < data.roomNum; i++) {
+    for (let i: number = 0; i < data.roomNum; i++) {
         rowr[i] = createData("Room" + (i + 1), ["OOOOOOOHHH", "AHHHHHHH", "filler data"]);
     }
-
 
     return (
         <div id="page">

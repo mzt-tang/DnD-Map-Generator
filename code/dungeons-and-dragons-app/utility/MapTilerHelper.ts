@@ -125,7 +125,9 @@ export const assignImageNumbers = (map: number[][]): number[][] => {
  * @param map The final map where the number contained in the 2D array is the index of the image to use.
  * @param visibility The 2D array representing the visibility of the map.
  */
-export const makeImageArray = (map: number[][], visibility: number[][], userClick : React.MouseEventHandler<HTMLImageElement>): JSX.Element[][] => {
+
+export const makeImageArray = (map: number[][], visibility: number[][], userClick : React.MouseEventHandler<HTMLImageElement>, showFog : boolean): JSX.Element[][] => {
+
     //todo update the visibility JSX element when visibility is implemented.
     let imageArray: JSX.Element[][] = [];
 
@@ -133,8 +135,15 @@ export const makeImageArray = (map: number[][], visibility: number[][], userClic
         let imageRow: JSX.Element[] = [];
         for (let col = 0; col < map[row].length; col++) {
             const id : string = `${row},${col}`;
-            let image : JSX.Element = getImageWithId(id,map[row][col],userClick)
-            imageRow.push(image)
+            if (visibility[row][col] == 0 || !showFog) {
+                const image: JSX.Element = getImageWithId(id, map[row][col], userClick)
+                imageRow.push(image)
+            }
+            else { // black fog tile
+                const image: JSX.Element = getImageWithId(id, 0, userClick)
+                imageRow.push(image)
+            }
+
         }
         imageArray.push(imageRow);
     }
