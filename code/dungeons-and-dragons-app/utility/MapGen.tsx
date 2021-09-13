@@ -44,12 +44,15 @@ export default async function map(props:mapGenProps) : Promise<MapData> {
     let row = 0;
     let col = 0;
 
+    var roomsInside: number = 0;
+
     /*
     This while loop generates the rooms that follow the route from the start room to end room. Starting room is currently at top left position and end is at bottom
     right. Each time it randomly decides whether to generate a room to the right or downwards along the path (as long as the room isn't at the bottom or far right of
     the map). The room is then added to the map and to the rooms array.
     */
     while (col <= mapRoomCols && row <= mapRoomRows) {
+        roomsInside++;
 
         let entrances: number[][] = []
 
@@ -162,6 +165,7 @@ export default async function map(props:mapGenProps) : Promise<MapData> {
      * @param i the room number
      */
     function generateRoom(i: number) {
+        
         let roomRow = getRoomRow(i);
         let roomCol = getRoomCol(i);
         let roomEntrances : number[][] = [];
@@ -178,12 +182,16 @@ export default async function map(props:mapGenProps) : Promise<MapData> {
         let hasWestGenerated = hasWestNeighbour && allRooms[i - 1].length != 0;
         let hasEastGenerated = hasEastNeighbour && allRooms[i + 1].length != 0;
 
+        if (hasNorthGenerated || hasSouthGenerated || hasEastGenerated || hasWestGenerated) roomsInside++;
+
         // check each neighbour for entrances and add them if they exist.
         if (hasNorthGenerated){
             let northNeighbourEntrances = getRoomEntrances(i - mapRoomCols);
 
             for (let i = 0; i < northNeighbourEntrances.length; i++){
-                if (northNeighbourEntrances[i][0] == roomSize-1) roomEntrances.push([0,northNeighbourEntrances[i][1]]);
+                if (northNeighbourEntrances[i][0] == roomSize-1) {
+                    roomEntrances.push([0,northNeighbourEntrances[i][1]]);
+                }
             }
         }
 
@@ -191,7 +199,9 @@ export default async function map(props:mapGenProps) : Promise<MapData> {
             let southNeighbourEntrances = getRoomEntrances(i + mapRoomCols);
 
             for (let i = 0; i < southNeighbourEntrances.length; i++){
-                if (southNeighbourEntrances[i][0] == 0) roomEntrances.push([roomSize-1,southNeighbourEntrances[i][1]]);
+                if (southNeighbourEntrances[i][0] == 0) {
+                    roomEntrances.push([roomSize-1,southNeighbourEntrances[i][1]]);
+                }
             }
         }
 
@@ -199,7 +209,9 @@ export default async function map(props:mapGenProps) : Promise<MapData> {
             let westNeighbourEntrances = getRoomEntrances(i - 1);
 
             for (let i = 0; i < westNeighbourEntrances.length; i++){
-                if (westNeighbourEntrances[i][1] == roomSize-1) roomEntrances.push([westNeighbourEntrances[i][0],0]);
+                if (westNeighbourEntrances[i][1] == roomSize-1) {
+                    roomEntrances.push([westNeighbourEntrances[i][0],0]);
+                }
             }
         }
 
@@ -207,12 +219,15 @@ export default async function map(props:mapGenProps) : Promise<MapData> {
             let eastNeighbourEntrances = getRoomEntrances(i + 1);
 
             for (let i = 0; i < eastNeighbourEntrances.length; i++){
-                if (eastNeighbourEntrances[i][1] == 0) roomEntrances.push([eastNeighbourEntrances[i][0],roomSize-1]);
+                if (eastNeighbourEntrances[i][1] == 0) {
+                    roomEntrances.push([eastNeighbourEntrances[i][0],roomSize-1]);
+                }
             }
         }
 
         // if we got here and we have no entrances than the room has no entrances and we can exit.
         if (roomEntrances.length == 0){
+            roomsInside--;
             allRooms[i] = Array.from(Array(roomSize), _ => Array(roomSize).fill(0));
             return;
         }
@@ -341,11 +356,9 @@ export default async function map(props:mapGenProps) : Promise<MapData> {
         roomCols: mapRoomCols,
         roomRows: mapRoomRows,
         roomSize: roomSize,
-        visibility: mapVisibility
+        visibility: mapVisibility,
+        roomNum: roomsInside,
     }
 
     return mapData;
 }
-
-
-

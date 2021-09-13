@@ -81,5 +81,4 @@ export const getImageWithId = (id : string, index : number, userClicked: MouseEv
         default: return <Text>Error</Text>
     }
 }
-
 export default getImages();
