@@ -37,7 +37,7 @@ const useRowStyles = makeStyles({
     },
 });
 
-export function createData(
+function createData(
     name: string,
     monsters: string[],
 ) {
@@ -83,9 +83,6 @@ function Row(props: { row: ReturnType<typeof createData> }) { // Will need to be
     );
 }
 
-// let rowr = [];
-
-
 let rowr = [createData("Room 1", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
     createData("Room 2", ["Orc", "Grunk", "Bronk"]),
     createData("Room 3", ["Ghost", "Danny Phantom", "Caspar", "Dead Guy"]),
@@ -128,7 +125,8 @@ const DOUBLE_DOORS = false;
 
 interface mapProps {
     mapData: MapData,
-    imagePressFunction: React.MouseEventHandler<HTMLImageElement>,
+    imagePressFunction: React.MouseEventHandler<HTMLImageElement>
+    mapTheme: string,
     showFog: boolean
 }
 
@@ -171,8 +169,7 @@ export default function map(props: mapProps) {
 
 
     const data = props.mapData;
-
-    const images = makeImageArray(data.map, data.visibility,props.imagePressFunction, props.showFog);
+    const images = makeImageArray(data.map, data.visibility,props.imagePressFunction, props.showFog, props.mapTheme);
 
     let rowr: roomRows[] = []
     for (let i: number = 0; i < data.roomNum; i++) {

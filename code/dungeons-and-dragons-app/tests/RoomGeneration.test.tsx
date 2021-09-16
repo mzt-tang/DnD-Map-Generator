@@ -5,20 +5,29 @@
 // To run all tests: "npx jest --ci"
 
 import React from 'react';
+
+import './RoomGeneration.test';
 import {roomGen} from "../utility/roomGen";
 
 interface mapProps {
     images: JSX.Element[]
 }
 
-describe('<RoomGeneration />', () => {
+describe('<App />', () => {
+    /**
+     * RENDERING COMPONENT TESTS
+     */
+    /*test('can render map', () => {
+        render(<div id="map" />)
+    })*/
+
     /**
      * ROOM GENERATION TESTS
      */
     test('corner entrance not allowed.', () => {
         const entrances:number[][] = [[0,0], [4,0]];
         try {
-            roomGen(10, 10, entrances, 0.2, false);
+            const roomArray = roomGen(10, 10, entrances, 0.2, false);
             console.assert(false);
         } catch (error) {
             console.log("Did not allow the [0,0] entrance to pass");
@@ -28,7 +37,7 @@ describe('<RoomGeneration />', () => {
     test('entrances must be on at the edge.', () => {
         const entrances:number[][] = [[5,6], [4,0]];
         try {
-            roomGen(10, 10, entrances, 0.2, false);
+            const roomArray = roomGen(10, 10, entrances, 0.2, false);
             console.assert(false);
         } catch (error) {
             console.log("Did not allow the [5,6] entrance to pass");
@@ -38,7 +47,7 @@ describe('<RoomGeneration />', () => {
     test('There must be at least 1 entrance', () => {
         const entrances:number[][] = [];
         try {
-            roomGen(10, 10, entrances, 0.2, false);
+            const roomArray = roomGen(10, 10, entrances, 0.2, false);
             console.assert(false);
         } catch (error) {
             console.log("Did not allow 0 entrances");

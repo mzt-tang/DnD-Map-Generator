@@ -6,6 +6,8 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 interface Props {
     defaultText : string
     labelText : string
+
+    onCodeChange(value: string): void;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -24,8 +26,11 @@ const CodeInput = (props : Props) => {
     const defaultText : string = props.defaultText;
     const labelText : string = props.labelText;
 
-    //Fetch the game code
+    const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+        props.onCodeChange(event.target.value as string);
+    }
 
+    //Fetch the game code
     return (
         <TextField
             required
@@ -38,6 +43,7 @@ const CodeInput = (props : Props) => {
             InputLabelProps={{
                 style: { color: '#403940' },
             }}
+            onChange={handleChange}
         />
     );
 }

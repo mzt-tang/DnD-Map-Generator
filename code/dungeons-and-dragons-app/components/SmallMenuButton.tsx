@@ -1,11 +1,18 @@
 import {Button, Typography} from '@material-ui/core';
 import React from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import {db} from "../firebaseConfig";
+
+import ValidateGameCode from "../utility/ValidateGameCode";
 
 interface Props {
     buttonString : string
     buttonRoute : string
+    buttonProp : string
+    code(): string;
+    creatingNewGame : boolean
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -38,24 +45,28 @@ const SmallMenuButton = (props : Props) => {
     // Props Initialisations
     const buttonString : string = props.buttonString;
     const buttonRoute : string = props.buttonRoute;
+    const buttonProp : string = props.buttonProp;
 
     //Other Variable Initialisations
-    const history = useHistory();
-
+    let history = useHistory();
 
     return (
         <div className={"SmallMenuButton"}>
-        <Button variant="outlined" size="small" color="primary" className={classes.smallMenuButton} onClick={() => {
-            history.push({
-                pathname: buttonRoute+"/$Game=123",
-                    state: "gamecode" //data parsed between pages
-            })
-        }}>
-
-            <Typography variant={"button"} className={classes.buttonText} >
-                {buttonString}
-            </Typography>
-        </Button>
+            <Button variant="outlined" size="small" color="primary" className={classes.smallMenuButton} onClick={async() => {
+                await ValidateGameCode(props.code(), props.creatingNewGame) ? // Need to first check if a game with this gamecode exists
+                    history.push({
+                        pathname: buttonRoute+"/"+props.code(),
+                        state: {
+                            code: "gamecode",
+                            theme: buttonProp,
+                        } //data parsed between pages
+                    })
+                : alert("The GameCode \"" + props.code() + "\" is not valid. Please enter a valid GameCode.") // placeholder, should ideally send a custom error message component
+            }}>
+                <Typography variant={"button"} className={classes.buttonText} >
+                    {buttonString}
+                </Typography>
+            </Button>
         </div>
     );
 }
