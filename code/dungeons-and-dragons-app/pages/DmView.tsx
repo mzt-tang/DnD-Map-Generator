@@ -9,13 +9,13 @@ import {
     TableHead,
     TableRow
 } from "@material-ui/core";
-import {IconButton} from "@material-ui/core";
-import Map, {getFirebaseMap} from '../components/Map';
+import { IconButton } from "@material-ui/core";
+import Map, { getFirebaseMap } from '../components/Map';
 import '../styles/style.css'
-import {useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import {db} from '.././firebaseConfig';
+import { db } from '.././firebaseConfig';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -23,10 +23,10 @@ import Switch from '@material-ui/core/Switch';
 
 import saveImage from '../assets/saveIcon.png'
 
-import React, {DragEventHandler, MouseEventHandler, useEffect, useState} from 'react';
+import React, { DragEventHandler, MouseEventHandler, useEffect, useState } from 'react';
 
 
-import {Grid} from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import MapGen from '../utility/MapGen';
 import MapData from "../interfaces/MapData";
 
@@ -51,7 +51,7 @@ let curMap: number;
 
 const DmView = () => {
 
-    
+
     const history = useHistory();
     const [open, setOpen] = React.useState(false);
 
@@ -84,7 +84,7 @@ const DmView = () => {
         ).catch(e => console.log(e))
     };
 
-    if (mapData.map.length == 0) {
+    if (mapData == null) {
         return (
             <Grid>
                 <Button onClick={generateMap}>Update Map</Button>
@@ -92,7 +92,7 @@ const DmView = () => {
         )
     }
 
-    const clickVisibilityHandler : MouseEventHandler<HTMLImageElement> = (event : React.MouseEvent<HTMLImageElement>) => {
+    const clickVisibilityHandler: MouseEventHandler<HTMLImageElement> = (event: React.MouseEvent<HTMLImageElement>) => {
         console.log(event.currentTarget.id);
     }
 
@@ -143,37 +143,37 @@ const DmView = () => {
     const fogAdjustmentValue = () => {
         return `${fogAdjustSize} x ${fogAdjustSize}`
     }
-    
+
     levels = getFirebaseMap()
 
     return (
-        <div id='dmView' style={{backgroundColor: hexToRgb("#8b5f8c"), height: "100%"}}>
+        <div id='dmView' style={{ backgroundColor: hexToRgb("#8b5f8c"), height: "100%" }}>
             <div id="topBar">
-                <Button id="topButton" style={{width: '40px', top: 10}} onClick={() => {
+                <Button id="topButton" style={{ width: '40px', top: 10 }} onClick={() => {
                     history.push('/home')
                 }}>X</Button>
-                <Button id="topButton" style={{width: '200px', top: 10}}><img src={saveImage} style={{
+                <Button id="topButton" style={{ width: '200px', top: 10 }}><img src={saveImage} style={{
                     width: '17px',
                     marginRight: '10px'
-                }}/>Save</Button>
+                }} />Save</Button>
 
-                <Button id="topButton" style={{width: '200px', top: 10}} onClick={() => {
+                <Button id="topButton" style={{ width: '200px', top: 10 }} onClick={() => {
 
                     // Generate new map
                     let newLevels = levels
                     if (levels.length > 0) {
-                        setMapData(levels[levels.length-1])
+                        setMapData(levels[levels.length - 1])
                     }
                     generateMap()
                     newLevels.push(mapData)
                     levels = getFirebaseMap()
                     lastMap = mapData
-                    curMap = levels.length-1
-                    setMapData(levels[levels.length-1])
+                    curMap = levels.length - 1
+                    setMapData(levels[levels.length - 1])
                 }}>New Level</Button>
 
                 <Button id="topButton" style={{ width: '100px', top: '10px' }} onClick={() => {
-                    curMap = curMap-1
+                    curMap = curMap - 1
                     if (levels.indexOf(mapData) == 0) {
                         setMapData(levels[curMap])
                     }
@@ -188,29 +188,29 @@ const DmView = () => {
                     curMap = curMap + 1
                     if (curMap == levels.length || levels.length == 0) {
                         alert("This is the last level, click \"NEW LEVEL\"")
-                        curMap = curMap-1
+                        curMap = curMap - 1
                     }
                     else {
                         setMapData(levels[curMap])
                     }
                 }}>Next Map</Button>
 
-                <div id="topButton" style={{position: "absolute", left: "900px", top: 10}}>
+                <div id="topButton" style={{ position: "absolute", left: "900px", top: 10 }}>
                     <p>FOG Controls</p>
                     <FormControlLabel
-                        control={<Switch checked={showFog} onChange={handleShowingFogChange} name={'showFog'}/>}
-                        label={'Show Fog'}/>
+                        control={<Switch checked={showFog} onChange={handleShowingFogChange} name={'showFog'} />}
+                        label={'Show Fog'} />
                     <FormControlLabel control={<Switch checked={adjustingFog} onChange={handleAdjustingFogChange}
-                                                       name={'adjustFog'}/>} label={'Add/Remove Fog'}/>
+                        name={'adjustFog'} />} label={'Add/Remove Fog'} />
                 </div>
-                <div id="topButton" style={{position: "absolute", left: "1000px", top: 10}}>
+                <div id="topButton" style={{ position: "absolute", left: "1000px", top: 10 }}>
                     <RadioGroup row={true} aria-label="fog" name="fog controls" value={addingFog}
-                                onChange={handleAddingFogChange}>
-                        <FormControlLabel value={true} control={<Radio/>} label="add"/>
-                        <FormControlLabel value={false} control={<Radio/>} label="remove"/>
+                        onChange={handleAddingFogChange}>
+                        <FormControlLabel value={true} control={<Radio />} label="add" />
+                        <FormControlLabel value={false} control={<Radio />} label="remove" />
                     </RadioGroup>
                 </div>
-                <div id="topButton" style={{position: "absolute", left: "1200px", top: 10}}>
+                <div id="topButton" style={{ position: "absolute", left: "1200px", top: 10 }}>
                     <Typography id="discrete-slider" gutterBottom>
                         Adjustment Size
                     </Typography>
@@ -236,9 +236,9 @@ const DmView = () => {
                     alignSelf: "center",
                     right: "35%",
                 }}>
-                    <Map mapData={mapData} imagePressFunction={clickMapTileHandler} showFog={showFog}/>
+                    <Map mapTheme='Cave' mapData={mapData} imagePressFunction={clickMapTileHandler} showFog={showFog} />
+                </div>
             </div>
-        </div>
         </div>
     )
 }
