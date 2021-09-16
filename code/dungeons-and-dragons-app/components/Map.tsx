@@ -7,6 +7,8 @@ import firebase from 'firebase';
 
 import PrismaZoom from 'react-prismazoom'
 
+import monsterGeneration from "../utility/MonsterGen";
+
 import {makeStyles} from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Collapse from '@material-ui/core/Collapse';
@@ -37,7 +39,7 @@ const useRowStyles = makeStyles({
     },
 });
 
-function createData(
+export function createData(
     name: string,
     monsters: string[],
 ) {
@@ -139,7 +141,7 @@ export function getFirebaseMap(): MapData[] {
     return fireBaseMapVersion
 }
 
-interface roomRows {
+export interface roomRows {
     name: string,
     monsters: string[]
 
@@ -172,9 +174,10 @@ export default function map(props: mapProps) {
     const images = makeImageArray(data.map, data.visibility,props.imagePressFunction, props.showFog, props.mapTheme);
 
     let rowr: roomRows[] = []
-    for (let i: number = 0; i < data.roomNum; i++) {
-        rowr[i] = createData("Room" + (i + 1), ["OOOOOOOHHH", "AHHHHHHH", "filler data"]);
-    }
+    // for (let i: number = 0; i < data.roomNum; i++) {
+    //     rowr[i] = createData("Room" + (i + 1), ["OOOOOOOHHH", "AHHHHHHH", "filler data"]);
+    // }
+    monsterGeneration("level1", rowr);
 
     return (
         <div id="page">

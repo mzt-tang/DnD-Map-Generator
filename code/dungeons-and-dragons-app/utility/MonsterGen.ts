@@ -2,10 +2,10 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 import {Monster} from "../interfaces/MapData";
-import firestore = firebase.firestore;
 import {createData} from "../components/Map";
+import {roomRows} from "../components/Map";
 
-export default function monsterGeneration (level: string){
+export default function monsterGeneration (level: string, rowr: roomRows[]){
     const monsterPresetRef = firebase.firestore().collection('monsterPresets').doc(level);
 
     monsterPresetRef.get().then(async (snapshot) => {
@@ -13,11 +13,11 @@ export default function monsterGeneration (level: string){
             console.log("Document data:", snapshot.data());
             const presetRef = snapshot.data();
             let monsterPreset: Monster[] = [];
-            let len = presetRef?.set1.length;
             let set1 = presetRef?.set1; //todo temporary, to be switched to random choosing later.
+            let len = set1.length;
 
             for (let i = 0; i < len; i++) {
-                let monster = await firebase.firestore().doc(set1[i]).get(); //
+                let monster = await set1[i].get(); //
                 monsterPreset.push({
                     faction: monster.data()?.faction, name: monster.data()?.name, size: monster.data()?.size, friends: monster.data()?.friends,
                     loneliness: monster.data()?.loneliness, commonality: monster.data()?.size});
@@ -31,9 +31,11 @@ export default function monsterGeneration (level: string){
                 for (let j = 1; j < genedMonsters[i].length; j++) {
                     parsedMonsStrings.push((genedMonsters[i][j] as Monster).name);
                 }
-                formatMonsters.push(createData("Room " + genedMonsters, parsedMonsStrings));
+                console.log(genedMonsters[i][0]);
+                console.log(parsedMonsStrings);
+                rowr.push(createData("Room " + genedMonsters[i][0], parsedMonsStrings));
             }
-
+            console.log("TEST");
 
         } else {
             console.log("No such document!");
