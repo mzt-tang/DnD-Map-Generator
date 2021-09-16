@@ -3,11 +3,9 @@ import 'firebase/firestore';
 
 import {Monster} from "../interfaces/MapData";
 import firestore = firebase.firestore;
+import {createData} from "../components/Map";
 
-export function monsterGeneration (level: string){
-
-    level = "level1"; // todo temporary, to be removed later
-
+export default function monsterGeneration (level: string){
     const monsterPresetRef = firebase.firestore().collection('monsterPresets').doc(level);
 
     monsterPresetRef.get().then(async (snapshot) => {
@@ -16,7 +14,7 @@ export function monsterGeneration (level: string){
             const presetRef = snapshot.data();
             let monsterPreset: Monster[] = [];
             let len = presetRef?.set1.length;
-            let set1 = presetRef?.set1;
+            let set1 = presetRef?.set1; //todo temporary, to be switched to random choosing later.
 
             for (let i = 0; i < len; i++) {
                 let monster = await firebase.firestore().doc(set1[i]).get(); //
@@ -25,7 +23,16 @@ export function monsterGeneration (level: string){
                     loneliness: monster.data()?.loneliness, commonality: monster.data()?.size});
             }
 
-            generateAllMonsters(monsterPreset);
+            //Parse the generated monsters and put it through createData()
+            const genedMonsters = generateAllMonsters(monsterPreset);
+            const formatMonsters = [];
+            for (let i = 0; i <genedMonsters.length; i++) {
+                const parsedMonsStrings:string[] = [];
+                for (let j = 1; j < genedMonsters[i].length; j++) {
+                    parsedMonsStrings.push((genedMonsters[i][j] as Monster).name);
+                }
+                formatMonsters.push(createData("Room " + genedMonsters, parsedMonsStrings));
+            }
 
 
         } else {
@@ -59,7 +66,7 @@ export function monsterGeneration (level: string){
             generatedMonsters.push([monsterPreset[i].name, commonalityDeviation]);
         }
 
-        assignMonstersToRooms(generatedMonsters, monsterPreset);
+        return assignMonstersToRooms(generatedMonsters, monsterPreset);
     }
 
     /**
@@ -73,7 +80,7 @@ export function monsterGeneration (level: string){
         //This only takes a set of monsters and assigns them to the rooms
         //Try to avoid spawning monsters at the start of the map
         let eligibleRooms = []
-        let assignedMonsters: (number|Monster)[][] = []; //data structure of assigned monsters: [[], [], []]
+        let assignedMonsters: (number|Monster)[][] = []; //data structure of assigned monsters: [[room number, monster1, monster2, monster3, ...], [], []]
 
         let totalMonsterAmount = (allMonsters: (string|number)[][]): number => {
             let total = 0;

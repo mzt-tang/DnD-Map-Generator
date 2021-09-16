@@ -1424,18 +1424,6 @@
   "integrity" "sha512-40GK1CY1QLPDHSQS7Fd36CJeZgMwtbeezkgp4tzfExVRVtWw30jOBCsM7TBB9IqEmmX7C/XwG47scMQHCnMw8A=="
   "resolved" "https://registry.npmjs.org/@expo/ngrok-bin/-/ngrok-bin-2.3.40.tgz"
   "version" "2.3.40"
-  dependencies:
-    "@expo/ngrok-bin-darwin-arm64" "2.3.40"
-    "@expo/ngrok-bin-darwin-x64" "2.3.40"
-    "@expo/ngrok-bin-freebsd-ia32" "2.3.40"
-    "@expo/ngrok-bin-freebsd-x64" "2.3.40"
-    "@expo/ngrok-bin-linux-arm" "2.3.40"
-    "@expo/ngrok-bin-linux-arm64" "2.3.40"
-    "@expo/ngrok-bin-linux-ia32" "2.3.40"
-    "@expo/ngrok-bin-linux-x64" "2.3.40"
-    "@expo/ngrok-bin-sunos-x64" "2.3.40"
-    "@expo/ngrok-bin-win32-ia32" "2.3.40"
-    "@expo/ngrok-bin-win32-x64" "2.3.40"
   optionalDependencies:
     "@expo/ngrok-bin-darwin-arm64" "2.3.40"
     "@expo/ngrok-bin-darwin-x64" "2.3.40"
@@ -1999,7 +1987,6 @@
     "jest-resolve" "^26.6.2"
     "jest-util" "^26.6.2"
     "jest-worker" "^26.6.2"
-    "node-notifier" "^8.0.0"
     "slash" "^3.0.0"
     "source-map" "^0.6.0"
     "string-length" "^4.0.1"
@@ -4442,7 +4429,6 @@
     "estraverse" "^5.2.0"
     "esutils" "^2.0.2"
     "optionator" "^0.8.1"
-    "source-map" "~0.6.1"
   optionalDependencies:
     "source-map" "~0.6.1"
 
@@ -5979,7 +5965,6 @@
     "@jest/types" "^24.9.0"
     "anymatch" "^2.0.0"
     "fb-watchman" "^2.0.0"
-    "fsevents" "^1.2.7"
     "graceful-fs" "^4.1.15"
     "invariant" "^2.2.4"
     "jest-serializer" "^24.9.0"
@@ -6001,7 +5986,6 @@
     "@types/node" "*"
     "anymatch" "^3.0.3"
     "fb-watchman" "^2.0.0"
-    "fsevents" "^2.1.2"
     "graceful-fs" "^4.2.4"
     "jest-regex-util" "^26.0.0"
     "jest-serializer" "^26.6.2"
@@ -6023,7 +6007,6 @@
     "@types/node" "*"
     "anymatch" "^3.0.3"
     "fb-watchman" "^2.0.0"
-    "fsevents" "^2.3.2"
     "graceful-fs" "^4.2.4"
     "jest-regex-util" "^27.0.6"
     "jest-serializer" "^27.0.6"
@@ -8364,8 +8347,6 @@
   "integrity" "sha512-WKzjFKGoWK5pIKb//leiD20RxXZdILfj7x4GLzylmCwGgo0yzsIDrd/df8RzQSoCSckAO2yF8Z88weywIUyx2g=="
   "resolved" "https://registry.npmjs.org/react-prismazoom/-/react-prismazoom-2.0.3.tgz"
   "version" "2.0.3"
-  dependencies:
-    "fsevents" "*"
   optionalDependencies:
     "fsevents" "*"
 

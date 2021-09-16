@@ -88,6 +88,9 @@ function Row(props: { row: ReturnType<typeof createData> }) { // Will need to be
     );
 }
 
+// let rowr = [];
+
+
 let rowr = [createData("Room 1", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
     createData("Room 2", ["Orc", "Grunk", "Bronk"]),
     createData("Room 3", ["Ghost", "Danny Phantom", "Caspar", "Dead Guy"]),
