@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {View} from "react-native";
 import LargeButton from "../components/LargeButton";
-import '../styles/style.css'
 import {Typography} from "@material-ui/core";
 
 

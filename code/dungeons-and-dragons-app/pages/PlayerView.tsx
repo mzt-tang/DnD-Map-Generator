@@ -10,8 +10,12 @@ import MapData from "../interfaces/MapData";
 import { hexToRgb } from '@material-ui/core';
 
 let mapDataInitial: MapData = {
-    map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: []
+    map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: [], roomNum: 1
 };
+
+function update(map: MapData){
+    mapDataInitial = map
+}
 
 // firebase
 const playerViewDatabase = async () => await db.database().ref().child('adamtest');
@@ -46,7 +50,9 @@ const PlayerView = () => {
 
     return (
         <View style={{backgroundColor:hexToRgb("#AAAABB"),justifyContent:"center"}}>
-            <Map mapData={map} imagePressFunction={click}/>
+
+            <Map mapData={map} imagePressFunction={click} showFog={true}/>
+
         </View>
     );
 }
