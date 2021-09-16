@@ -6,6 +6,7 @@ interface MapData {
     roomCols : number,          // the number of rooms per column on the map
     roomSize : number,          // The size of each room eg 10x10
     roomNum : number,
+    theme: string,         // the theme of the map
 }
 
 export default MapData

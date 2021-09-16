@@ -7,8 +7,6 @@ import { useLocation } from "react-router-dom";
 import Map, { getFirebaseMap } from '../components/Map';
 import '../styles/style.css'
 import { useHistory } from "react-router-dom";
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { db } from '.././firebaseConfig';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -35,16 +33,11 @@ import { Grid } from "@material-ui/core";
 import MapGen from '../utility/MapGen';
 import MapData from "../interfaces/MapData";
 import ParseURLData from "../utility/ParseURLData";
-import PlayerView from "./PlayerView";
-import { InsertInvitation } from "@material-ui/icons";
 
 //Firebase (old, delete)
 //const dbRefObject = db.database().ref().child('adamtest');
 
-
-
 // Firebase
-const dbRefObject = db.database().ref().child('adamtest');
 
 const useRowStyles = makeStyles({
     root: {
@@ -56,20 +49,19 @@ const useRowStyles = makeStyles({
         width: 800,
     },
 });
-
+let lastMap: MapData = [];
 
 let mapDataInitial: MapData = {
-    map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: [], roomNum: 1
+    map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: [], roomNum: 1, theme: "Caves"
 };
 
-let lastMap: MapData
 let curMap: number;
 
 const DmView = () => {
-    const location = useLocation();
+    const { state: { code,theme } = { code:'code',theme:'theme' } } = useLocation<{ code: string, theme: string }>()
     const history = useHistory();
     console.log(ParseURLData(history.location.pathname));
-    let gamecode: string = history.location.state as string;
+    let gamecode: string = ParseURLData(history.location.pathname) as string;
     console.log(gamecode);
 
     const dbRefObject = db.database().ref().child(gamecode); //Reference to map from Firebase Realtime Database
@@ -90,14 +82,14 @@ const DmView = () => {
     useEffect(() => {
         dbRefObject.get().then(value => setMapData(value.val()))
     }, [])
-
+    console.log(theme);
     const generateMap = () => {
-        MapGen(location.state.theme).then(
+        MapGen({theme}).then(
             value => {
                 console.log(value);
                 setMapData(value);
                 //PlayerView.update(mapData) // Update the player view
-                db.database().ref().child('games/code/map/levels/' + levels.length).set(value).catch(e => console.log(e))
+                db.database().ref().child('/'+ gamecode+'/levels/'+(levels.length-1) + levels.length).set(value).catch(e => console.log(e))
             }
         ).catch(e => console.log(e))
     };
@@ -223,7 +215,7 @@ const DmView = () => {
                         name={'adjustFog'} />} label={'Add/Remove Fog'} />
                 </div>
                 <div id='route' style={{ backgroundColor: hexToRgb("#AAAABB"), position: "absolute", top: 100, alignSelf: "center", right: "35%" }}>
-                    <Map mapData={mapData} imagePressFunction={clickVisibilityHandler} showFog={showFog} mapTheme={location.state.theme} />
+                    <Map mapData={mapData} imagePressFunction={clickVisibilityHandler} showFog={showFog}/>
                 </div>
                 <div id="topButton" style={{ position: "absolute", left: "1000px", top: 10 }}>
                     <RadioGroup row={true} aria-label="fog" name="fog controls" value={addingFog}

@@ -11,7 +11,7 @@ import MapData from "../interfaces/MapData";
 import { hexToRgb } from '@material-ui/core';
 
 let mapDataInitial: MapData = {
-    map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: [], roomNum: 1
+    map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: [], roomNum: 1, theme: "Caves"
 };
 
 function update(map: MapData){
@@ -55,9 +55,7 @@ const PlayerView = () => {
 
     return (
         <View style={{backgroundColor:hexToRgb("#AAAABB"),justifyContent:"center"}}>
-
             <Map mapData={map} imagePressFunction={click} showFog={true}/>
-
         </View>
     );
 }

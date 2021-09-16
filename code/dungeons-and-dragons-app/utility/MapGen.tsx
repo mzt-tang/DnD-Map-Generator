@@ -358,6 +358,7 @@ export default async function map(props:mapGenProps) : Promise<MapData> {
         roomSize: roomSize,
         visibility: mapVisibility,
         roomNum: roomsInside,
+        theme: props.theme,
     }
 
     return mapData;
