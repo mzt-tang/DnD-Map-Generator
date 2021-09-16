@@ -53,7 +53,6 @@ const getImages = () => {
     ]
 }
 
-
 export const getImageWithId = (id : string, index : number, userClicked: MouseEventHandler<HTMLImageElement>,theme:string) : JSX.Element  => {
     switch (index){
         case 0:  return <img className="grid_img" src={Image1} id={id} onClick={userClicked}/>
@@ -81,5 +80,4 @@ export const getImageWithId = (id : string, index : number, userClicked: MouseEv
         default: return <Text>Error</Text>
     }
 }
-
 export default getImages();

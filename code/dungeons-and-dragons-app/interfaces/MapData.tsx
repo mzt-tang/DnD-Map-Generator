@@ -9,4 +9,3 @@ interface MapData {
 }
 
 export default MapData
-
