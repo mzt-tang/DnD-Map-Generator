@@ -21,7 +21,7 @@ interface mapGenProps {
 /**
  * Returns a map data object containing all the information needed for a level.
  */
-export default async function map(props:mapGenProps) : Promise<MapData> {
+export default function map(props:mapGenProps) : MapData {
 
     let allRooms : number[][][] = []; // holds all the rooms making up the map in order.
 
