@@ -132,15 +132,6 @@ interface mapProps {
     showFog: boolean,
 }
 
-//Firebase
-const dbRefObject = db.database().ref().child('games/code/map/levels/');
-
-let fireBaseMapVersion: MapData[] = []
-
-export function getFirebaseMap(): MapData[] {
-    return fireBaseMapVersion
-}
-
 interface roomRows {
     name: string,
     monsters: string[]
