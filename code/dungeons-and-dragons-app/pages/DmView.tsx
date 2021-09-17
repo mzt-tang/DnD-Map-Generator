@@ -4,7 +4,7 @@ import { Typography } from "@material-ui/core";
 import { readFromFirebase, writeToFirebase } from "../utility/FirebaseRW";
 import { useLocation } from "react-router-dom";
 
-import Map, { getFirebaseMap } from '../components/Map';
+import Map from '../components/Map';
 import '../styles/style.css'
 import { useHistory } from "react-router-dom";
 import Radio from '@material-ui/core/Radio';
@@ -45,8 +45,6 @@ const DmView = () => {
     const [adjustingFog, setAdjustingFog] = React.useState(true);
     const [addingFog, setAddingFog] = React.useState(true);
     const [fogAdjustSize, setFogAdjustSize] = React.useState(1);
-
-    let levels: MapData[] = getFirebaseMap()
 
     const [mapData, setMapData] = useState(mapDataInitial);
     const [level, setLevel] = useState(0);
@@ -137,7 +135,7 @@ const DmView = () => {
             visibility: newVisibility
         };
 
-        writeToFirebase('gamecode/levels/' + level + 'visibility',newVisibility);
+        writeToFirebase('/'+ gamecode+ '/levels/' + level + '/visibility',newVisibility);
         setMapData(newMapData);
     }
 
