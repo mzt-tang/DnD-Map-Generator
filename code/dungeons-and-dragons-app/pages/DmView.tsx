@@ -53,14 +53,14 @@ const DmView = () => {
     const [totalLevels, setTotalLevels] = useState(0);
 
     useEffect(() => {
-        const levelData = readFromFirebase('/' + gamecode + '/levels/1');
-        if (!isObjectEmpty(levelData)){
-            setMapData(levelData as MapData);
-            readFromFirebase('/' + gamecode + '/levels').then(value => setTotalLevels(value.val().lenth));
-            setLevel(1);
-        } else {
-            generateMap();
-        }
+        readFromFirebase('/' + gamecode + '/levels/1').then(value => {
+            if (value.exists() && !isObjectEmpty(value.val())){
+                setMapData(value.val() as MapData);
+                readFromFirebase('/' + gamecode + '/levels').then(value => setTotalLevels(value.val().lenth));
+            } else {
+                generateMap();
+            }
+        });
     }, []);
 
     const isObjectEmpty = (obj : Object) : boolean => {
@@ -68,14 +68,14 @@ const DmView = () => {
     }
 
     const generateMap = () => {
-        MapGen({theme}).then(
-            value => {
-                setMapData(value);
-                writeToFirebase('/'+ gamecode+'/levels/'+(level+1),value);
-                setLevel(value => value+1);
-                setTotalLevels(value => value+1);
-            }
-        ).catch(e => console.log(e))
+        const newMap = MapGen({theme})
+        writeToFirebase('/'+ gamecode+'/levels/'+(totalLevels+1),newMap);
+        setTotalLevels(value => {
+            setLevel(value+1);
+           return value+1;
+        }
+        );
+        setMapData(newMap);
     };
 
     const nextMap = async () => {
