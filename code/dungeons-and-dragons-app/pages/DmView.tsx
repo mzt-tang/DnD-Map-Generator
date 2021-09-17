@@ -51,10 +51,16 @@ const DmView = () => {
     const [totalLevels, setTotalLevels] = useState(0);
 
     useEffect(() => {
+        readFromFirebase('/' + gamecode + '/levels').then(value => {
+            if (value.exists() && !isObjectEmpty(value.val())){
+                setTotalLevels(value.val().length)
+            }
+        });
+
         readFromFirebase('/' + gamecode + '/levels/1').then(value => {
             if (value.exists() && !isObjectEmpty(value.val())){
                 setMapData(value.val() as MapData);
-                readFromFirebase('/' + gamecode + '/levels').then(value => setTotalLevels(value.val().lenth));
+                setLevel(1);
             } else {
                 generateMap();
             }
@@ -161,15 +167,14 @@ const DmView = () => {
                 <Button id="topButton" style={{ width: '40px', top: 10 }} onClick={() => {
                     history.push('/home')
                 }}>X</Button>
-                <Button id="topButton" style={{ width: '200px', top: 10 }}><img src={saveImage} style={{
-                    width: '17px',
-                    marginRight: '10px'
-                }} />Save</Button>
-
+                <div style={{flexDirection:"column"}}>
+                    <Text style={{ width: '200px', top: 10, fontSize:16,textAlign:"center",textAlignVertical:"center", padding:'5px'}}>{'Current Level: '  + level}</Text>
+                    <Text style={{ width: '200px', top: 10, fontSize:16,textAlign:"center",textAlignVertical:"center", padding:'5px'}}>{'Total Levels: '  + totalLevels}</Text>
+                </div>
                 <Button id="topButton" style={{ width: '200px', top: 10 }} onClick={generateMap}>New Level</Button>
 
-                <Button id="topButton" style={{ width: '100px', top: '10px' }} onClick={previousMap}>Previous Map</Button>
-                <Button id="topButton" style={{ width: '100px', top: '10px' }} onClick={nextMap}>Next Map</Button>
+                <Button id="topButton" style={{ width: '100px', top: '10px' }} onClick={previousMap}>Previous Level</Button>
+                <Button id="topButton" style={{ width: '100px', top: '10px' }} onClick={nextMap}>Next Level</Button>
 
                 <div id="topButton" style={{ position: "absolute", left: "900px", top: 10 }}>
                     <p>FOG Controls</p>
@@ -179,6 +184,7 @@ const DmView = () => {
                     <FormControlLabel control={<Switch checked={adjustingFog} onChange={handleAdjustingFogChange}
                         name={'adjustFog'} />} label={'Add/Remove Fog'} />
                 </div>
+            </div>
                 <div id='route' style={{ backgroundColor: hexToRgb("#AAAABB"), position: "absolute", top: 100, alignSelf: "center", right: "35%" }}>
                     <Map mapData={mapData} imagePressFunction={clickMapTileHandler} showFog={showFog}/>
                 </div>
@@ -206,7 +212,6 @@ const DmView = () => {
                     />
                 </div>
                 <Text>{ }</Text>
-            </div>
         </div>
     )
 }
