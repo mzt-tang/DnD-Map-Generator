@@ -182,7 +182,7 @@ const DmView = () => {
                         name={'adjustFog'} />} label={'Add/Remove Fog'} />
                 </div>
                 <div id='route' style={{ backgroundColor: hexToRgb("#AAAABB"), position: "absolute", top: 100, alignSelf: "center", right: "35%" }}>
-                    <Map mapData={mapData} imagePressFunction={clickVisibilityHandler} showFog={showFog}/>
+                    <Map mapData={mapData} imagePressFunction={clickMapTileHandler} showFog={showFog}/>
                 </div>
                 <div id="topButton" style={{ position: "absolute", left: "1000px", top: 10 }}>
                     <RadioGroup row={true} aria-label="fog" name="fog controls" value={addingFog}

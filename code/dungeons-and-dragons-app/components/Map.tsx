@@ -167,7 +167,7 @@ export default function map(props: mapProps) {
 
     const data = props.mapData;
 
-    const images = makeImageArray(data.map, data.visibility,props.imagePressFunction,  data.theme,props.showFog);
+    const images = makeImageArray(data.map, data.visibility,props.imagePressFunction,props.showFog,data.theme);
 
     let rowr: roomRows[] = []
     for (let i: number = 0; i < data.roomNum; i++) {
