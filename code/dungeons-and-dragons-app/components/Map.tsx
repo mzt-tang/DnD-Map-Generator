@@ -174,10 +174,11 @@ export default function map(props: mapProps) {
     const images = makeImageArray(data.map, data.visibility,props.imagePressFunction, props.showFog, props.mapTheme);
 
     let rowr: roomRows[] = []
-    // for (let i: number = 0; i < data.roomNum; i++) {
-    //     rowr[i] = createData("Room" + (i + 1), ["OOOOOOOHHH", "AHHHHHHH", "filler data"]);
-    // }
+    for (let i: number = 0; i < data.roomNum; i++) {
+        rowr[i] = createData("Room" + (i + 1), ["OOOOOOOHHH", "AHHHHHHH", "filler data"]);
+    }
     monsterGeneration("level1", rowr);
+    console.log(rowr);
 
     return (
         <div id="page">

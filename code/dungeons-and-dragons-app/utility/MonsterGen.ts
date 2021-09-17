@@ -20,19 +20,20 @@ export default function monsterGeneration (level: string, rowr: roomRows[]){
                 let monster = await set1[i].get(); //
                 monsterPreset.push({
                     faction: monster.data()?.faction, name: monster.data()?.name, size: monster.data()?.size, friends: monster.data()?.friends,
-                    loneliness: monster.data()?.loneliness, commonality: monster.data()?.size});
+                    loneliness: monster.data()?.loneliness, commonality: monster.data()?.commonality});
             }
 
             //Parse the generated monsters and put it through createData()
+            console.log("PLACEMARKER");
+            console.log(monsterPreset);
             const genedMonsters = generateAllMonsters(monsterPreset);
-            const formatMonsters = [];
             for (let i = 0; i <genedMonsters.length; i++) {
                 const parsedMonsStrings:string[] = [];
                 for (let j = 1; j < genedMonsters[i].length; j++) {
                     parsedMonsStrings.push((genedMonsters[i][j] as Monster).name);
                 }
-                console.log(genedMonsters[i][0]);
-                console.log(parsedMonsStrings);
+                // console.log(genedMonsters[i][0]);
+                // console.log(parsedMonsStrings);
                 rowr.push(createData("Room " + genedMonsters[i][0], parsedMonsStrings));
             }
             console.log("TEST");
@@ -57,16 +58,18 @@ export default function monsterGeneration (level: string, rowr: roomRows[]){
         // Look at the monsters' friends and add monsters by 'branching out' from the monsters in the set
         // Assign monsters to room
 
-        let generatedMonsters: (string|number)[][] = [];
+        let generatedMonsters: (string|number)[][] = []; // Data structure [[], [], []]
 
         //Generate monsters from set
         for (let i = 0; i < monsterPreset.length; i++) {
             let monster: Monster = monsterPreset[i];
             let commonalityDeviation: number = getRandomInt(monster.commonality - Math.floor(monster.commonality / 2),
                 monster.commonality + Math.floor(monster.commonality / 2)); //an operator to determine whether to add or minus from the commonality
-
+            console.log("common " + commonalityDeviation);
             generatedMonsters.push([monsterPreset[i].name, commonalityDeviation]);
         }
+        console.log("HERE");
+        console.log(generatedMonsters);
 
         return assignMonstersToRooms(generatedMonsters, monsterPreset);
     }
@@ -98,7 +101,7 @@ export default function monsterGeneration (level: string, rowr: roomRows[]){
             let initialMonsterInt = getRandomInt(0, assignableMonsters.length - 1);
             let chosenRoom = getRandomInt(0, eligibleRooms.length - 1);
             let currentMonsInRoom: (number|Monster)[] = [chosenRoom, monsterPreset[initialMonsterInt]]; // Push an initial random eligible monster first
-            assignableMonsters[initialMonsterInt][1] = assignableMonsters[initialMonsterInt][1] as number - 1;
+            assignableMonsters[initialMonsterInt][1] = (assignableMonsters[initialMonsterInt][1] as number) - 1;
 
             let combinedLoneliness = (monsterList: (number|Monster)[]): number => {
                 let total = 0;

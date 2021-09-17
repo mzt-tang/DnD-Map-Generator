@@ -49,7 +49,7 @@ function DmView() {
     const history = useHistory();
 
     console.log(ParseURLData(history.location.pathname));
-    let gamecode: string = history.location.state as string;
+    let gamecode: string = ParseURLData(history.location.pathname);
     console.log(gamecode);
 
 
