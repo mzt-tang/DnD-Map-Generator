@@ -1,13 +1,12 @@
-import { View, Text } from 'react-native';
-import { AppBar, IconButton, Link, Toolbar, Typography } from "@material-ui/core";
-import { Title } from "@material-ui/icons";
+import { Text } from 'react-native';
+import { Typography } from "@material-ui/core";
 
+import { readFromFirebase, writeToFirebase } from "../utility/FirebaseRW";
 import { useLocation } from "react-router-dom";
 
 import Map, { getFirebaseMap } from '../components/Map';
 import '../styles/style.css'
 import { useHistory } from "react-router-dom";
-import { db } from '.././firebaseConfig';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -15,41 +14,18 @@ import Switch from '@material-ui/core/Switch';
 
 import saveImage from '../assets/saveIcon.png'
 import {
-    Box,
     Button,
-    Collapse,
     hexToRgb,
-    makeStyles, Slider,
-    Table,
-    TableCell,
-    TableHead,
-    TableRow
+    Slider
 } from "@material-ui/core";
 
-import React, { DragEventHandler, MouseEventHandler, useEffect, useState } from 'react';
+import React, { MouseEventHandler, useEffect, useState } from 'react';
 
 
 import { Grid } from "@material-ui/core";
 import MapGen from '../utility/MapGen';
 import MapData from "../interfaces/MapData";
 import ParseURLData from "../utility/ParseURLData";
-
-//Firebase (old, delete)
-//const dbRefObject = db.database().ref().child('adamtest');
-
-// Firebase
-
-const useRowStyles = makeStyles({
-    root: {
-        '& > *': {
-            borderBottom: 'unset',
-        },
-        position: "relative",
-        top: 0,
-        width: 800,
-    },
-});
-let lastMap: MapData = [];
 
 let mapDataInitial: MapData = {
     map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: [], roomNum: 1, theme: "Caves"
@@ -60,13 +36,9 @@ let curMap: number;
 const DmView = () => {
     const { state: { code,theme } = { code:'code',theme:'theme' } } = useLocation<{ code: string, theme: string }>()
     const history = useHistory();
-    console.log(ParseURLData(history.location.pathname));
     let gamecode: string = ParseURLData(history.location.pathname) as string;
-    console.log(gamecode);
 
-    const dbRefObject = db.database().ref().child(gamecode); //Reference to map from Firebase Realtime Database
     const [open, setOpen] = React.useState(false);
-
 
     // Fog Controls
     const [showFog, setShowFog] = React.useState(true);
@@ -77,24 +49,54 @@ const DmView = () => {
     let levels: MapData[] = getFirebaseMap()
 
     const [mapData, setMapData] = useState(mapDataInitial);
-    const [level, setLevel] = useState(1);
+    const [level, setLevel] = useState(0);
+    const [totalLevels, setTotalLevels] = useState(0);
 
     useEffect(() => {
-        dbRefObject.get().then(value => setMapData(value.val()))
-    }, [])
-    console.log(theme);
+        const levelData = readFromFirebase('/' + gamecode + '/levels/0');
+        if (!isObjectEmpty(levelData)){
+            setMapData(levelData as MapData);
+            readFromFirebase('/' + gamecode + '/levels').then(value => setTotalLevels(value.val().lenth));
+        } else {
+            generateMap();
+        }
+    }, []);
+
+    const isObjectEmpty = (obj : Object) : boolean => {
+        return Object.keys(obj).length === 0;
+    }
+
     const generateMap = () => {
         MapGen({theme}).then(
             value => {
-                console.log(value);
                 setMapData(value);
-                //PlayerView.update(mapData) // Update the player view
-                db.database().ref().child('/'+ gamecode+'/levels/'+(levels.length-1) + levels.length).set(value).catch(e => console.log(e))
+                writeToFirebase('/'+ gamecode+'/levels/'+(level+1),value);
+                setLevel(value => value+1);
+                setTotalLevels(value => value+1);
             }
         ).catch(e => console.log(e))
     };
 
-    console.log(dbRefObject);
+    const nextMap = async () => {
+        if (level === totalLevels){
+            alert('final level, generate more levels');
+        } else {
+            const path = '/' + gamecode + '/levels/' + (level+1);
+            readFromFirebase(path).then(value => setMapData(value.val() as MapData));
+            setLevel(value => value+1);
+        }
+    }
+
+    const previousMap = async () => {
+        if (level <= 1){
+            alert('first level');
+        } else {
+            const path = '/' + gamecode + '/levels/' + (level-1);
+            readFromFirebase(path).then(value => setMapData(value.val() as MapData));
+            setLevel(value => value-1);
+        }
+    }
+
     if (mapData == null) {
         return (
             <Grid>
@@ -134,8 +136,7 @@ const DmView = () => {
             visibility: newVisibility
         };
 
-        const visRef = db.database().ref().child('adamtest').child('visibility');
-        visRef.set(newVisibility)
+        writeToFirebase('gamecode/levels/' + level + 'visibility',newVisibility);
         setMapData(newMapData);
     }
 
@@ -155,8 +156,6 @@ const DmView = () => {
         return `${fogAdjustSize} x ${fogAdjustSize}`
     }
 
-    levels = getFirebaseMap()
-
     return (
         <div id='dmView' style={{ backgroundColor: hexToRgb("#8b5f8c"), height: "100%" }}>
             <div id="topBar">
@@ -168,43 +167,10 @@ const DmView = () => {
                     marginRight: '10px'
                 }} />Save</Button>
 
-                <Button id="topButton" style={{ width: '200px', top: 10 }} onClick={() => {
+                <Button id="topButton" style={{ width: '200px', top: 10 }} onClick={generateMap}>New Level</Button>
 
-                    // Generate new map
-                    let newLevels = levels
-                    if (levels.length > 0) {
-                        setMapData(levels[levels.length - 1])
-                    }
-                    generateMap()
-                    newLevels.push(mapData)
-                    levels = getFirebaseMap()
-                    lastMap = mapData
-                    curMap = levels.length - 1
-                    setMapData(levels[levels.length - 1])
-                }}>New Level</Button>
-
-                <Button id="topButton" style={{ width: '100px', top: '10px' }} onClick={() => {
-                    curMap = curMap - 1
-                    if (levels.indexOf(mapData) == 0) {
-                        setMapData(levels[curMap])
-                    }
-                    if (levels.length > 1 && curMap > 0) {
-                        setMapData(levels[curMap])
-                    }
-                    else {
-                        alert("This is the first level")
-                    }
-                }}>Previous Map</Button>
-                <Button id="topButton" style={{ width: '100px', top: '10px' }} onClick={() => {
-                    curMap = curMap + 1
-                    if (curMap == levels.length || levels.length == 0) {
-                        alert("This is the last level, click \"NEW LEVEL\"")
-                        curMap = curMap - 1
-                    }
-                    else {
-                        setMapData(levels[curMap])
-                    }
-                }}>Next Map</Button>
+                <Button id="topButton" style={{ width: '100px', top: '10px' }} onClick={previousMap}>Previous Map</Button>
+                <Button id="topButton" style={{ width: '100px', top: '10px' }} onClick={nextMap}>Next Map</Button>
 
                 <div id="topButton" style={{ position: "absolute", left: "900px", top: 10 }}>
                     <p>FOG Controls</p>

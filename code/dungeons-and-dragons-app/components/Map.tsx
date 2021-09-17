@@ -163,18 +163,11 @@ export default function map(props: mapProps) {
             gridGap: '0px'
         }
     }
-    const history = useHistory();
-    const dbRefObject = db.database().ref().child(ParseURLData(history.location.pathname) as string);
-
-    // Send updated map to firebase
-    dbRefObject.set({
-        Map: fireBaseMapVersion
-    })
 
 
     const data = props.mapData;
 
-    const images = makeImageArray(data.map, data.visibility,props.imagePressFunction, props.showFog, data.theme);
+    const images = makeImageArray(data.map, data.visibility,props.imagePressFunction,  data.theme,props.showFog);
 
     let rowr: roomRows[] = []
     for (let i: number = 0; i < data.roomNum; i++) {
