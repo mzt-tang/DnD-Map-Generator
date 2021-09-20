@@ -6,6 +6,7 @@ import {createData} from "../components/Map";
 import {roomRows} from "../components/Map";
 
 export default function monsterGeneration (level: string, rowr: roomRows[]){
+    //Get the monster preset document with the array of monster references from that collection.
     const monsterPresetRef = firebase.firestore().collection('monsterPresets').doc(level);
 
     monsterPresetRef.get().then(async (snapshot) => {
@@ -13,7 +14,7 @@ export default function monsterGeneration (level: string, rowr: roomRows[]){
             console.log("Document data:", snapshot.data());
             const presetRef = snapshot.data();
             let monsterPreset: Monster[] = [];
-            let set1 = presetRef?.set1; //todo temporary, to be switched to random choosing later.
+            let set1 = presetRef?.set1; //todo temporary, to be switched to random set choosing later.
             let len = set1.length;
 
             for (let i = 0; i < len; i++) {
@@ -66,7 +67,7 @@ export default function monsterGeneration (level: string, rowr: roomRows[]){
             let commonalityDeviation: number = getRandomInt(monster.commonality - Math.floor(monster.commonality / 2),
                 monster.commonality + Math.floor(monster.commonality / 2)); //an operator to determine whether to add or minus from the commonality
             console.log("common " + commonalityDeviation);
-            generatedMonsters.push([monsterPreset[i].name, commonalityDeviation]);
+            generatedMonsters.push([monsterPreset[i].name, commonalityDeviation as number]);
         }
         console.log("HERE");
         console.log(generatedMonsters);
