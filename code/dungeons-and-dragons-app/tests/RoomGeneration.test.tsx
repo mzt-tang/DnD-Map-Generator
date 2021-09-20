@@ -7,7 +7,7 @@
 import React from 'react';
 
 import './RoomGeneration.test';
-import {roomGen} from "../utility/roomGen";
+import {roomGen, RoomGenerationError} from "../utility/roomGen";
 
 interface mapProps {
     images: JSX.Element[]
@@ -30,7 +30,7 @@ describe('<App />', () => {
             const roomArray = roomGen(10, 10, entrances, 0.2, false);
             console.assert(false);
         } catch (error) {
-            console.log("Did not allow the [0,0] entrance to pass");
+            if (!(error instanceof RoomGenerationError)) console.assert(false);
         }
     });
 
@@ -40,7 +40,7 @@ describe('<App />', () => {
             const roomArray = roomGen(10, 10, entrances, 0.2, false);
             console.assert(false);
         } catch (error) {
-            console.log("Did not allow the [5,6] entrance to pass");
+            if (!(error instanceof RoomGenerationError)) console.assert(false);
         }
     });
 
@@ -50,7 +50,7 @@ describe('<App />', () => {
             const roomArray = roomGen(10, 10, entrances, 0.2, false);
             console.assert(false);
         } catch (error) {
-            console.log("Did not allow 0 entrances");
+            if (!(error instanceof RoomGenerationError)) console.assert(false);
         }
     });
 

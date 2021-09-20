@@ -2,6 +2,13 @@ const EMPTY = 0;
 const ROOM_TILE = 1;
 const ENTRANCE = 2;
 
+ export class RoomGenerationError extends Error {
+    constructor(message : string) {
+        super(message);
+        this.name = "RoomGenerationError";
+    }
+};
+
 
 /**
  * Generates a random room with a chance to grow
@@ -33,8 +40,8 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
 
         //Checks entrance isn't a corner entrance and is on the edge.
         let isCornerTile = (row == 0 || row == rowSize - 1) && (col == 0 || col == colSize - 1);
-        console.assert(!isCornerTile, "Entrances can't be corner tiles! row: " + row + " col: " + col);
-        console.assert(checkEdgeTile(row, col), "Entrances must be an edge tile!")
+        if (!isCornerTile) throw new RoomGenerationError("Entrances cannot be corner tiles");
+        if (checkEdgeTile(row,col)) throw new RoomGenerationError("Entrances must be edge tiles");
 
         room[row][col] = ENTRANCE;
     }
