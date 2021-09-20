@@ -110,7 +110,7 @@ export default function monsterGeneration (level: string, rowr: roomRows[]){
             console.log("before: " + allMonsters[initialMonsterInt][1]);
             allMonsters[initialMonsterInt][1]--;
             console.log("after: " + allMonsters[initialMonsterInt][1]);
-            allMonsters[initialMonsterInt][1] = assignableMonsters[initialMonsterInt][1] - 1; // todo get rid of
+            allMonsters[initialMonsterInt][1] = allMonsters[initialMonsterInt][1] - 1; // todo get rid of
 
             const currentMonstersInRoom: [number, Monster[]] = roomAndMonsterList;
 
@@ -161,7 +161,7 @@ export default function monsterGeneration (level: string, rowr: roomRows[]){
                 for (let i = 0; i < allMonsters.length; i++) {
                     if (allMonsters[i][0] === chosenMonster.name) {
                         //allMonsters[i][1]--;
-                        allMonsters[i][1] = assignableMonsters[i][1] - 1; // todo get rid of
+                        allMonsters[i][1] = allMonsters[i][1] - 1; // todo get rid of
                         break;
                     }
                 }
