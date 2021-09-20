@@ -1,4 +1,4 @@
-import React, {useEffect, useState,MouseEventHandler} from 'react';
+import React, {useEffect, useState, MouseEventHandler, useMemo, useRef} from 'react';
 import {View} from 'react-native';
 import { useHistory } from "react-router-dom";
 import {db} from "../firebaseConfig";
@@ -10,6 +10,7 @@ import Map from "../components/Map";
 import MapData from "../interfaces/MapData";
 import { hexToRgb } from '@material-ui/core';
 import {readFromFirebase} from "../utility/FirebaseRW";
+import ParseURLData from "../utility/ParseURLData";
 
 let mapDataInitial: MapData = {
     map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: [], roomNum: 1, theme: "Caves"
@@ -22,22 +23,30 @@ function update(map: MapData){
 const PlayerView = () => {
     const history = useHistory();
 
-    let gamecode : string = history.location.state as string;
-    const playerViewDatabase = async () => await db.database().ref().child('testing/' + gamecode + '/currentMap');
+    // let gamecode : string = history.location.state as string;
+    let gamecode: string = ParseURLData(history.location.pathname) as string;
+    console.log(gamecode)
 
-    const [map, setMap] = useState(mapDataInitial);
+    // const playerViewDatabase = async () => db.database().ref().child('testing/' + gamecode + '/currentMap');
+
+    const [map, setMap] = useState<MapData>(mapDataInitial);
     const [size, setSize] = useState(25); //todo set the tile size?
+    // const [currentMap, setCurrentMap] = useState(1);
+    const currentMap = useRef({level: 1})
 
     useEffect(() => {
-        playerViewDatabase().then(connection => {
-            connection.on('value', update => {
-                const path = '/' + gamecode + '/levels/' + update.val();
-                console.log(path)
-                readFromFirebase(path).then(value => setMap(value.val() as MapData));
-                setMap(update.val())
-            })
+        db.database().ref('testing/' + gamecode + '/currentMap').on('value',mapNum => {
+            const path = '/' + gamecode + '/levels/' + mapNum.val();
+            currentMap.current.level = mapNum.val();
+            readFromFirebase(path).then(value => setMap(value.val())).catch(e => console.log(e));
+        });
+
+        db.database().ref('testing/' + gamecode + '/levels').on('value',() => {
+            const path = '/' + gamecode + '/levels/' + currentMap.current.level;
+            readFromFirebase(path).then(value => setMap(value.val())).catch(e => console.log(e));
         });
     },[]);
+
 
     if (map == null || map.roomSize == 0 || map.map == undefined) {
         return (

@@ -52,7 +52,7 @@ const DmView = () => {
     useEffect(() => {
         readFromFirebase('/' + gamecode + '/levels').then(value => {
             if (value.exists() && !isObjectEmpty(value.val())){
-                setTotalLevels(value.val().length)
+                setTotalLevels(value.val().length-1);
             }
         });
 
@@ -60,7 +60,7 @@ const DmView = () => {
             if (value.exists() && !isObjectEmpty(value.val())){
                 setMapData(value.val() as MapData);
                 setLevel(1);
-                setPlayerLevel(1)
+                setPlayerLevel(1);
             } else {
                 generateMap();
             }
@@ -87,7 +87,7 @@ const DmView = () => {
         setMapData(newMap);
     };
 
-    const nextMap = async () => {
+    const nextMap = () => {
         if (level === totalLevels){
             alert('final level, generate more levels');
         } else {
@@ -101,7 +101,7 @@ const DmView = () => {
         }
     }
 
-    const previousMap = async () => {
+    const previousMap = () => {
         if (level <= 1){
             alert('first level');
         } else {
