@@ -9,6 +9,7 @@ import '../styles/style.css'
 import Map from "../components/Map";
 import MapData from "../interfaces/MapData";
 import { hexToRgb } from '@material-ui/core';
+import {readFromFirebase} from "../utility/FirebaseRW";
 
 let mapDataInitial: MapData = {
     map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: [], roomNum: 1, theme: "Caves"
@@ -18,22 +19,23 @@ function update(map: MapData){
     mapDataInitial = map
 }
 
-// firebase
-//const playerViewDatabase = async () => await db.database().ref().child('adamtest');
-const tileSize = firebase.database().ref().child('tileSize');
-
 const PlayerView = () => {
     const history = useHistory();
 
     let gamecode : string = history.location.state as string;
-    const playerViewDatabase = async () => await db.database().ref().child(gamecode);
+    const playerViewDatabase = async () => await db.database().ref().child('testing/' + gamecode + '/currentMap');
 
     const [map, setMap] = useState(mapDataInitial);
     const [size, setSize] = useState(25); //todo set the tile size?
 
     useEffect(() => {
         playerViewDatabase().then(connection => {
-            connection.on('value', update => setMap(update.val()))
+            connection.on('value', update => {
+                const path = '/' + gamecode + '/levels/' + update.val();
+                console.log(path)
+                readFromFirebase(path).then(value => setMap(value.val() as MapData));
+                setMap(update.val())
+            })
         });
     },[]);
 

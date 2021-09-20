@@ -12,7 +12,6 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
-import saveImage from '../assets/saveIcon.png'
 import {
     Button,
     hexToRgb,
@@ -61,6 +60,7 @@ const DmView = () => {
             if (value.exists() && !isObjectEmpty(value.val())){
                 setMapData(value.val() as MapData);
                 setLevel(1);
+                setPlayerLevel(1)
             } else {
                 generateMap();
             }
@@ -71,11 +71,16 @@ const DmView = () => {
         return Object.keys(obj).length === 0;
     }
 
+    const setPlayerLevel = (level : number) => {
+        writeToFirebase('/' + gamecode + '/currentMap',level);
+    }
+
     const generateMap = () => {
         const newMap = MapGen({theme})
         writeToFirebase('/'+ gamecode+'/levels/'+(totalLevels+1),newMap);
         setTotalLevels(value => {
             setLevel(value+1);
+            setPlayerLevel(value+1);
            return value+1;
         }
         );
@@ -88,7 +93,11 @@ const DmView = () => {
         } else {
             const path = '/' + gamecode + '/levels/' + (level+1);
             readFromFirebase(path).then(value => setMapData(value.val() as MapData));
-            setLevel(value => value+1);
+            setLevel(value => {
+                setPlayerLevel(value+1);
+                return value+1
+            });
+
         }
     }
 
@@ -98,7 +107,10 @@ const DmView = () => {
         } else {
             const path = '/' + gamecode + '/levels/' + (level-1);
             readFromFirebase(path).then(value => setMapData(value.val() as MapData));
-            setLevel(value => value-1);
+            setLevel(value => {
+                setPlayerLevel(value-1);
+                return value-1
+            });
         }
     }
 
