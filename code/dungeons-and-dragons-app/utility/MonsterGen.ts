@@ -4,6 +4,7 @@ import 'firebase/firestore';
 import {Monster} from "../interfaces/MapData";
 import {createData} from "../components/Map";
 import {roomRows} from "../components/Map";
+import * as assert from "assert";
 
 export default function monsterGeneration (level: string, rowr: roomRows[]){
     //Get the monster preset document with the array of monster references from that collection.
@@ -27,15 +28,16 @@ export default function monsterGeneration (level: string, rowr: roomRows[]){
             //Parse the generated monsters and put it through createData()
             console.log("PLACEMARKER");
             console.log(monsterPreset);
-            const genedMonsters = generateAllMonsters(monsterPreset);
-            for (let i = 0; i <genedMonsters.length; i++) {
+            const generatedMonsters = generateAllMonsters(monsterPreset);
+
+            for (let i = 0; i <generatedMonsters.length; i++) {
                 const parsedMonsStrings:string[] = [];
-                for (let j = 1; j < genedMonsters[i].length; j++) {
-                    parsedMonsStrings.push((genedMonsters[i][j] as Monster).name);
+                for (let j = 0; j < generatedMonsters[i][1].length; j++) {
+                    parsedMonsStrings.push(generatedMonsters[i][1][j].name);
                 }
                 // console.log(genedMonsters[i][0]);
                 // console.log(parsedMonsStrings);
-                rowr.push(createData("Room " + genedMonsters[i][0], parsedMonsStrings));
+                rowr.push(createData("Room " + generatedMonsters[i][0], parsedMonsStrings));
             }
             console.log("TEST");
 
@@ -58,18 +60,18 @@ export default function monsterGeneration (level: string, rowr: roomRows[]){
         // Randomly choose 2-3 monsters based on level difficulty
         // Look at the monsters' friends and add monsters by 'branching out' from the monsters in the set
         // Assign monsters to room
-
-        let generatedMonsters: (string|number)[][] = []; // Data structure [[], [], []]
+        const generatedMonsters: [string, number][] = [];
 
         //Generate monsters from set
         for (let i = 0; i < monsterPreset.length; i++) {
             let monster: Monster = monsterPreset[i];
-            let commonalityDeviation: number = getRandomInt(monster.commonality - Math.floor(monster.commonality / 2),
-                monster.commonality + Math.floor(monster.commonality / 2)); //an operator to determine whether to add or minus from the commonality
-            console.log("common " + commonalityDeviation);
-            generatedMonsters.push([monsterPreset[i].name, commonalityDeviation as number]);
+            const lowerLimit = monster.commonality - Math.floor(monster.commonality/2);
+            const upperLimit = monster.commonality + Math.floor(monster.commonality/2);
+            const commonalityDeviation: number = getRandomInt(lowerLimit, upperLimit); //an operator to determine whether to add or minus from the commonality
+
+            let pair: [string, number] = [monster.name, commonalityDeviation];
+            generatedMonsters.push(pair);
         }
-        console.log("HERE");
         console.log(generatedMonsters);
 
         return assignMonstersToRooms(generatedMonsters, monsterPreset);
@@ -81,68 +83,85 @@ export default function monsterGeneration (level: string, rowr: roomRows[]){
      * like this [[id, number of monsters], [id, number of monsters]].
      * @param monsterPreset A matching list of monsters, but in monster interface form
      */
-    function assignMonstersToRooms(assignableMonsters: (string|number)[][], monsterPreset: Monster[]) {
+    function assignMonstersToRooms(assignableMonsters: [string, number][], monsterPreset: Monster[]) {
         //Notes
         //This only takes a set of monsters and assigns them to the rooms
         //Try to avoid spawning monsters at the start of the map
-        let eligibleRooms = []
-        let assignedMonsters: (number|Monster)[][] = []; //data structure of assigned monsters: [[room number, monster1, monster2, monster3, ...], [], []]
+        let eligibleRooms = [1, 2, 3, 4, 5]; //todo temporary
+        const allMonsters = assignableMonsters;
+        let finalMonsterAssignment: [number, Monster[]][] = []; //data structure of assigned monsters: [[room number, [monster1, monster2, monster3]], [], []]
 
-        let totalMonsterAmount = (allMonsters: (string|number)[][]): number => {
+        //A function to calculate the total amount of monsters which need to be assigned.
+        let totalMonsterAmount = (allMonsters: [string, number][]): number => {
             let total = 0;
             for (let i = 0; i < allMonsters.length; i++) {
-                total += allMonsters[i][1] as number; // type-casting the second number.
+                total += allMonsters[i][1];
             }
             return total;
         }
 
-        while (eligibleRooms.length != 0 || totalMonsterAmount(assignableMonsters) != 0) {
+        while (eligibleRooms.length != 0 || totalMonsterAmount(allMonsters) != 0) {
             // Randomly select a monster from the map
             // Randomly select a room
-            let initialMonsterInt = getRandomInt(0, assignableMonsters.length - 1);
-            let chosenRoom = getRandomInt(0, eligibleRooms.length - 1);
-            let currentMonsInRoom: (number|Monster)[] = [chosenRoom, monsterPreset[initialMonsterInt]]; // Push an initial random eligible monster first
-            assignableMonsters[initialMonsterInt][1] = (assignableMonsters[initialMonsterInt][1] as number) - 1;
+            const initialMonsterInt = getRandomInt(0, allMonsters.length - 1);
+            const chosenRoom = eligibleRooms[getRandomInt(0, eligibleRooms.length - 1)];
 
-            let combinedLoneliness = (monsterList: (number|Monster)[]): number => {
+            const roomAndMonsterList: [number, Monster[]] = [chosenRoom, [monsterPreset[initialMonsterInt]]]; // Push an initial random eligible monster first
+            console.log("before: " + allMonsters[initialMonsterInt][1]);
+            allMonsters[initialMonsterInt][1]--;
+            console.log("after: " + allMonsters[initialMonsterInt][1]);
+            allMonsters[initialMonsterInt][1] = assignableMonsters[initialMonsterInt][1] - 1; // todo get rid of
+
+            const currentMonstersInRoom: [number, Monster[]] = roomAndMonsterList;
+
+            let totalLoneliness = (currentMonstersInRoom: [number, Monster[]]): number => {
                 let total = 0;
-                for (let i = 1; i < monsterList.length; i++) {
-                    total += (monsterList[i] as Monster).loneliness;
+                for (let i = 0; i < currentMonstersInRoom[1].length; i++) {
+                    total += currentMonstersInRoom[1][i].loneliness;
                 }
+                console.log("total loneliness calculation: " + total);
                 return total;
             }
 
             // A room isn't fully populated unless the number of monsters is
             // more than the average of the sum of the monsters' loneliness
-            while (currentMonsInRoom.length-1 >= (combinedLoneliness(currentMonsInRoom) / (currentMonsInRoom.length-1))) {
-                let eligibleMonsters: Monster[] = [];
+            while (currentMonstersInRoom[1].length >= totalLoneliness(currentMonstersInRoom) / currentMonstersInRoom[1].length) {
+                const eligibleMonsters: Monster[] = [];
 
                 // Iterate and filter through all the monsters that can be in the room.
                 //for all of the monsters in the monster set
                 //if it doesn't exist in all of the existing monsters' friend list
                 //skip to next eligible monster
                 //else add as eligible
-                for (let i = 0; i < monsterPreset.length; i++) {
+                for (let i = 0; i < allMonsters.length; i++) {
                     let eligible: boolean = true;
 
-                    for (let j = 1; j < currentMonsInRoom.length; j++) {
-                        if (!(currentMonsInRoom[i] as Monster).friends.includes(assignableMonsters[i][0] as string)) {
+                    for (let j = 0; j < currentMonstersInRoom[1].length; j++) {
+                        if (!currentMonstersInRoom[1][j].friends.includes(allMonsters[i][0])) {
                             eligible = false;
                             break;
                         }
                     }
+
                     if (eligible) {
-                        eligibleMonsters.push(monsterPreset[i]);
+                        const eligibleMon = getMonsterByName(allMonsters[i][0], monsterPreset);
+                        if (eligibleMon == null) {
+                            console.error("Monster in all monsters not from chosen monster preset"); // throw error
+                        } else {
+                            eligibleMonsters.push(monsterPreset[i]);
+                        }
                     }
                 }
 
                 //Choose and add an eligible monster (given equal chance)
-                let chosenMonsterInt: number = getRandomInt(0, eligibleMonsters.length - 1);
-                currentMonsInRoom.push(eligibleMonsters[chosenMonsterInt]);
+                const chosenMonster: Monster = eligibleMonsters[getRandomInt(0, eligibleMonsters.length - 1)];
+                currentMonstersInRoom[1].push(chosenMonster);
+
                 //Remove monster from assignable monsters
-                for (let i = 0; i < assignableMonsters.length; i++) {
-                    if (assignableMonsters[i][0] as string === eligibleMonsters[chosenMonsterInt].name) {
-                        assignableMonsters[i][1] = assignableMonsters[i][1] as number - 1;
+                for (let i = 0; i < allMonsters.length; i++) {
+                    if (allMonsters[i][0] === chosenMonster.name) {
+                        //allMonsters[i][1]--;
+                        allMonsters[i][1] = assignableMonsters[i][1] - 1; // todo get rid of
                         break;
                     }
                 }
@@ -152,8 +171,7 @@ export default function monsterGeneration (level: string, rowr: roomRows[]){
                 // and if not then keep adding from the eligible monsters
                 // todo assign monster to the actual room to the map data
             }
-
-            assignedMonsters.push(currentMonsInRoom);
+            finalMonsterAssignment.push(currentMonstersInRoom);
         }
 
         // populate the room
@@ -162,7 +180,21 @@ export default function monsterGeneration (level: string, rowr: roomRows[]){
         //  give the filtered monster an equal chance to be chosen.
         //  add the chosen monster to the room
 
-        return assignedMonsters;
+        return finalMonsterAssignment;
+    }
+
+    /**
+     * Returns a monster object by its name string from the monster preset. Returns null if not found.
+     * @param monsterName
+     * @param monsterPreset
+     */
+    function getMonsterByName(monsterName: string, monsterPreset: Monster[]): Monster | null {
+        for (let i = 0; i < monsterPreset.length; i++) {
+            if (monsterPreset[i].name === monsterName) {
+                return monsterPreset[i];
+            }
+        }
+        return null;
     }
 
     function getRandomInt(min: number, max: number) {
