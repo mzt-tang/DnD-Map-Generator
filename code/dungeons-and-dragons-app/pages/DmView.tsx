@@ -1,12 +1,9 @@
 import { Text } from 'react-native';
 import { Typography } from "@material-ui/core";
-
 import { readFromFirebase, writeToFirebase } from "../utility/FirebaseRW";
-import { useLocation } from "react-router-dom";
-
+import '../styles/style.css'
 import Map from '../components/Map';
 import '../styles/style.css'
-import { useHistory } from "react-router-dom";
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -18,13 +15,14 @@ import {
     Slider
 } from "@material-ui/core";
 
-import React, { MouseEventHandler, useEffect, useState } from 'react';
-
+import React, {MouseEventHandler, useEffect, useState} from 'react';
 
 import { Grid } from "@material-ui/core";
 import MapGen from '../utility/MapGen';
 import MapData from "../interfaces/MapData";
+import {useHistory, useLocation} from "react-router-dom";
 import ParseURLData from "../utility/ParseURLData";
+
 
 let mapDataInitial: MapData = {
     map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: [], roomNum: 1, theme: "Caves"
@@ -33,7 +31,10 @@ let mapDataInitial: MapData = {
 let curMap: number;
 
 const DmView = () => {
+
     const { state: { code,theme } = { code:'code',theme:'theme' } } = useLocation<{ code: string, theme: string }>()
+
+
     const history = useHistory();
     let gamecode: string = ParseURLData(history.location.pathname) as string;
 
@@ -179,6 +180,7 @@ const DmView = () => {
                 <Button id="topButton" style={{ width: '40px', top: 10 }} onClick={() => {
                     history.push('/home')
                 }}>X</Button>
+
                 <div style={{flexDirection:"column"}}>
                     <Text style={{ width: '200px', top: 10, fontSize:16,textAlign:"center",textAlignVertical:"center", padding:'5px'}}>{'Current Level: '  + level}</Text>
                     <Text style={{ width: '200px', top: 10, fontSize:16,textAlign:"center",textAlignVertical:"center", padding:'5px'}}>{'Total Levels: '  + totalLevels}</Text>
@@ -187,6 +189,7 @@ const DmView = () => {
 
                 <Button id="topButton" style={{ width: '100px', top: '10px' }} onClick={previousMap}>Previous Level</Button>
                 <Button id="topButton" style={{ width: '100px', top: '10px' }} onClick={nextMap}>Next Level</Button>
+
 
                 <div id="topButton" style={{ position: "absolute", left: "900px", top: 10 }}>
                     <p>FOG Controls</p>
@@ -197,9 +200,6 @@ const DmView = () => {
                         name={'adjustFog'} />} label={'Add/Remove Fog'} />
                 </div>
             </div>
-                <div id='route' style={{ backgroundColor: hexToRgb("#AAAABB"), position: "absolute", top: 100, alignSelf: "center", right: "35%" }}>
-                    <Map mapData={mapData} imagePressFunction={clickMapTileHandler} showFog={showFog}/>
-                </div>
                 <div id="topButton" style={{ position: "absolute", left: "1000px", top: 10 }}>
                     <RadioGroup row={true} aria-label="fog" name="fog controls" value={addingFog}
                         onChange={handleAddingFogChange}>
@@ -223,8 +223,16 @@ const DmView = () => {
                         onChange={(event: any, newValue: number | number[]) => setFogAdjustSize(newValue as number)}
                     />
                 </div>
-                <Text>{ }</Text>
-        </div>
+                <div id='route' style={{
+                    backgroundColor: hexToRgb("#AAAABB"),
+                    position: "absolute",
+                    top: 100,
+                    alignSelf: "center",
+                    right: "35%",
+                }}>
+                    <Map mapTheme='Cave' mapData={mapData} imagePressFunction={clickMapTileHandler} showFog={showFog} />
+                </div>
+            </div>
     )
 }
 
