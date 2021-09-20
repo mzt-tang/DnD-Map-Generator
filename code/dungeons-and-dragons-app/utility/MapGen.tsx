@@ -2,7 +2,6 @@ import React from "react";
 import {roomGen} from "./RoomGen";
 import {assignImageNumbers} from '../utility/MapTilerHelper';
 import MapData from "../interfaces/MapData";
-import { HeightOutlined } from "@material-ui/icons";
 
 
 const roomSize = 10;
@@ -16,10 +15,13 @@ const roomGrowProbability = 0.42;
 //todo double doors.
 const DOUBLE_DOORS = false;
 
+interface mapGenProps {
+    theme: string
+}
 /**
  * Returns a map data object containing all the information needed for a level.
  */
-export default async function map() : Promise<MapData> {
+export default function map(props:mapGenProps) : MapData {
 
     let allRooms : number[][][] = []; // holds all the rooms making up the map in order.
 
@@ -356,6 +358,7 @@ export default async function map() : Promise<MapData> {
         roomSize: roomSize,
         visibility: mapVisibility,
         roomNum: roomsInside,
+        theme: props.theme,
     }
 
     return mapData;

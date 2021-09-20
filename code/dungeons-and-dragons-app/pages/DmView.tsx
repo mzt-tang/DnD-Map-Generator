@@ -1,60 +1,44 @@
-import {
-    Box,
-    Button,
-    Collapse,
-    hexToRgb,
-    makeStyles, Slider,
-    Table,
-    TableCell,
-    TableHead,
-    TableRow
-} from "@material-ui/core";
-import { IconButton } from "@material-ui/core";
-import Map, { getFirebaseMap } from '../components/Map';
+import { Text } from 'react-native';
+import { Typography } from "@material-ui/core";
+import { readFromFirebase, writeToFirebase } from "../utility/FirebaseRW";
 import '../styles/style.css'
-import { useHistory } from "react-router-dom";
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import { db } from '.././firebaseConfig';
+import Map from '../components/Map';
+import '../styles/style.css'
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
-import saveImage from '../assets/saveIcon.png'
+import {
+    Button,
+    hexToRgb,
+    Slider
+} from "@material-ui/core";
 
-import React, { DragEventHandler, MouseEventHandler, useEffect, useState } from 'react';
-
+import React, {MouseEventHandler, useEffect, useState} from 'react';
 
 import { Grid } from "@material-ui/core";
 import MapGen from '../utility/MapGen';
 import MapData from "../interfaces/MapData";
-
-import Typography from "@material-ui/core/Typography";
-
-import { View } from "react-native";
-import PlayerView from "./PlayerView";
-import { InsertInvitation } from "@material-ui/icons";
-
-
-
-// Firebase
-const dbRefObject = db.database().ref().child('adamtest');
+import {useHistory, useLocation} from "react-router-dom";
+import ParseURLData from "../utility/ParseURLData";
 
 
 let mapDataInitial: MapData = {
-    map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: [], roomNum: 1
+    map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: [], roomNum: 1, theme: "Caves"
 };
 
-let lastMap: MapData
 let curMap: number;
 
 const DmView = () => {
 
+    const { state: { code,theme } = { code:'code',theme:'theme' } } = useLocation<{ code: string, theme: string }>()
+
 
     const history = useHistory();
-    const [open, setOpen] = React.useState(false);
+    let gamecode: string = ParseURLData(history.location.pathname) as string;
 
+    const [open, setOpen] = React.useState(false);
 
     // Fog Controls
     const [showFog, setShowFog] = React.useState(true);
@@ -62,27 +46,74 @@ const DmView = () => {
     const [addingFog, setAddingFog] = React.useState(true);
     const [fogAdjustSize, setFogAdjustSize] = React.useState(1);
 
-    let levels: MapData[] = getFirebaseMap()
-
-
-    // Map Data
     const [mapData, setMapData] = useState(mapDataInitial);
-    const [level, setLevel] = useState(1);
+    const [level, setLevel] = useState(0);
+    const [totalLevels, setTotalLevels] = useState(0);
 
     useEffect(() => {
-        dbRefObject.get().then(value => setMapData(value.val()))
-    }, [])
+        readFromFirebase('/' + gamecode + '/levels').then(value => {
+            if (value.exists() && !isObjectEmpty(value.val())){
+                setTotalLevels(value.val().length-1);
+            }
+        });
+
+        readFromFirebase('/' + gamecode + '/levels/1').then(value => {
+            if (value.exists() && !isObjectEmpty(value.val())){
+                setMapData(value.val() as MapData);
+                setLevel(1);
+                setPlayerLevel(1);
+            } else {
+                generateMap();
+            }
+        });
+    }, []);
+
+    const isObjectEmpty = (obj : Object) : boolean => {
+        return Object.keys(obj).length === 0;
+    }
+
+    const setPlayerLevel = (level : number) => {
+        writeToFirebase('/' + gamecode + '/currentMap',level);
+    }
 
     const generateMap = () => {
-        MapGen().then(
-            value => {
-                console.log(value);
-                setMapData(value);
-                //PlayerView.update(mapData) // Update the player view
-                db.database().ref().child('games/code/map/levels/' + levels.length).set(value).catch(e => console.log(e))
-            }
-        ).catch(e => console.log(e))
+        const newMap = MapGen({theme})
+        writeToFirebase('/'+ gamecode+'/levels/'+(totalLevels+1),newMap);
+        setTotalLevels(value => {
+            setLevel(value+1);
+            setPlayerLevel(value+1);
+           return value+1;
+        }
+        );
+        setMapData(newMap);
     };
+
+    const nextMap = () => {
+        if (level === totalLevels){
+            alert('final level, generate more levels');
+        } else {
+            const path = '/' + gamecode + '/levels/' + (level+1);
+            readFromFirebase(path).then(value => setMapData(value.val() as MapData));
+            setLevel(value => {
+                setPlayerLevel(value+1);
+                return value+1
+            });
+
+        }
+    }
+
+    const previousMap = () => {
+        if (level <= 1){
+            alert('first level');
+        } else {
+            const path = '/' + gamecode + '/levels/' + (level-1);
+            readFromFirebase(path).then(value => setMapData(value.val() as MapData));
+            setLevel(value => {
+                setPlayerLevel(value-1);
+                return value-1
+            });
+        }
+    }
 
     if (mapData == null) {
         return (
@@ -123,8 +154,7 @@ const DmView = () => {
             visibility: newVisibility
         };
 
-        const visRef = db.database().ref().child('adamtest').child('visibility');
-        visRef.set(newVisibility)
+        writeToFirebase('/'+ gamecode+ '/levels/' + level + '/visibility',newVisibility);
         setMapData(newMapData);
     }
 
@@ -144,56 +174,22 @@ const DmView = () => {
         return `${fogAdjustSize} x ${fogAdjustSize}`
     }
 
-    levels = getFirebaseMap()
-
     return (
         <div id='dmView' style={{ backgroundColor: hexToRgb("#8b5f8c"), height: "100%" }}>
             <div id="topBar">
                 <Button id="topButton" style={{ width: '40px', top: 10 }} onClick={() => {
                     history.push('/home')
                 }}>X</Button>
-                <Button id="topButton" style={{ width: '200px', top: 10 }}><img src={saveImage} style={{
-                    width: '17px',
-                    marginRight: '10px'
-                }} />Save</Button>
 
-                <Button id="topButton" style={{ width: '200px', top: 10 }} onClick={() => {
+                <div style={{flexDirection:"column"}}>
+                    <Text style={{ width: '200px', top: 10, fontSize:16,textAlign:"center",textAlignVertical:"center", padding:'5px'}}>{'Current Level: '  + level}</Text>
+                    <Text style={{ width: '200px', top: 10, fontSize:16,textAlign:"center",textAlignVertical:"center", padding:'5px'}}>{'Total Levels: '  + totalLevels}</Text>
+                </div>
+                <Button id="topButton" style={{ width: '200px', top: 10 }} onClick={generateMap}>New Level</Button>
 
-                    // Generate new map
-                    let newLevels = levels
-                    if (levels.length > 0) {
-                        setMapData(levels[levels.length - 1])
-                    }
-                    generateMap()
-                    newLevels.push(mapData)
-                    levels = getFirebaseMap()
-                    lastMap = mapData
-                    curMap = levels.length - 1
-                    setMapData(levels[levels.length - 1])
-                }}>New Level</Button>
+                <Button id="topButton" style={{ width: '100px', top: '10px' }} onClick={previousMap}>Previous Level</Button>
+                <Button id="topButton" style={{ width: '100px', top: '10px' }} onClick={nextMap}>Next Level</Button>
 
-                <Button id="topButton" style={{ width: '100px', top: '10px' }} onClick={() => {
-                    curMap = curMap - 1
-                    if (levels.indexOf(mapData) == 0) {
-                        setMapData(levels[curMap])
-                    }
-                    if (levels.length > 1 && curMap > 0) {
-                        setMapData(levels[curMap])
-                    }
-                    else {
-                        alert("This is the first level")
-                    }
-                }}>Previous Map</Button>
-                <Button id="topButton" style={{ width: '100px', top: '10px' }} onClick={() => {
-                    curMap = curMap + 1
-                    if (curMap == levels.length || levels.length == 0) {
-                        alert("This is the last level, click \"NEW LEVEL\"")
-                        curMap = curMap - 1
-                    }
-                    else {
-                        setMapData(levels[curMap])
-                    }
-                }}>Next Map</Button>
 
                 <div id="topButton" style={{ position: "absolute", left: "900px", top: 10 }}>
                     <p>FOG Controls</p>
@@ -203,6 +199,7 @@ const DmView = () => {
                     <FormControlLabel control={<Switch checked={adjustingFog} onChange={handleAdjustingFogChange}
                         name={'adjustFog'} />} label={'Add/Remove Fog'} />
                 </div>
+            </div>
                 <div id="topButton" style={{ position: "absolute", left: "1000px", top: 10 }}>
                     <RadioGroup row={true} aria-label="fog" name="fog controls" value={addingFog}
                         onChange={handleAddingFogChange}>
@@ -226,9 +223,6 @@ const DmView = () => {
                         onChange={(event: any, newValue: number | number[]) => setFogAdjustSize(newValue as number)}
                     />
                 </div>
-                <div>
-
-                </div>
                 <div id='route' style={{
                     backgroundColor: hexToRgb("#AAAABB"),
                     position: "absolute",
@@ -239,7 +233,6 @@ const DmView = () => {
                     <Map mapTheme='Cave' mapData={mapData} imagePressFunction={clickMapTileHandler} showFog={showFog} />
                 </div>
             </div>
-        </div>
     )
 }
 

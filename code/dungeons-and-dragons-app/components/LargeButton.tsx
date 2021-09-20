@@ -7,6 +7,7 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 interface Props {
     buttonString : string
     buttonRoute : string
+    buttonProps: string
     leftAndRightPadding : number
 }
 
@@ -44,21 +45,23 @@ const LargeButton = (props : Props) => {
     // Props Initialisations
     const buttonString : string = props.buttonString;
     const buttonRoute : string = props.buttonRoute;
+    const buttonProps : string = props.buttonProps; 
 
     //Other Variable Initialisations
     const history = useHistory();
 
     return (
-        <div className={"LargeButton"}>
-        <Button variant="outlined" size="large" color="primary" className={largeButton} onClick={() => {
-            history.push(buttonRoute)
+        <Button variant="outlined" size="large" color="primary" className="largeButton" onClick={() => {
+            history.push({
+                pathname: buttonRoute,
+                state: {theme: buttonProps},
+            });
         }}>
 
             <Typography variant={"h4"} className={buttonText}>
                 {buttonString}
             </Typography>
         </Button>
-        </div>
     );
 }
 

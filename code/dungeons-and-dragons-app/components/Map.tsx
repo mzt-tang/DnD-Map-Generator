@@ -26,6 +26,9 @@ import {makeImageArray} from '../utility/MapTilerHelper'
 
 import Image4 from '../assets/New Tile Assets/floor_w.png';
 
+import ParseURLData from "../utility/ParseURLData";
+import { useHistory } from "react-router-dom";
+
 const useRowStyles = makeStyles({
     root: {
         '& > *': {
@@ -126,16 +129,8 @@ const DOUBLE_DOORS = false;
 interface mapProps {
     mapData: MapData,
     imagePressFunction: React.MouseEventHandler<HTMLImageElement>,
-    showFog: boolean
-}
-
-//Firebase
-const dbRefObject = db.database().ref().child('games/code/map/levels/');
-
-let fireBaseMapVersion: MapData[] = []
-
-export function getFirebaseMap(): MapData[] {
-    return fireBaseMapVersion
+    showFog: boolean,
+    mapTheme: string
 }
 
 interface roomRows {
@@ -161,15 +156,10 @@ export default function map(props: mapProps) {
         }
     }
 
-    // Send updated map to firebase
-    dbRefObject.set({
-        Map: fireBaseMapVersion
-    })
-
 
     const data = props.mapData;
 
-    const images = makeImageArray(data.map, data.visibility,props.imagePressFunction, props.showFog);
+    const images = makeImageArray(data.map, data.visibility,props.imagePressFunction,props.showFog,data.theme);
 
     let rowr: roomRows[] = []
     for (let i: number = 0; i < data.roomNum; i++) {
