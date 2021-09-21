@@ -1,5 +1,5 @@
 import { Text } from 'react-native';
-import { Typography } from "@material-ui/core";
+import { styled, Typography } from "@material-ui/core";
 import { readFromFirebase, writeToFirebase } from "../utility/FirebaseRW";
 import '../styles/style.css'
 import Map from '../components/Map';
@@ -8,6 +8,8 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
+
+import backgroundIm from "../assets/Menu Images/Underdark.jpg";
 
 import {
     Button,
@@ -175,43 +177,45 @@ const DmView = () => {
     }
 
     return (
-        <div id='dmView' style={{ backgroundColor: hexToRgb("#8b5f8c"), height: "100%" }}>
+        <div id='dmView' className="backgroundImage">
             <div id="topBar">
-                <Button id="topButton" style={{ width: '40px', top: 10 }} onClick={() => {
+                <Button id="topButton" style={{backgroundColor:'white', width: '40px', top: 10 }} onClick={() => {
                     history.push('/home')
                 }}>X</Button>
 
-                <div style={{flexDirection:"column"}}>
+                <div style={{flexDirection:"column", backgroundColor: 'white', borderRadius: 10, position:'relative', left:'-1%', top:'25%'}}>
                     <Text style={{ width: '200px', top: 10, fontSize:16,textAlign:"center",textAlignVertical:"center", padding:'5px'}}>{'Current Level: '  + level}</Text>
                     <Text style={{ width: '200px', top: 10, fontSize:16,textAlign:"center",textAlignVertical:"center", padding:'5px'}}>{'Total Levels: '  + totalLevels}</Text>
                 </div>
-                <Button id="topButton" style={{ width: '200px', top: 10 }} onClick={generateMap}>New Level</Button>
+                <Button id="topButton" style={{backgroundColor:'white', width: '200px', top: 10 , borderRadius:10}} onClick={generateMap}>New Level</Button>
 
-                <Button id="topButton" style={{ width: '100px', top: '10px' }} onClick={previousMap}>Previous Level</Button>
-                <Button id="topButton" style={{ width: '100px', top: '10px' }} onClick={nextMap}>Next Level</Button>
+                <Button id="topButton" style={{backgroundColor:'white', width: '100px', top: '10px', borderRadius:10 }} onClick={previousMap}>Previous Level</Button>
+                <Button id="topButton" style={{backgroundColor:'white', width: '100px', top: '10px', borderRadius:10 }} onClick={nextMap}>Next Level</Button>
 
 
-                <div id="topButton" style={{ position: "absolute", left: "900px", top: 10 }}>
-                    <p>FOG Controls</p>
+                <div id="topButton" style={{backgroundColor:'white', position: "absolute", left: "900px", top: 10, borderRadius:10, width:'30%', height:'10%' }}>
+                    <p style={{position:'relative', backgroundColor:'white', fontFamily: 'Arial', left:'2%', width:'20%'}}>FOG Controls</p>
                     <FormControlLabel
+                        style={{position:'relative',backgroundColor:'white', left:'2%'}}
                         control={<Switch checked={showFog} onChange={handleShowingFogChange} name={'showFog'} />}
                         label={'Show Fog'} />
-                    <FormControlLabel control={<Switch checked={adjustingFog} onChange={handleAdjustingFogChange}
+                    <FormControlLabel style={{backgroundColor:'white'}} control={<Switch checked={adjustingFog} onChange={handleAdjustingFogChange}
                         name={'adjustFog'} />} label={'Add/Remove Fog'} />
                 </div>
             </div>
-                <div id="topButton" style={{ position: "absolute", left: "1000px", top: 10 }}>
-                    <RadioGroup row={true} aria-label="fog" name="fog controls" value={addingFog}
+                <div id="topButton" style={{ position: "absolute", backgroundColor:'white', left: "1020px", top: 10 }}>
+                    <RadioGroup row={true} aria-label="fog" name="fog controls" value={addingFog} style={{backgroundColor:'white'}}
                         onChange={handleAddingFogChange}>
                         <FormControlLabel value={true} control={<Radio />} label="add" />
                         <FormControlLabel value={false} control={<Radio />} label="remove" />
                     </RadioGroup>
                 </div>
-                <div id="topButton" style={{ position: "absolute", left: "1200px", top: 10 }}>
+                <div id="topButton" style={{ backgroundColor:'white', position: "absolute", left: "1250px", top: '20px' }}>
                     <Typography id="discrete-slider" gutterBottom>
                         Adjustment Size
                     </Typography>
                     <Slider
+                        style={{backgroundColor:'white'}}
                         defaultValue={1}
                         getAriaValueText={fogAdjustmentValue}
                         aria-labelledby="discrete-slider"
@@ -226,7 +230,7 @@ const DmView = () => {
                 <div id='route' style={{
                     backgroundColor: hexToRgb("#AAAABB"),
                     position: "absolute",
-                    top: 100,
+                    top: 110,
                     alignSelf: "center",
                     right: "35%",
                 }}>
