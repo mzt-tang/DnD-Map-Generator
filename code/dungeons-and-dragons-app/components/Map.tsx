@@ -163,7 +163,7 @@ export default function map(props: mapProps) {
 
     let rowr: roomRows[] = []
     for (let i: number = 0; i < data.roomNum; i++) {
-        rowr[i] = createData("Room" + (i + 1), ["OOOOOOOHHH", "AHHHHHHH", "filler data"]);
+        rowr[i] = createData("Room " + (i + 1), ["OOOOOOOHHH", "AHHHHHHH", "filler data"]);
     }
 
     return (
@@ -194,8 +194,7 @@ export default function map(props: mapProps) {
                     <Table aria-label="collapsible table">
                         <TableHead>
                             <TableRow>
-                                <TableCell/>
-                                <TableCell>Room</TableCell>
+                                <TableCell style={{textAlign:'center'}}>Room</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>

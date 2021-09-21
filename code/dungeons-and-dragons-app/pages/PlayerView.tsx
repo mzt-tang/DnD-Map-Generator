@@ -65,9 +65,12 @@ const PlayerView = () => {
 
 
     return (
-        <View style={{backgroundColor:hexToRgb("#AAAABB"),justifyContent:"center"}}>
-            <Map mapData={map} imagePressFunction={click} showFog={true}/>
-        </View>
+        <div className="backgroundImage">
+            <p style={{color:'white', position:'relative', left:'40%', fontSize:50}}>HELLO PLAYER</p>
+            <View style={{position:'relative',justifyContent:"center"}}>
+                <Map mapData={map} imagePressFunction={click} showFog={true} mapTheme={''}/>
+            </View>
+        </div>
     );
 }
 export default PlayerView

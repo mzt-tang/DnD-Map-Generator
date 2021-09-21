@@ -180,3 +180,8 @@ h2 {
     background-color: gray;
     margin-right:2%;
 }
+
+@font-face {
+    font-family: 'TitleFont';
+    src: local('TitleFont'), url(../assets/Fonts/DraconisBold-qZxd6.ttf), format('ttf')
+}

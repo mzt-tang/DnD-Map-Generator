@@ -179,7 +179,7 @@ const DmView = () => {
     return (
         <div id='dmView' className="backgroundImage">
             <div id="topBar">
-                <Button id="topButton" style={{backgroundColor:'white', width: '40px', top: 10 }} onClick={() => {
+                <Button id="topButton" style={{backgroundColor:'white', width: '40px', top: 10, borderRadius:10 }} onClick={() => {
                     history.push('/home')
                 }}>X</Button>
 
