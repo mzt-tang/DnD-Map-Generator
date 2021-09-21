@@ -28,9 +28,9 @@ describe('<App />', () => {
         const entrances:number[][] = [[0,0], [4,0]];
         try {
             const roomArray = roomGen(10, 10, entrances, 0.2, false);
-            console.assert(false);
+            throw new Error()
         } catch (error) {
-            if (!(error instanceof RoomGenerationError)) console.assert(false);
+            if (!(error instanceof RoomGenerationError)) throw new Error()
         }
     });
 
@@ -38,9 +38,9 @@ describe('<App />', () => {
         const entrances:number[][] = [[5,6], [4,0]];
         try {
             const roomArray = roomGen(10, 10, entrances, 0.2, false);
-            console.assert(false);
+            throw new Error()
         } catch (error) {
-            if (!(error instanceof RoomGenerationError)) console.assert(false);
+            if (!(error instanceof RoomGenerationError)) throw new Error()
         }
     });
 
@@ -48,9 +48,9 @@ describe('<App />', () => {
         const entrances:number[][] = [];
         try {
             const roomArray = roomGen(10, 10, entrances, 0.2, false);
-            console.assert(false);
+            throw new Error()
         } catch (error) {
-            if (!(error instanceof RoomGenerationError)) console.assert(false);
+            if (!(error instanceof RoomGenerationError)) throw new Error()
         }
     });
 

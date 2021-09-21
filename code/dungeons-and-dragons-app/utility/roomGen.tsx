@@ -28,6 +28,8 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
     // if only single entrance, grow probability increased and decreases with distance.
     // no corner entrances
 
+    if (!entrances || entrances.length == 0) throw new RoomGenerationError("Must have at least one entrance");
+
     const singleEntrance = entrances.length == 1;
 
     // Start with array of 0's
