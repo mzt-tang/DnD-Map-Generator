@@ -62,13 +62,21 @@ export default function monsterGeneration (level: string, rowr: roomRows[]){
         //Generate monsters from set
         for (let i = 0; i < monsterPreset.length; i++) {
             let monster: Monster = monsterPreset[i];
-            const lowerLimit = monster.commonality - Math.floor(monster.commonality/2);
-            const upperLimit = monster.commonality + Math.floor(monster.commonality/2);
+            const lowerLimit:number = +monster.commonality - +Math.floor(+monster.commonality/+2);
+            const upperLimit:number = +monster.commonality + +Math.floor(+monster.commonality/+2);
             const commonalityDeviation: number = getRandomInt(lowerLimit, upperLimit); //an operator to determine whether to add or minus from the commonality
+            console.log("monster: " + monster.name);
+            console.log("amount: " + commonalityDeviation);
+            if (monster.name === "Kobold") {
+                console.log(lowerLimit);
+                console.log(upperLimit);
+            }
 
             let pair: [string, number] = [monster.name, commonalityDeviation];
             generatedMonsters.push(pair);
         }
+
+        console.log("total amount of monsters to be assigned: ", generatedMonsters);
 
         return assignMonstersToRooms(generatedMonsters, monsterPreset);
     }
@@ -83,8 +91,10 @@ export default function monsterGeneration (level: string, rowr: roomRows[]){
         //Notes
         //This only takes a set of monsters and assigns them to the rooms
         //Try to avoid spawning monsters at the start of the map
-        let eligibleRooms = [1, 2, 3, 8, 12]; //todo temporary
-        const allMonsters = assignableMonsters;
+        let eligibleRooms = [1, 2, 3, 4, 5, 6, 7, 8, 12]; //todo temporary
+        const allMonsters: [string, number][] = [];
+        assignableMonsters.forEach(value => allMonsters.push(Object.assign({}, value)));
+
         let finalMonsterAssignment: [number, Monster[]][] = []; //data structure of assigned monsters: [[room number, [monster1, monster2, monster3]], [], []]
 
         //A function to calculate the total amount of monsters which need to be assigned.
@@ -106,20 +116,13 @@ export default function monsterGeneration (level: string, rowr: roomRows[]){
             console.log("room length: " + eligibleRooms.length);
 
             const roomAndMonsterList: [number, Monster[]] = [chosenRoom, [monsterPreset[initialMonsterInt]]]; // Push an initial random eligible monster first
-            console.log("before: " + totalMonsterAmount(allMonsters));
             allMonsters[initialMonsterInt][1]--;
-            console.log("after: " + totalMonsterAmount(allMonsters));
 
             const currentMonstersInRoom: [number, Monster[]] = roomAndMonsterList;
-
-            console.log("monsters length: " + currentMonstersInRoom[1].length);
-            console.log("sum average: " + (totalLoneliness(currentMonstersInRoom) / currentMonstersInRoom[1].length));
 
             // A room isn't fully populated unless the number of monsters is
             // more than the average of the sum of the monsters' loneliness
             while (currentMonstersInRoom[1].length < (totalLoneliness(currentMonstersInRoom) / currentMonstersInRoom[1].length)) {
-                console.log("monsters length1: " + currentMonstersInRoom[1].length);
-
                 const eligibleMonsters: Monster[] = [];
 
                 // Iterate and filter through all the monsters that can be in the room.
@@ -127,10 +130,26 @@ export default function monsterGeneration (level: string, rowr: roomRows[]){
                 //if it doesn't exist in all of the existing monsters' friend list
                 //skip to next eligible monster
                 //else add as eligible
+                console.log("new loop")
                 for (let i = 0; i < allMonsters.length; i++) {
+                    //console.log("monster type: " + allMonsters[i][0]);
+                    //console.log("amount left: " + allMonsters[i][1]);
+
+                    if (+allMonsters[i][1] < 1) {
+                        console.log("this actually happens");
+                        console.log("type of monster: " + allMonsters[i][0]);
+                        continue;
+                    }
+                    if (allMonsters[i][0] === "Hobgoblin") {
+                        console.log("THIS IS AFTER IF STATEMENT");
+                        console.log("NUMBER: " + allMonsters[i][1]);
+                    }
+
                     let eligible: boolean = true;
 
                     for (let j = 0; j < currentMonstersInRoom[1].length; j++) {
+
+
                         if (!currentMonstersInRoom[1][j].friends.includes(allMonsters[i][0])) {
                             eligible = false;
                             break;
@@ -146,10 +165,16 @@ export default function monsterGeneration (level: string, rowr: roomRows[]){
                         }
                     }
                 }
+                //console.log("eligible monsters: ", eligibleMonsters);
+
+                if (eligibleMonsters.length === 0) {
+                    break;
+                }
 
                 //Choose and add an eligible monster (given equal chance)
                 const chosenMonster: Monster = eligibleMonsters[getRandomInt(0, eligibleMonsters.length - 1)];
                 currentMonstersInRoom[1].push(chosenMonster);
+                console.log("chosen monster: ", chosenMonster);
 
                 //Remove monster from assignable monsters
                 for (let i = 0; i < allMonsters.length; i++) {
@@ -166,6 +191,7 @@ export default function monsterGeneration (level: string, rowr: roomRows[]){
             }
             finalMonsterAssignment.push(currentMonstersInRoom);
         }
+        console.log("after algorithm: ", allMonsters);
 
         // populate the room
         // if number of monsters <= (the sum of all monsters' loneliness/number of monsters)
@@ -199,10 +225,9 @@ export default function monsterGeneration (level: string, rowr: roomRows[]){
     function totalLoneliness(currentMonstersInRoom: [number, Monster[]]): number {
         let total:number = 0;
         for (let i = 0; i < currentMonstersInRoom[1].length; i++) {
-            const loneliness: number = currentMonstersInRoom[1][i].loneliness;
+            const loneliness: number = +currentMonstersInRoom[1][i].loneliness;
             total = +total + +loneliness;
         }
-        console.log("total loneliness calculation: " + total);
         return total;
     }
 
