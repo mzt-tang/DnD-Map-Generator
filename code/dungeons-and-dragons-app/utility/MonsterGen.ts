@@ -183,11 +183,6 @@ export default function monsterGeneration (level: string, rowr: roomRows[]){
                         break;
                     }
                 }
-
-                //todo This algorithm could be potentially more efficient
-                // if it checks if the current monsters' types have increased
-                // and if not then keep adding from the eligible monsters
-                // todo assign monster to the actual room to the map data
             }
             finalMonsterAssignment.push(currentMonstersInRoom);
         }
