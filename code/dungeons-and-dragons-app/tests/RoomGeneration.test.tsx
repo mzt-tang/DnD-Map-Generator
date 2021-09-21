@@ -54,4 +54,44 @@ describe('<App />', () => {
         }
     });
 
+    test('Probability must be between 0 and 1', () => {
+        const entrances:number[][] = [];
+        try {
+            const roomArray = roomGen(10, 10, entrances, -0.1, false);
+            fail();
+        } catch (error) {
+            if (!(error instanceof RoomGenerationError)) fail();
+        }
+    });
+
+    test('Probability must be between 0 and 1', () => {
+        const entrances:number[][] = [];
+        try {
+            const roomArray = roomGen(10, 10, entrances, 1.1, false);
+            fail();
+        } catch (error) {
+            if (!(error instanceof RoomGenerationError)) fail();
+        }
+    });
+
+    test('Cols must be positive', () => {
+        const entrances:number[][] = [];
+        try {
+            const roomArray = roomGen(10, 0, entrances, 1.1, false);
+            fail();
+        } catch (error) {
+            if (!(error instanceof RoomGenerationError)) fail();
+        }
+    });
+
+    test('Rows must be positive', () => {
+        const entrances:number[][] = [];
+        try {
+            const roomArray = roomGen(0, 10, entrances, 1.1, false);
+            fail();
+        } catch (error) {
+            if (!(error instanceof RoomGenerationError)) fail();
+        }
+    });
+
 });

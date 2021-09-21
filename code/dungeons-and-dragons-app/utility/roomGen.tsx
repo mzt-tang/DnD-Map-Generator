@@ -29,6 +29,8 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
     // no corner entrances
 
     if (!entrances || entrances.length == 0) throw new RoomGenerationError("Must have at least one entrance");
+    if (growProbability < 0 || growProbability > 1) throw new RoomGenerationError("Grow probability must be between 0 and 1");
+    if (rowSize <= 0 || colSize <= 0) throw new RoomGenerationError("Rows and Cols must be positive");
 
     const singleEntrance = entrances.length == 1;
 
