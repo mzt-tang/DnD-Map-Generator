@@ -28,9 +28,9 @@ describe('<App />', () => {
         const entrances:number[][] = [[0,0], [4,0]];
         try {
             const roomArray = roomGen(10, 10, entrances, 0.2, false);
-            throw new Error()
+            fail();
         } catch (error) {
-            if (!(error instanceof RoomGenerationError)) throw new Error()
+            if (!(error instanceof RoomGenerationError)) fail();
         }
     });
 
@@ -38,9 +38,9 @@ describe('<App />', () => {
         const entrances:number[][] = [[5,6], [4,0]];
         try {
             const roomArray = roomGen(10, 10, entrances, 0.2, false);
-            throw new Error()
+            fail();
         } catch (error) {
-            if (!(error instanceof RoomGenerationError)) throw new Error()
+            if (!(error instanceof RoomGenerationError)) fail();
         }
     });
 
@@ -48,9 +48,9 @@ describe('<App />', () => {
         const entrances:number[][] = [];
         try {
             const roomArray = roomGen(10, 10, entrances, 0.2, false);
-            throw new Error()
+            fail();
         } catch (error) {
-            if (!(error instanceof RoomGenerationError)) throw new Error()
+            if (!(error instanceof RoomGenerationError)) fail();
         }
     });
 
