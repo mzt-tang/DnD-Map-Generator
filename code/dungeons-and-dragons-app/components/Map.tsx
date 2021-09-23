@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {db} from '../firebaseConfig';
 import { roomGen } from "../utility/roomGen";
 
@@ -174,11 +174,14 @@ export default function map(props: mapProps) {
     const images = makeImageArray(data.map, data.visibility,props.imagePressFunction, props.showFog, props.mapTheme);
 
     let rowr: roomRows[] = []
-    for (let i: number = 0; i < data.roomNum; i++) {
-        rowr[i] = createData("Room" + (i + 1), ["OOOOOOOHHH", "AHHHHHHH", "filler data"]);
-    }
-    monsterGeneration("level1", rowr);
-    console.log(rowr);
+    // for (let i: number = 0; i < data.roomNum; i++) {
+    //     rowr[i] = createData("Room" + (i + 1), ["OOOOOOOHHH", "AHHHHHHH", "filler data"]);
+    // }
+    useEffect(()=> {
+        monsterGeneration("level1", rowr);
+    }, []);
+
+    console.log("HEREHERE: " + rowr);
 
     return (
         <div id="page">
