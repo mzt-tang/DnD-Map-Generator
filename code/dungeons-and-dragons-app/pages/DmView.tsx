@@ -53,13 +53,13 @@ const DmView = () => {
     const [totalLevels, setTotalLevels] = useState(0);
 
     useEffect(() => {
-        readFromFirebase('/' + gamecode + '/levels').then(value => {
+        readFromFirebase(gamecode + '/levels').then(value => {
             if (value.exists() && !isObjectEmpty(value.val())){
                 setTotalLevels(value.val().length-1);
             }
         });
 
-        readFromFirebase('/' + gamecode + '/levels/1').then(value => {
+        readFromFirebase( gamecode + '/levels/1').then(value => {
             if (value.exists() && !isObjectEmpty(value.val())){
                 setMapData(value.val() as MapData);
                 setLevel(1);

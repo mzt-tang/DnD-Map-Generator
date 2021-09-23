@@ -5,9 +5,9 @@ import {db} from '.././firebaseConfig';
 
 
 export const writeToFirebase = (path: string, object: Object) => {
-    db.database().ref().child('testing' + path).set(object).catch(e => console.log(e));
+    db.database().ref().child(path).set(object).catch(e => console.log(e));
 }
 
 export const readFromFirebase = (path: string) => {
-    return db.database().ref().child('testing' + path).get();
+    return db.database().ref().child(path).get();
 }

@@ -16,70 +16,62 @@ exports[`<MainMenu_Home /> Home page renders correctly 1`] = `
       <div
         className="homeButtons"
       >
-        <div
-          className="LargeButton"
+        <button
+          className="MuiButtonBase-root MuiButton-root MuiButton-outlined largeButton MuiButton-outlinedPrimary MuiButton-outlinedSizeLarge MuiButton-sizeLarge"
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
         >
-          <button
-            className="MuiButtonBase-root MuiButton-root MuiButton-outlined makeStyles-largeButton-1 makeStyles-largeButton-3 MuiButton-outlinedPrimary MuiButton-outlinedSizeLarge MuiButton-sizeLarge"
-            disabled={false}
-            onBlur={[Function]}
-            onClick={[Function]}
-            onDragLeave={[Function]}
-            onFocus={[Function]}
-            onKeyDown={[Function]}
-            onKeyUp={[Function]}
-            onMouseDown={[Function]}
-            onMouseLeave={[Function]}
-            onMouseUp={[Function]}
-            onTouchEnd={[Function]}
-            onTouchMove={[Function]}
-            onTouchStart={[Function]}
-            tabIndex={0}
-            type="button"
+          <span
+            className="MuiButton-label"
           >
-            <span
-              className="MuiButton-label"
+            <h4
+              className="MuiTypography-root makeStyles-buttonText-2 MuiTypography-h4"
             >
-              <h4
-                className="MuiTypography-root makeStyles-buttonText-2 MuiTypography-h4"
-              >
-                Player
-              </h4>
-            </span>
-          </button>
-        </div>
-        <div
-          className="LargeButton"
+              Player
+            </h4>
+          </span>
+        </button>
+        <button
+          className="MuiButtonBase-root MuiButton-root MuiButton-outlined largeButton MuiButton-outlinedPrimary MuiButton-outlinedSizeLarge MuiButton-sizeLarge"
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
         >
-          <button
-            className="MuiButtonBase-root MuiButton-root MuiButton-outlined makeStyles-largeButton-1 makeStyles-largeButton-4 MuiButton-outlinedPrimary MuiButton-outlinedSizeLarge MuiButton-sizeLarge"
-            disabled={false}
-            onBlur={[Function]}
-            onClick={[Function]}
-            onDragLeave={[Function]}
-            onFocus={[Function]}
-            onKeyDown={[Function]}
-            onKeyUp={[Function]}
-            onMouseDown={[Function]}
-            onMouseLeave={[Function]}
-            onMouseUp={[Function]}
-            onTouchEnd={[Function]}
-            onTouchMove={[Function]}
-            onTouchStart={[Function]}
-            tabIndex={0}
-            type="button"
+          <span
+            className="MuiButton-label"
           >
-            <span
-              className="MuiButton-label"
+            <h4
+              className="MuiTypography-root makeStyles-buttonText-2 MuiTypography-h4"
             >
-              <h4
-                className="MuiTypography-root makeStyles-buttonText-2 MuiTypography-h4"
-              >
-                Dungeon Master
-              </h4>
-            </span>
-          </button>
-        </div>
+              Dungeon Master
+            </h4>
+          </span>
+        </button>
       </div>
     </div>
   </div>
