@@ -26,8 +26,6 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import MapData from "../interfaces/MapData";
 import {makeImageArray} from '../utility/MapTilerHelper'
 
-import Image4 from '../assets/New Tile Assets/floor_w.png';
-
 const useRowStyles = makeStyles({
     root: {
         '& > *': {
@@ -85,18 +83,18 @@ function Row(props: { row: ReturnType<typeof createData> }) { // Will need to be
     );
 }
 
-let rowr = [createData("Room 1", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-    createData("Room 2", ["Orc", "Grunk", "Bronk"]),
-    createData("Room 3", ["Ghost", "Danny Phantom", "Caspar", "Dead Guy"]),
-    createData("Room 4", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-    createData("Room 5", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-    createData("Room 6", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-    createData("Room 7", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-    createData("Room 8", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-    createData("Room 9", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-    createData("Room 10", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-    createData("Room 11", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-    createData("Room 12", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"])]
+// let rowr = [createData("Room 1", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
+//     createData("Room 2", ["Orc", "Grunk", "Bronk"]),
+//     createData("Room 3", ["Ghost", "Danny Phantom", "Caspar", "Dead Guy"]),
+//     createData("Room 4", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
+//     createData("Room 5", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
+//     createData("Room 6", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
+//     createData("Room 7", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
+//     createData("Room 8", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
+//     createData("Room 9", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
+//     createData("Room 10", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
+//     createData("Room 11", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
+//     createData("Room 12", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"])]
 
 function fillRooms(rooms: number[][][]): string[] {
     let row: string[] = [];
@@ -177,12 +175,12 @@ export default function map(props: mapProps) {
     //let rowr: roomRows[] = []
     // for (let i: number = 0; i < data.roomNum; i++) {
     //     rowr[i] = createData("Room" + (i + 1), ["OOOOOOOHHH", "AHHHHHHH", "filler data"]);
-    // }
-    useEffect(()=> {
-        monsterGeneration("level1", rowr);
-    }, []);
 
-    console.log("HEREHERE: " + rowr);
+    console.log("MAP ARRAY: ", data.map);
+
+    useEffect(()=> {
+        monsterGeneration("level1", rowr, setRowr);
+    }, []);
 
     return (
         <div id="page">

@@ -1,11 +1,11 @@
-import firebase from 'firebase/app';
+import firebase from 'firebase';
 import 'firebase/firestore';
 
 import {Monster} from "../interfaces/MapData";
 import {createData} from "../components/Map";
 import {roomRows} from "../components/Map";
 
-export default function monsterGeneration (level: string, rowr: roomRows[]){
+export default function monsterGeneration (level: string, rowr: roomRows[], setRowr: Function){
     //Get the monster preset document with the array of monster references from that collection.
     const monsterPresetRef = firebase.firestore().collection('monsterPresets').doc(level);
 
@@ -113,7 +113,6 @@ export default function monsterGeneration (level: string, rowr: roomRows[]){
             const chosenRoomNumber = getRandomInt(0, eligibleRooms.length - 1);
             const chosenRoom = eligibleRooms[chosenRoomNumber];
             eligibleRooms.splice(chosenRoomNumber, 1);
-            console.log("room length: " + eligibleRooms.length);
 
             const roomAndMonsterList: [number, Monster[]] = [chosenRoom, [monsterPreset[initialMonsterInt]]]; // Push an initial random eligible monster first
             allMonsters[initialMonsterInt][1]--;
@@ -130,19 +129,9 @@ export default function monsterGeneration (level: string, rowr: roomRows[]){
                 //if it doesn't exist in all of the existing monsters' friend list
                 //skip to next eligible monster
                 //else add as eligible
-                console.log("new loop")
                 for (let i = 0; i < allMonsters.length; i++) {
-                    //console.log("monster type: " + allMonsters[i][0]);
-                    //console.log("amount left: " + allMonsters[i][1]);
-
-                    if (+allMonsters[i][1] < 1) {
-                        console.log("this actually happens");
-                        console.log("type of monster: " + allMonsters[i][0]);
+                    if (allMonsters[i][1] < 1) {
                         continue;
-                    }
-                    if (allMonsters[i][0] === "Hobgoblin") {
-                        console.log("THIS IS AFTER IF STATEMENT");
-                        console.log("NUMBER: " + allMonsters[i][1]);
                     }
 
                     let eligible: boolean = true;
@@ -174,7 +163,6 @@ export default function monsterGeneration (level: string, rowr: roomRows[]){
                 //Choose and add an eligible monster (given equal chance)
                 const chosenMonster: Monster = eligibleMonsters[getRandomInt(0, eligibleMonsters.length - 1)];
                 currentMonstersInRoom[1].push(chosenMonster);
-                console.log("chosen monster: ", chosenMonster);
 
                 //Remove monster from assignable monsters
                 for (let i = 0; i < allMonsters.length; i++) {
