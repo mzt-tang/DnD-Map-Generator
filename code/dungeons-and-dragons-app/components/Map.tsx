@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {db} from '../firebaseConfig';
 import { roomGen } from "../utility/roomGen";
 
@@ -154,6 +154,7 @@ export interface roomRows {
  * @returns map 'style'.
  */
 export default function map(props: mapProps) {
+    const [rowr, setRowr] = useState<roomRows[]>([]);
     const mapStyle = function (width: number, height: number) {
         return {
             margin: 'auto',
@@ -173,7 +174,7 @@ export default function map(props: mapProps) {
     const data = props.mapData;
     const images = makeImageArray(data.map, data.visibility,props.imagePressFunction, props.showFog, props.mapTheme);
 
-    let rowr: roomRows[] = []
+    //let rowr: roomRows[] = []
     // for (let i: number = 0; i < data.roomNum; i++) {
     //     rowr[i] = createData("Room" + (i + 1), ["OOOOOOOHHH", "AHHHHHHH", "filler data"]);
     // }
