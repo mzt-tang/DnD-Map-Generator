@@ -1,7 +1,16 @@
 # Group 2 
 
+## Introduction to the Project
+Dungeons and Dragons (D&D) is a co-operative tabletop fantasy role-playing game. Most players play as adventurers/heroes that explore the world by going on quests, fighting monsters and hunting for rewards. One player is the Dungeon Master (DM) who facilitates the game, controls the non-player characters and monsters, and narrates the story. The players traverse the world as figures moving on top of a set-up map, which contains non-playable characters that the players interact with.
+
+There are enemies that the DM controls (often a type of monster). Each enemy has statistics on its hit points, armour class and speed. This allows the players to interact and do battle with the adversary. The enemies may also contain additional information on their challenge rating, armour type, race, size, alignment and other specific data that could affect the nature of the battle.
+
+D&D includes a specific type of map called dungeons. Which is a dangerous enclosed space (E.g. basement of a haunted mansion, an underground dark elven city, a monster-filled treasure cave) that might contain many dangerous monsters and traps. A dungeon should present a large risk to the players, but they are rewarded heavily if they're triumphant in their dungeon run. A dungeon may contain multiple layers that the players can traverse between. The dungeon should get progressively more dangerous the deeper it is. The players' view is also restricted, meaning they can only see a certain portion of the dungeon and what enemies are within their view at any time (except for the DM, who can see/knows the whole map). This creates uncertainty and allows for interesting decisions/outcomes for the players.
+
 ## Project Details
-This project is a map generation tool for our client at the university. This project allows for multiple devices to connect to a game and concurrent games to take place. 
+This project is primarly coded in React Native, using typescript and Expo as a CLI for development. Due to the project being coded based on web-based frameworks, the app works with almost every device and system.
+
+This project is a map generation tool for our client at the university. This project allows for multiple devices to connect to a game and concurrent games to take place. One player joins as the "DM", the DM creates the game and controls features displayed to the player. Another player(s) can join as the "Player", The player can simply only view the board with the aim of moving physical pieces and awaiting further changes from the DM.
 
 ## Group Members
  - Adam Sinclair, sinclaadam@myvuw.ac.nz
