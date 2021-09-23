@@ -4,20 +4,12 @@ import {Checkbox, Slider, Typography} from '@material-ui/core';
 import empty from '../assets/Dark.png';
 import floor from '../assets//Light.png';
 import entrance from '../assets/Images4/Floor.png';
-import Image1 from '../assets/Images2/TRCorner.png';
-import Image2 from '../assets/Images2/BLCorner.png';
-import Image3 from '../assets/Images2/BRCorner.png';
-import Image4 from '../assets/Images2/TLCorner.png';
-import Image5 from '../assets/Images2/BottomWall.png';
-import Image6 from '../assets/Images2/TopWall.png';
-import Image7 from '../assets/Images2/LeftWall.png';
-import Image8 from '../assets/Images2/RightWall.png';
-import Image9 from '../assets/Images2/Floor.png';
+
 
 // Import styles
 import Grid from "../components/Grid";
 import '../styles/style.css';
-import {roomGen} from "../utility/roomGen";
+import {roomGen} from "../utility/RoomGen";
 
 const Room = () => {
     const[rows, setRows] = useState(20);
@@ -33,8 +25,6 @@ const Room = () => {
     ]
 
     const tiles = roomGen(rows,cols,entrances,probability,clean);
-
-    console.log(tiles);
 
     const updateProbability = (event: any, newValue: number | number[]) => {
         setProbability(newValue as number);

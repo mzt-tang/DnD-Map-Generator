@@ -1,0 +1,419 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MainMenu_DmOptions /> Dm options page renders correctly 1`] = `
+<View>
+  <div
+    className="backgroundImage"
+  >
+    <div
+      className="dmOptionBox"
+    >
+      <h2
+        className="MuiTypography-root dmTitle MuiTypography-h2"
+      >
+        Dungeon Master Options
+      </h2>
+      <div
+        className="dmOptionLeft"
+      >
+        <h4
+          className="MuiTypography-root dmSubtitle MuiTypography-h4"
+        >
+          Load Existing Game
+        </h4>
+        <div
+          className="MuiFormControl-root MuiTextField-root makeStyles-gameCodeInput-1 MuiFormControl-fullWidth"
+        >
+          <label
+            className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
+            data-shrink={false}
+            htmlFor="outlined-required"
+            id="outlined-required-label"
+            style={
+              Object {
+                "color": "#403940",
+              }
+            }
+          >
+            Enter a Game Code Here
+            <span
+              aria-hidden={true}
+              className="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+            >
+               
+              *
+            </span>
+          </label>
+          <div
+            className="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+            onClick={[Function]}
+          >
+            <input
+              aria-invalid={false}
+              autoFocus={false}
+              className="MuiInputBase-input MuiOutlinedInput-input"
+              defaultValue=""
+              disabled={false}
+              id="outlined-required"
+              onAnimationStart={[Function]}
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              required={true}
+              type="text"
+            />
+            <fieldset
+              aria-hidden={true}
+              className="PrivateNotchedOutline-root-2 MuiOutlinedInput-notchedOutline"
+            >
+              <legend
+                className="PrivateNotchedOutline-legendLabelled-4"
+              >
+                <span>
+                  Enter a Game Code Here
+                   *
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+        </div>
+        <div
+          className="loadGameButtons"
+        >
+          <div
+            className="SmallMenuButton"
+          >
+            <button
+              className="MuiButtonBase-root MuiButton-root MuiButton-outlined makeStyles-smallBackButton-6 MuiButton-outlinedPrimary MuiButton-outlinedSizeSmall MuiButton-sizeSmall"
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onDragLeave={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchEnd={[Function]}
+              onTouchMove={[Function]}
+              onTouchStart={[Function]}
+              tabIndex={0}
+              type="button"
+            >
+              <span
+                className="MuiButton-label"
+              >
+                <span
+                  className="MuiButton-startIcon MuiButton-iconSizeSmall"
+                >
+                  <svg
+                    aria-hidden={true}
+                    className="MuiSvgIcon-root"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M11.67 3.87L9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"
+                    />
+                  </svg>
+                </span>
+                <span
+                  className="MuiTypography-root makeStyles-buttonText-7 MuiTypography-button"
+                >
+                  Back
+                </span>
+              </span>
+            </button>
+          </div>
+          <div
+            className="SmallMenuButton"
+          >
+            <button
+              className="MuiButtonBase-root MuiButton-root MuiButton-outlined makeStyles-smallMenuButton-8 MuiButton-outlinedPrimary MuiButton-outlinedSizeSmall MuiButton-sizeSmall"
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onDragLeave={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchEnd={[Function]}
+              onTouchMove={[Function]}
+              onTouchStart={[Function]}
+              tabIndex={0}
+              type="button"
+            >
+              <span
+                className="MuiButton-label"
+              >
+                <span
+                  className="MuiTypography-root makeStyles-buttonText-9 MuiTypography-button"
+                >
+                  Load Game
+                </span>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        className="dmOptionRight"
+      >
+        <h4
+          className="MuiTypography-root dmSubtitle MuiTypography-h4"
+        >
+          New Game
+        </h4>
+        <div
+          className="themeSelect"
+        >
+          <div
+            className="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded"
+          >
+            <ul
+              className="MuiList-root MuiList-padding"
+              onKeyDown={[Function]}
+              role="menu"
+              style={
+                Object {
+                  "left": "10%",
+                }
+              }
+              tabIndex={-1}
+            >
+              <div
+                className="MuiFormGroup-root"
+                role="radiogroup"
+              >
+                <label
+                  className="MuiFormControlLabel-root"
+                >
+                  <span
+                    aria-disabled={false}
+                    className="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-10 MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-checked-11 Mui-checked MuiIconButton-colorPrimary"
+                    onBlur={[Function]}
+                    onDragLeave={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    onKeyUp={[Function]}
+                    onMouseDown={[Function]}
+                    onMouseLeave={[Function]}
+                    onMouseUp={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchMove={[Function]}
+                    onTouchStart={[Function]}
+                    tabIndex={null}
+                  >
+                    <span
+                      className="MuiIconButton-label"
+                    >
+                      <input
+                        checked={true}
+                        className="PrivateSwitchBase-input-13"
+                        onChange={[Function]}
+                        type="radio"
+                        value="Caves"
+                      />
+                      <div
+                        className="PrivateRadioButtonIcon-root-14 PrivateRadioButtonIcon-checked-16"
+                      >
+                        <svg
+                          aria-hidden={true}
+                          className="MuiSvgIcon-root"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                          />
+                        </svg>
+                        <svg
+                          aria-hidden={true}
+                          className="MuiSvgIcon-root PrivateRadioButtonIcon-layer-15"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M8.465 8.465C9.37 7.56 10.62 7 12 7C14.76 7 17 9.24 17 12C17 13.38 16.44 14.63 15.535 15.535C14.63 16.44 13.38 17 12 17C9.24 17 7 14.76 7 12C7 10.62 7.56 9.37 8.465 8.465Z"
+                          />
+                        </svg>
+                      </div>
+                    </span>
+                  </span>
+                  <span
+                    className="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+                  >
+                    Cave
+                  </span>
+                </label>
+                <label
+                  className="MuiFormControlLabel-root"
+                >
+                  <span
+                    aria-disabled={false}
+                    className="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-10 MuiRadio-root MuiRadio-colorPrimary MuiIconButton-colorPrimary"
+                    onBlur={[Function]}
+                    onDragLeave={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    onKeyUp={[Function]}
+                    onMouseDown={[Function]}
+                    onMouseLeave={[Function]}
+                    onMouseUp={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchMove={[Function]}
+                    onTouchStart={[Function]}
+                    tabIndex={null}
+                  >
+                    <span
+                      className="MuiIconButton-label"
+                    >
+                      <input
+                        checked={false}
+                        className="PrivateSwitchBase-input-13"
+                        onChange={[Function]}
+                        type="radio"
+                        value="Dungeon"
+                      />
+                      <div
+                        className="PrivateRadioButtonIcon-root-14"
+                      >
+                        <svg
+                          aria-hidden={true}
+                          className="MuiSvgIcon-root"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                          />
+                        </svg>
+                        <svg
+                          aria-hidden={true}
+                          className="MuiSvgIcon-root PrivateRadioButtonIcon-layer-15"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M8.465 8.465C9.37 7.56 10.62 7 12 7C14.76 7 17 9.24 17 12C17 13.38 16.44 14.63 15.535 15.535C14.63 16.44 13.38 17 12 17C9.24 17 7 14.76 7 12C7 10.62 7.56 9.37 8.465 8.465Z"
+                          />
+                        </svg>
+                      </div>
+                    </span>
+                  </span>
+                  <span
+                    className="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+                  >
+                    Dungeon
+                  </span>
+                </label>
+                <label
+                  className="MuiFormControlLabel-root"
+                >
+                  <span
+                    aria-disabled={false}
+                    className="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-10 MuiRadio-root MuiRadio-colorPrimary MuiIconButton-colorPrimary"
+                    onBlur={[Function]}
+                    onDragLeave={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    onKeyUp={[Function]}
+                    onMouseDown={[Function]}
+                    onMouseLeave={[Function]}
+                    onMouseUp={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchMove={[Function]}
+                    onTouchStart={[Function]}
+                    tabIndex={null}
+                  >
+                    <span
+                      className="MuiIconButton-label"
+                    >
+                      <input
+                        checked={false}
+                        className="PrivateSwitchBase-input-13"
+                        onChange={[Function]}
+                        type="radio"
+                        value="Underground Mansion"
+                      />
+                      <div
+                        className="PrivateRadioButtonIcon-root-14"
+                      >
+                        <svg
+                          aria-hidden={true}
+                          className="MuiSvgIcon-root"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                          />
+                        </svg>
+                        <svg
+                          aria-hidden={true}
+                          className="MuiSvgIcon-root PrivateRadioButtonIcon-layer-15"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M8.465 8.465C9.37 7.56 10.62 7 12 7C14.76 7 17 9.24 17 12C17 13.38 16.44 14.63 15.535 15.535C14.63 16.44 13.38 17 12 17C9.24 17 7 14.76 7 12C7 10.62 7.56 9.37 8.465 8.465Z"
+                          />
+                        </svg>
+                      </div>
+                    </span>
+                  </span>
+                  <span
+                    className="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+                  >
+                    Basement
+                  </span>
+                </label>
+              </div>
+            </ul>
+          </div>
+        </div>
+        <div
+          className="createButton"
+        >
+          <div
+            className="SmallMenuButton"
+          >
+            <button
+              className="MuiButtonBase-root MuiButton-root MuiButton-outlined makeStyles-smallMenuButton-8 MuiButton-outlinedPrimary MuiButton-outlinedSizeSmall MuiButton-sizeSmall"
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onDragLeave={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchEnd={[Function]}
+              onTouchMove={[Function]}
+              onTouchStart={[Function]}
+              tabIndex={0}
+              type="button"
+            >
+              <span
+                className="MuiButton-label"
+              >
+                <span
+                  className="MuiTypography-root makeStyles-buttonText-9 MuiTypography-button"
+                >
+                  Create
+                </span>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</View>
+`;
