@@ -12,6 +12,9 @@ import { hexToRgb } from '@material-ui/core';
 import {readFromFirebase} from "../utility/FirebaseRW";
 import ParseURLData from "../utility/ParseURLData";
 
+import TitleFont from "../assets/Fonts/DraconisBold-qZxd6.tff";
+import { Title } from '@material-ui/icons';
+
 let mapDataInitial: MapData = {
     map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: [], roomNum: 1, theme: "Caves"
 };
@@ -66,11 +69,14 @@ const PlayerView = () => {
 
     return (
         <div className="backgroundImage">
-            <p style={{color:'white', position:'relative', left:'40%', fontSize:50}}>HELLO PLAYER</p>
             <View style={{position:'relative',justifyContent:"center"}}>
                 <Map mapData={map} imagePressFunction={click} showFog={true} mapTheme={''}/>
             </View>
         </div>
     );
 }
+
 export default PlayerView
+
+
+//<p style={{color:'white', position:'relative', left:'40%', fontSize:50, fontFamily:TitleFont}}>HELLO PLAYER</p>

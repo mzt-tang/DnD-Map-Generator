@@ -139,6 +139,10 @@
     background-repeat: no-repeat;
     background-size: auto; 
     background-color: #C21F39;
+    @font-face {
+        font-family: TitleFont;
+        src: local(TitleFont), url("../assets/Fonts/DraconisBold-qZxd6.ttf"), format('truetype')
+    }
 }
 
 h2 {
@@ -181,7 +185,18 @@ h2 {
     margin-right:2%;
 }
 
-@font-face {
-    font-family: 'TitleFont';
-    src: local('TitleFont'), url(../assets/Fonts/DraconisBold-qZxd6.ttf), format('ttf')
+.TitleF {
+    font-family: TitleFont;
+    @font-face {
+        font-family: TitleFont;
+        src: local(TitleFont), url("../assets/Fonts/DraconisBold-qZxd6.ttf"), format('truetype')
+    }
+}
+
+#TitleFontStyle {
+    font-family: TitleFont;
+    @font-face {
+        font-family: TitleFont;
+        src: local(TitleFont), url("../assets/Fonts/DraconisBold-qZxd6.ttf"), format('truetype')
+    }
 }
