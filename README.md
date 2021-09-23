@@ -1,7 +1,7 @@
 # Group 2 
 
 ## Project Details
-
+This project is a map generation tool for our client at the university. This project allows for multiple devices to connect to a game and concurrent games to take place. 
 
 ## Group Members
  - Adam Sinclair, sinclaadam@myvuw.ac.nz
@@ -41,6 +41,7 @@ This section specifies the instructions on how to retrieve the code from this re
 This section defines how the user can run the project, If you havent already followed the how to set up project section, please do so before continuing.
 
 1. **If you havent already, path to your cloned repository (up to the folder containing the package.json file)**
+    - By typing "ls" on mac/linux or "dir" on windows you should see a "group-2" folder
     - this can be done with "cd group-2/code/dungeons-and-dragons-app"
 2. **Now to run the project:**
     - In the terminal write "npm run web"
@@ -53,3 +54,12 @@ This section defines how the user can run the project, If you havent already fol
 - We also use firebase for our model, so if you need to view info or change permissions in the database, please again contact any of the students involved in this project
 
 ### Project Structure
+When creating our project, we tried sticking to correct react native practices. We created self documenting file and folder names. To sum what each folder in our project does:
+- **Test folder** - Folder that contains all our utility function and front end component tests, that run with "npx jest"
+- **Assets folder** - Contains all the images that are used in the project
+- **Interface folder** - Contains files that are relating to object interfaces, defining parameters used by objects
+- **Components folder** - Defines front-end components that can be imported into screens (I.e buttons, text inputs...)
+- **Coverage folder** - Coverage reports that are generated from running the tests, showing % of code being tested in each file
+- **Pages folder** - Defines different pages that the user can navigate to and renders that page's front-end components
+- **Styles folder** - Contains files that define styles for front-end rendering pages
+- **Utility folder** - Functions that perform various tasks to be re-used and create more readable code
