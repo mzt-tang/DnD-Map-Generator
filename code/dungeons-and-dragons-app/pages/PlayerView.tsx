@@ -23,11 +23,8 @@ function update(map: MapData){
 const PlayerView = () => {
     const history = useHistory();
 
-    // let gamecode : string = history.location.state as string;
     let gamecode: string = ParseURLData(history.location.pathname) as string;
-    console.log(gamecode)
 
-    // const playerViewDatabase = async () => db.database().ref().child('testing/' + gamecode + '/currentMap');
 
     const [map, setMap] = useState<MapData>(mapDataInitial);
     const [size, setSize] = useState(25); //todo set the tile size?
@@ -35,14 +32,14 @@ const PlayerView = () => {
     const currentMap = useRef({level: 1})
 
     useEffect(() => {
-        db.database().ref('testing/' + gamecode + '/currentMap').on('value',mapNum => {
-            const path = '/' + gamecode + '/levels/' + mapNum.val();
+        db.database().ref(gamecode + '/currentMap').on('value',mapNum => {
+            const path =  gamecode + '/levels/' + mapNum.val();
             currentMap.current.level = mapNum.val();
             readFromFirebase(path).then(value => setMap(value.val())).catch(e => console.log(e));
         });
 
-        db.database().ref('testing/' + gamecode + '/levels').on('value',() => {
-            const path = '/' + gamecode + '/levels/' + currentMap.current.level;
+        db.database().ref( gamecode + '/levels').on('value',() => {
+            const path =  gamecode + '/levels/' + currentMap.current.level;
             readFromFirebase(path).then(value => setMap(value.val())).catch(e => console.log(e));
         });
     },[]);
@@ -61,8 +58,6 @@ const PlayerView = () => {
     const click : MouseEventHandler<HTMLImageElement> = (event : React.MouseEvent<HTMLImageElement>) => {
         console.log(event.currentTarget.id);
     }
-
-
 
     return (
         <View style={{backgroundColor:hexToRgb("#AAAABB"),justifyContent:"center"}}>

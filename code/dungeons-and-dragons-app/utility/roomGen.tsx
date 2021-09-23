@@ -44,8 +44,8 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
 
         //Checks entrance isn't a corner entrance and is on the edge.
         let isCornerTile = (row == 0 || row == rowSize - 1) && (col == 0 || col == colSize - 1);
-        if (!isCornerTile) throw new RoomGenerationError("Entrances cannot be corner tiles");
-        if (checkEdgeTile(row,col)) throw new RoomGenerationError("Entrances must be edge tiles");
+        if (isCornerTile) throw new RoomGenerationError("Entrances cannot be corner tiles");
+        if (!checkEdgeTile(row,col)) throw new RoomGenerationError("Entrances must be edge tiles");
 
         room[row][col] = ENTRANCE;
     }
