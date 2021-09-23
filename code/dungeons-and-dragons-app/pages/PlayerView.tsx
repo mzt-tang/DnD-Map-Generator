@@ -69,7 +69,7 @@ const PlayerView = () => {
 
     return (
         <div className="backgroundImage">
-            <View style={{position:'relative',justifyContent:"center"}}>
+            <View style={{position:'relative',justifyContent:"center", top:'10%'}}>
                 <Map mapData={map} imagePressFunction={click} showFog={true} mapTheme={''}/>
             </View>
         </div>
