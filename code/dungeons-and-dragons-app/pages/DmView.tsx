@@ -1,61 +1,44 @@
-import {
-    Box,
-    Button,
-    Collapse,
-    hexToRgb,
-    makeStyles, Slider,
-    Table,
-    TableCell,
-    TableHead,
-    TableRow
-} from "@material-ui/core";
-import {IconButton} from "@material-ui/core";
-import Map, {getFirebaseMap} from '../components/Map';
+import { Text } from 'react-native';
+import { Typography } from "@material-ui/core";
+import { readFromFirebase, writeToFirebase } from "../utility/FirebaseRW";
 import '../styles/style.css'
-import {useHistory} from "react-router-dom";
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import {db} from '.././firebaseConfig';
+import Map from '../components/Map';
+import '../styles/style.css'
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
-import { useLocation } from "react-router-dom";
 
-import saveImage from '../assets/saveIcon.png'
+import {
+    Button,
+    hexToRgb,
+    Slider
+} from "@material-ui/core";
 
-import React, {DragEventHandler, MouseEventHandler, useEffect, useState} from 'react';
+import React, {MouseEventHandler, useEffect, useState} from 'react';
 
-
-import {Grid} from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import MapGen from '../utility/MapGen';
 import MapData from "../interfaces/MapData";
-import {View} from "react-native";
+import {useHistory, useLocation} from "react-router-dom";
 import ParseURLData from "../utility/ParseURLData";
-import Typography from "@material-ui/core/Typography";
-import PlayerView from "./PlayerView";
-import {InsertInvitation} from "@material-ui/icons";
+
 
 let mapDataInitial: MapData = {
-    map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: [], roomNum: 1
+    map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: [], roomNum: 1, theme: "Caves"
 };
 
-let lastMap: MapData
 let curMap: number;
 
-function DmView() {
+const DmView = () => {
 
-    const location = useLocation();
+    const { state: { code,theme } = { code:'code',theme:'theme' } } = useLocation<{ code: string, theme: string }>()
+
+
     const history = useHistory();
+    let gamecode: string = ParseURLData(history.location.pathname) as string;
 
-    console.log(ParseURLData(history.location.pathname));
-    let gamecode: string = ParseURLData(history.location.pathname);
-    console.log(gamecode);
-
-
-    const dbRefObject = db.database().ref().child(gamecode); //Reference to map from Firebase Realtime Database
     const [open, setOpen] = React.useState(false);
-
 
     // Fog Controls
     const [showFog, setShowFog] = React.useState(true);
@@ -63,31 +46,82 @@ function DmView() {
     const [addingFog, setAddingFog] = React.useState(true);
     const [fogAdjustSize, setFogAdjustSize] = React.useState(1);
 
-    let levels: MapData[] = getFirebaseMap()
-
-
-    // Map Data
     const [mapData, setMapData] = useState(mapDataInitial);
-    const [level, setLevel] = useState(1);
+    const [level, setLevel] = useState(0);
+    const [totalLevels, setTotalLevels] = useState(0);
 
+    useEffect(() => {
+        readFromFirebase('/' + gamecode + '/levels').then(value => {
+            if (value.exists() && !isObjectEmpty(value.val())){
+                setTotalLevels(value.val().length-1);
+            }
+        });
 
-    /*useEffect(() => {
-        dbRefObject.child("/map/levels/" + (levels.length - 1)).get().then(value => setMapData(value.val()))
-    }, [])*/
+        readFromFirebase('/' + gamecode + '/levels/1').then(value => {
+            if (value.exists() && !isObjectEmpty(value.val())){
+                setMapData(value.val() as MapData);
+                setLevel(1);
+                setPlayerLevel(1);
+            } else {
+                generateMap();
+            }
+        });
+    }, []);
+
+    const isObjectEmpty = (obj : Object) : boolean => {
+        return Object.keys(obj).length === 0;
+    }
+
+    const setPlayerLevel = (level : number) => {
+        writeToFirebase('/' + gamecode + '/currentMap',level);
+    }
 
     const generateMap = () => {
-        MapGen(location.state.theme).then(
-            value => {
-                console.log(value);
-                setMapData(value);
-                //PlayerView.update(mapData) // Update the player view
-                db.database().ref().child('/map/levels/' + (levels.length - 1)).set(value).catch(e => console.log(e))
-            }
-        ).catch(e => console.log(e))
+        const newMap = MapGen({theme})
+        writeToFirebase('/'+ gamecode+'/levels/'+(totalLevels+1),newMap);
+        setTotalLevels(value => {
+            setLevel(value+1);
+            setPlayerLevel(value+1);
+           return value+1;
+        }
+        );
+        setMapData(newMap);
     };
 
-    console.log(dbRefObject);
-    console.log("map data: " + mapData)
+    const nextMap = () => {
+        if (level === totalLevels){
+            alert('final level, generate more levels');
+        } else {
+            const path = '/' + gamecode + '/levels/' + (level+1);
+            readFromFirebase(path).then(value => setMapData(value.val() as MapData));
+            setLevel(value => {
+                setPlayerLevel(value+1);
+                return value+1
+            });
+
+        }
+    }
+
+    const previousMap = () => {
+        if (level <= 1){
+            alert('first level');
+        } else {
+            const path = '/' + gamecode + '/levels/' + (level-1);
+            readFromFirebase(path).then(value => setMapData(value.val() as MapData));
+            setLevel(value => {
+                setPlayerLevel(value-1);
+                return value-1
+            });
+        }
+    }
+
+    if (mapData == null) {
+        return (
+            <Grid>
+                <Button onClick={generateMap}>Update Map</Button>
+            </Grid>
+        )
+    }
 
     const clickVisibilityHandler: MouseEventHandler<HTMLImageElement> = (event: React.MouseEvent<HTMLImageElement>) => {
         console.log(event.currentTarget.id);
@@ -120,8 +154,7 @@ function DmView() {
             visibility: newVisibility
         };
 
-        const visRef = db.database().ref().child(gamecode).child('visibility');
-        visRef.set(newVisibility)
+        writeToFirebase('/'+ gamecode+ '/levels/' + level + '/visibility',newVisibility);
         setMapData(newMapData);
     }
 
@@ -141,117 +174,66 @@ function DmView() {
         return `${fogAdjustSize} x ${fogAdjustSize}`
     }
 
-    levels = getFirebaseMap()
-    if (mapData == null) {
-        return (
-            <Grid>
-                <Button onClick={generateMap}>Update Map</Button>
-            </Grid>
-        )
-    } else {
-        return (
-            <div id='dmView' style={{backgroundColor: hexToRgb("#8b5f8c"), height: "100%"}}>
-                <div id="topBar">
-                    <Button id="topButton" style={{width: '40px', top: 10}} onClick={() => {
-                        history.push('/home')
-                    }}>X</Button>
-                    <Button id="topButton" style={{width: '200px', top: 10}}><img src={saveImage} style={{
-                        width: '17px',
-                        marginRight: '10px'
-                    }}/>Save</Button>
+    return (
+        <div id='dmView' style={{ backgroundColor: hexToRgb("#8b5f8c"), height: "100%" }}>
+            <div id="topBar">
+                <Button id="topButton" style={{ width: '40px', top: 10 }} onClick={() => {
+                    history.push('/home')
+                }}>X</Button>
 
-                    <Button id="topButton" style={{width: '200px', top: 10}} onClick={() => {
+                <div style={{flexDirection:"column"}}>
+                    <Text style={{ width: '200px', top: 10, fontSize:16,textAlign:"center",textAlignVertical:"center", padding:'5px'}}>{'Current Level: '  + level}</Text>
+                    <Text style={{ width: '200px', top: 10, fontSize:16,textAlign:"center",textAlignVertical:"center", padding:'5px'}}>{'Total Levels: '  + totalLevels}</Text>
+                </div>
+                <Button id="topButton" style={{ width: '200px', top: 10 }} onClick={generateMap}>New Level</Button>
 
-                        // Generate new map
-                        let newLevels = levels
-                        if (levels.length > 0) {
-                            setMapData(levels[levels.length - 1])
-                        }
-                        generateMap()
-                        newLevels.push(mapData)
-                        levels = getFirebaseMap()
-                        lastMap = mapData
-                        curMap = levels.length - 1
-                        setMapData(levels[levels.length - 1])
-                    }}>New Level</Button>
+                <Button id="topButton" style={{ width: '100px', top: '10px' }} onClick={previousMap}>Previous Level</Button>
+                <Button id="topButton" style={{ width: '100px', top: '10px' }} onClick={nextMap}>Next Level</Button>
 
-                    <Button id="topButton" style={{width: '100px', top: '10px'}} onClick={() => {
-                        curMap = curMap - 1
-                        if (levels.indexOf(mapData) == 0) {
-                            setMapData(levels[curMap])
-                        }
-                        if (levels.length > 1 && curMap > 0) {
-                            setMapData(levels[curMap])
-                        } else {
-                            alert("This is the first level")
-                        }
-                    }}>Previous Map</Button>
-                    <Button id="topButton" style={{width: '100px', top: '10px'}} onClick={() => {
-                        curMap = curMap + 1
-                        if (curMap == levels.length || levels.length == 0) {
-                            alert("This is the last level, click \"NEW LEVEL\"")
-                            curMap = curMap - 1
-                        } else {
-                            setMapData(levels[curMap])
-                        }
-                    }}>Next Map</Button>
 
-                    <div id="topButton" style={{position: "absolute", left: "900px", top: 10}}>
-                        <p>FOG Controls</p>
-                        <FormControlLabel
-                            control={<Switch checked={showFog} onChange={handleShowingFogChange} name={'showFog'}/>}
-                            label={'Show Fog'}/>
-                        <FormControlLabel control={<Switch checked={adjustingFog} onChange={handleAdjustingFogChange}
-                                                           name={'adjustFog'}/>} label={'Add/Remove Fog'}/>
-                    </div>
-                    <div id="topButton" style={{position: "absolute", left: "1000px", top: 10}}>
-                        <RadioGroup row={true} aria-label="fog" name="fog controls" value={addingFog}
-                                    onChange={handleAddingFogChange}>
-                            <FormControlLabel value={true} control={<Radio/>} label="add"/>
-                            <FormControlLabel value={false} control={<Radio/>} label="remove"/>
-                        </RadioGroup>
-                        <div id='route' style={{
-                            backgroundColor: hexToRgb("#AAAABB"),
-                            position: "absolute",
-                            top: 100,
-                            alignSelf: "center",
-                            right: "35%"
-                        }}>
-                        </div>
-                        <div id="topButton" style={{position: "absolute", left: "1200px", top: 10}}>
-                            <Typography id="discrete-slider" gutterBottom>
-                                Adjustment Size
-                            </Typography>
-                            <Slider
-                                defaultValue={1}
-                                getAriaValueText={fogAdjustmentValue}
-                                aria-labelledby="discrete-slider"
-                                valueLabelDisplay="auto"
-                                step={1}
-                                marks
-                                min={1}
-                                max={10}
-                                onChange={(event: any, newValue: number | number[]) => setFogAdjustSize(newValue as number)}
-                            />
-                        </div>
-                        <div>
-
-                        </div>
-                        <div id='route' style={{
-                            backgroundColor: hexToRgb("#AAAABB"),
-                            position: "absolute",
-                            top: 100,
-                            alignSelf: "center",
-                            right: "35%",
-                        }}>
-                            <Map mapData={mapData} imagePressFunction={clickMapTileHandler} showFog={showFog}
-                                 mapTheme={location.state.theme}/>
-                        </div>
-                    </div>
+                <div id="topButton" style={{ position: "absolute", left: "900px", top: 10 }}>
+                    <p>FOG Controls</p>
+                    <FormControlLabel
+                        control={<Switch checked={showFog} onChange={handleShowingFogChange} name={'showFog'} />}
+                        label={'Show Fog'} />
+                    <FormControlLabel control={<Switch checked={adjustingFog} onChange={handleAdjustingFogChange}
+                        name={'adjustFog'} />} label={'Add/Remove Fog'} />
                 </div>
             </div>
-        )
-    }
+                <div id="topButton" style={{ position: "absolute", left: "1000px", top: 10 }}>
+                    <RadioGroup row={true} aria-label="fog" name="fog controls" value={addingFog}
+                        onChange={handleAddingFogChange}>
+                        <FormControlLabel value={true} control={<Radio />} label="add" />
+                        <FormControlLabel value={false} control={<Radio />} label="remove" />
+                    </RadioGroup>
+                </div>
+                <div id="topButton" style={{ position: "absolute", left: "1200px", top: 10 }}>
+                    <Typography id="discrete-slider" gutterBottom>
+                        Adjustment Size
+                    </Typography>
+                    <Slider
+                        defaultValue={1}
+                        getAriaValueText={fogAdjustmentValue}
+                        aria-labelledby="discrete-slider"
+                        valueLabelDisplay="auto"
+                        step={1}
+                        marks
+                        min={1}
+                        max={10}
+                        onChange={(event: any, newValue: number | number[]) => setFogAdjustSize(newValue as number)}
+                    />
+                </div>
+                <div id='route' style={{
+                    backgroundColor: hexToRgb("#AAAABB"),
+                    position: "absolute",
+                    top: 100,
+                    alignSelf: "center",
+                    right: "35%",
+                }}>
+                    <Map mapTheme='Cave' mapData={mapData} imagePressFunction={clickMapTileHandler} showFog={showFog} />
+                </div>
+            </div>
+    )
 }
 
-export default DmView;
+export default DmView

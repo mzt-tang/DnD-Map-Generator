@@ -27,7 +27,8 @@ async function gamecodeExists(gameCode : string){
     let codeExists : boolean = false;
     try {
         // Check whether the GameCode exists in the Firebase Realtime Database
-        const snapshot = await db.database().ref().get();
+        //todo change to use the db thing
+        const snapshot = await db.database().ref().child('testing').get();
         codeExists = snapshot.hasChild(gameCode);
     }
     catch (error) {

@@ -26,6 +26,11 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import MapData from "../interfaces/MapData";
 import {makeImageArray} from '../utility/MapTilerHelper'
 
+import Image4 from '../assets/New Tile Assets/floor_w.png';
+
+import ParseURLData from "../utility/ParseURLData";
+import { useHistory } from "react-router-dom";
+
 const useRowStyles = makeStyles({
     root: {
         '& > *': {
@@ -125,18 +130,9 @@ const DOUBLE_DOORS = false;
 
 interface mapProps {
     mapData: MapData,
-    imagePressFunction: React.MouseEventHandler<HTMLImageElement>
-    mapTheme: string,
-    showFog: boolean
-}
-
-//Firebase
-const dbRefObject = db.database().ref().child('games/code/map/levels/');
-
-let fireBaseMapVersion: MapData[] = []
-
-export function getFirebaseMap(): MapData[] {
-    return fireBaseMapVersion
+    imagePressFunction: React.MouseEventHandler<HTMLImageElement>,
+    showFog: boolean,
+    mapTheme: string
 }
 
 export interface roomRows {
@@ -163,20 +159,16 @@ export default function map(props: mapProps) {
         }
     }
 
-    // Send updated map to firebase
-    dbRefObject.set({
-        Map: fireBaseMapVersion
-    })
-
 
     const data = props.mapData;
-    const images = makeImageArray(data.map, data.visibility,props.imagePressFunction, props.showFog, props.mapTheme);
 
-    //let rowr: roomRows[] = []
+    const images = makeImageArray(data.map, data.visibility,props.imagePressFunction,props.showFog,data.theme);
+
+    // let rowr: roomRows[] = []
     // for (let i: number = 0; i < data.roomNum; i++) {
     //     rowr[i] = createData("Room" + (i + 1), ["OOOOOOOHHH", "AHHHHHHH", "filler data"]);
-
-    console.log("MAP ARRAY: ", data.map);
+    // }
+    // console.log("MAP ARRAY: ", data.map);
 
     useEffect(()=> {
         monsterGeneration("level1", rowr, setRowr);

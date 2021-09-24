@@ -22,8 +22,26 @@ import Image21 from "../assets/New Tile Assets/floor_default.png";
 import Image22 from "../assets/New Tile Assets/wall.png";
 import Image23 from "../assets/New Tile Assets/wood_floor_default.png";
 import Image24 from "../assets/New Tile Assets/dungeon_wall.png";
-import Image25 from "../assets/New Tile Assets/dungeon_floor_e.png";
+import Image26 from "../assets/New Tile Assets/dungeon_floor_e.png";
+import Image27 from "../assets/New Tile Assets/dungeon_floor_w.png";
+import Image28 from "../assets/New Tile Assets/dungeon_floor_n.png";
+import Image29 from "../assets/New Tile Assets/dungeon_floor_s.png";
+import Image30 from "../assets/New Tile Assets/dungeon_floor_se.png";
+import Image31 from "../assets/New Tile Assets/dungeon_floor_sw.png";
+import Image32 from "../assets/New Tile Assets/dungeon_floor_ne.png";
+import Image33 from "../assets/New Tile Assets/dungeon_floor_nw.png";
+import Image34 from "../assets/New Tile Assets/dungeon_floor_e2.png";
+import Image35 from "../assets/New Tile Assets/dungeon_floor_w2.png";
+import Image36 from "../assets/New Tile Assets/dungeon_floor_n2.png";
+import Image37 from "../assets/New Tile Assets/dungeon_floor_s2.png";
+import Image38 from "../assets/New Tile Assets/dungeon_floor_se2.png";
+import Image39 from "../assets/New Tile Assets/dungeon_floor_sw2.png";
+import Image40 from "../assets/New Tile Assets/dungeon_floor_ne2.png";
+import Image41 from "../assets/New Tile Assets/dungeon_floor_nw2.png";
+import Image42 from "../assets/New Tile Assets/dungeon_floor_ns.png";
+import Image43 from "../assets/New Tile Assets/dungeon_floor_ew.png";
 import React, {MouseEventHandler} from "react";
+
 import {Text} from "react-native";
 
 const getImages = () => {
@@ -53,29 +71,28 @@ const getImages = () => {
     ]
 }
 
-
 export const getImageWithId = (id : string, index : number, userClicked: MouseEventHandler<HTMLImageElement>,theme:string) : JSX.Element  => {
     switch (index){
         case 0:  return <img className="grid_img" src={Image1} id={id} onClick={userClicked}/>
         case 1:  return <img className="grid_img" src={Image2} id={id} onClick={userClicked}/>
-        case 2:  return <img className="grid_img" src={theme == "Caves" ? Image3 : Image25} id={id} onClick={userClicked}/>
-        case 3:  return <img className="grid_img" src={Image4} id={id} onClick={userClicked}/>
-        case 4:  return <img className="grid_img" src={Image5} id={id} onClick={userClicked}/>
-        case 5:  return <img className="grid_img" src={Image6} id={id} onClick={userClicked}/>
-        case 6:  return <img className="grid_img" src={Image7} id={id} onClick={userClicked}/>
-        case 7:  return <img className="grid_img" src={Image8} id={id} onClick={userClicked}/>
-        case 8:  return <img className="grid_img" src={Image9} id={id} onClick={userClicked}/>
-        case 9:  return <img className="grid_img" src={Image10} id={id} onClick={userClicked}/>
-        case 10: return <img className="grid_img" src={Image11} id={id} onClick={userClicked}/>
-        case 11: return <img className="grid_img" src={Image12} id={id} onClick={userClicked}/>
-        case 12: return <img className="grid_img" src={Image13} id={id} onClick={userClicked}/>
-        case 13: return <img className="grid_img" src={Image14} id={id} onClick={userClicked}/>
-        case 14: return <img className="grid_img" src={Image15} id={id} onClick={userClicked}/>
-        case 15: return <img className="grid_img" src={Image16} id={id} onClick={userClicked}/>
-        case 16: return <img className="grid_img" src={Image17} id={id} onClick={userClicked}/>
-        case 17: return <img className="grid_img" src={Image18} id={id} onClick={userClicked}/>
-        case 18: return <img className="grid_img" src={Image19} id={id} onClick={userClicked}/>
-        case 19: return <img className="grid_img" src={Image20} id={id} onClick={userClicked}/>
+        case 2:  return <img className="grid_img" src={theme == "Dungeon" ? Image26 : Image3} id={id} onClick={userClicked}/>
+        case 3:  return <img className="grid_img" src={theme == "Dungeon" ? Image27 : Image4} id={id} onClick={userClicked}/>
+        case 4:  return <img className="grid_img" src={theme == "Dungeon" ? Image28 : Image5} id={id} onClick={userClicked}/>
+        case 5:  return <img className="grid_img" src={theme == "Dungeon" ? Image29 : Image6} id={id} onClick={userClicked}/>
+        case 6:  return <img className="grid_img" src={theme == "Dungeon" ? Image30 : Image7} id={id} onClick={userClicked}/>
+        case 7:  return <img className="grid_img" src={theme == "Dungeon" ? Image31 : Image8} id={id} onClick={userClicked}/>
+        case 8:  return <img className="grid_img" src={theme == "Dungeon" ? Image32 : Image9} id={id} onClick={userClicked}/>
+        case 9:  return <img className="grid_img" src={theme == "Dungeon" ? Image33 : Image10} id={id} onClick={userClicked}/>
+        case 10: return <img className="grid_img" src={theme == "Dungeon" ? Image34 : Image11} id={id} onClick={userClicked}/>
+        case 11: return <img className="grid_img" src={theme == "Dungeon" ? Image35 : Image12} id={id} onClick={userClicked}/>
+        case 12: return <img className="grid_img" src={theme == "Dungeon" ? Image36 : Image13} id={id} onClick={userClicked}/>
+        case 13: return <img className="grid_img" src={theme == "Dungeon" ? Image37 : Image14} id={id} onClick={userClicked}/>
+        case 14: return <img className="grid_img" src={theme == "Dungeon" ? Image38 : Image15} id={id} onClick={userClicked}/>
+        case 15: return <img className="grid_img" src={theme == "Dungeon" ? Image39 : Image16} id={id} onClick={userClicked}/>
+        case 16: return <img className="grid_img" src={theme == "Dungeon" ? Image40 : Image17} id={id} onClick={userClicked}/>
+        case 17: return <img className="grid_img" src={theme == "Dungeon" ? Image41 : Image18} id={id} onClick={userClicked}/>
+        case 18: return <img className="grid_img" src={theme == "Dungeon" ? Image42 : Image19} id={id} onClick={userClicked}/>
+        case 19: return <img className="grid_img" src={theme == "Dungeon" ? Image43 : Image20} id={id} onClick={userClicked}/>
         case 20: return <img className="grid_img" src={Image21} id={id} onClick={userClicked}/>
         case 21: return <img className="grid_img" src={theme == "Caves" ? Image22 : theme == "Underground Mansion" ? Image23 : Image24} id={id} onClick={userClicked}/>
         default: return <Text>Error</Text>
