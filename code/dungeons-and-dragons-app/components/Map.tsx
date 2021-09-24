@@ -7,6 +7,8 @@ import firebase from 'firebase';
 
 import PrismaZoom from 'react-prismazoom'
 
+import monsterGeneration from "../utility/MonsterGen";
+
 import {makeStyles} from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Collapse from '@material-ui/core/Collapse';
@@ -40,7 +42,7 @@ const useRowStyles = makeStyles({
     },
 });
 
-function createData(
+export function createData(
     name: string,
     monsters: string[],
 ) {
@@ -86,18 +88,18 @@ function Row(props: { row: ReturnType<typeof createData> }) { // Will need to be
     );
 }
 
-let rowr = [createData("Room 1", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-    createData("Room 2", ["Orc", "Grunk", "Bronk"]),
-    createData("Room 3", ["Ghost", "Danny Phantom", "Caspar", "Dead Guy"]),
-    createData("Room 4", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-    createData("Room 5", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-    createData("Room 6", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-    createData("Room 7", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-    createData("Room 8", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-    createData("Room 9", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-    createData("Room 10", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-    createData("Room 11", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-    createData("Room 12", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"])]
+// let rowr = [createData("Room 1", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
+//     createData("Room 2", ["Orc", "Grunk", "Bronk"]),
+//     createData("Room 3", ["Ghost", "Danny Phantom", "Caspar", "Dead Guy"]),
+//     createData("Room 4", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
+//     createData("Room 5", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
+//     createData("Room 6", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
+//     createData("Room 7", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
+//     createData("Room 8", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
+//     createData("Room 9", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
+//     createData("Room 10", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
+//     createData("Room 11", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
+//     createData("Room 12", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"])]
 
 function fillRooms(rooms: number[][][]): string[] {
     let row: string[] = [];
@@ -133,7 +135,7 @@ interface mapProps {
     mapTheme: string
 }
 
-interface roomRows {
+export interface roomRows {
     name: string,
     monsters: string[]
 
@@ -146,6 +148,7 @@ interface roomRows {
  * @returns map 'style'.
  */
 export default function map(props: mapProps) {
+    const [rowr, setRowr] = useState<roomRows[]>([]);
     const mapStyle = function (width: number, height: number) {
         return {
             margin: 'auto',
@@ -161,10 +164,15 @@ export default function map(props: mapProps) {
 
     const images = makeImageArray(data.map, data.visibility,props.imagePressFunction,props.showFog,data.theme);
 
-    let rowr: roomRows[] = []
-    for (let i: number = 0; i < data.roomNum; i++) {
-        rowr[i] = createData("Room " + (i + 1), ["OOOOOOOHHH", "AHHHHHHH", "filler data"]);
-    }
+    // let rowr: roomRows[] = []
+    // for (let i: number = 0; i < data.roomNum; i++) {
+    //     rowr[i] = createData("Room" + (i + 1), ["OOOOOOOHHH", "AHHHHHHH", "filler data"]);
+    // }
+    // console.log("MAP ARRAY: ", data.map);
+
+    useEffect(()=> {
+        monsterGeneration("level1", rowr, setRowr);
+    }, []);
 
     return (
         <div id="page">
