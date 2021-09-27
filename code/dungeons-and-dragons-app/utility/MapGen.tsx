@@ -35,7 +35,7 @@ export default function map(props:mapGenProps) : MapData {
     let mapGrid : number[][] = Array.from(Array(mapRoomRows * roomSize), _ => Array(mapRoomCols * roomSize).fill(10));
 
     // create a 2D array of rows * cols, filled with the value 0. For visiblity.    0:unexplored;  1:visible;   2:fog of war
-    let mapVisibility : number[][] = Array.from(Array(mapRoomRows * roomSize), _ => Array(mapRoomCols * roomSize).fill(0));
+    let mapVisibility : number[][] = Array.from(Array(mapRoomRows * roomSize), _ => Array(mapRoomCols * roomSize).fill(2));
 
     let previousRoomIndex = -1; // the previous room generated
     let currentRoomIndex = 0; // the next room to generate
