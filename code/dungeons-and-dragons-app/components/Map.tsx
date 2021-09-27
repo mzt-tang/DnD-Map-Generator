@@ -130,7 +130,9 @@ interface mapProps {
     mapData: MapData,
     imagePressFunction: React.MouseEventHandler<HTMLImageElement>,
     showFog: boolean,
-    mapTheme: string
+    mapTheme: string,
+    maxWidth: number,
+    maxHeight: number
 }
 
 interface roomRows {
@@ -157,9 +159,12 @@ export default function map(props: mapProps) {
     }
 
 
+    const widthNum = 40;
+    const heightNum = 30;
+
     const data = props.mapData;
 
-    const images = makeImageArray(data.map, data.visibility,props.imagePressFunction,props.showFog,data.theme);
+    const images = makeImageArray(data.map, data.visibility,props.imagePressFunction,props.showFog,data.theme, props.maxWidth/widthNum, props.maxHeight/heightNum);
 
     let rowr: roomRows[] = []
     for (let i: number = 0; i < data.roomNum; i++) {

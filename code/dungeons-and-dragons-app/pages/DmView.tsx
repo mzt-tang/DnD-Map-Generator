@@ -92,7 +92,7 @@ const DmView = () => {
 
     const nextMap = () => {
         if (level === totalLevels){
-            alert('final level, generate more levels');
+            alert('Final level, generate more levels');
         } else {
             const path = '/' + gamecode + '/levels/' + (level+1);
             readFromFirebase(path).then(value => setMapData(value.val() as MapData));
@@ -106,7 +106,7 @@ const DmView = () => {
 
     const previousMap = () => {
         if (level <= 1){
-            alert('first level');
+            alert('First level');
         } else {
             const path = '/' + gamecode + '/levels/' + (level-1);
             readFromFirebase(path).then(value => setMapData(value.val() as MapData));
@@ -234,7 +234,7 @@ const DmView = () => {
                     alignSelf: "center",
                     right: "35%",
                 }}>
-                    <Map mapTheme='Cave' mapData={mapData} imagePressFunction={clickMapTileHandler} showFog={showFog} />
+                    <Map mapTheme='Cave' mapData={mapData} imagePressFunction={clickMapTileHandler} showFog={showFog} maxWidth={window.innerWidth/2} maxHeight={window.innerHeight/2} />
                 </div>
             </div>
     )

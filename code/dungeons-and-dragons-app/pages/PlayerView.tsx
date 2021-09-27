@@ -64,8 +64,8 @@ const PlayerView = () => {
 
     return (
         <div className="backgroundImage">
-            <View style={{position:'relative',justifyContent:"center", top:'10%'}}>
-                <Map mapData={map} imagePressFunction={click} showFog={true} mapTheme={''}/>
+            <View style={{position:'relative',justifyContent:"center"}}>
+                <Map mapData={map} imagePressFunction={click} showFog={true} mapTheme={''} maxWidth={window.innerWidth/2 + window.innerWidth/8} maxHeight={window.innerHeight/2 + window.innerHeight/8}/>
             </View>
         </div>
     );
