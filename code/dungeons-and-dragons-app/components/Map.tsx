@@ -109,7 +109,6 @@ function fillRooms(rooms: number[][][]): string[] {
     return row;
 }
 
-
 // The callBackFunction is to be passed into the JSX elements onPush to ensure that when they are pushed we can trigger
 // the visibility on the DM side.
 
@@ -159,9 +158,9 @@ export default function map(props: mapProps) {
         }
     }
 
-
     const data = props.mapData;
 
+    console.log("map", data.map);
     const images = makeImageArray(data.map, data.visibility,props.imagePressFunction,props.showFog,data.theme);
 
     // let rowr: roomRows[] = []
@@ -169,9 +168,9 @@ export default function map(props: mapProps) {
     //     rowr[i] = createData("Room" + (i + 1), ["OOOOOOOHHH", "AHHHHHHH", "filler data"]);
     // }
     // console.log("MAP ARRAY: ", data.map);
-
+    console.log("map1", data.map);
     useEffect(()=> {
-        monsterGeneration("level1", rowr, setRowr);
+        monsterGeneration("level1", rowr, data.map);
     }, []);
 
     return (

@@ -5,7 +5,14 @@ import {Monster} from "../interfaces/MapData";
 import {createData} from "../components/Map";
 import {roomRows} from "../components/Map";
 
-export default function monsterGeneration (level: string, rowr: roomRows[], setRowr: Function){
+
+//todo
+// monster generating on level spawn and regenerating on new level
+// monster generating only in rooms that exist
+// the algorithm considers room size when allocating monsters
+// formatting rooms in order and monsters are labeled with the number of those monsters instead of multiples of those monsters
+
+export default function monsterGeneration(level: string, rowr: roomRows[], map: number[][]){
     //Get the monster preset document with the array of monster references from that collection.
     const monsterPresetRef = firebase.firestore().collection('monsterPresets').doc(level);
 
@@ -15,9 +22,8 @@ export default function monsterGeneration (level: string, rowr: roomRows[], setR
             const presetRef = snapshot.data();
             let monsterPreset: Monster[] = [];
             let set1 = presetRef?.set1; //todo temporary, to be switched to random set choosing later.
-            let len = set1.length;
 
-            for (let i = 0; i < len; i++) {
+            for (let i = 0; i < set1.length; i++) {
                 let monster = await set1[i].get(); //
                 monsterPreset.push({
                     faction: monster.data()?.faction, name: monster.data()?.name, size: monster.data()?.size, friends: monster.data()?.friends,

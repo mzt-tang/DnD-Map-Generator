@@ -4,11 +4,11 @@ import {assignImageNumbers} from './MapTilerHelper';
 import MapData from "../interfaces/MapData";
 
 
-const roomSize = 10;
-const mapRoomRows = 3;
-const mapRoomCols = 4;
-const height = roomSize*mapRoomRows;
-const width = roomSize*mapRoomCols;
+export const roomSize = 10;
+export const mapRoomRows = 3;
+export const mapRoomCols = 4;
+export const height = roomSize*mapRoomRows;
+export const width = roomSize*mapRoomCols;
 const entranceProbability= 0.7;
 const roomGrowProbability = 0.42;
 
