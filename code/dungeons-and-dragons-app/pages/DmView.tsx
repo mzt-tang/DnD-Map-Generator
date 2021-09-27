@@ -234,7 +234,7 @@ const DmView = () => {
                     alignSelf: "center",
                     right: "35%",
                 }}>
-                    <Map mapTheme='Cave' mapData={mapData} imagePressFunction={clickMapTileHandler} showFog={showFog} maxWidth={window.innerWidth/2} maxHeight={window.innerHeight/2} />
+                    <Map mapTheme='Cave' mapData={mapData} imagePressFunction={clickMapTileHandler} showFog={showFog} maxWidth={window.innerWidth/2 + window.innerWidth/16} maxHeight={window.innerHeight/2 + window.innerHeight/16} />
                 </div>
             </div>
     )
