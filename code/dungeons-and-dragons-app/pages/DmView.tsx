@@ -70,6 +70,12 @@ const DmView = () => {
                 generateMap();
             }
         });
+
+        readFromFirebase( gamecode + '/isHidden').then(value => {
+            if (value.exists()){
+                setMapIsHidden(value.val());
+        }});
+
     }, []);
 
     const isObjectEmpty = (obj : Object) : boolean => {
@@ -184,7 +190,6 @@ const DmView = () => {
     }
 
     const handleHideOrShowMap = (event: React.ChangeEvent<HTMLInputElement>) => {
-        //console.log(event.target.checked);
         writeToFirebase('/' + gamecode + '/isHidden',event.target.checked);
         setMapIsHidden(event.target.checked);
     }
