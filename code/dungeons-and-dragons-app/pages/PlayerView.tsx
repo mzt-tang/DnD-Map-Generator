@@ -23,6 +23,16 @@ function update(map: MapData){
     mapDataInitial = map
 }
 
+const Hidden = () => {
+    return (
+        <div className="backgroundImage">
+                <h1>
+                    Map is hidden by DM
+                </h1>
+        </div>
+    );
+}
+
 const PlayerView = () => {
     const history = useHistory();
 
@@ -31,20 +41,30 @@ const PlayerView = () => {
 
     const [map, setMap] = useState<MapData>(mapDataInitial);
     const [size, setSize] = useState(25); //todo set the tile size?
+    const [mapIsHidden, setMapIsHidden] = useState(true);
     // const [currentMap, setCurrentMap] = useState(1);
     const currentMap = useRef({level: 1})
 
     useEffect(() => {
         db.database().ref(gamecode + '/currentMap').on('value',mapNum => {
-            const path =  gamecode + '/levels/' + mapNum.val();
+            const path = gamecode + '/levels/' + mapNum.val();
             currentMap.current.level = mapNum.val();
             readFromFirebase(path).then(value => setMap(value.val())).catch(e => console.log(e));
         });
 
         db.database().ref( gamecode + '/levels').on('value',() => {
-            const path =  gamecode + '/levels/' + currentMap.current.level;
+            const path = gamecode + '/levels/' + currentMap.current.level;
             readFromFirebase(path).then(value => setMap(value.val())).catch(e => console.log(e));
         });
+
+        db.database().ref( gamecode + '/isHidden').on('value',isHidden => {
+            console.log(isHidden.val())
+            setMapIsHidden(isHidden.val());
+            // const path = gamecode + '/isHidden';
+            // readFromFirebase(path).then(value => setMapIsHidden(value.val())).catch(e => console.log(e));
+        });
+
+        console.log("isHidden", mapIsHidden);
     },[]);
 
 
@@ -60,6 +80,10 @@ const PlayerView = () => {
 
     const click : MouseEventHandler<HTMLImageElement> = (event : React.MouseEvent<HTMLImageElement>) => {
         console.log(event.currentTarget.id);
+    }
+
+    if (mapIsHidden) {
+        return <Hidden/>
     }
 
     return (
