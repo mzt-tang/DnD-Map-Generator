@@ -48,7 +48,7 @@
     "@types/react-native": "~0.63.2",
     "@types/react-test-renderer": "^17.0.1",
     "babel-jest": "^27.0.6",
-    "jest": "^27.0.6",
+    "jest": "^26.0.1",
     "jest-expo": "^42.1.0",
     "react-prismazoom": "^2.0.3",
     "react-test-renderer": "^17.0.2",
