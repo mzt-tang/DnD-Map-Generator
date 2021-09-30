@@ -1,5 +1,5 @@
 import React, {useEffect, useState, MouseEventHandler, useMemo, useRef} from 'react';
-import {View} from 'react-native';
+import {View, Text} from 'react-native';
 import { useHistory } from "react-router-dom";
 import {db} from "../firebaseConfig";
 import firebase from 'firebase';
@@ -22,13 +22,13 @@ let mapDataInitial: MapData = {
 function update(map: MapData){
     mapDataInitial = map
 }
-
+//style={{ width: '200px', top: 10, fontSize:16,textAlign:"center",textAlignVertical:"center", padding:'5px'}
 const Hidden = () => {
     return (
-        <div className="backgroundImage">
-                <h1>
-                    Map is hidden by DM
-                </h1>
+        <div className="backgroundImage_with_message">
+            <Text style={{color:'#FFFFFF', width:'1000px', fontSize:75, textAlign:"center", textAlignVertical:"center"}}>
+                Map is hidden by DM
+            </Text>
         </div>
     );
 }
@@ -37,7 +37,6 @@ const PlayerView = () => {
     const history = useHistory();
 
     let gamecode: string = ParseURLData(history.location.pathname) as string;
-
 
     const [map, setMap] = useState<MapData>(mapDataInitial);
     const [size, setSize] = useState(25); //todo set the tile size?
@@ -58,10 +57,7 @@ const PlayerView = () => {
         });
 
         db.database().ref( gamecode + '/isHidden').on('value',isHidden => {
-            console.log(isHidden.val())
             setMapIsHidden(isHidden.val());
-            // const path = gamecode + '/isHidden';
-            // readFromFirebase(path).then(value => setMapIsHidden(value.val())).catch(e => console.log(e));
         });
 
         console.log("isHidden", mapIsHidden);
@@ -70,11 +66,11 @@ const PlayerView = () => {
 
     if (map == null || map.roomSize == 0 || map.map == undefined) {
         return (
-            <View>
-                <h1>
+            <div className="backgroundImage_with_message">
+                <Text style={{color:'#FFFFFF', width:'1000px', fontSize:75, textAlign:"center", textAlignVertical:"center"}}>
                     Waiting for map to generate
-                </h1>
-            </View>
+                </Text>
+            </div>
         );
     }
 

@@ -65,7 +65,6 @@ const DmView = () => {
                 setMapData(value.val() as MapData);
                 setLevel(1);
                 setPlayerLevel(1);
-                //setMapIsHiddenOnPlayerView(mapIsHidden);
             } else {
                 generateMap();
             }
@@ -92,7 +91,6 @@ const DmView = () => {
         setTotalLevels(value => {
             setLevel(value+1);
             setPlayerLevel(value+1);
-            //setMapIsHiddenOnPlayerView(mapIsHidden);
            return value+1;
         }
         );
@@ -125,10 +123,6 @@ const DmView = () => {
             });
         }
     }
-
-    // const setMapIsHiddenOnPlayerView = (isHidden : boolean) => {
-    //     writeToFirebase('/' + gamecode + '/isHidden',isHidden);
-    // }
 
     if (mapData == null) {
         return (
@@ -249,7 +243,7 @@ const DmView = () => {
                     <FormControlLabel
                             style={{position:'relative', left:'2%'}}
                             control={<Switch checked={mapIsHidden} onChange={handleHideOrShowMap} name={'hideMap'} />}
-                            label={'Hide Map'} />
+                            label={'Hide Player\'s Map'} />
                 </div>
                 <div id='route' style={{
                     backgroundColor: hexToRgb("#AAAABB"),
