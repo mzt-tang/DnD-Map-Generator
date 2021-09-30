@@ -45,18 +45,13 @@ export default function monsterGeneration (level: string, rowr: roomRows[], setR
         console.log("Error getting document:", error);
     });
 
+    /**
+     * Randomly choose 2-3 monsters based on level difficulty
+     * Look at the monsters' friends and add monsters by 'branching out' from the monsters in the set
+     * Assign monsters to room
+     * @param monsterPreset
+     */
     function generateAllMonsters(monsterPreset: Monster[]) {
-        // Options:
-        // 1. - doing this one
-        // Create pre determined sets of monsters to be in a group together
-        // Choose a random monster set based on level of difficulty
-        // Randomly generate monsters from that set
-        // Assign monsters to rooms
-
-        // 2.
-        // Randomly choose 2-3 monsters based on level difficulty
-        // Look at the monsters' friends and add monsters by 'branching out' from the monsters in the set
-        // Assign monsters to room
         const generatedMonsters: [string, number][] = [];
 
         //Generate monsters from set
