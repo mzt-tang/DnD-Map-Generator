@@ -2,6 +2,7 @@ import React from "react";
 import {roomGen} from "./roomGen";
 import {assignImageNumbers} from './MapTilerHelper';
 import MapData from "../interfaces/MapData";
+import monsterGeneration from "../utility/MonsterGen";
 
 
 export const roomSize = 10;
@@ -165,7 +166,7 @@ export default function map(props:mapGenProps) : MapData {
      * @param i the room number
      */
     function generateRoom(i: number) {
-        
+
         let roomRow = getRoomRow(i);
         let roomCol = getRoomCol(i);
         let roomEntrances : number[][] = [];
@@ -349,6 +350,11 @@ export default function map(props:mapGenProps) : MapData {
     }
 
     const finalMap = assignImageNumbers(mapGrid);
+    const allMonsters: [number, [number, string][]][] = monsterGeneration(1, finalMap);
+    console.log("HERE")
+    console.log(allMonsters)
+    //todo fix...
+
 
     const mapData : MapData = {
         map: finalMap,

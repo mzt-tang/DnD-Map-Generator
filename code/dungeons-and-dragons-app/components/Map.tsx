@@ -1,9 +1,4 @@
 import React, {useEffect, useState} from "react";
-import {db} from '../firebaseConfig';
-import { roomGen } from "../utility/roomGen";
-
-import { Text } from 'react-native';
-import firebase from 'firebase';
 
 import PrismaZoom from 'react-prismazoom'
 
@@ -168,10 +163,11 @@ export default function map(props: mapProps) {
     //     rowr[i] = createData("Room" + (i + 1), ["OOOOOOOHHH", "AHHHHHHH", "filler data"]);
     // }
     // console.log("MAP ARRAY: ", data.map);
-    console.log("map1", data.map);
-    useEffect(()=> {
-        monsterGeneration("level1", rowr, data.map);
-    }, []);
+    // console.log("map1", data.map);
+    // useEffect(()=> {
+    //     setRowr([])
+    //     monsterGeneration("level1", rowr, data.map);
+    // }, [props]);
 
     return (
         <div id="page">

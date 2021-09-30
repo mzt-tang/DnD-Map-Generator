@@ -2,7 +2,6 @@ import firebase from 'firebase';
 import 'firebase/firestore';
 
 import {Monster} from "../interfaces/MapData";
-import {createData} from "../components/Map";
 import {roomRows} from "../components/Map";
 
 
@@ -12,9 +11,10 @@ import {roomRows} from "../components/Map";
 // the algorithm considers room size when allocating monsters
 // formatting rooms in order and monsters are labeled with the number of those monsters instead of multiples of those monsters
 
-export default function monsterGeneration(level: string, rowr: roomRows[], map: number[][]){
-    //Get the monster preset document with the array of monster references from that collection.
-    const monsterPresetRef = firebase.firestore().collection('monsterPresets').doc(level);
+export default function monsterGeneration(level: number, map: number[][]) : any{
+    //Get the monster preset document with the array of monster references from that co llection.
+    const levelString = "level1";
+    const monsterPresetRef = firebase.firestore().collection('monsterPresets').doc(levelString);
 
     monsterPresetRef.get().then(async (snapshot) => {
         if (snapshot.exists) {
@@ -34,16 +34,33 @@ export default function monsterGeneration(level: string, rowr: roomRows[], map: 
             console.log("PLACEMARKER");
             console.log(monsterPreset);
             const generatedMonsters = generateAllMonsters(monsterPreset);
+            const parsedMonsters:[number, [number, string][]][] = [];
 
+            console.log("HERHEHRE");
             for (let i = 0; i <generatedMonsters.length; i++) {
-                const parsedMonsStrings:string[] = [];
+                const parsedMonsStrings:[number, string][] = [];
+                outer:
                 for (let j = 0; j < generatedMonsters[i][1].length; j++) {
-                    parsedMonsStrings.push(generatedMonsters[i][1][j].name);
+                    // checks if it already exists
+                    for (let k = 0; k < parsedMonsStrings.length; k++) {
+                        //If it exists, increment by 1 and continue
+                        if (parsedMonsStrings[k][1] == generatedMonsters[i][1][j].name) {
+                            parsedMonsStrings[k][0] = parsedMonsStrings[k][0]+1;
+                            continue outer;
+                        }
+                    }
+
+                    parsedMonsStrings.push([1, generatedMonsters[i][1][j].name]); //push if it doesn't exist
                 }
-                console.log("Room " + generatedMonsters[i][0]);
-                console.log("Monsters: ", parsedMonsStrings);
-                rowr.push(createData("Room " + generatedMonsters[i][0], parsedMonsStrings));
+                // console.log("Room " + generatedMonsters[i][0]);
+                // console.log("Monsters: ", parsedMonsStrings);
+                parsedMonsters.push([generatedMonsters[i][0], parsedMonsStrings]);
             }
+
+            console.log("IT RETURNS")
+            console.log(parsedMonsters)
+            return parsedMonsters;
+
         } else {
             console.log("No such document!");
         }
