@@ -10,7 +10,7 @@ const MonsterData = (props : MonsterInfo | undefined) => {
     }
 
     return (
-        <View>
+        <View style={{backgroundColor:'#ffffff', alignItems:"center"}}>
             <table>
                 <tbody>
                 <tr>

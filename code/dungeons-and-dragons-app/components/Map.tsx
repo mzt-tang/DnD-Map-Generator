@@ -102,14 +102,25 @@ function Row(props: { row: ReturnType<typeof createData> }) { // Will need to be
                 visible={modalVisible}
                 onRequestClose={() => {
                     setModalVisible(false);
-                }}><View style={{
-                backgroundColor: "#FFFFFF",
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-                marginTop: 22
-            }}><MonsterData monster={monsterData?.monster}/><Button title={'Close'}
-                                                                    onPress={() => setModalVisible(false)}/></View></Modal>
+                }}
+                // style={{alignItems: "center", backgroundColor: '#ffffff', justifyContent: "center", width: '300'}}
+            >
+                <View style={{
+                    flex: 1,
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}>
+                    <View style={{
+                        width: 300
+                    }}>
+                        <MonsterData monster={monsterData?.monster}/>
+                        <Button
+                            title={'Close'}
+                            onPress={() => setModalVisible(false)}/>
+                    </View>
+                </View>
+            </Modal>
             <TableRow className={classes.root}>
                 <TableCell>
                     <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
