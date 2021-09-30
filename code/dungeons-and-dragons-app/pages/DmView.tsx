@@ -96,13 +96,8 @@ const DmView = () => {
     }
 
     const nextMap = () => {
-<<<<<<< Updated upstream
-        if (level === totalLevels){
-            alert('final level, generate more levels');
-=======
         if (level === totalLevels) {
             alert('Final level, generate more levels');
->>>>>>> Stashed changes
         } else {
             const path = '/' + gamecode + '/levels/' + (level + 1);
             readFromFirebase(path).then(value => setMapData(value.val() as MapData));
@@ -115,13 +110,8 @@ const DmView = () => {
     }
 
     const previousMap = () => {
-<<<<<<< Updated upstream
-        if (level <= 1){
-            alert('first level');
-=======
         if (level <= 1) {
             alert('First level');
->>>>>>> Stashed changes
         } else {
             const path = '/' + gamecode + '/levels/' + (level - 1);
             readFromFirebase(path).then(value => setMapData(value.val() as MapData));
@@ -322,9 +312,6 @@ const DmView = () => {
                     width:window.innerWidth / 2 + window.innerWidth / 16, 
                     height:'100%'
                 }}>
-<<<<<<< Updated upstream
-                    <Map mapTheme='Cave' mapData={mapData} imagePressFunction={clickMapTileHandler} showFog={showFog} />
-=======
                     <Table style={{backgroundColor:'white'}}>
                         <tr style={{backgroundColor:'white', borderColor:'black'}}/>
                         <TableCell style={{width:'25%', height:'242px', textAlign:'center', backgroundColor:'#d6004b', borderColor:'black', fontSize:150, color:'white'}}>1</TableCell>
@@ -342,7 +329,6 @@ const DmView = () => {
                         <TableCell style={{width:'25%', height:'242px', textAlign:'center', backgroundColor:'#d6004b', borderColor:'black', fontSize:150, color:'white'}}>11</TableCell>
                         <TableCell style={{width:'25%', height:'242px', textAlign:'center', backgroundColor:'#7f94fa', borderColor:'black', fontSize:150, color:'white'}}>12</TableCell>
                     </Table>
->>>>>>> Stashed changes
                 </div>
             </div>
         )

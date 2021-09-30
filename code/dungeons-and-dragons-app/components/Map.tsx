@@ -130,7 +130,9 @@ interface mapProps {
     mapData: MapData,
     imagePressFunction: React.MouseEventHandler<HTMLImageElement>,
     showFog: boolean,
-    mapTheme: string
+    mapTheme: string,
+    maxWidth: number,
+    maxHeight: number,
 }
 
 interface roomRows {
