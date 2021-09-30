@@ -132,7 +132,7 @@ interface mapProps {
     showFog: boolean,
     mapTheme: string,
     maxWidth: number,
-    maxHeight: number
+    maxHeight: number,
 }
 
 interface roomRows {
