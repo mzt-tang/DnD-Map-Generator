@@ -31,11 +31,26 @@ export default function map(props:mapGenProps) : MapData {
         }
     }
 
+
     // create a 2D array rows * cols filled with the value 10.
     let mapGrid : number[][] = Array.from(Array(mapRoomRows * roomSize), _ => Array(mapRoomCols * roomSize).fill(10));
 
-    // create a 2D array of rows * cols, filled with the value 0. For visiblity.    0:unexplored;  1:visible;   2:fog of war
-    let mapVisibility : number[][] = Array.from(Array(mapRoomRows * roomSize), _ => Array(mapRoomCols * roomSize).fill(2));
+    //======================INITIAL MAP FOG SETTING======================//
+    //vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv//
+    // create a 2D array of rows * cols, filled with the value startingFog for visiblity.    
+    //0:unexplored;  1:visible;   2:fog of war;
+    let mapVisibility : number[][] = Array.from(
+        Array(mapRoomRows * roomSize), _ => Array(mapRoomCols * roomSize).fill(2)
+    );
+    
+    // Write over the tiles of the first room, hard coded to set them all to 0.
+    for(let row = 0; row < roomSize; row++) {
+        for(let col = 0; col < roomSize; col++) {
+            mapVisibility[row][col] = 0;
+        }
+    }
+    //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
+    //======================INITIAL MAP FOG SETTING======================//
 
     let previousRoomIndex = -1; // the previous room generated
     let currentRoomIndex = 0; // the next room to generate
