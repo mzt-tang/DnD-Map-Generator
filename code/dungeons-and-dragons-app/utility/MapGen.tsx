@@ -253,13 +253,25 @@ export default function map(props: mapGenProps): MapData {
                 roomEntrances.push([getRandomDoorLocation(), roomSize - 1]);
             }
         }
-
         allRooms[i] = roomGen(roomSize, roomSize, roomEntrances, roomGrowProbability, true);
     }
-    function findEntranceRoom() {
+    // checks if the generated exit room isn't too close to the entrance
+    function checkIfRoomIsForbidden(index:number, forbiddenExitRooms:number[]) {
+        for(let i = 0; i < forbiddenExitRooms.length; i++) {
+            if(index == forbiddenExitRooms[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // sets the entrance and exit room. Starts by setting a random room in the array of rooms as the entrance, then sets all the rooms that cannot be exit rooms.
+    // it then sets the exit room by randomly selecting a room that isn't in the array of forbidden exit rooms.
+    function findEntranceAndExitRoom() {
         let foundRoom: boolean = false
         let entranceIndex: number = 0;
         let exitIndex:number = 0;
+        let forbiddenExitRooms:number[] = [];
         while (foundRoom == false) {
             let index = Math.floor(Math.random() * allRooms.length)
             for (let i = 0; i < allRooms[index].length; i++) {
@@ -268,6 +280,21 @@ export default function map(props: mapGenProps): MapData {
                     if (allRooms[index][i][j] == 1) {
                         foundRoom = true;
                         entranceIndex = index;
+
+                        // forbids the rooms that are adjacent to the entrance room
+                        forbiddenExitRooms.push(index);
+                        forbiddenExitRooms.push(index+1);
+                        forbiddenExitRooms.push(index-1);
+                        forbiddenExitRooms.push(index+4);
+                        forbiddenExitRooms.push(index+8);
+                        forbiddenExitRooms.push(index-8);
+                        forbiddenExitRooms.push(index+2);
+                        forbiddenExitRooms.push(index-2);
+                        forbiddenExitRooms.push(index-4);
+                        forbiddenExitRooms.push(index+5);
+                        forbiddenExitRooms.push(index-5);
+                        forbiddenExitRooms.push(index+3);
+                        forbiddenExitRooms.push(index-3);
                     }
                 }
             }
@@ -275,7 +302,7 @@ export default function map(props: mapGenProps): MapData {
         foundRoom = false
         while (foundRoom == false) {
             let index = Math.floor(Math.random() * allRooms.length)
-            if (index != entranceIndex) {
+            if (checkIfRoomIsForbidden(index, forbiddenExitRooms)) {
                 for (let i = 0; i < allRooms[index].length; i++) {
                     console.log(allRooms[index])
                     for (let j = 0; j < allRooms[index][i].length; j++) {
@@ -290,6 +317,8 @@ export default function map(props: mapGenProps): MapData {
         console.log(entranceIndex)
         makeEntranceAndExit(entranceIndex,exitIndex);
     }
+
+    // Sets a tile in the entrance and exit rooms as a staircase. It goes through the room to find the first floor tile.
     function makeEntranceAndExit(entranceIndex: number, exitIndx:number) {
         let madeEntrance = false
         let madeExit = false
@@ -313,8 +342,7 @@ export default function map(props: mapGenProps): MapData {
 
     }
 
-    findEntranceRoom();
-
+    findEntranceAndExitRoom();
     addRooms();
 
     /**
