@@ -79,7 +79,7 @@ const DmView = () => {
     }
 
     const generateMap = async () => {
-        const newMap = MapGen({theme})
+        const newMap = await MapGen({theme})
         writeToFirebase('/' + gamecode + '/levels/' + (totalLevels + 1), newMap);
         setTotalLevels(value => {
                 setLevel(value + 1);
@@ -87,7 +87,7 @@ const DmView = () => {
                 return value + 1;
             }
         );
-        setMapData(await newMap);
+        setMapData(newMap);
     };
 
     const nextMap = () => {
