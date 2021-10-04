@@ -1,9 +1,11 @@
 import React from "react";
 import {db} from '../firebaseConfig';
 import { roomGen } from "../utility/roomGen";
+import React, {useContext, useEffect, useState} from "react";
 
 import { Text } from 'react-native';
 import firebase from 'firebase';
+import {Alert, Button, Modal, Text, View} from 'react-native';
 
 import PrismaZoom from 'react-prismazoom'
 
@@ -17,7 +19,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
@@ -26,6 +27,7 @@ import {makeImageArray} from '../utility/MapTilerHelper'
 
 import Image4 from '../assets/New Tile Assets/floor_w.png';
 
+import MonsterData from "./MonsterData";
 import ParseURLData from "../utility/ParseURLData";
 import { useHistory } from "react-router-dom";
 
@@ -40,7 +42,7 @@ const useRowStyles = makeStyles({
     },
 });
 
-function createData(
+export function createData(
     name: string,
     monsters: string[],
 ) {
@@ -50,13 +52,74 @@ function createData(
     };
 }
 
+export interface MonsterInfo {
+    monster: {
+        "name": string,
+        "size": string,
+        "type": string,
+        "subtype": string,
+        "alignment": string,
+        "armor_class": number,
+        "armor_desc": string,
+        "hit_points": number,
+        "hit_dice": string,
+        "speed": {
+            "walk": number
+        },
+        "strength": number,
+        "dexterity": number,
+        "constitution": number,
+        "intelligence": number,
+        "wisdom": number,
+        "charisma": number
+    }
+}
+
+
 function Row(props: { row: ReturnType<typeof createData> }) { // Will need to be called by map, passing in number of rooms
     const { row } = props;
     const [open, setOpen] = React.useState(false);
+    const [modalVisible, setModalVisible] = React.useState(false);
+    const [monsterData, setMonsterData] = React.useState<MonsterInfo>();
     const classes = useRowStyles();
+
+    const onClickMonster = (name: string) => {
+        const url = 'https://api.open5e.com/monsters/?name=' + name;
+
+        fetch(url).then(result => {
+            return result.json();
+            // @ts-ignore todo I'm not entirely sure how to remove this error.
+        }).then(data => setMonsterData(data.results[0] ? {monster: data.results[0]} : null))
+        setModalVisible(true)
+    }
 
     return (
         <React.Fragment>
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                    setModalVisible(false);
+                }}
+                // style={{alignItems: "center", backgroundColor: '#ffffff', justifyContent: "center", width: '300'}}
+            >
+                <View style={{
+                    flex: 1,
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}>
+                    <View style={{
+                        width: 300
+                    }}>
+                        <MonsterData monster={monsterData?.monster}/>
+                        <Button
+                            title={'Close'}
+                            onPress={() => setModalVisible(false)}/>
+                    </View>
+                </View>
+            </Modal>
             <TableRow className={classes.root}>
                 <TableCell>
                     <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
@@ -73,7 +136,8 @@ function Row(props: { row: ReturnType<typeof createData> }) { // Will need to be
                                 <TableHead>
                                     <TableRow style={{ position: "relative", top: 0, width: '100%', display: "flex", flexDirection: "column" }}>
                                         {row.monsters.map((m => (
-                                            <TableCell>{m}</TableCell>
+                                            <TableCell>{<TableCell>{<Button onPress={() => onClickMonster(m.split(' ')[1])}
+                                                                            title={m}/>}</TableCell>}</TableCell>
                                         )))}
                                     </TableRow>
                                 </TableHead>
@@ -86,18 +150,6 @@ function Row(props: { row: ReturnType<typeof createData> }) { // Will need to be
     );
 }
 
-let rowr = [createData("Room 1", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-    createData("Room 2", ["Orc", "Grunk", "Bronk"]),
-    createData("Room 3", ["Ghost", "Danny Phantom", "Caspar", "Dead Guy"]),
-    createData("Room 4", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-    createData("Room 5", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-    createData("Room 6", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-    createData("Room 7", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-    createData("Room 8", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-    createData("Room 9", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-    createData("Room 10", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-    createData("Room 11", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-    createData("Room 12", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"])]
 
 function fillRooms(rooms: number[][][]): string[] {
     let row: string[] = [];
@@ -135,10 +187,9 @@ interface mapProps {
     maxHeight: number,
 }
 
-interface roomRows {
+export interface roomRows {
     name: string,
     monsters: string[]
-
 }
 
 /**
@@ -148,6 +199,7 @@ interface roomRows {
  * @returns map 'style'.
  */
 export default function map(props: mapProps) {
+    const [rowr, setRowr] = useState<roomRows[]>([]);
     const mapStyle = function (width: number, height: number) {
         return {
             margin: 'auto',
@@ -164,12 +216,27 @@ export default function map(props: mapProps) {
 
     const data = props.mapData;
 
-    const images = makeImageArray(data.map, data.visibility,props.imagePressFunction,props.showFog,data.theme, props.maxWidth/widthNum, props.maxHeight/heightNum);
-
-    let rowr: roomRows[] = []
-    for (let i: number = 0; i < data.roomNum; i++) {
-        rowr[i] = createData("Room " + (i + 1), ["OOOOOOOHHH", "AHHHHHHH", "filler data"]);
+    const parseMonsterData = (monsterData: [number, [number, string][]][]) => {
+        console.log("MONSTER DATA");
+        console.log(monsterData);
+        const rooms: roomRows[] = []
+        if (monsterData) {
+            for (let i = 0; i < monsterData.length; i++) {
+                const monstersInRoom: string[] = []
+                for (let j = 0; j < monsterData[i][1].length; j++) {
+                    monstersInRoom.push("[" + monsterData[i][1][j][0] + "] " + monsterData[i][1][j][1]);
+                }
+                rooms.push(createData("Room " + monsterData[i][0], monstersInRoom));
+            }
+        }
+        return rooms;
     }
+
+    useEffect(() => {
+        setRowr(parseMonsterData(props.mapData.monsters))
+    }, [props.mapData.monsters]);
+
+    const images = makeImageArray(data.map, data.visibility, props.imagePressFunction, props.showFog, data.theme);
 
     return (
         <div id="page">

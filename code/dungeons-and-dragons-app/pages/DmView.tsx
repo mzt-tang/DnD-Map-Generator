@@ -1,5 +1,5 @@
 import { Text } from 'react-native';
-import { styled, Table, TableCell, Typography } from "@material-ui/core";
+import { styled, Typography } from "@material-ui/core";
 import { readFromFirebase, writeToFirebase } from "../utility/FirebaseRW";
 import '../styles/style.css'
 import Map from '../components/Map';
@@ -19,12 +19,12 @@ import {
     Slider
 } from "@material-ui/core";
 
-import React, { MouseEventHandler, useEffect, useState } from 'react';
+import React, {MouseEventHandler, useEffect, useState} from 'react';
 
 import { Grid } from "@material-ui/core";
 import MapGen from '../utility/MapGen';
 import MapData from "../interfaces/MapData";
-import { useHistory, useLocation } from "react-router-dom";
+import {useHistory, useLocation} from "react-router-dom";
 import ParseURLData from "../utility/ParseURLData";
 
 
@@ -36,7 +36,7 @@ let curMap: number;
 
 const DmView = () => {
 
-    const { state: { code, theme } = { code: 'code', theme: 'theme' } } = useLocation<{ code: string, theme: string }>()
+    const { state: { code,theme } = { code:'code',theme:'theme' } } = useLocation<{ code: string, theme: string }>()
 
 
     const history = useHistory();
@@ -89,14 +89,14 @@ const DmView = () => {
         writeToFirebase('/' + gamecode + '/currentMap', level);
     }
 
-    const generateMap = () => {
-        const newMap = MapGen({ theme })
+    const generateMap = async () => {
+        const newMap = await MapGen({theme})
         writeToFirebase('/' + gamecode + '/levels/' + (totalLevels + 1), newMap);
         setTotalLevels(value => {
-            setLevel(value + 1);
-            setPlayerLevel(value + 1);
-            return value + 1;
-        }
+                setLevel(value + 1);
+                setPlayerLevel(value + 1);
+                return value + 1;
+            }
         );
         setMapData(newMap);
     };
@@ -130,6 +130,10 @@ const DmView = () => {
                 return value - 1
             });
         }
+    }
+
+    const showRoomNums = () => {
+        setOverlay(!overlay);
     }
 
     if (mapData == null) {
