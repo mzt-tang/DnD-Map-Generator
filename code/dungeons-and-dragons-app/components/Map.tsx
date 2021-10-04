@@ -4,8 +4,6 @@ import {Alert, Button, Modal, Text, View} from 'react-native';
 
 import PrismaZoom from 'react-prismazoom'
 
-import monsterGeneration from "../utility/MonsterGen";
-
 import {makeStyles} from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Collapse from '@material-ui/core/Collapse';
@@ -89,7 +87,7 @@ function Row(props: { row: ReturnType<typeof createData> }) { // Will need to be
             const value = data.results[0] ? {monster: data.results[0]} : null
             console.log("HERE")
             console.log(value)
-            return setMonsterData(value);
+            return setMonsterData(value as MonsterInfo);
         })
         setModalVisible(true)
     }
@@ -234,12 +232,14 @@ export default function map(props: mapProps) {
         console.log("MONSTER DATA");
         console.log(monsterData);
         const rooms: roomRows[] = []
-        for (let i = 0; i < monsterData.length; i++) {
-            const monstersInRoom: string[] = []
-            for (let j = 0; j < monsterData[i][1].length; j++) {
-                monstersInRoom.push("[" + monsterData[i][1][j][0] + "] " + monsterData[i][1][j][1]);
+        if (monsterData) {
+            for (let i = 0; i < monsterData.length; i++) {
+                const monstersInRoom: string[] = []
+                for (let j = 0; j < monsterData[i][1].length; j++) {
+                    monstersInRoom.push("[" + monsterData[i][1][j][0] + "] " + monsterData[i][1][j][1]);
+                }
+                rooms.push(createData("Room " + monsterData[i][0], monstersInRoom));
             }
-            rooms.push(createData("Room " + monsterData[i][0], monstersInRoom));
         }
         return rooms;
     }
