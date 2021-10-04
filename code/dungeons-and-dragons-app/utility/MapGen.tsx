@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { roomGen } from "./roomGen";
 import { assignImageNumbers } from './MapTilerHelper';
 import MapData from "../interfaces/MapData";
@@ -463,9 +463,7 @@ export default async function map(props: mapGenProps): Promise<MapData> {
 
     const finalMap = assignImageNumbers(mapGrid);
 
-    const monsters = await monsterGeneration(1, finalMap);
-    console.log("MAP GEN MONSTERS");
-    console.log(monsters)
+    const monsters = await monsterGeneration(1, finalMap)
 
     const mapData: MapData = {
         map: finalMap,

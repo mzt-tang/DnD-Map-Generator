@@ -58,6 +58,8 @@ export default async function monsterGeneration(level: number, map: number[][]):
                 parsedMonsters.push([generatedMonsters[i][0], parsedMonsStrings]);
             }
 
+            parsedMonsters.sort()
+
             return parsedMonsters;
 
         } else {
