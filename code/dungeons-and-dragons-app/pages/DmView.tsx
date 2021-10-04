@@ -245,6 +245,29 @@ const DmView = () => {
                             control={<Switch checked={mapIsHidden} onChange={handleHideOrShowMap} name={'hideMap'} />}
                             label={'Hide Player\'s Map'} />
                 </div>
+                <div style={{
+                    backgroundColor:'black',
+                    position: "absolute",
+                    left: "350px",
+                    top: '70px',
+                    width: '470px',
+                    height: '36px',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    padding: 4
+                }}>
+                    <div style={{
+                        position: "relative",
+                        backgroundColor: 'white',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        textAlign: "center",
+                        flex: 1,
+                        border: '3px solid #808080',
+                    }}>
+                        <Text style={{fontSize: 20}}>Gamecode: {gamecode}, Theme: {history.location.state.theme}</Text>
+                    </div>
+                </div>
                 <div id='route' style={{
                     backgroundColor: hexToRgb("#AAAABB"),
                     position: "absolute",
