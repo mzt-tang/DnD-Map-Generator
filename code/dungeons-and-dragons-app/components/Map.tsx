@@ -141,7 +141,7 @@ function Row(props: { row: ReturnType<typeof createData> }) { // Will need to be
                                         flexDirection: "column"
                                     }}>
                                         {row.monsters.map((m => (
-                                            <TableCell>{<TableCell>{<Button onPress={() => onClickMonster(m)}
+                                            <TableCell>{<TableCell>{<Button onPress={() => onClickMonster(m.split(' ')[1])}
                                                                             title={m}/>}</TableCell>}</TableCell>
                                         )))}
                                     </TableRow>
@@ -155,18 +155,6 @@ function Row(props: { row: ReturnType<typeof createData> }) { // Will need to be
     );
 }
 
-// let rowr = [createData("Room 1", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-//     createData("Room 2", ["Orc", "Grunk", "Bronk"]),
-//     createData("Room 3", ["Ghost", "Danny Phantom", "Caspar", "Dead Guy"]),
-//     createData("Room 4", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-//     createData("Room 5", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-//     createData("Room 6", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-//     createData("Room 7", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-//     createData("Room 8", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-//     createData("Room 9", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-//     createData("Room 10", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-//     createData("Room 11", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-//     createData("Room 12", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"])]
 
 function fillRooms(rooms: number[][][]): string[] {
     let row: string[] = [];
@@ -244,14 +232,9 @@ export default function map(props: mapProps) {
         return rooms;
     }
 
-    // useEffect(() => {
-    //     if (props.mapData.monsters == undefined) {
-    //         console.log("IGNORE TEST");
-    //     } else {
-    //         setRowr(parseMonsterData(props.mapData.monsters));
-    //         console.log('work please');
-    //     }
-    // }, [props.mapData.monsters]);
+    useEffect(() => {
+        setRowr(parseMonsterData(props.mapData.monsters))
+    }, [props.mapData.monsters]);
 
     const images = makeImageArray(data.map, data.visibility, props.imagePressFunction, props.showFog, data.theme);
 
