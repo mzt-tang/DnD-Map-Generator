@@ -19,7 +19,7 @@ const PlayerOptions = () => {
     const [loading, setLoading] = useState(false);
     const classes = useStyles();
 
-    const activityIndicator = <ActivityIndicator size="large" color="#00ff00"/>;
+    const activityIndicator = <ActivityIndicator size={60} color="#00ff00" style={{padding:10}}/>;
 
     return (
         <View>
