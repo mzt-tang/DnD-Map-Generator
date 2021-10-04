@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { roomGen } from "./roomGen";
 import { assignImageNumbers } from './MapTilerHelper';
 import MapData from "../interfaces/MapData";
+import monsterGeneration from "./MonsterGen";
 
 
 const roomSize = 10;
@@ -21,7 +22,7 @@ interface mapGenProps {
 /**
  * Returns a map data object containing all the information needed for a level.
  */
-export default function map(props: mapGenProps): MapData {
+export default async function map(props: mapGenProps): Promise<MapData> {
 
     let allRooms: number[][][] = []; // holds all the rooms making up the map in order.
 
@@ -264,6 +265,7 @@ export default function map(props: mapGenProps): MapData {
         }
         allRooms[i] = roomGen(roomSize, roomSize, roomEntrances, roomGrowProbability, true);
     }
+
     // checks if the generated exit room isn't too close to the entrance
     function checkIfRoomIsForbidden(index: number, forbiddenExitRooms: number[]) {
         for (let i = 0; i < forbiddenExitRooms.length; i++) {
@@ -279,6 +281,7 @@ export default function map(props: mapGenProps): MapData {
     let forbiddenExitRooms: number[] = []
     let entranceIndex = 0;
     let exitIndex = 0;
+
     function findEntranceRoom() {
         let foundRoom: boolean = false
         while (foundRoom == false) {
@@ -359,12 +362,12 @@ export default function map(props: mapGenProps): MapData {
     findExitRoom(forbiddenExitRooms);
     addRooms();
 
-    let entranceRoomY:number = Math.floor(entranceIndex/mapRoomCols) * 10;
-    let entranceRoomX = ((entranceIndex)%mapRoomCols)*10;
-    console.log(entranceIndex+ "    " + entranceRoomX + "   " +entranceRoomY)
+    let entranceRoomY: number = Math.floor(entranceIndex / mapRoomCols) * 10;
+    let entranceRoomX = ((entranceIndex) % mapRoomCols) * 10;
+    console.log(entranceIndex + "    " + entranceRoomX + "   " + entranceRoomY)
     // Write over the tiles of the first room, hard coded to set them all to 0.
-    for (let row = entranceRoomX; row < roomSize+entranceRoomX; row++) {
-        for (let col = entranceRoomY; col < roomSize+entranceRoomY; col++) {
+    for (let row = entranceRoomX; row < roomSize + entranceRoomX; row++) {
+        for (let col = entranceRoomY; col < roomSize + entranceRoomY; col++) {
             mapVisibility[col][row] = 0;
         }
     }
@@ -460,9 +463,13 @@ export default function map(props: mapGenProps): MapData {
 
     const finalMap = assignImageNumbers(mapGrid);
 
+    const monsters = await monsterGeneration(1, finalMap);
+    console.log("MAP GEN MONSTERS");
+    console.log(monsters)
+
     const mapData: MapData = {
         map: finalMap,
-        monsters: [],
+        monsters: monsters,
         roomCols: mapRoomCols,
         roomRows: mapRoomRows,
         roomSize: roomSize,

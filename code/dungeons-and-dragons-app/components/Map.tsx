@@ -1,9 +1,6 @@
-import React, {useEffect, useState} from "react";
-import {db} from '../firebaseConfig';
-import {roomGen} from "../utility/roomGen";
+import React, {useContext, useEffect, useState} from "react";
 
 import {Alert, Button, Modal, Text, View} from 'react-native';
-import firebase from 'firebase';
 
 import PrismaZoom from 'react-prismazoom'
 
@@ -19,7 +16,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
@@ -28,7 +24,6 @@ import {makeImageArray} from '../utility/MapTilerHelper'
 
 import Image4 from '../assets/New Tile Assets/floor_w.png';
 
-import ParseURLData from "../utility/ParseURLData";
 import {useHistory} from "react-router-dom";
 import MonsterData from "./MonsterData";
 
@@ -90,7 +85,12 @@ function Row(props: { row: ReturnType<typeof createData> }) { // Will need to be
         fetch(url).then(result => {
             return result.json();
             // @ts-ignore todo I'm not entirely sure how to remove this error.
-        }).then(data => setMonsterData(data.results[0] ? {monster: data.results[0]} : null))
+        }).then((data) => {
+            const value = data.results[0] ? {monster: data.results[0]} : null
+            console.log("HERE")
+            console.log(value)
+            return setMonsterData(value);
+        })
         setModalVisible(true)
     }
 
@@ -207,7 +207,6 @@ interface mapProps {
 export interface roomRows {
     name: string,
     monsters: string[]
-
 }
 
 /**
@@ -231,17 +230,26 @@ export default function map(props: mapProps) {
 
     const data = props.mapData;
 
-    const images = makeImageArray(data.map, data.visibility, props.imagePressFunction, props.showFog, data.theme);
-
-    // let rowr: roomRows[] = []
-    // for (let i: number = 0; i < data.roomNum; i++) {
-    //     rowr[i] = createData("Room" + (i + 1), ["OOOOOOOHHH", "AHHHHHHH", "filler data"]);
-    // }
-    // console.log("MAP ARRAY: ", data.map);
+    const parseMonsterData = (monsterData: [number, [number, string][]][]) => {
+        console.log("MONSTER DATA");
+        console.log(monsterData);
+        const rooms: roomRows[] = []
+        for (let i = 0; i < monsterData.length; i++) {
+            const monstersInRoom: string[] = []
+            for (let j = 0; j < monsterData[i][1].length; j++) {
+                monstersInRoom.push("[" + monsterData[i][1][j][0] + "] " + monsterData[i][1][j][1]);
+            }
+            rooms.push(createData("Room " + monsterData[i][0], monstersInRoom));
+        }
+        return rooms;
+    }
 
     useEffect(() => {
-        monsterGeneration("level1", rowr, setRowr);
-    }, []);
+        setRowr(parseMonsterData(props.mapData.monsters));
+        console.log("")
+    }, [props.mapData.monsters]);
+
+    const images = makeImageArray(data.map, data.visibility, props.imagePressFunction, props.showFog, data.theme);
 
     return (
         <div id="page">

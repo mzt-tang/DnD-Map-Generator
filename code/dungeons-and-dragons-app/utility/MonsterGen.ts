@@ -10,12 +10,12 @@ import {Monster} from "../interfaces/MapData";
 // the algorithm considers room size when allocating monsters
 // formatting rooms in order and monsters are labeled with the number of those monsters instead of multiples of those monsters
 
-export default function monsterGeneration(level: number, map: number[][]) : any{
+export default async function monsterGeneration(level: number, map: number[][]): Promise<any> {
     //Get the monster preset document with the array of monster references from that co llection.
     const levelString = "level1";
     const monsterPresetRef = firebase.firestore().collection('monsterPresets').doc(levelString);
 
-    monsterPresetRef.get().then(async (snapshot) => {
+    await monsterPresetRef.get().then(async (snapshot) => {
         if (snapshot.exists) {
             console.log("Document data:", snapshot.data());
             const presetRef = snapshot.data();
@@ -25,32 +25,34 @@ export default function monsterGeneration(level: number, map: number[][]) : any{
             for (let i = 0; i < set1.length; i++) {
                 let monster = await set1[i].get(); //
                 monsterPreset.push({
-                    faction: monster.data()?.faction, name: monster.data()?.name, size: monster.data()?.size, friends: monster.data()?.friends,
-                    loneliness: monster.data()?.loneliness, commonality: monster.data()?.commonality});
+                    faction: monster.data()?.faction,
+                    name: monster.data()?.name,
+                    size: monster.data()?.size,
+                    friends: monster.data()?.friends,
+                    loneliness: monster.data()?.loneliness,
+                    commonality: monster.data()?.commonality
+                });
             }
 
             //Parse the generated monsters and put it through createData()
-            console.log("PLACEMARKER");
-            console.log(monsterPreset);
             const generatedMonsters = generateAllMonsters(monsterPreset);
-            const parsedMonsters:[number, [number, string][]][] = [];
+            const parsedMonsters: [number, [number, string][]][] = [];
 
-            console.log("HERHEHRE");
-            for (let i = 0; i <generatedMonsters.length; i++) {
-                const parsedMonsStrings:[number, string][] = [];
+            for (let i = 0; i < generatedMonsters.length; i++) {
+                const parsedMonsStrings: [number, string][] = [];
                 outer:
-                for (let j = 0; j < generatedMonsters[i][1].length; j++) {
-                    // checks if it already exists
-                    for (let k = 0; k < parsedMonsStrings.length; k++) {
-                        //If it exists, increment by 1 and continue
-                        if (parsedMonsStrings[k][1] == generatedMonsters[i][1][j].name) {
-                            parsedMonsStrings[k][0] = parsedMonsStrings[k][0]+1;
-                            continue outer;
+                    for (let j = 0; j < generatedMonsters[i][1].length; j++) {
+                        // checks if it already exists
+                        for (let k = 0; k < parsedMonsStrings.length; k++) {
+                            //If it exists, increment by 1 and continue
+                            if (parsedMonsStrings[k][1] == generatedMonsters[i][1][j].name) {
+                                parsedMonsStrings[k][0] = parsedMonsStrings[k][0] + 1;
+                                continue outer;
+                            }
                         }
-                    }
 
-                    parsedMonsStrings.push([1, generatedMonsters[i][1][j].name]); //push if it doesn't exist
-                }
+                        parsedMonsStrings.push([1, generatedMonsters[i][1][j].name]); //push if it doesn't exist
+                    }
                 // console.log("Room " + generatedMonsters[i][0]);
                 // console.log("Monsters: ", parsedMonsStrings);
                 parsedMonsters.push([generatedMonsters[i][0], parsedMonsStrings]);
@@ -79,8 +81,8 @@ export default function monsterGeneration(level: number, map: number[][]) : any{
         //Generate monsters from set
         for (let i = 0; i < monsterPreset.length; i++) {
             let monster: Monster = monsterPreset[i];
-            const lowerLimit:number = +monster.commonality - +Math.floor(+monster.commonality/+2);
-            const upperLimit:number = +monster.commonality + +Math.floor(+monster.commonality/+2);
+            const lowerLimit: number = +monster.commonality - +Math.floor(+monster.commonality / +2);
+            const upperLimit: number = +monster.commonality + +Math.floor(+monster.commonality / +2);
             const commonalityDeviation: number = getRandomInt(lowerLimit, upperLimit); //an operator to determine whether to add or minus from the commonality
             console.log("monster: " + monster.name);
             console.log("amount: " + commonalityDeviation);
@@ -223,7 +225,7 @@ export default function monsterGeneration(level: number, map: number[][]) : any{
     }
 
     function totalLoneliness(currentMonstersInRoom: [number, Monster[]]): number {
-        let total:number = 0;
+        let total: number = 0;
         for (let i = 0; i < currentMonstersInRoom[1].length; i++) {
             const loneliness: number = +currentMonstersInRoom[1][i].loneliness;
             total = +total + +loneliness;
