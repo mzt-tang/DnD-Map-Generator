@@ -1,5 +1,5 @@
 import { Text } from 'react-native';
-import { styled, Typography } from "@material-ui/core";
+import { styled, Table, TableCell, Typography } from "@material-ui/core";
 import { readFromFirebase, writeToFirebase } from "../utility/FirebaseRW";
 import '../styles/style.css'
 import Map from '../components/Map';
@@ -19,12 +19,12 @@ import {
     Slider
 } from "@material-ui/core";
 
-import React, {MouseEventHandler, useEffect, useState} from 'react';
+import React, { MouseEventHandler, useEffect, useState } from 'react';
 
 import { Grid } from "@material-ui/core";
 import MapGen from '../utility/MapGen';
 import MapData from "../interfaces/MapData";
-import {useHistory, useLocation} from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import ParseURLData from "../utility/ParseURLData";
 
 
@@ -36,7 +36,7 @@ let curMap: number;
 
 const DmView = () => {
 
-    const { state: { code,theme } = { code:'code',theme:'theme' } } = useLocation<{ code: string, theme: string }>()
+    const { state: { code, theme } = { code: 'code', theme: 'theme' } } = useLocation<{ code: string, theme: string }>()
 
 
     const history = useHistory();
@@ -54,16 +54,17 @@ const DmView = () => {
     const [mapData, setMapData] = useState(mapDataInitial);
     const [level, setLevel] = useState(0);
     const [totalLevels, setTotalLevels] = useState(0);
+    const [overlay, setOverlay] = useState(false);
 
     useEffect(() => {
         readFromFirebase(gamecode + '/levels').then(value => {
-            if (value.exists() && !isObjectEmpty(value.val())){
-                setTotalLevels(value.val().length-1);
+            if (value.exists() && !isObjectEmpty(value.val())) {
+                setTotalLevels(value.val().length - 1);
             }
         });
 
-        readFromFirebase( gamecode + '/levels/1').then(value => {
-            if (value.exists() && !isObjectEmpty(value.val())){
+        readFromFirebase(gamecode + '/levels/1').then(value => {
+            if (value.exists() && !isObjectEmpty(value.val())) {
                 setMapData(value.val() as MapData);
                 setLevel(1);
                 setPlayerLevel(1);
@@ -72,56 +73,61 @@ const DmView = () => {
             }
         });
 
-        readFromFirebase( gamecode + '/isHidden').then(value => {
-            if (value.exists()){
+        readFromFirebase(gamecode + '/isHidden').then(value => {
+            if (value.exists()) {
                 setMapIsHidden(value.val());
-        }});
+            }
+        });
 
     }, []);
 
-    const isObjectEmpty = (obj : Object) : boolean => {
+    const isObjectEmpty = (obj: Object): boolean => {
         return Object.keys(obj).length === 0;
     }
 
-    const setPlayerLevel = (level : number) => {
-        writeToFirebase('/' + gamecode + '/currentMap',level);
+    const setPlayerLevel = (level: number) => {
+        writeToFirebase('/' + gamecode + '/currentMap', level);
     }
 
     const generateMap = () => {
-        const newMap = MapGen({theme})
-        writeToFirebase('/'+ gamecode+'/levels/'+(totalLevels+1),newMap);
+        const newMap = MapGen({ theme })
+        writeToFirebase('/' + gamecode + '/levels/' + (totalLevels + 1), newMap);
         setTotalLevels(value => {
-            setLevel(value+1);
-            setPlayerLevel(value+1);
-           return value+1;
+            setLevel(value + 1);
+            setPlayerLevel(value + 1);
+            return value + 1;
         }
         );
         setMapData(newMap);
     };
 
+    const showRoomNums = () => {
+        setOverlay(!overlay);
+    }
+
     const nextMap = () => {
-        if (level === totalLevels){
+        if (level === totalLevels) {
             alert('Final floor, generate more floors');
         } else {
-            const path = '/' + gamecode + '/levels/' + (level+1);
+            const path = '/' + gamecode + '/levels/' + (level + 1);
             readFromFirebase(path).then(value => setMapData(value.val() as MapData));
             setLevel(value => {
-                setPlayerLevel(value+1);
-                return value+1
+                setPlayerLevel(value + 1);
+                return value + 1
             });
 
         }
     }
 
     const previousMap = () => {
-        if (level <= 1){
+        if (level <= 1) {
             alert('First floor');
         } else {
-            const path = '/' + gamecode + '/levels/' + (level-1);
+            const path = '/' + gamecode + '/levels/' + (level - 1);
             readFromFirebase(path).then(value => setMapData(value.val() as MapData));
             setLevel(value => {
-                setPlayerLevel(value-1);
-                return value-1
+                setPlayerLevel(value - 1);
+                return value - 1
             });
         }
     }
@@ -165,7 +171,7 @@ const DmView = () => {
             visibility: newVisibility
         };
 
-        writeToFirebase('/'+ gamecode+ '/levels/' + level + '/visibility',newVisibility);
+        writeToFirebase('/' + gamecode + '/levels/' + level + '/visibility', newVisibility);
         setMapData(newMapData);
     }
 
@@ -186,50 +192,52 @@ const DmView = () => {
     }
 
     const handleHideOrShowMap = (event: React.ChangeEvent<HTMLInputElement>) => {
-        writeToFirebase('/' + gamecode + '/isHidden',event.target.checked);
+        writeToFirebase('/' + gamecode + '/isHidden', event.target.checked);
         setMapIsHidden(event.target.checked);
     }
 
-    return (
-        <div id='dmView' className="backgroundImage">
-            <div id="topBar">
-                <Button id="topButton" style={{backgroundColor:'white', width: '40px', top: 10, borderRadius:10 }} onClick={() => {
-                    history.push('/home')
-                }}>X</Button>
+    if (!overlay) {
+        return (
+            <div id='dmView' className="backgroundImage">
+                <div id="topBar">
+                    <Button id="topButton" style={{ backgroundColor: 'white', width: '40px', top: 10, borderRadius: 10 }} onClick={() => {
+                        history.push('/home')
+                    }}>X</Button>
 
-                <div style={{flexDirection:"column", backgroundColor: 'white', borderRadius: 10, position:'relative', left:'-1%', top:'25%'}}>
-                    <Text style={{ width: '200px', top: 10, fontSize:16,textAlign:"center",textAlignVertical:"center", padding:'5px'}}>{'Current Floor: '  + level}</Text>
-                    <Text style={{ width: '200px', top: 10, fontSize:16,textAlign:"center",textAlignVertical:"center", padding:'5px'}}>{'Total Floors: '  + totalLevels}</Text>
+                    <div style={{ flexDirection: "column", backgroundColor: 'white', borderRadius: 10, position: 'relative', left: '-1%', top: '25%' }}>
+                        <Text style={{ width: '200px', top: 10, fontSize: 16, textAlign: "center", textAlignVertical: "center", padding: '5px' }}>{'Current Floor: ' + level}</Text>
+                        <Text style={{ width: '200px', top: 10, fontSize: 16, textAlign: "center", textAlignVertical: "center", padding: '5px' }}>{'Total Floors: ' + totalLevels}</Text>
+                    </div>
+                    <Button id="topButton" style={{ backgroundColor: 'white', width: '200px', top: 10, borderRadius: 10 }} onClick={generateMap}>New Floor</Button>
+
+                    <Button id="topButton" style={{ backgroundColor: 'white', width: '100px', top: '10px', borderRadius: 10 }} onClick={previousMap}>Previous Floor</Button>
+                    <Button id="topButton" style={{ backgroundColor: 'white', width: '100px', top: '10px', borderRadius: 10 }} onClick={nextMap}>Next Floor</Button>
+
+                    <Button id="topButton" style={{ backgroundColor: 'white', width: '200px', top: '10px', borderRadius: 10 }} onClick={showRoomNums}>Show Room Numbers</Button>
+
+                    <div id="topButton" style={{ backgroundColor: 'white', position: "absolute", left: "900px", top: 10, borderRadius: 10, width: '23.5%', height: '10%' }}>
+                        <p style={{ position: 'relative', backgroundColor: 'white', fontFamily: 'Arial', left: '2%', width: '20%' }}>FOG Controls</p>
+                        <FormControlLabel
+                            style={{ position: 'relative', backgroundColor: 'white', left: '2%' }}
+                            control={<Switch checked={showFog} onChange={handleShowingFogChange} name={'showFog'} />}
+                            label={'Show Fog'} />
+                        <FormControlLabel style={{ backgroundColor: 'white' }} control={<Switch checked={adjustingFog} onChange={handleAdjustingFogChange}
+                            name={'adjustFog'} />} label={'Add/Remove Fog'} />
+                    </div>
                 </div>
-                <Button id="topButton" style={{backgroundColor:'white', width: '200px', top: 10 , borderRadius:10}} onClick={generateMap}>New Floor</Button>
-
-                <Button id="topButton" style={{backgroundColor:'white', width: '100px', top: '10px', borderRadius:10 }} onClick={previousMap}>Previous Floor</Button>
-                <Button id="topButton" style={{backgroundColor:'white', width: '100px', top: '10px', borderRadius:10 }} onClick={nextMap}>Next Floor</Button>
-
-
-                <div id="topButton" style={{backgroundColor:'white', position: "absolute", left: "900px", top: 10, borderRadius:10, width:'23.5%', height:'10%' }}>
-                    <p style={{position:'relative', backgroundColor:'white', fontFamily: 'Arial', left:'2%', width:'20%'}}>FOG Controls</p>
-                    <FormControlLabel
-                        style={{position:'relative',backgroundColor:'white', left:'2%'}}
-                        control={<Switch checked={showFog} onChange={handleShowingFogChange} name={'showFog'} />}
-                        label={'Show Fog'} />
-                    <FormControlLabel style={{backgroundColor:'white'}} control={<Switch checked={adjustingFog} onChange={handleAdjustingFogChange}
-                        name={'adjustFog'} />} label={'Add/Remove Fog'} />
-                </div>
-            </div>
-                <div id="topButton" style={{ position: "absolute", backgroundColor:'white', left: "1020px", top: 10 }}>
-                    <RadioGroup row={true} aria-label="fog" name="fog controls" value={addingFog} style={{backgroundColor:'white'}}
+                <div id="topButton" style={{ position: "absolute", backgroundColor: 'white', left: "1020px", top: 10 }}>
+                    <RadioGroup row={true} aria-label="fog" name="fog controls" value={addingFog} style={{ backgroundColor: 'white' }}
                         onChange={handleAddingFogChange}>
                         <FormControlLabel value={true} control={<Radio />} label="add" />
                         <FormControlLabel value={false} control={<Radio />} label="remove" />
                     </RadioGroup>
                 </div>
-                <div id="topButton" style={{ backgroundColor:'white', position: "absolute", left: "1250px", top: '20px' }}>
+                <div id="topButton" style={{ backgroundColor: 'white', position: "absolute", left: "1250px", top: '20px' }}>
                     <Typography id="discrete-slider" gutterBottom>
                         Adjustment Size
                     </Typography>
                     <Slider
-                        style={{backgroundColor:'white'}}
+                        style={{ backgroundColor: 'white' }}
                         defaultValue={1}
                         getAriaValueText={fogAdjustmentValue}
                         aria-labelledby="discrete-slider"
@@ -241,14 +249,14 @@ const DmView = () => {
                         onChange={(event: any, newValue: number | number[]) => setFogAdjustSize(newValue as number)}
                     />
                 </div>
-                <div id="topButton" style={{ backgroundColor:'white', position: "absolute", left: "1425px", top: '15px', borderRadius:10 }}>
+                <div id="topButton" style={{ backgroundColor: 'white', position: "absolute", left: "1500px", top: '15px', borderRadius: 10 }}>
                     <FormControlLabel
-                            style={{position:'relative', left:'2%'}}
-                            control={<Switch checked={mapIsHidden} onChange={handleHideOrShowMap} name={'hideMap'} />}
-                            label={'Hide Player\'s Map'} />
+                        style={{ position: 'relative', left: '2%' }}
+                        control={<Switch checked={mapIsHidden} onChange={handleHideOrShowMap} name={'hideMap'} />}
+                        label={'Hide Player\'s Map'} />
                 </div>
                 <div style={{
-                    backgroundColor:'black',
+                    backgroundColor: 'black',
                     position: "absolute",
                     left: "350px",
                     top: '70px',
@@ -267,7 +275,7 @@ const DmView = () => {
                         flex: 1,
                         border: '3px solid #808080',
                     }}>
-                        <Text style={{fontSize: 20}}>Gamecode: {gamecode}, Theme: {history.location.state.theme}</Text>
+                        <Text style={{ fontSize: 20 }}>Gamecode: {gamecode}, Theme: {history.location.state.theme}</Text>
                     </div>
                 </div>
                 <div id='route' style={{
@@ -277,10 +285,100 @@ const DmView = () => {
                     alignSelf: "center",
                     right: "35%",
                 }}>
-                    <Map mapTheme='Cave' mapData={mapData} imagePressFunction={clickMapTileHandler} showFog={showFog} />
+                    <Map mapTheme='Cave' mapData={mapData} imagePressFunction={clickMapTileHandler} showFog={showFog} maxWidth={window.innerWidth / 2 + window.innerWidth / 16} maxHeight={window.innerHeight / 2 + window.innerHeight / 16} />
                 </div>
             </div>
-    )
+        )
+    }
+    else {
+        return (
+            <div id='dmView' className="backgroundImage">
+                <div id="topBar">
+                    <Button id="topButton" style={{ backgroundColor: 'white', width: '40px', top: 10, borderRadius: 10 }} onClick={() => {
+                        history.push('/home')
+                    }}>X</Button>
+
+                    <div style={{ flexDirection: "column", backgroundColor: 'white', borderRadius: 10, position: 'relative', left: '-1%', top: '25%' }}>
+                        <Text style={{ width: '200px', top: 10, fontSize: 16, textAlign: "center", textAlignVertical: "center", padding: '5px' }}>{'Current Floor: ' + level}</Text>
+                        <Text style={{ width: '200px', top: 10, fontSize: 16, textAlign: "center", textAlignVertical: "center", padding: '5px' }}>{'Total Floors: ' + totalLevels}</Text>
+                    </div>
+                    <Button id="topButton" style={{ backgroundColor: 'white', width: '200px', top: 10, borderRadius: 10 }} onClick={generateMap}>New Floor</Button>
+
+                    <Button id="topButton" style={{ backgroundColor: 'white', width: '100px', top: '10px', borderRadius: 10 }} onClick={previousMap}>Previous Floor</Button>
+                    <Button id="topButton" style={{ backgroundColor: 'white', width: '100px', top: '10px', borderRadius: 10 }} onClick={nextMap}>Next Floor</Button>
+
+                    <Button id="topButton" style={{ backgroundColor: 'white', width: '200px', top: '10px', borderRadius: 10 }} onClick={showRoomNums}>Show Room Numbers</Button>
+
+                    <div id="topButton" style={{ backgroundColor: 'white', position: "absolute", left: "1100px", top: 10, borderRadius: 10, width: '30%', height: '10%' }}>
+                        <p style={{ position: 'relative', backgroundColor: 'white', fontFamily: 'Arial', left: '2%', width: '20%' }}>FOG Controls</p>
+                        <FormControlLabel
+                            style={{ position: 'relative', backgroundColor: 'white', left: '2%' }}
+                            control={<Switch checked={showFog} onChange={handleShowingFogChange} name={'showFog'} />}
+                            label={'Show Fog'} />
+                        <FormControlLabel style={{ backgroundColor: 'white' }} control={<Switch checked={adjustingFog} onChange={handleAdjustingFogChange}
+                            name={'adjustFog'} />} label={'Add/Remove Fog'} />
+                    </div>
+                </div>
+                <div id="topButton" style={{ position: "absolute", backgroundColor: 'white', left: "1220px", top: 10 }}>
+                    <RadioGroup row={true} aria-label="fog" name="fog controls" value={addingFog} style={{ backgroundColor: 'white' }}
+                        onChange={handleAddingFogChange}>
+                        <FormControlLabel value={true} control={<Radio />} label="add" />
+                        <FormControlLabel value={false} control={<Radio />} label="remove" />
+                    </RadioGroup>
+                </div>
+                <div id="topButton" style={{ backgroundColor: 'white', position: "absolute", left: "1450px", top: '20px' }}>
+                    <Typography id="discrete-slider" gutterBottom>
+                        Adjustment Size
+                    </Typography>
+                    <Slider
+                        style={{ backgroundColor: 'white' }}
+                        defaultValue={1}
+                        getAriaValueText={fogAdjustmentValue}
+                        aria-labelledby="discrete-slider"
+                        valueLabelDisplay="auto"
+                        step={1}
+                        marks
+                        min={1}
+                        max={10}
+                        onChange={(event: any, newValue: number | number[]) => setFogAdjustSize(newValue as number)}
+                    />
+                </div>
+                <div id="topButton" style={{ backgroundColor: 'white', position: "absolute", left: "1700px", top: '15px', borderRadius: 10 }}>
+                    <FormControlLabel
+                        style={{ position: 'relative', left: '2%' }}
+                        control={<Switch checked={mapIsHidden} onChange={handleHideOrShowMap} name={'hideMap'} />}
+                        label={'Hide Player\'s Map'} />
+                </div>
+                <div id='route' style={{
+                    backgroundColor: hexToRgb("#AAAABB"),
+                    position: "absolute",
+                    top: 110,
+                    alignSelf: "center",
+                    left: "8%",
+                    width: window.innerWidth / 2 + window.innerWidth / 16,
+                    height: '100%'
+                }}>
+                    <Table style={{ backgroundColor: 'white' }}>
+                        <tr style={{ backgroundColor: 'white', borderColor: 'black' }} />
+                        <TableCell style={{ width: '25%', height: '242px', textAlign: 'center', backgroundColor: '#d6004b', borderColor: 'black', fontSize: 150, color: 'white' }}>1</TableCell>
+                        <TableCell style={{ width: '25%', height: '242px', textAlign: 'center', backgroundColor: '#7f94fa', borderColor: 'black', fontSize: 150, color: 'white' }}>2</TableCell>
+                        <TableCell style={{ width: '25%', height: '242px', textAlign: 'center', backgroundColor: '#d6004b', borderColor: 'black', fontSize: 150, color: 'white' }}>3</TableCell>
+                        <TableCell style={{ width: '25%', height: '242px', textAlign: 'center', backgroundColor: '#7f94fa', borderColor: 'black', fontSize: 150, color: 'white' }}>4</TableCell>
+                        <tr style={{ backgroundColor: 'white', borderColor: 'black' }} />
+                        <TableCell style={{ width: '25%', height: '242px', textAlign: 'center', backgroundColor: '#7f94fa', borderColor: 'black', fontSize: 150, color: 'white' }}>5</TableCell>
+                        <TableCell style={{ width: '25%', height: '242px', textAlign: 'center', backgroundColor: '#d6004b', borderColor: 'black', fontSize: 150, color: 'white' }}>6</TableCell>
+                        <TableCell style={{ width: '25%', height: '242px', textAlign: 'center', backgroundColor: '#7f94fa', borderColor: 'black', fontSize: 150, color: 'white' }}>7</TableCell>
+                        <TableCell style={{ width: '25%', height: '242px', textAlign: 'center', backgroundColor: '#d6004b', borderColor: 'black', fontSize: 150, color: 'white' }}>8</TableCell>
+                        <tr style={{ backgroundColor: 'white', borderColor: 'black' }} />
+                        <TableCell style={{ width: '25%', height: '242px', textAlign: 'center', backgroundColor: '#d6004b', borderColor: 'black', fontSize: 150, color: 'white' }}>9</TableCell>
+                        <TableCell style={{ width: '25%', height: '242px', textAlign: 'center', backgroundColor: '#7f94fa', borderColor: 'black', fontSize: 150, color: 'white' }}>10</TableCell>
+                        <TableCell style={{ width: '25%', height: '242px', textAlign: 'center', backgroundColor: '#d6004b', borderColor: 'black', fontSize: 150, color: 'white' }}>11</TableCell>
+                        <TableCell style={{ width: '25%', height: '242px', textAlign: 'center', backgroundColor: '#7f94fa', borderColor: 'black', fontSize: 150, color: 'white' }}>12</TableCell>
+                    </Table>
+                </div>
+            </div>
+        )
+    }
 }
 
 export default DmView
