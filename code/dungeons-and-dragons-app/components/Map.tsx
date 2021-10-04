@@ -1,4 +1,9 @@
 import React, {useEffect, useState} from "react";
+import {db} from '../firebaseConfig';
+import {roomGen} from "../utility/roomGen";
+
+import {Alert, Button, Modal, Text, View} from 'react-native';
+import firebase from 'firebase';
 
 import PrismaZoom from 'react-prismazoom'
 
@@ -24,7 +29,8 @@ import {makeImageArray} from '../utility/MapTilerHelper'
 import Image4 from '../assets/New Tile Assets/floor_w.png';
 
 import ParseURLData from "../utility/ParseURLData";
-import { useHistory } from "react-router-dom";
+import {useHistory} from "react-router-dom";
+import MonsterData from "./MonsterData";
 
 const useRowStyles = makeStyles({
     root: {
@@ -47,13 +53,74 @@ export function createData(
     };
 }
 
+export interface MonsterInfo {
+    monster: {
+        "name": string,
+        "size": string,
+        "type": string,
+        "subtype": string,
+        "alignment": string,
+        "armor_class": number,
+        "armor_desc": string,
+        "hit_points": number,
+        "hit_dice": string,
+        "speed": {
+            "walk": number
+        },
+        "strength": number,
+        "dexterity": number,
+        "constitution": number,
+        "intelligence": number,
+        "wisdom": number,
+        "charisma": number
+    }
+}
+
+
 function Row(props: { row: ReturnType<typeof createData> }) { // Will need to be called by map, passing in number of rooms
-    const { row } = props;
+    const {row} = props;
     const [open, setOpen] = React.useState(false);
+    const [modalVisible, setModalVisible] = React.useState(false);
+    const [monsterData, setMonsterData] = React.useState<MonsterInfo>();
     const classes = useRowStyles();
+
+    const onClickMonster = (name: string) => {
+        const url = 'https://api.open5e.com/monsters/?name=' + name;
+
+        fetch(url).then(result => {
+            return result.json();
+            // @ts-ignore todo I'm not entirely sure how to remove this error.
+        }).then(data => setMonsterData(data.results[0] ? {monster: data.results[0]} : null))
+        setModalVisible(true)
+    }
 
     return (
         <React.Fragment>
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                    setModalVisible(false);
+                }}
+                // style={{alignItems: "center", backgroundColor: '#ffffff', justifyContent: "center", width: '300'}}
+            >
+                <View style={{
+                    flex: 1,
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}>
+                    <View style={{
+                        width: 300
+                    }}>
+                        <MonsterData monster={monsterData?.monster}/>
+                        <Button
+                            title={'Close'}
+                            onPress={() => setModalVisible(false)}/>
+                    </View>
+                </View>
+            </Modal>
             <TableRow className={classes.root}>
                 <TableCell>
                     <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
@@ -63,14 +130,21 @@ function Row(props: { row: ReturnType<typeof createData> }) { // Will need to be
                 </TableCell>
             </TableRow>
             <TableRow>
-                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                <TableCell style={{paddingBottom: 0, paddingTop: 0}} colSpan={6}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <Box margin={1}>
                             <Table size="small" aria-label="purchases">
                                 <TableHead>
-                                    <TableRow style={{ position: "relative", top: 0, width: '100%', display: "flex", flexDirection: "column" }}>
+                                    <TableRow style={{
+                                        position: "relative",
+                                        top: 0,
+                                        width: '100%',
+                                        display: "flex",
+                                        flexDirection: "column"
+                                    }}>
                                         {row.monsters.map((m => (
-                                            <TableCell>{m}</TableCell>
+                                            <TableCell>{<TableCell>{<Button onPress={() => onClickMonster(m)}
+                                                                            title={m}/>}</TableCell>}</TableCell>
                                         )))}
                                     </TableRow>
                                 </TableHead>
@@ -103,6 +177,7 @@ function fillRooms(rooms: number[][][]): string[] {
     }
     return row;
 }
+
 
 // The callBackFunction is to be passed into the JSX elements onPush to ensure that when they are pushed we can trigger
 // the visibility on the DM side.
@@ -153,26 +228,25 @@ export default function map(props: mapProps) {
         }
     }
 
+
     const data = props.mapData;
 
-    console.log("map", data.map);
-    const images = makeImageArray(data.map, data.visibility,props.imagePressFunction,props.showFog,data.theme);
+    const images = makeImageArray(data.map, data.visibility, props.imagePressFunction, props.showFog, data.theme);
 
     // let rowr: roomRows[] = []
     // for (let i: number = 0; i < data.roomNum; i++) {
     //     rowr[i] = createData("Room" + (i + 1), ["OOOOOOOHHH", "AHHHHHHH", "filler data"]);
     // }
     // console.log("MAP ARRAY: ", data.map);
-    // console.log("map1", data.map);
-    // useEffect(()=> {
-    //     setRowr([])
-    //     monsterGeneration("level1", rowr, data.map);
-    // }, [props]);
+
+    useEffect(() => {
+        monsterGeneration("level1", rowr, setRowr);
+    }, []);
 
     return (
         <div id="page">
             <div id="left" style={mapStyle(MAP_ROOM_COLS * ROOM_SIZE, MAP_ROOM_ROWS * ROOM_SIZE)}>
-                <section style={{ overflow: 'hidden', borderStyle: 'solid', borderColor: 'gray' }}>
+                <section style={{overflow: 'hidden', borderStyle: 'solid', borderColor: 'gray'}}>
                     <PrismaZoom
                         minZoom={1}
                         maxZoom={3}
@@ -197,7 +271,7 @@ export default function map(props: mapProps) {
                     <Table aria-label="collapsible table">
                         <TableHead>
                             <TableRow>
-                                <TableCell style={{textAlign:'center'}}>Room</TableCell>
+                                <TableCell style={{textAlign: 'center'}}>Room</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
