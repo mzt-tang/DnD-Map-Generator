@@ -85,12 +85,7 @@ function Row(props: { row: ReturnType<typeof createData> }) { // Will need to be
         fetch(url).then(result => {
             return result.json();
             // @ts-ignore todo I'm not entirely sure how to remove this error.
-        }).then((data) => {
-            const value = data.results[0] ? {monster: data.results[0]} : null
-            console.log("HERE")
-            console.log(value)
-            return setMonsterData(value);
-        })
+        }).then(data => setMonsterData(data.results[0] ? {monster: data.results[0]} : null))
         setModalVisible(true)
     }
 
@@ -201,7 +196,9 @@ interface mapProps {
     mapData: MapData,
     imagePressFunction: React.MouseEventHandler<HTMLImageElement>,
     showFog: boolean,
-    mapTheme: string
+    mapTheme: string,
+    maxWidth: number,
+    maxHeight: number,
 }
 
 export interface roomRows {
@@ -228,7 +225,12 @@ export default function map(props: mapProps) {
     }
 
 
+    const widthNum = 40;
+    const heightNum = 30;
+
     const data = props.mapData;
+
+    const images = makeImageArray(data.map, data.visibility,props.imagePressFunction,props.showFog,data.theme, props.maxWidth/widthNum, props.maxHeight/heightNum);
 
     const parseMonsterData = (monsterData: [number, [number, string][]][]) => {
         console.log("MONSTER DATA");
@@ -254,6 +256,16 @@ export default function map(props: mapProps) {
     // }, [props.mapData.monsters]);
 
     const images = makeImageArray(data.map, data.visibility, props.imagePressFunction, props.showFog, data.theme);
+
+    // let rowr: roomRows[] = []
+    // for (let i: number = 0; i < data.roomNum; i++) {
+    //     rowr[i] = createData("Room" + (i + 1), ["OOOOOOOHHH", "AHHHHHHH", "filler data"]);
+    // }
+    // console.log("MAP ARRAY: ", data.map);
+
+    useEffect(() => {
+        monsterGeneration("level1", rowr, setRowr);
+    }, []);
 
     return (
         <div id="page">
