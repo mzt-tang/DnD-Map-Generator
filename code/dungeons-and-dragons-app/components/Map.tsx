@@ -215,8 +215,7 @@ export default function map(props: mapProps) {
     const data = props.mapData;
 
     const parseMonsterData = (monsterData: [number, [number, string][]][]) => {
-        console.log("MONSTER DATA");
-        console.log(monsterData);
+        monsterData.sort();
         const rooms: roomRows[] = []
         if (monsterData) {
             for (let i = 0; i < monsterData.length; i++) {
