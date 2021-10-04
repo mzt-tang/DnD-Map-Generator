@@ -2,7 +2,6 @@ import firebase from 'firebase';
 import 'firebase/firestore';
 
 import {Monster} from "../interfaces/MapData";
-import {roomRows} from "../components/Map";
 
 
 //todo
