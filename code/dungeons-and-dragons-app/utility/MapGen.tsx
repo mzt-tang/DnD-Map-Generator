@@ -1,8 +1,6 @@
-import React, { useState } from "react";
 import { roomGen } from "./roomGen";
 import { assignImageNumbers } from './MapTilerHelper';
 import MapData from "../interfaces/MapData";
-
 
 const roomSize = 10;
 const mapRoomRows = 3;
@@ -30,7 +28,6 @@ export default function map(props: mapGenProps): MapData {
             allRooms.push([]);
         }
     }
-
 
     // create a 2D array rows * cols filled with the value 10.
     let mapGrid: number[][] = Array.from(Array(mapRoomRows * roomSize), _ => Array(mapRoomCols * roomSize).fill(10));
@@ -357,7 +354,7 @@ export default function map(props: mapGenProps): MapData {
 
     findEntranceRoom();
     findExitRoom(forbiddenExitRooms);
-    addRooms();
+
 
     let entranceRoomY:number = Math.floor(entranceIndex/mapRoomCols) * 10;
     let entranceRoomX = ((entranceIndex)%mapRoomCols)*10;
@@ -368,6 +365,24 @@ export default function map(props: mapGenProps): MapData {
             mapVisibility[col][row] = 0;
         }
     }
+
+    /**
+     * Randomly changes floor tile to a decorative tile
+     */
+    for(let i = 0; i < allRooms.length; i++) {
+        for(let row = 0; row < allRooms[i].length; row++) {
+            for(let col = 0; col < allRooms[i][row].length; col++) {
+                if(allRooms[i][row][col] == 1) {
+                    if(Math.random() < 0.05) {
+                        allRooms[i][row][col] = Math.random() < 0.5 ? 5 : 6;
+
+                    }
+                }
+            }
+        }
+    }
+
+    addRooms();
 
     /**
      * Iterates through all the rooms, finds their coordinates on the main map, and calls addRoom

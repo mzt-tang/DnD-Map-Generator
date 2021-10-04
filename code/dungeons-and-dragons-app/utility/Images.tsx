@@ -46,6 +46,12 @@ import Image46 from "../assets/New Tile Assets/wall_entrance.png";
 import Image47 from "../assets/New Tile Assets/wall_exit.png";
 import Image48 from "../assets/New Tile Assets/dungeon_entrance.png";
 import Image49 from "../assets/New Tile Assets/dungeon_exit.png";
+import Image50 from "../assets/New Tile Assets/wall-skull.png";
+import Image51 from "../assets/New Tile Assets/wall-rock.png";
+import Image52 from "../assets/New Tile Assets/wood_floor_pillar.png"
+import Image53 from "../assets/New Tile Assets/wood_floor_cracked.png"
+import Image54 from"../assets/New Tile Assets/dungeon_wall_cracked.png"
+
  import React, {MouseEventHandler} from "react";
 
 import {Text} from "react-native";
@@ -103,6 +109,10 @@ export const getImageWithId = (id : string, index : number, userClicked: MouseEv
         case 21: return <img className="grid_img" src={theme == "Caves" ? Image22 : theme == "Underground Mansion" ? Image23 : Image24} id={id} onClick={userClicked}/>
         case 22: return <img className="grid_img" src={theme == "Caves" ? Image46 : theme == "Underground Mansion" ? Image44 : Image48} />
         case 23: return <img className="grid_img" src={theme == "Caves" ? Image47 : theme == "Underground Mansion" ? Image45 : Image49} />
+        case 24: return <img className="grid_img" src={theme == "Caves" ? Image50 : theme == "Underground Mansion" ? Image52 : Image54} id={id} onClick={userClicked}/>
+        case 25: return <img className="grid_img" src={theme == "Caves" ? Image51 : theme == "Underground Mansion" ? Image53 : Image54} id={id} onClick={userClicked}/>
+
+
 
         default: return <Text>Error</Text>
     }
