@@ -14,7 +14,6 @@ interface Props {
 const useStyles = makeStyles<Theme, Props>((theme: Theme) =>
     createStyles({
         largeButton: {
-            color: '#Eddded',
             background: '#000000',
             borderColor: '#Eddded',
             borderWidth: 2,
@@ -27,7 +26,6 @@ const useStyles = makeStyles<Theme, Props>((theme: Theme) =>
             alignSelf: 'center',
             float: 'left',
             '&:hover': {
-                color: '#Eddded',
                 backgroundColor: '#b348b1',
                 borderColor: '#Eddded',
                 borderWidth: 2,
@@ -41,7 +39,7 @@ const useStyles = makeStyles<Theme, Props>((theme: Theme) =>
 );
 
 const LargeButton = (props : Props) => {
-    const classes = useStyles(props);
+    //const classes = useStyles(props);
     const {largeButton, buttonText} = useStyles(props);
 
     // Props Initialisations
@@ -53,7 +51,7 @@ const LargeButton = (props : Props) => {
     const history = useHistory();
 
     return (
-        <Button variant="outlined" size="large" className={classes.largeButton} color="primary"  onClick={() => {
+        <Button variant="outlined" size="large" color="primary" className="largeButton" onClick={() => {
             history.push({
                 pathname: buttonRoute,
                 state: {theme: buttonProps},
