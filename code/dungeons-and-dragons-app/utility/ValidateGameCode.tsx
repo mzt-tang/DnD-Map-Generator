@@ -1,4 +1,5 @@
 import React from 'react';
+import {readFromFirebase} from '../utility/FirebaseRW'
 import {db} from "../firebaseConfig";
 
 /**
@@ -18,21 +19,13 @@ export default async function isGameCodeValid(gameCode : string, creatingNewGame
 
         // Check if a GameCode matches an existing game
         let isValidCode : boolean = false;
-        await gamecodeExists(gameCode).then((exists) => { isValidCode = exists; });
+        await gamecodeExists(gameCode).then((exists) => { isValidCode = exists; }).catch(e => console.log(e));
         return Promise.resolve(isValidCode);
     }
 }
 
 async function gamecodeExists(gameCode : string){
-    let codeExists : boolean = false;
-    try {
         // Check whether the GameCode exists in the Firebase Realtime Database
-        //todo change to use the db thing
-        const snapshot = await db.database().ref().get();
-        codeExists = snapshot.hasChild(gameCode);
-    }
-    catch (error) {
-        alert(error);
-    }
-    return Promise.resolve(codeExists);
+        const snapshot = await readFromFirebase(gameCode);
+        return snapshot.exists()
 }
