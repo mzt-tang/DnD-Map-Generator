@@ -1,5 +1,5 @@
 import { Text } from 'react-native';
-import { styled, Typography } from "@material-ui/core";
+import {styled, Table, TableCell, Typography} from "@material-ui/core";
 import { readFromFirebase, writeToFirebase } from "../utility/FirebaseRW";
 import '../styles/style.css'
 import Map from '../components/Map';
@@ -130,10 +130,6 @@ const DmView = () => {
                 return value - 1
             });
         }
-    }
-
-    const showRoomNums = () => {
-        setOverlay(!overlay);
     }
 
     if (mapData == null) {

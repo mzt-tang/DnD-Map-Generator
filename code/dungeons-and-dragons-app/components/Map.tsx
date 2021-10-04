@@ -1,9 +1,7 @@
-import React from "react";
 import {db} from '../firebaseConfig';
 import { roomGen } from "../utility/roomGen";
 import React, {useContext, useEffect, useState} from "react";
 
-import { Text } from 'react-native';
 import firebase from 'firebase';
 import {Alert, Button, Modal, Text, View} from 'react-native';
 

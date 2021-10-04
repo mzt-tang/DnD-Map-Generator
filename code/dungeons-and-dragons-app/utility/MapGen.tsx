@@ -335,7 +335,7 @@ export default async function map(props: mapGenProps): Promise<MapData> {
         let madeExit = false
         for (let i = 0; i < allRooms[entranceIndex].length; i++) {
             for (let j = 0; j < allRooms[entranceIndex][i].length; j++) {
-                if (allRooms[entranceIndex][i][j] == 1 && madeEntrance == false) {
+                if (allRooms[entranceIndex][i][j] == 1 && !madeEntrance) {
                     allRooms[entranceIndex][i][j] = 3
                     madeEntrance = true
                 }
@@ -344,7 +344,7 @@ export default async function map(props: mapGenProps): Promise<MapData> {
 
         for (let i = 0; i < allRooms[exitIndx].length; i++) {
             for (let j = 0; j < allRooms[exitIndx][i].length; j++) {
-                if (allRooms[exitIndx][i][j] == 1 && madeExit == false) {
+                if (allRooms[exitIndx][i][j] == 1 && !madeExit) {
                     allRooms[exitIndx][i][j] = 4
                     madeExit = true
                 }
