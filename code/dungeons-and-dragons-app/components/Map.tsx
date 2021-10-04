@@ -4,8 +4,6 @@ import {Alert, Button, Modal, Text, View} from 'react-native';
 
 import PrismaZoom from 'react-prismazoom'
 
-import monsterGeneration from "../utility/MonsterGen";
-
 import {makeStyles} from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Collapse from '@material-ui/core/Collapse';
@@ -85,7 +83,12 @@ function Row(props: { row: ReturnType<typeof createData> }) { // Will need to be
         fetch(url).then(result => {
             return result.json();
             // @ts-ignore todo I'm not entirely sure how to remove this error.
-        }).then(data => setMonsterData(data.results[0] ? {monster: data.results[0]} : null))
+        }).then((data) => {
+            const value = data.results[0] ? {monster: data.results[0]} : null
+            console.log("HERE")
+            console.log(value)
+            return setMonsterData(value as MonsterInfo);
+        })
         setModalVisible(true)
     }
 
@@ -196,9 +199,7 @@ interface mapProps {
     mapData: MapData,
     imagePressFunction: React.MouseEventHandler<HTMLImageElement>,
     showFog: boolean,
-    mapTheme: string,
-    maxWidth: number,
-    maxHeight: number,
+    mapTheme: string
 }
 
 export interface roomRows {
@@ -225,23 +226,20 @@ export default function map(props: mapProps) {
     }
 
 
-    const widthNum = 40;
-    const heightNum = 30;
-
     const data = props.mapData;
-
-    const images = makeImageArray(data.map, data.visibility,props.imagePressFunction,props.showFog,data.theme, props.maxWidth/widthNum, props.maxHeight/heightNum);
 
     const parseMonsterData = (monsterData: [number, [number, string][]][]) => {
         console.log("MONSTER DATA");
         console.log(monsterData);
         const rooms: roomRows[] = []
-        for (let i = 0; i < monsterData.length; i++) {
-            const monstersInRoom: string[] = []
-            for (let j = 0; j < monsterData[i][1].length; j++) {
-                monstersInRoom.push("[" + monsterData[i][1][j][0] + "] " + monsterData[i][1][j][1]);
+        if (monsterData) {
+            for (let i = 0; i < monsterData.length; i++) {
+                const monstersInRoom: string[] = []
+                for (let j = 0; j < monsterData[i][1].length; j++) {
+                    monstersInRoom.push("[" + monsterData[i][1][j][0] + "] " + monsterData[i][1][j][1]);
+                }
+                rooms.push(createData("Room " + monsterData[i][0], monstersInRoom));
             }
-            rooms.push(createData("Room " + monsterData[i][0], monstersInRoom));
         }
         return rooms;
     }
@@ -256,16 +254,6 @@ export default function map(props: mapProps) {
     // }, [props.mapData.monsters]);
 
     const images = makeImageArray(data.map, data.visibility, props.imagePressFunction, props.showFog, data.theme);
-
-    // let rowr: roomRows[] = []
-    // for (let i: number = 0; i < data.roomNum; i++) {
-    //     rowr[i] = createData("Room" + (i + 1), ["OOOOOOOHHH", "AHHHHHHH", "filler data"]);
-    // }
-    // console.log("MAP ARRAY: ", data.map);
-
-    useEffect(() => {
-        monsterGeneration("level1", rowr, setRowr);
-    }, []);
 
     return (
         <div id="page">

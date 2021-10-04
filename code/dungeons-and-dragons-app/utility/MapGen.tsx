@@ -38,7 +38,7 @@ export default async function map(props: mapGenProps): Promise<MapData> {
 
     //======================INITIAL MAP FOG SETTING======================//
     //vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv//
-    // create a 2D array of rows * cols, filled with the value startingFog for visiblity.    
+    // create a 2D array of rows * cols, filled with the value startingFog for visiblity.
     // 0:visible;   1:fog of war;
     let mapVisibility: number[][] = Array.from(
         Array(mapRoomRows * roomSize), _ => Array(mapRoomCols * roomSize).fill(1)
