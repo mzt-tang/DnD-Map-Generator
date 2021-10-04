@@ -62,7 +62,6 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
     }
 
     spreadRoomTiles();
-
     return room;
 
     /**
@@ -354,7 +353,7 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
                 let down = room[row + 1][col] == ROOM_TILE;
 
                 // change to a room tile if all surrounding tiles are room tiles.
-                if (left && right && up && down) room[row][col] = ROOM_TILE;
+                if (left && right && up && down) room[row][col] = ROOM_TILE;  
             }
         }
     }

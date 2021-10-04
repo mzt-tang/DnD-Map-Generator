@@ -116,6 +116,10 @@ export const assignImageNumbers = (map: number[][]): number[][] => {
                 finalMap[i][j] = 22
             } else if (map[i][j] == 4) {
                 finalMap[i][j] = 23
+            }else if (map[i][j] == 5) {
+                finalMap[i][j] = 24;
+            } else if (map[i][j] == 6) {
+                finalMap[i][j] = 25;
             } else {
                 finalMap[i][j] = 21;
             }
