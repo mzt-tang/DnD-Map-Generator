@@ -136,8 +136,25 @@
     width: 100%;
     position: fixed;
     background-image: url("../assets/Menu Images/Underdark.jpg");
-    background-repeat: no-repeat;
-    background-size: auto; 
+    background-repeat: repeat;
+    background-size: cover; 
+    background-color: #C21F39;
+    @font-face {
+        font-family: TitleFont;
+        src: local(TitleFont), url("../assets/Fonts/DraconisBold-qZxd6.ttf"), format('truetype')
+    }
+}
+
+.backgroundImage_with_message {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../assets/Menu Images/Underdark.jpg");
+    background-repeat: repeat;
+    background-size: cover; 
     background-color: #C21F39;
     @font-face {
         font-family: TitleFont;

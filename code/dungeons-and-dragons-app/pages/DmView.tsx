@@ -47,6 +47,7 @@ const DmView = () => {
     const [adjustingFog, setAdjustingFog] = React.useState(true);
     const [addingFog, setAddingFog] = React.useState(true);
     const [fogAdjustSize, setFogAdjustSize] = React.useState(1);
+    const [mapIsHidden, setMapIsHidden] = React.useState(true);
 
     const [mapData, setMapData] = useState(mapDataInitial);
     const [level, setLevel] = useState(0);
@@ -68,6 +69,12 @@ const DmView = () => {
                 generateMap();
             }
         });
+
+        readFromFirebase( gamecode + '/isHidden').then(value => {
+            if (value.exists()){
+                setMapIsHidden(value.val());
+        }});
+
     }, []);
 
     const isObjectEmpty = (obj : Object) : boolean => {
@@ -92,7 +99,7 @@ const DmView = () => {
 
     const nextMap = () => {
         if (level === totalLevels){
-            alert('final level, generate more levels');
+            alert('Final floor, generate more floors');
         } else {
             const path = '/' + gamecode + '/levels/' + (level+1);
             readFromFirebase(path).then(value => setMapData(value.val() as MapData));
@@ -106,7 +113,7 @@ const DmView = () => {
 
     const previousMap = () => {
         if (level <= 1){
-            alert('first level');
+            alert('First floor');
         } else {
             const path = '/' + gamecode + '/levels/' + (level-1);
             readFromFirebase(path).then(value => setMapData(value.val() as MapData));
@@ -176,6 +183,11 @@ const DmView = () => {
         return `${fogAdjustSize} x ${fogAdjustSize}`
     }
 
+    const handleHideOrShowMap = (event: React.ChangeEvent<HTMLInputElement>) => {
+        writeToFirebase('/' + gamecode + '/isHidden',event.target.checked);
+        setMapIsHidden(event.target.checked);
+    }
+
     return (
         <div id='dmView' className="backgroundImage">
             <div id="topBar">
@@ -184,16 +196,16 @@ const DmView = () => {
                 }}>X</Button>
 
                 <div style={{flexDirection:"column", backgroundColor: 'white', borderRadius: 10, position:'relative', left:'-1%', top:'25%'}}>
-                    <Text style={{ width: '200px', top: 10, fontSize:16,textAlign:"center",textAlignVertical:"center", padding:'5px'}}>{'Current Level: '  + level}</Text>
-                    <Text style={{ width: '200px', top: 10, fontSize:16,textAlign:"center",textAlignVertical:"center", padding:'5px'}}>{'Total Levels: '  + totalLevels}</Text>
+                    <Text style={{ width: '200px', top: 10, fontSize:16,textAlign:"center",textAlignVertical:"center", padding:'5px'}}>{'Current Floor: '  + level}</Text>
+                    <Text style={{ width: '200px', top: 10, fontSize:16,textAlign:"center",textAlignVertical:"center", padding:'5px'}}>{'Total Floors: '  + totalLevels}</Text>
                 </div>
-                <Button id="topButton" style={{backgroundColor:'white', width: '200px', top: 10 , borderRadius:10}} onClick={generateMap}>New Level</Button>
+                <Button id="topButton" style={{backgroundColor:'white', width: '200px', top: 10 , borderRadius:10}} onClick={generateMap}>New Floor</Button>
 
-                <Button id="topButton" style={{backgroundColor:'white', width: '100px', top: '10px', borderRadius:10 }} onClick={previousMap}>Previous Level</Button>
-                <Button id="topButton" style={{backgroundColor:'white', width: '100px', top: '10px', borderRadius:10 }} onClick={nextMap}>Next Level</Button>
+                <Button id="topButton" style={{backgroundColor:'white', width: '100px', top: '10px', borderRadius:10 }} onClick={previousMap}>Previous Floor</Button>
+                <Button id="topButton" style={{backgroundColor:'white', width: '100px', top: '10px', borderRadius:10 }} onClick={nextMap}>Next Floor</Button>
 
 
-                <div id="topButton" style={{backgroundColor:'white', position: "absolute", left: "900px", top: 10, borderRadius:10, width:'30%', height:'10%' }}>
+                <div id="topButton" style={{backgroundColor:'white', position: "absolute", left: "900px", top: 10, borderRadius:10, width:'23.5%', height:'10%' }}>
                     <p style={{position:'relative', backgroundColor:'white', fontFamily: 'Arial', left:'2%', width:'20%'}}>FOG Controls</p>
                     <FormControlLabel
                         style={{position:'relative',backgroundColor:'white', left:'2%'}}
@@ -226,6 +238,12 @@ const DmView = () => {
                         max={10}
                         onChange={(event: any, newValue: number | number[]) => setFogAdjustSize(newValue as number)}
                     />
+                </div>
+                <div id="topButton" style={{ backgroundColor:'white', position: "absolute", left: "1425px", top: '15px', borderRadius:10 }}>
+                    <FormControlLabel
+                            style={{position:'relative', left:'2%'}}
+                            control={<Switch checked={mapIsHidden} onChange={handleHideOrShowMap} name={'hideMap'} />}
+                            label={'Hide Player\'s Map'} />
                 </div>
                 <div id='route' style={{
                     backgroundColor: hexToRgb("#AAAABB"),
