@@ -47,6 +47,7 @@ const DmView = () => {
     const [adjustingFog, setAdjustingFog] = React.useState(true);
     const [addingFog, setAddingFog] = React.useState(true);
     const [fogAdjustSize, setFogAdjustSize] = React.useState(1);
+    const [mapIsHidden, setMapIsHidden] = React.useState(true);
 
     const [mapData, setMapData] = useState(mapDataInitial);
     const [level, setLevel] = useState(0);
@@ -68,6 +69,12 @@ const DmView = () => {
                 generateMap();
             }
         });
+
+        readFromFirebase( gamecode + '/isHidden').then(value => {
+            if (value.exists()){
+                setMapIsHidden(value.val());
+        }});
+
     }, []);
 
     const isObjectEmpty = (obj : Object) : boolean => {
@@ -176,6 +183,11 @@ const DmView = () => {
         return `${fogAdjustSize} x ${fogAdjustSize}`
     }
 
+    const handleHideOrShowMap = (event: React.ChangeEvent<HTMLInputElement>) => {
+        writeToFirebase('/' + gamecode + '/isHidden',event.target.checked);
+        setMapIsHidden(event.target.checked);
+    }
+
     return (
         <div id='dmView' className="backgroundImage">
             <div id="topBar">
@@ -193,7 +205,7 @@ const DmView = () => {
                 <Button id="topButton" style={{backgroundColor:'white', width: '100px', top: '10px', borderRadius:10 }} onClick={nextMap}>Next Level</Button>
 
 
-                <div id="topButton" style={{backgroundColor:'white', position: "absolute", left: "900px", top: 10, borderRadius:10, width:'30%', height:'10%' }}>
+                <div id="topButton" style={{backgroundColor:'white', position: "absolute", left: "900px", top: 10, borderRadius:10, width:'23.5%', height:'10%' }}>
                     <p style={{position:'relative', backgroundColor:'white', fontFamily: 'Arial', left:'2%', width:'20%'}}>FOG Controls</p>
                     <FormControlLabel
                         style={{position:'relative',backgroundColor:'white', left:'2%'}}
@@ -226,6 +238,12 @@ const DmView = () => {
                         max={10}
                         onChange={(event: any, newValue: number | number[]) => setFogAdjustSize(newValue as number)}
                     />
+                </div>
+                <div id="topButton" style={{ backgroundColor:'white', position: "absolute", left: "1425px", top: '15px', borderRadius:10 }}>
+                    <FormControlLabel
+                            style={{position:'relative', left:'2%'}}
+                            control={<Switch checked={mapIsHidden} onChange={handleHideOrShowMap} name={'hideMap'} />}
+                            label={'Hide Player\'s Map'} />
                 </div>
                 <div id='route' style={{
                     backgroundColor: hexToRgb("#AAAABB"),
