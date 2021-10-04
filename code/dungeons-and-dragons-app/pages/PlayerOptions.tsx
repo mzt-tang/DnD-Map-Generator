@@ -1,5 +1,5 @@
 import {View} from "react-native";
-import React from "react";
+import React, {useState} from "react";
 import SmallMenuButton from "../components/SmallMenuButton";
 import SmallBackButton from "../components/SmallBackButton"
 import CodeInput from "../components/CodeInput";
@@ -15,17 +15,8 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const PlayerOptions = () => {
+    const [code, setCode] = useState('');
     const classes = useStyles();
-
-    let code : string = "";
-
-    function handleCodeChange(newcode : string){
-        code = newcode;
-    }
-
-    function fetchCode() : string {
-        return code;
-    }
 
     return (
         <View>
@@ -34,10 +25,10 @@ const PlayerOptions = () => {
                     <Typography className={classes.headerTextStyle} variant={"h2"}>
                         Player Options
                     </Typography>
-                    <CodeInput defaultText={""} labelText={"Enter a Game Code Here"} onCodeChange={handleCodeChange}/>
+                    <CodeInput defaultText={""} labelText={"Enter a Game Code Here"} onCodeChange={setCode}/>
                     <div className={"playerOptionButtonDiv"}>
                         <SmallBackButton buttonString={"Back"} buttonRoute={"/home"} />
-                        <SmallMenuButton buttonString={"Join game"} buttonRoute={"/player"} code={fetchCode} creatingNewGame={false}/>
+                        <SmallMenuButton buttonString={"Join game"} buttonRoute={"/player"} code={() => code} creatingNewGame={false}/>
                     </div>
                 </div>
             </div>
