@@ -244,10 +244,14 @@ export default function map(props: mapProps) {
         return rooms;
     }
 
-    useEffect(() => {
-        setRowr(parseMonsterData(props.mapData.monsters));
-        console.log("")
-    }, [props.mapData.monsters]);
+    // useEffect(() => {
+    //     if (props.mapData.monsters == undefined) {
+    //         console.log("IGNORE TEST");
+    //     } else {
+    //         setRowr(parseMonsterData(props.mapData.monsters));
+    //         console.log('work please');
+    //     }
+    // }, [props.mapData.monsters]);
 
     const images = makeImageArray(data.map, data.visibility, props.imagePressFunction, props.showFog, data.theme);
 
