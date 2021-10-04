@@ -10,7 +10,7 @@ import ValidateGameCode from "../utility/ValidateGameCode";
 interface Props {
     buttonString : string
     buttonRoute : string
-    buttonProp : string
+    buttonProp? : string
     code(): string;
     creatingNewGame : boolean
 }
@@ -45,7 +45,7 @@ const SmallMenuButton = (props : Props) => {
     // Props Initialisations
     const buttonString : string = props.buttonString;
     const buttonRoute : string = props.buttonRoute;
-    const buttonProp : string = props.buttonProp;
+    const buttonProp : string | undefined = props.buttonProp;
 
     //Other Variable Initialisations
     let history = useHistory();
