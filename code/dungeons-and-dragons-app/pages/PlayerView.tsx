@@ -19,9 +19,6 @@ let mapDataInitial: MapData = {
     map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: [], roomNum: 1, theme: "Caves"
 };
 
-function update(map: MapData){
-    mapDataInitial = map
-}
 //style={{ width: '200px', top: 10, fontSize:16,textAlign:"center",textAlignVertical:"center", padding:'5px'}
 const Hidden = () => {
     return (
@@ -59,8 +56,6 @@ const PlayerView = () => {
         db.database().ref( gamecode + '/isHidden').on('value',isHidden => {
             setMapIsHidden(isHidden.val());
         });
-
-        console.log("isHidden", mapIsHidden);
     },[]);
 
 
@@ -97,6 +92,3 @@ const PlayerView = () => {
 }
 
 export default PlayerView
-
-
-//<p style={{color:'white', position:'relative', left:'40%', fontSize:50, fontFamily:TitleFont}}>HELLO PLAYER</p>
