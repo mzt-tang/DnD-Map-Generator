@@ -56,33 +56,6 @@ import Image54 from"../assets/New Tile Assets/dungeon_wall_cracked.png"
 
 import {Text} from "react-native";
 
-const getImages = () => {
-    return [
-        <img className="grid_img" src={Image1} style={{width:100, height:100}}/>,
-        <img className="grid_img" src={Image2} style={{width:100, height:100}}/>,
-        <img className="grid_img" src={Image3} style={{width:100, height:100}}/>,
-        <img className="grid_img" src={Image4} style={{width:100, height:100}}/>,
-        <img className="grid_img" src={Image5} style={{width:100, height:100}}/>,
-        <img className="grid_img" src={Image6} style={{width:100, height:100}}/>,
-        <img className="grid_img" src={Image7} style={{width:100, height:100}}/>,
-        <img className="grid_img" src={Image8} style={{width:100, height:100}}/>,
-        <img className="grid_img" src={Image9} style={{width:100, height:100}}/>,
-        <img className="grid_img" src={Image10} style={{width:100, height:100}}/>,
-        <img className="grid_img" src={Image11} style={{width:100, height:100}}/>,
-        <img className="grid_img" src={Image12} style={{width:100, height:100}}/>,
-        <img className="grid_img" src={Image13} style={{width:100, height:100}}/>,
-        <img className="grid_img" src={Image14} style={{width:100, height:100}}/>,
-        <img className="grid_img" src={Image15} style={{width:100, height:100}}/>,
-        <img className="grid_img" src={Image16} style={{width:100, height:100}}/>,
-        <img className="grid_img" src={Image17} style={{width:100, height:100}}/>,
-        <img className="grid_img" src={Image18} style={{width:100, height:100}}/>,
-        <img className="grid_img" src={Image19} style={{width:100, height:100}}/>,
-        <img className="grid_img" src={Image20} style={{width:100, height:100}}/>,
-        <img className="grid_img" src={Image21} style={{width:100, height:100}}/>,
-        <img className="grid_img" src={Image22} style={{width:100, height:100}}/>,
-    ]
-}
-
 export const getImageWithId = (id : string, index : number, userClicked: MouseEventHandler<HTMLImageElement>,theme:string, width:number, height:number) : JSX.Element  => {
     switch (index){
         case 0:  return <img className="grid_img" src={Image1} id={id} onClick={userClicked} style={{width:width, height:width}}/>
@@ -117,4 +90,4 @@ export const getImageWithId = (id : string, index : number, userClicked: MouseEv
         default: return <Text>Error</Text>
     }
 }
-export default getImages();
+
