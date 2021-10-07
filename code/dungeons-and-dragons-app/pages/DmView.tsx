@@ -190,7 +190,7 @@ const DmView = () => {
     return (
         <ScrollView>
             <div id='dmView' className="backgroundImage">
-            <div id="topBar">
+            <div id="topBar" style={{width:window.innerWidth}}>
                 <Button id="topButton" style={{ backgroundColor: 'white', width: '40px', height:'20%',top: '10%', borderRadius: 10 }} onClick={() => {
                     history.push('/home')
                 }}>X</Button>

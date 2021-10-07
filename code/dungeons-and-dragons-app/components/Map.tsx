@@ -265,7 +265,7 @@ export default function map(props: mapProps) {
                 display: "flex",
                 flexDirection: "row"
             }}>
-                <TableContainer component={Paper}>
+                <TableContainer component={Paper} style={{width: window.innerWidth/5,height:window.innerHeight/1.325}}>
                     <Table aria-label="collapsible table">
                         <TableHead>
                             <TableRow>

@@ -110,7 +110,7 @@
 }
 
 .map {
-    display: flex;
+    justify-content: left;
 }
 
 .LargeButton {
@@ -164,9 +164,9 @@ h2 {
 }
 
 #page {
+    justify-content: left;
     display: flex;
     flex-direction: row;
-    position: relative;
     top: 0;
     width: 1400;
 }
