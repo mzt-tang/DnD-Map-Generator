@@ -58,7 +58,9 @@ export default async function monsterGeneration(level: number, map: number[][]):
                 parsedMonsters.push([generatedMonsters[i][0], parsedMonsStrings]);
             }
 
-            parsedMonsters.sort()
+            parsedMonsters.sort((r1,r2) => {
+                return r1[0] - r2[0];
+            })
 
             return parsedMonsters;
 
