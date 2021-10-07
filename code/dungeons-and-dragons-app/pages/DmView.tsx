@@ -76,8 +76,11 @@ const DmView = () => {
         readFromFirebase(gamecode + '/isHidden').then(value => {
             if (value.exists()) {
                 setMapIsHidden(value.val());
+            } else {
+                writeToFirebase('/' + gamecode + '/isHidden', true);
             }
         });
+
 
     }, []);
 
