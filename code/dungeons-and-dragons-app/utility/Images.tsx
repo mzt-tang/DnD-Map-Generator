@@ -40,13 +40,7 @@ import Image40 from "../assets/New Tile Assets/dungeon_floor_ne2.png";
 import Image41 from "../assets/New Tile Assets/dungeon_floor_nw2.png";
 import Image42 from "../assets/New Tile Assets/dungeon_floor_ns.png";
 import Image43 from "../assets/New Tile Assets/dungeon_floor_ew.png";
-import Image44 from "../assets/New Tile Assets/wood_floor_entrance.png";
-import Image45 from "../assets/New Tile Assets/wood_floor_exit.png";
-import Image46 from "../assets/New Tile Assets/wall_entrance.png";
-import Image47 from "../assets/New Tile Assets/wall_exit.png";
-import Image48 from "../assets/New Tile Assets/dungeon_entrance.png";
-import Image49 from "../assets/New Tile Assets/dungeon_exit.png";
- import React, {MouseEventHandler} from "react";
+import React, {MouseEventHandler} from "react";
 
 import {Text} from "react-native";
 

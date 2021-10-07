@@ -1,4 +1,4 @@
-import images, { getImageWithId } from '../utility/Images'
+import images, {getImageWithId} from '../utility/Images'
 
 /**
  * Takes in the basic generated map and generates the final map tiles to use as image indexes
@@ -112,10 +112,6 @@ export const assignImageNumbers = (map: number[][]): number[][] => {
                 }
 
                 // Tile is a floor, grab floor image
-            } else if (map[i][j] == 3) {
-                finalMap[i][j] = 22
-            } else if (map[i][j] == 4) {
-                finalMap[i][j] = 23
             } else {
                 finalMap[i][j] = 21;
             }
@@ -137,7 +133,7 @@ export const makeImageArray = (map: number[][], visibility: number[][], userClic
     for (let row = 0; row < map.length; row++) {
         let imageRow: JSX.Element[] = [];
         for (let col = 0; col < map[row].length; col++) {
-            const id: string = `${row},${col}`;
+            const id : string = `${row},${col}`;
             if (visibility[row][col] == 0 || !showFog) {
                 const image: JSX.Element = getImageWithId(id, map[row][col], userClick,mapTheme, width, height)
                 imageRow.push(image)

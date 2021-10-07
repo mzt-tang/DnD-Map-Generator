@@ -1,9 +1,7 @@
-import React, {useEffect, useState} from "react";
 import { roomGen } from "./roomGen";
 import { assignImageNumbers } from './MapTilerHelper';
 import MapData from "../interfaces/MapData";
 import monsterGeneration from "./MonsterGen";
-
 
 const roomSize = 10;
 const mapRoomRows = 3;
@@ -31,7 +29,6 @@ export default async function map(props: mapGenProps): Promise<MapData> {
             allRooms.push([]);
         }
     }
-
 
     // create a 2D array rows * cols filled with the value 10.
     let mapGrid: number[][] = Array.from(Array(mapRoomRows * roomSize), _ => Array(mapRoomCols * roomSize).fill(10));
@@ -265,7 +262,6 @@ export default async function map(props: mapGenProps): Promise<MapData> {
         }
         allRooms[i] = roomGen(roomSize, roomSize, roomEntrances, roomGrowProbability, true);
     }
-
     // checks if the generated exit room isn't too close to the entrance
     function checkIfRoomIsForbidden(index: number, forbiddenExitRooms: number[]) {
         for (let i = 0; i < forbiddenExitRooms.length; i++) {
@@ -281,7 +277,6 @@ export default async function map(props: mapGenProps): Promise<MapData> {
     let forbiddenExitRooms: number[] = []
     let entranceIndex = 0;
     let exitIndex = 0;
-
     function findEntranceRoom() {
         let foundRoom: boolean = false
         while (foundRoom == false) {
@@ -340,7 +335,7 @@ export default async function map(props: mapGenProps): Promise<MapData> {
         let madeExit = false
         for (let i = 0; i < allRooms[entranceIndex].length; i++) {
             for (let j = 0; j < allRooms[entranceIndex][i].length; j++) {
-                if (allRooms[entranceIndex][i][j] == 1 && madeEntrance == false) {
+                if (allRooms[entranceIndex][i][j] == 1 && !madeEntrance) {
                     allRooms[entranceIndex][i][j] = 3
                     madeEntrance = true
                 }
@@ -349,7 +344,7 @@ export default async function map(props: mapGenProps): Promise<MapData> {
 
         for (let i = 0; i < allRooms[exitIndx].length; i++) {
             for (let j = 0; j < allRooms[exitIndx][i].length; j++) {
-                if (allRooms[exitIndx][i][j] == 1 && madeExit == false) {
+                if (allRooms[exitIndx][i][j] == 1 && !madeExit) {
                     allRooms[exitIndx][i][j] = 4
                     madeExit = true
                 }
@@ -360,17 +355,35 @@ export default async function map(props: mapGenProps): Promise<MapData> {
 
     findEntranceRoom();
     findExitRoom(forbiddenExitRooms);
-    addRooms();
 
-    let entranceRoomY: number = Math.floor(entranceIndex / mapRoomCols) * 10;
-    let entranceRoomX = ((entranceIndex) % mapRoomCols) * 10;
-    console.log(entranceIndex + "    " + entranceRoomX + "   " + entranceRoomY)
+
+    let entranceRoomY:number = Math.floor(entranceIndex/mapRoomCols) * 10;
+    let entranceRoomX = ((entranceIndex)%mapRoomCols)*10;
+    console.log(entranceIndex+ "    " + entranceRoomX + "   " +entranceRoomY)
     // Write over the tiles of the first room, hard coded to set them all to 0.
-    for (let row = entranceRoomX; row < roomSize + entranceRoomX; row++) {
-        for (let col = entranceRoomY; col < roomSize + entranceRoomY; col++) {
+    for (let row = entranceRoomX; row < roomSize+entranceRoomX; row++) {
+        for (let col = entranceRoomY; col < roomSize+entranceRoomY; col++) {
             mapVisibility[col][row] = 0;
         }
     }
+
+    /**
+     * Randomly changes floor tile to a decorative tile
+     */
+    for(let i = 0; i < allRooms.length; i++) {
+        for(let row = 0; row < allRooms[i].length; row++) {
+            for(let col = 0; col < allRooms[i][row].length; col++) {
+                if(allRooms[i][row][col] == 1) {
+                    if(Math.random() < 0.05) {
+                        allRooms[i][row][col] = Math.random() < 0.5 ? 5 : 6;
+
+                    }
+                }
+            }
+        }
+    }
+
+    addRooms();
 
     /**
      * Iterates through all the rooms, finds their coordinates on the main map, and calls addRoom

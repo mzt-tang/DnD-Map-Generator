@@ -1,5 +1,8 @@
+import {db} from '../firebaseConfig';
+import { roomGen } from "../utility/roomGen";
 import React, {useContext, useEffect, useState} from "react";
 
+import firebase from 'firebase';
 import {Alert, Button, Modal, Text, View} from 'react-native';
 
 import PrismaZoom from 'react-prismazoom'
@@ -22,8 +25,9 @@ import {makeImageArray} from '../utility/MapTilerHelper'
 
 import Image4 from '../assets/New Tile Assets/floor_w.png';
 
-import {useHistory} from "react-router-dom";
 import MonsterData from "./MonsterData";
+import ParseURLData from "../utility/ParseURLData";
+import { useHistory } from "react-router-dom";
 
 const useRowStyles = makeStyles({
     root: {
@@ -71,7 +75,7 @@ export interface MonsterInfo {
 
 
 function Row(props: { row: ReturnType<typeof createData> }) { // Will need to be called by map, passing in number of rooms
-    const {row} = props;
+    const { row } = props;
     const [open, setOpen] = React.useState(false);
     const [modalVisible, setModalVisible] = React.useState(false);
     const [monsterData, setMonsterData] = React.useState<MonsterInfo>();
@@ -83,12 +87,7 @@ function Row(props: { row: ReturnType<typeof createData> }) { // Will need to be
         fetch(url).then(result => {
             return result.json();
             // @ts-ignore todo I'm not entirely sure how to remove this error.
-        }).then((data) => {
-            const value = data.results[0] ? {monster: data.results[0]} : null
-            console.log("HERE")
-            console.log(value)
-            return setMonsterData(value as MonsterInfo);
-        })
+        }).then(data => setMonsterData(data.results[0] ? {monster: data.results[0]} : null))
         setModalVisible(true)
     }
 
@@ -128,18 +127,12 @@ function Row(props: { row: ReturnType<typeof createData> }) { // Will need to be
                 </TableCell>
             </TableRow>
             <TableRow>
-                <TableCell style={{paddingBottom: 0, paddingTop: 0}} colSpan={6}>
+                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <Box margin={1}>
                             <Table size="small" aria-label="purchases">
                                 <TableHead>
-                                    <TableRow style={{
-                                        position: "relative",
-                                        top: 0,
-                                        width: '100%',
-                                        display: "flex",
-                                        flexDirection: "column"
-                                    }}>
+                                    <TableRow style={{ position: "relative", top: 0, width: '100%', display: "flex", flexDirection: "column" }}>
                                         {row.monsters.map((m => (
                                             <TableCell>{<TableCell>{<Button onPress={() => onClickMonster(m.split(' ')[1])}
                                                                             title={m}/>}</TableCell>}</TableCell>
@@ -187,7 +180,9 @@ interface mapProps {
     mapData: MapData,
     imagePressFunction: React.MouseEventHandler<HTMLImageElement>,
     showFog: boolean,
-    mapTheme: string
+    mapTheme: string,
+    maxWidth: number,
+    maxHeight: number,
 }
 
 export interface roomRows {
@@ -214,11 +209,13 @@ export default function map(props: mapProps) {
     }
 
 
+    const widthNum = 40;
+    const heightNum = 30;
+
     const data = props.mapData;
 
     const parseMonsterData = (monsterData: [number, [number, string][]][]) => {
-        console.log("MONSTER DATA");
-        console.log(monsterData);
+        monsterData.sort();
         const rooms: roomRows[] = []
         if (monsterData) {
             for (let i = 0; i < monsterData.length; i++) {
@@ -241,7 +238,7 @@ export default function map(props: mapProps) {
     return (
         <div id="page">
             <div id="left" style={mapStyle(MAP_ROOM_COLS * ROOM_SIZE, MAP_ROOM_ROWS * ROOM_SIZE)}>
-                <section style={{overflow: 'hidden', borderStyle: 'solid', borderColor: 'gray'}}>
+                <section style={{ overflow: 'hidden', borderStyle: 'solid', borderColor: 'gray' }}>
                     <PrismaZoom
                         minZoom={1}
                         maxZoom={3}
@@ -266,7 +263,7 @@ export default function map(props: mapProps) {
                     <Table aria-label="collapsible table">
                         <TableHead>
                             <TableRow>
-                                <TableCell style={{textAlign: 'center'}}>Room</TableCell>
+                                <TableCell style={{textAlign:'center'}}>Room</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>

@@ -8,7 +8,7 @@ import '../styles/style.css'
 
 import Map from "../components/Map";
 import MapData from "../interfaces/MapData";
-import { hexToRgb } from '@material-ui/core';
+import {Button, hexToRgb} from '@material-ui/core';
 import {readFromFirebase} from "../utility/FirebaseRW";
 import ParseURLData from "../utility/ParseURLData";
 
@@ -84,7 +84,12 @@ const PlayerView = () => {
 
     return (
         <div className="backgroundImage">
-            <View style={{position:'relative',justifyContent:"center"}}>
+            <Button id="topButton"
+                    style={{backgroundColor:'white', width: '40px', top: 10, borderRadius:10, position: "absolute" }}
+                    onClick={() => {
+                history.push('/home')
+            }}>X</Button>
+            <View style={{position:'relative',justifyContent:"center", top:'10%'}}>
                 <Map mapData={map} imagePressFunction={click} showFog={true} mapTheme={''} maxWidth={window.innerWidth/2 + window.innerWidth/8} maxHeight={window.innerHeight/2 + window.innerHeight/8}/>
             </View>
         </div>
