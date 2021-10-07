@@ -245,7 +245,7 @@ export default function map(props: mapProps) {
         console.log(props.mapData)
     }, [props.mapData.monsters]);
 
-    const images = makeImageArray(data.map, data.visibility, props.imagePressFunction, props.showFog, data.theme);
+    const images = makeImageArray(data.map, data.visibility, props.imagePressFunction, props.showFog, data.theme, (window.innerWidth/2+window.innerWidth/16)/widthNum, heightNum);
 
     return (
         <div id="page">
