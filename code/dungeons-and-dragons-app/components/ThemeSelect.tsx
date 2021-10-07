@@ -33,12 +33,12 @@ const ThemeSelect = (props: Props) => {
     return (
         <div className={"themeSelect"}>
             <Paper>
-                <MenuList style={{ left: '10%' }}>
+                <MenuList style={{ left: '10%', width:'100px' }}>
                     <MuiThemeProvider theme={colorTheme}>
                         <RadioGroup value={theme} onChange={e => changeTheme(e)}>
                             <FormControlLabel value={themeList[0]} control={<Radio color={'primary'}/>} label="Cave" />
                             <FormControlLabel value={themeList[1]} control={<Radio color={'primary'}/>} label="Dungeon" />
-                            <FormControlLabel value={themeList[2]} control={<Radio color={'primary'}/>} label="Basement" />
+                            <FormControlLabel value={themeList[2]} control={<Radio color={'primary'}/>} label="Underground Mansion " />
                         </RadioGroup>
                     </MuiThemeProvider>
 
