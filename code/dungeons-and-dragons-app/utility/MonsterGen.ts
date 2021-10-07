@@ -138,7 +138,6 @@ function assignMonstersToRooms(assignableMonsters: [string, number][], monsterPr
     }
 
     while (totalRoomCount(eligibleRooms) > 0 && totalMonsterAmount(allMonsters) > 0) {
-        debugger
         // Randomly select a monster from the map
         // Randomly select a room
         const initialMonsterInt = getRandomInt(0, allMonsters.length - 1);
