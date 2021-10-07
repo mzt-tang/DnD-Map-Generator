@@ -76,8 +76,11 @@ const DmView = () => {
         readFromFirebase(gamecode + '/isHidden').then(value => {
             if (value.exists()) {
                 setMapIsHidden(value.val());
+            } else {
+                writeToFirebase('/' + gamecode + '/isHidden', true);
             }
         });
+
 
     }, []);
 
@@ -138,10 +141,6 @@ const DmView = () => {
                 <Button onClick={generateMap}>Update Map</Button>
             </Grid>
         )
-    }
-
-    const clickVisibilityHandler: MouseEventHandler<HTMLImageElement> = (event: React.MouseEvent<HTMLImageElement>) => {
-        console.log(event.currentTarget.id);
     }
 
     const clickMapTileHandler: MouseEventHandler<HTMLImageElement> = (event: React.MouseEvent<HTMLImageElement>) => {
@@ -375,7 +374,7 @@ const DmView = () => {
                         <Text style={{fontSize: 20}}>Gamecode: {gamecode}, Theme: {history.location.state.theme}</Text>
                     </div>
                 </div>
-                
+
                 <div id='route' style={{
                     backgroundColor: hexToRgb("#AAAABB"),
                     position: "absolute",

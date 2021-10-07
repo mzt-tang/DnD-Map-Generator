@@ -19,9 +19,6 @@ let mapDataInitial: MapData = {
     map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: [], roomNum: 1, theme: "Caves"
 };
 
-function update(map: MapData){
-    mapDataInitial = map
-}
 //style={{ width: '200px', top: 10, fontSize:16,textAlign:"center",textAlignVertical:"center", padding:'5px'}
 const Hidden = () => {
     return (
@@ -59,8 +56,6 @@ const PlayerView = () => {
         db.database().ref( gamecode + '/isHidden').on('value',isHidden => {
             setMapIsHidden(isHidden.val());
         });
-
-        console.log("isHidden", mapIsHidden);
     },[]);
 
 
@@ -72,10 +67,6 @@ const PlayerView = () => {
                 </Text>
             </div>
         );
-    }
-
-    const click : MouseEventHandler<HTMLImageElement> = (event : React.MouseEvent<HTMLImageElement>) => {
-        console.log(event.currentTarget.id);
     }
 
     if (mapIsHidden) {
@@ -90,13 +81,10 @@ const PlayerView = () => {
                 history.push('/home')
             }}>X</Button>
             <View style={{position:'relative',justifyContent:"center", top:'10%'}}>
-                <Map mapData={map} imagePressFunction={click} showFog={true} mapTheme={''} maxWidth={window.innerWidth/2 + window.innerWidth/8} maxHeight={window.innerHeight/2 + window.innerHeight/8}/>
+                <Map mapData={map} showFog={true} mapTheme={''} maxWidth={window.innerWidth/2 + window.innerWidth/8} maxHeight={window.innerHeight/2 + window.innerHeight/8}/>
             </View>
         </div>
     );
 }
 
 export default PlayerView
-
-
-//<p style={{color:'white', position:'relative', left:'40%', fontSize:50, fontFamily:TitleFont}}>HELLO PLAYER</p>

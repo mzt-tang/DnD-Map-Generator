@@ -23,7 +23,7 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import MapData from "../interfaces/MapData";
 import {makeImageArray} from '../utility/MapTilerHelper'
 
-import Image4 from '../assets/New Tile Assets/floor_w.png';
+import Image4 from '../assets/Tile Images/floor_w.png';
 
 import MonsterData from "./MonsterData";
 import ParseURLData from "../utility/ParseURLData";
@@ -242,10 +242,9 @@ export default function map(props: mapProps) {
 
     useEffect(() => {
         setRowr(parseMonsterData(props.mapData.monsters))
-        console.log(props.mapData)
     }, [props.mapData.monsters]);
 
-    const images = makeImageArray(data.map, data.visibility, props.imagePressFunction, props.showFog, data.theme);
+    const images = makeImageArray(data.map, data.visibility, props.imagePressFunction, props.showFog, data.theme, (window.innerWidth/2+window.innerWidth/16)/widthNum, heightNum);
 
     return (
         <div id="page">

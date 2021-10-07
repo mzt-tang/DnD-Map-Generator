@@ -282,7 +282,6 @@ export default async function map(props: { level: number; theme: string }): Prom
         while (foundRoom == false) {
             let index = Math.floor(Math.random() * allRooms.length)
             for (let i = 0; i < allRooms[index].length; i++) {
-                console.log(allRooms[index])
                 for (let j = 0; j < allRooms[index][i].length; j++) {
                     if (allRooms[index][i][j] == 1) {
                         foundRoom = true;
@@ -316,7 +315,6 @@ export default async function map(props: { level: number; theme: string }): Prom
             let index = Math.floor(Math.random() * allRooms.length)
             if (checkIfRoomIsForbidden(index, forbiddenExitRooms)) {
                 for (let i = 0; i < allRooms[index].length; i++) {
-                    console.log(allRooms[index])
                     for (let j = 0; j < allRooms[index][i].length; j++) {
                         if (allRooms[index][i][j] == 1) {
                             foundRoom = true;
@@ -359,7 +357,6 @@ export default async function map(props: { level: number; theme: string }): Prom
 
     let entranceRoomY:number = Math.floor(entranceIndex/mapRoomCols) * 10;
     let entranceRoomX = ((entranceIndex)%mapRoomCols)*10;
-    console.log(entranceIndex+ "    " + entranceRoomX + "   " +entranceRoomY)
     // Write over the tiles of the first room, hard coded to set them all to 0.
     for (let row = entranceRoomX; row < roomSize+entranceRoomX; row++) {
         for (let col = entranceRoomY; col < roomSize+entranceRoomY; col++) {
