@@ -143,10 +143,6 @@ const DmView = () => {
         )
     }
 
-    const clickVisibilityHandler: MouseEventHandler<HTMLImageElement> = (event: React.MouseEvent<HTMLImageElement>) => {
-        console.log(event.currentTarget.id);
-    }
-
     const clickMapTileHandler: MouseEventHandler<HTMLImageElement> = (event: React.MouseEvent<HTMLImageElement>) => {
         if (!adjustingFog) return;
         const arr = event.currentTarget.id.split(",");
