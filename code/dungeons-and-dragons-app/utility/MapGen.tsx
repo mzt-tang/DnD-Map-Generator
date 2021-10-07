@@ -1,6 +1,7 @@
 import { roomGen } from "./roomGen";
 import { assignImageNumbers } from './MapTilerHelper';
 import MapData from "../interfaces/MapData";
+import monsterGeneration from "./MonsterGen";
 
 const roomSize = 10;
 const mapRoomRows = 3;
@@ -19,7 +20,7 @@ interface mapGenProps {
 /**
  * Returns a map data object containing all the information needed for a level.
  */
-export default function map(props: mapGenProps): MapData {
+export default async function map(props: mapGenProps): Promise<MapData> {
 
     let allRooms: number[][][] = []; // holds all the rooms making up the map in order.
 
@@ -34,7 +35,7 @@ export default function map(props: mapGenProps): MapData {
 
     //======================INITIAL MAP FOG SETTING======================//
     //vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv//
-    // create a 2D array of rows * cols, filled with the value startingFog for visiblity.    
+    // create a 2D array of rows * cols, filled with the value startingFog for visiblity.
     // 0:visible;   1:fog of war;
     let mapVisibility: number[][] = Array.from(
         Array(mapRoomRows * roomSize), _ => Array(mapRoomCols * roomSize).fill(1)
@@ -475,9 +476,11 @@ export default function map(props: mapGenProps): MapData {
 
     const finalMap = assignImageNumbers(mapGrid);
 
+    const monsters = await monsterGeneration(1, finalMap)
+
     const mapData: MapData = {
         map: finalMap,
-        monsters: [],
+        monsters: monsters,
         roomCols: mapRoomCols,
         roomRows: mapRoomRows,
         roomSize: roomSize,
