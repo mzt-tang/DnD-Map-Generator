@@ -23,7 +23,7 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import MapData from "../interfaces/MapData";
 import {makeImageArray} from '../utility/MapTilerHelper'
 
-import Image4 from '../assets/New Tile Assets/floor_w.png';
+import Image4 from '../assets/Tile Images/floor_w.png';
 
 import MonsterData from "./MonsterData";
 import ParseURLData from "../utility/ParseURLData";
