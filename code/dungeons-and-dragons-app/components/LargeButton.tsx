@@ -2,6 +2,7 @@ import {Button, Typography} from '@material-ui/core';
 import React from 'react';
 import { useHistory } from "react-router-dom";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { useFonts } from 'expo-font';
 
 // We establish Props as our "Parameters" for the Button
 interface Props {
@@ -41,6 +42,9 @@ const useStyles = makeStyles<Theme, Props>((theme: Theme) =>
 );
 
 const LargeButton = (props : Props) => {
+    let [fontsLoaded] = useFonts({
+        'Title': require('../assets/Fonts/DraconisBold-qZxd6.ttf'),
+      });
     const classes = useStyles(props);
     const {largeButton, buttonText} = useStyles(props);
 
@@ -53,14 +57,14 @@ const LargeButton = (props : Props) => {
     const history = useHistory();
 
     return (
-        <Button variant="outlined" size="large" className={classes.largeButton} color="primary"  onClick={() => {
+        <Button variant="outlined" size="large" className={classes.largeButton} color="primary" onClick={() => {
             history.push({
                 pathname: buttonRoute,
                 state: {theme: buttonProps},
             });
         }}>
 
-            <Typography variant={"h4"} className={buttonText}>
+            <Typography variant={"h4"} className={buttonText} style={{fontFamily:'Title'}}>
                 {buttonString}
             </Typography>
         </Button>

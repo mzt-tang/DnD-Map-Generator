@@ -375,7 +375,7 @@ const DmView = () => {
                         <Text style={{fontSize: 20}}>Gamecode: {gamecode}, Theme: {history.location.state.theme}</Text>
                     </div>
                 </div>
-                
+
                 <div id='route' style={{
                     backgroundColor: hexToRgb("#AAAABB"),
                     position: "absolute",
