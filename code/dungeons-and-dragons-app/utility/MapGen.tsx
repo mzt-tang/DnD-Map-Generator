@@ -20,7 +20,7 @@ interface mapGenProps {
 /**
  * Returns a map data object containing all the information needed for a level.
  */
-export default async function map(props: mapGenProps): Promise<MapData> {
+export default async function map(props: { level: number; theme: string }): Promise<MapData> {
 
     let allRooms: number[][][] = []; // holds all the rooms making up the map in order.
 
@@ -476,7 +476,7 @@ export default async function map(props: mapGenProps): Promise<MapData> {
 
     const finalMap = assignImageNumbers(mapGrid);
 
-    const monsters = await monsterGeneration(1, finalMap)
+    const monsters = await monsterGeneration(props.level, finalMap, mapRoomRows, mapRoomCols, roomSize);
 
     const mapData: MapData = {
         map: finalMap,
