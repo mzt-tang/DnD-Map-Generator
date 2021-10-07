@@ -86,18 +86,10 @@ function generateAllMonsters(monsterPreset: Monster[], eligibleRooms: number[]) 
         const lowerLimit: number = +monster.commonality - +Math.floor(+monster.commonality / +2);
         const upperLimit: number = +monster.commonality + +Math.floor(+monster.commonality / +2);
         const commonalityDeviation: number = getRandomInt(lowerLimit, upperLimit); //an operator to determine whether to add or minus from the commonality
-        console.log("monster: " + monster.name);
-        console.log("amount: " + commonalityDeviation);
-        if (monster.name === "Kobold") {
-            console.log(lowerLimit);
-            console.log(upperLimit);
-        }
 
         let pair: [string, number] = [monster.name, commonalityDeviation];
         generatedMonsters.push(pair);
     }
-
-    console.log("total amount of monsters to be assigned: ", generatedMonsters);
 
     return assignMonstersToRooms(generatedMonsters, monsterPreset, eligibleRooms);
 }
@@ -188,7 +180,6 @@ function assignMonstersToRooms(assignableMonsters: [string, number][], monsterPr
                     }
                 }
             }
-            //console.log("eligible monsters: ", eligibleMonsters);
 
             if (eligibleMonsters.length === 0) {
                 break;
