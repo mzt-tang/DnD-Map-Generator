@@ -1,13 +1,11 @@
-import React, {useEffect, useState} from "react";
 import {db} from '../firebaseConfig';
 import {roomGen} from "../utility/roomGen";
+import React, {useContext, useEffect, useState} from "react";
 
-import {Alert, Button, Modal, Text, View} from 'react-native';
 import firebase from 'firebase';
+import {Alert, Button, Modal, Text, View} from 'react-native';
 
 import PrismaZoom from 'react-prismazoom'
-
-import monsterGeneration from "../utility/MonsterGen";
 
 import {makeStyles} from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
@@ -19,18 +17,17 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import MapData from "../interfaces/MapData";
 import {makeImageArray} from '../utility/MapTilerHelper'
 
-import Image4 from '../assets/New Tile Assets/floor_w.png';
+import Image4 from '../assets/Tile Images/floor_w.png';
 
+import MonsterData from "./MonsterData";
 import ParseURLData from "../utility/ParseURLData";
 import {useHistory} from "react-router-dom";
-import MonsterData from "./MonsterData";
 
 const useRowStyles = makeStyles({
     root: {
@@ -143,8 +140,9 @@ function Row(props: { row: ReturnType<typeof createData> }) { // Will need to be
                                         flexDirection: "column"
                                     }}>
                                         {row.monsters.map((m => (
-                                            <TableCell>{<TableCell>{<Button onPress={() => onClickMonster(m)}
-                                                                            title={m}/>}</TableCell>}</TableCell>
+                                            <TableCell>{<TableCell>{<Button
+                                                onPress={() => onClickMonster(m.split(' ')[1])}
+                                                title={m}/>}</TableCell>}</TableCell>
                                         )))}
                                     </TableRow>
                                 </TableHead>
@@ -157,18 +155,6 @@ function Row(props: { row: ReturnType<typeof createData> }) { // Will need to be
     );
 }
 
-// let rowr = [createData("Room 1", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-//     createData("Room 2", ["Orc", "Grunk", "Bronk"]),
-//     createData("Room 3", ["Ghost", "Danny Phantom", "Caspar", "Dead Guy"]),
-//     createData("Room 4", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-//     createData("Room 5", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-//     createData("Room 6", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-//     createData("Room 7", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-//     createData("Room 8", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-//     createData("Room 9", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-//     createData("Room 10", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-//     createData("Room 11", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"]),
-//     createData("Room 12", ["Skeleton", "Boney Boi", "SkelyMan", "Jack"])]
 
 function fillRooms(rooms: number[][][]): string[] {
     let row: string[] = [];
@@ -201,13 +187,14 @@ interface mapProps {
     mapData: MapData,
     imagePressFunction: React.MouseEventHandler<HTMLImageElement>,
     showFog: boolean,
-    mapTheme: string
+    mapTheme: string,
+    maxWidth: number,
+    maxHeight: number,
 }
 
 export interface roomRows {
     name: string,
     monsters: string[]
-
 }
 
 /**
@@ -229,19 +216,35 @@ export default function map(props: mapProps) {
     }
 
 
+    const widthNum = 40;
+    const heightNum = 30;
+
     const data = props.mapData;
 
-    const images = makeImageArray(data.map, data.visibility, props.imagePressFunction, props.showFog, data.theme);
+    const parseMonsterData = (monsterData: [number, [number, string][]][]) => {
 
-    // let rowr: roomRows[] = []
-    // for (let i: number = 0; i < data.roomNum; i++) {
-    //     rowr[i] = createData("Room" + (i + 1), ["OOOOOOOHHH", "AHHHHHHH", "filler data"]);
-    // }
-    // console.log("MAP ARRAY: ", data.map);
+        const rooms: roomRows[] = []
+        if (monsterData) {
+            //monsterData.sort();
+            for (let i = 0; i < monsterData.length; i++) {
+                const monstersInRoom: string[] = []
+                for (let j = 0; j < monsterData[i][1].length; j++) {
+                    monstersInRoom.push("[" + monsterData[i][1][j][0] + "] " + monsterData[i][1][j][1]);
+                }
+                rooms.push(createData("Room " + monsterData[i][0], monstersInRoom));
+            }
+        }
+        else {
+            console.log('NO MONSTER DATA FOUND')
+        }
+        return rooms;
+    }
 
     useEffect(() => {
-        monsterGeneration("level1", rowr, setRowr);
-    }, []);
+        setRowr(parseMonsterData(props.mapData.monsters))
+    }, [props.mapData.monsters]);
+
+    const images = makeImageArray(data.map, data.visibility, props.imagePressFunction, props.showFog, data.theme, (window.innerWidth/2+window.innerWidth/16)/widthNum, heightNum);
 
     return (
         <div id="page">

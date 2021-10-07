@@ -2,6 +2,7 @@ import {Button, Typography} from '@material-ui/core';
 import React from 'react';
 import { useHistory } from "react-router-dom";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { useFonts } from 'expo-font';
 
 // We establish Props as our "Parameters" for the Button
 interface Props {
@@ -14,6 +15,7 @@ interface Props {
 const useStyles = makeStyles<Theme, Props>((theme: Theme) =>
     createStyles({
         largeButton: {
+            color: '#Eddded',
             background: '#000000',
             borderColor: '#Eddded',
             borderWidth: 2,
@@ -26,6 +28,7 @@ const useStyles = makeStyles<Theme, Props>((theme: Theme) =>
             alignSelf: 'center',
             float: 'left',
             '&:hover': {
+                color: '#Eddded',
                 backgroundColor: '#b348b1',
                 borderColor: '#Eddded',
                 borderWidth: 2,
@@ -39,7 +42,10 @@ const useStyles = makeStyles<Theme, Props>((theme: Theme) =>
 );
 
 const LargeButton = (props : Props) => {
-    //const classes = useStyles(props);
+    let [fontsLoaded] = useFonts({
+        'Title': require('../assets/Fonts/DraconisBold-qZxd6.ttf'),
+      });
+    const classes = useStyles(props);
     const {largeButton, buttonText} = useStyles(props);
 
     // Props Initialisations
@@ -51,14 +57,14 @@ const LargeButton = (props : Props) => {
     const history = useHistory();
 
     return (
-        <Button variant="outlined" size="large" color="primary" className="largeButton" onClick={() => {
+        <Button variant="outlined" size="large" className={classes.largeButton} color="primary" onClick={() => {
             history.push({
                 pathname: buttonRoute,
                 state: {theme: buttonProps},
             });
         }}>
 
-            <Typography variant={"h4"} className={buttonText}>
+            <Typography variant={"h4"} className={buttonText} style={{fontFamily:'Title'}}>
                 {buttonString}
             </Typography>
         </Button>

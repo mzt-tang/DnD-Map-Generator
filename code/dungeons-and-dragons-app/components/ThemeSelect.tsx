@@ -32,7 +32,6 @@ const ThemeSelect = (props: Props) => {
     }
     return (
         <div className={"themeSelect"}>
-            {console.log(props.theme)}
             <Paper>
                 <MenuList style={{ left: '10%' }}>
                     <MuiThemeProvider theme={colorTheme}>
