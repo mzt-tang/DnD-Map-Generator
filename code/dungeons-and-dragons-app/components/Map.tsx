@@ -254,10 +254,8 @@ export default function map(props: mapProps) {
                         <div id="map" style={mapStyle(data.roomCols * data.roomSize, data.roomRows * data.roomSize)}>
                             {images}
                         </div>
-
                     </PrismaZoom>
                 </section>
-
             </div>
             <div id="right" style={{
                 position: "absolute",

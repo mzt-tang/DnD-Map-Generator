@@ -1,7 +1,4 @@
-.grid_img {
-    width:25px;
-    height:25px;
-}
+
 
 .homeBox {
     margin: 0;
@@ -113,9 +110,7 @@
 }
 
 .map {
-    justify-content: center;
     display: flex;
-    align-items: center;
 }
 
 .LargeButton {
@@ -194,12 +189,20 @@ h2 {
 #topBar {
     display: flex;
     flex-direction: row;
+    position: relative;
 }
 
 #topButton {
-    height:40px;
+    height:70%;
     background-color: gray;
     margin-right:2%;
+    position:relative;
+}
+#fogBar {
+    height:50%;
+    background-color:gray;
+    margin-right:2%;
+    position: relative;
 }
 
 .TitleF {
