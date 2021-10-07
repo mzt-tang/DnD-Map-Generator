@@ -1,4 +1,4 @@
-import images, {getImageWithId} from '../utility/Images'
+import images, { getImageWithId } from '../utility/Images'
 
 /**
  * Takes in the basic generated map and generates the final map tiles to use as image indexes
@@ -112,6 +112,14 @@ export const assignImageNumbers = (map: number[][]): number[][] => {
                 }
 
                 // Tile is a floor, grab floor image
+            } else if (map[i][j] == 3) {
+                finalMap[i][j] = 22
+            } else if (map[i][j] == 4) {
+                finalMap[i][j] = 23
+            }else if (map[i][j] == 5) {
+                finalMap[i][j] = 24;
+            } else if (map[i][j] == 6) {
+                finalMap[i][j] = 25;
             } else {
                 finalMap[i][j] = 21;
             }
@@ -125,7 +133,7 @@ export const assignImageNumbers = (map: number[][]): number[][] => {
  * @param map The final map where the number contained in the 2D array is the index of the image to use.
  * @param visibility The 2D array representing the visibility of the map.
  */
-export const makeImageArray = (map: number[][], visibility: number[][], userClick : React.MouseEventHandler<HTMLImageElement>, showFog : boolean,mapTheme:string, width:number, height:number): JSX.Element[][] => {
+export const makeImageArray = (map: number[][], visibility: number[][], userClick: React.MouseEventHandler<HTMLImageElement>, showFog: boolean, mapTheme: string, width:number, height:number): JSX.Element[][] => {
 
     //todo update the visibility JSX element when visibility is implemented.
     let imageArray: JSX.Element[][] = [];
@@ -133,13 +141,13 @@ export const makeImageArray = (map: number[][], visibility: number[][], userClic
     for (let row = 0; row < map.length; row++) {
         let imageRow: JSX.Element[] = [];
         for (let col = 0; col < map[row].length; col++) {
-            const id : string = `${row},${col}`;
+            const id: string = `${row},${col}`;
             if (visibility[row][col] == 0 || !showFog) {
-                const image: JSX.Element = getImageWithId(id, map[row][col], userClick,mapTheme, width, height)
+                const image: JSX.Element = getImageWithId(id, map[row][col], userClick, mapTheme, width, height)
                 imageRow.push(image)
             }
             else { // black fog tile
-                const image: JSX.Element = getImageWithId(id, 0, userClick,mapTheme, width, height)
+                const image: JSX.Element = getImageWithId(id, 0, userClick, mapTheme, width, height)
                 imageRow.push(image)
             }
 
@@ -149,4 +157,3 @@ export const makeImageArray = (map: number[][], visibility: number[][], userClic
 
     return imageArray;
 }
-

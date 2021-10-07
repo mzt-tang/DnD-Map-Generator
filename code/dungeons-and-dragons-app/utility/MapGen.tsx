@@ -1,7 +1,6 @@
 import { roomGen } from "./roomGen";
 import { assignImageNumbers } from './MapTilerHelper';
 import MapData from "../interfaces/MapData";
-import monsterGeneration from "./MonsterGen";
 
 const roomSize = 10;
 const mapRoomRows = 3;
@@ -20,7 +19,7 @@ interface mapGenProps {
 /**
  * Returns a map data object containing all the information needed for a level.
  */
-export default async function map(props: mapGenProps): Promise<MapData> {
+export default function map(props: mapGenProps): MapData {
 
     let allRooms: number[][][] = []; // holds all the rooms making up the map in order.
 
@@ -35,7 +34,7 @@ export default async function map(props: mapGenProps): Promise<MapData> {
 
     //======================INITIAL MAP FOG SETTING======================//
     //vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv//
-    // create a 2D array of rows * cols, filled with the value startingFog for visiblity.
+    // create a 2D array of rows * cols, filled with the value startingFog for visiblity.    
     // 0:visible;   1:fog of war;
     let mapVisibility: number[][] = Array.from(
         Array(mapRoomRows * roomSize), _ => Array(mapRoomCols * roomSize).fill(1)
@@ -335,7 +334,7 @@ export default async function map(props: mapGenProps): Promise<MapData> {
         let madeExit = false
         for (let i = 0; i < allRooms[entranceIndex].length; i++) {
             for (let j = 0; j < allRooms[entranceIndex][i].length; j++) {
-                if (allRooms[entranceIndex][i][j] == 1 && !madeEntrance) {
+                if (allRooms[entranceIndex][i][j] == 1 && madeEntrance == false) {
                     allRooms[entranceIndex][i][j] = 3
                     madeEntrance = true
                 }
@@ -344,7 +343,7 @@ export default async function map(props: mapGenProps): Promise<MapData> {
 
         for (let i = 0; i < allRooms[exitIndx].length; i++) {
             for (let j = 0; j < allRooms[exitIndx][i].length; j++) {
-                if (allRooms[exitIndx][i][j] == 1 && !madeExit) {
+                if (allRooms[exitIndx][i][j] == 1 && madeExit == false) {
                     allRooms[exitIndx][i][j] = 4
                     madeExit = true
                 }
@@ -476,11 +475,9 @@ export default async function map(props: mapGenProps): Promise<MapData> {
 
     const finalMap = assignImageNumbers(mapGrid);
 
-    const monsters = await monsterGeneration(1, finalMap)
-
     const mapData: MapData = {
         map: finalMap,
-        monsters: monsters,
+        monsters: [],
         roomCols: mapRoomCols,
         roomRows: mapRoomRows,
         roomSize: roomSize,

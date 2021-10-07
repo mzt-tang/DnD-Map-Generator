@@ -200,7 +200,7 @@ const DmView = () => {
         return (
             <div id='dmView' className="backgroundImage">
                 <div id="topBar">
-                    <Button id="topButton" style={{ backgroundColor: 'white', width: '40px', top: 10, borderRadius: 10 }} onClick={() => {
+                <Button id="topButton" style={{ backgroundColor: 'white', width: '40px', top: 10, borderRadius: 10 }} onClick={() => {
                         history.push('/home')
                     }}>X</Button>
 
@@ -215,7 +215,7 @@ const DmView = () => {
 
                     <Button id="topButton" style={{ backgroundColor: 'white', width: '200px', top: '10px', borderRadius: 10 }} onClick={showRoomNums}>Show Room Numbers</Button>
 
-                    <div id="topButton" style={{ backgroundColor: 'white', position: "absolute", left: "900px", top: 10, borderRadius: 10, width: '23.5%', height: '10%' }}>
+                    <div id="topButton" style={{ backgroundColor: 'white', position: "absolute", left: "1100px", top: 10, borderRadius: 10, width: '30%', height: '10%' }}>
                         <p style={{ position: 'relative', backgroundColor: 'white', fontFamily: 'Arial', left: '2%', width: '20%' }}>FOG Controls</p>
                         <FormControlLabel
                             style={{ position: 'relative', backgroundColor: 'white', left: '2%' }}
@@ -225,14 +225,14 @@ const DmView = () => {
                             name={'adjustFog'} />} label={'Add/Remove Fog'} />
                     </div>
                 </div>
-                <div id="topButton" style={{ position: "absolute", backgroundColor: 'white', left: "1020px", top: 10 }}>
+                <div id="topButton" style={{ position: "absolute", backgroundColor: 'white', left: "1220px", top: 10 }}>
                     <RadioGroup row={true} aria-label="fog" name="fog controls" value={addingFog} style={{ backgroundColor: 'white' }}
                         onChange={handleAddingFogChange}>
                         <FormControlLabel value={true} control={<Radio />} label="add" />
                         <FormControlLabel value={false} control={<Radio />} label="remove" />
                     </RadioGroup>
                 </div>
-                <div id="topButton" style={{ backgroundColor: 'white', position: "absolute", left: "1250px", top: '20px' }}>
+                <div id="topButton" style={{ backgroundColor: 'white', position: "absolute", left: "1450px", top: '20px' }}>
                     <Typography id="discrete-slider" gutterBottom>
                         Adjustment Size
                     </Typography>
@@ -249,41 +249,18 @@ const DmView = () => {
                         onChange={(event: any, newValue: number | number[]) => setFogAdjustSize(newValue as number)}
                     />
                 </div>
-                <div id="topButton" style={{ backgroundColor: 'white', position: "absolute", left: "1500px", top: '15px', borderRadius: 10 }}>
+                <div id="topButton" style={{ backgroundColor: 'white', position: "absolute", left: "1700px", top: '15px', borderRadius: 10, height:'90px' }}>
                     <FormControlLabel
-                        style={{ position: 'relative', left: '2%' }}
+                        style={{ position: 'relative', left: '2%',height:'90px' }}
                         control={<Switch checked={mapIsHidden} onChange={handleHideOrShowMap} name={'hideMap'} />}
                         label={'Hide Player\'s Map'} />
-                </div>
-                <div style={{
-                    backgroundColor: 'black',
-                    position: "absolute",
-                    left: "350px",
-                    top: '70px',
-                    width: '470px',
-                    height: '36px',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    padding: 4
-                }}>
-                    <div style={{
-                        position: "relative",
-                        backgroundColor: 'white',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        textAlign: "center",
-                        flex: 1,
-                        border: '3px solid #808080',
-                    }}>
-                        <Text style={{ fontSize: 20 }}>Gamecode: {gamecode}, Theme: {history.location.state.theme}</Text>
-                    </div>
                 </div>
                 <div id='route' style={{
                     backgroundColor: hexToRgb("#AAAABB"),
                     position: "absolute",
                     top: 110,
                     alignSelf: "center",
-                    right: "35%",
+                    left: "8%",
                 }}>
                     <Map mapTheme='Cave' mapData={mapData} imagePressFunction={clickMapTileHandler} showFog={showFog} maxWidth={window.innerWidth / 2 + window.innerWidth / 16} maxHeight={window.innerHeight / 2 + window.innerHeight / 16} />
                 </div>
@@ -343,9 +320,9 @@ const DmView = () => {
                         onChange={(event: any, newValue: number | number[]) => setFogAdjustSize(newValue as number)}
                     />
                 </div>
-                <div id="topButton" style={{ backgroundColor: 'white', position: "absolute", left: "1700px", top: '15px', borderRadius: 10 }}>
+                <div id="topButton" style={{ backgroundColor: 'white', position: "absolute", left: "1700px", top: '15px', borderRadius: 10, height:'90px' }}>
                     <FormControlLabel
-                        style={{ position: 'relative', left: '2%' }}
+                        style={{ position: 'relative', left: '2%',height:'90px' }}
                         control={<Switch checked={mapIsHidden} onChange={handleHideOrShowMap} name={'hideMap'} />}
                         label={'Hide Player\'s Map'} />
                 </div>
