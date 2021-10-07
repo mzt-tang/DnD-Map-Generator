@@ -4,6 +4,7 @@ import {useHistory} from "react-router-dom";
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 
 import ValidateGameCode from "../utility/ValidateGameCode";
+import { useFonts } from 'expo-font';
 
 interface Props {
     buttonString: string
@@ -42,6 +43,9 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const SmallMenuButton = (props: Props) => {
+    let [fontsLoaded] = useFonts({
+        'Title': require('../assets/Fonts/DraconisBold-qZxd6.ttf'),
+      });
     const classes = useStyles();
 
     // Props Initialisations
@@ -68,7 +72,7 @@ const SmallMenuButton = (props: Props) => {
                         : alert("The GameCode \"" + props.code() + "\" is not valid. Please enter a valid GameCode.");
                     if (props.onclick) props.onclick(false);
                 }}>
-                <Typography variant={"button"} className={classes.buttonText}>
+                <Typography variant={"button"} className={classes.buttonText} style={{fontFamily:'Title'}}>
                     {buttonString}
                 </Typography>
             </Button>
