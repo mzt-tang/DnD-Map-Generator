@@ -3,14 +3,7 @@ import 'firebase/firestore';
 
 import {Monster} from "../interfaces/MapData";
 
-
-//todo
-// monster generating on level spawn and regenerating on new level
-// monster generating only in rooms that exist
-// the algorithm considers room size when allocating monsters
-// formatting rooms in order and monsters are labeled with the number of those monsters instead of multiples of those monsters
-
-export default async function monsterGeneration(level: number, map: number[][]): Promise<[number, [number, string][]][]> {
+export default async function monsterGeneration(level: number, map: number[][], mapRoomRows: number, mapRoomCols: number, roomSize: number): Promise<[number, [number, string][]][]> {
     //Get the monster preset document with the array of monster references from that collection.
     const levelString = "level1";
     const monsterPresetRef = firebase.firestore().collection('monsterPresets').doc(levelString);
@@ -20,7 +13,7 @@ export default async function monsterGeneration(level: number, map: number[][]):
 
             const presetRef = snapshot.data();
             let monsterPreset: Monster[] = [];
-            let set1 = presetRef?.set1; //todo temporary, to be switched to random set choosing later.
+            let set1 = presetRef?.set1;
 
             for (let i = 0; i < set1.length; i++) {
                 let monster = await set1[i].get(); //
@@ -35,8 +28,10 @@ export default async function monsterGeneration(level: number, map: number[][]):
                 });
             }
 
+            const eligibleRooms: number[] = getRoomsInMapAsArray(map, mapRoomRows, mapRoomCols, roomSize); // the rooms that are available to spawn in
+
             //Parse the generated monsters and put it through createData()
-            const generatedMonsters = generateAllMonsters(monsterPreset);
+            const generatedMonsters = generateAllMonsters(monsterPreset, eligibleRooms);
             const parsedMonsters: [number, [number, string][]][] = [];
 
             for (let i = 0; i < generatedMonsters.length; i++) {
@@ -55,7 +50,7 @@ export default async function monsterGeneration(level: number, map: number[][]):
                         parsedMonsStrings.push([1, generatedMonsters[i][1][j].name]); //push if it doesn't exist
                     }
 
-                parsedMonsters.push([generatedMonsters[i][0], parsedMonsStrings]);
+                parsedMonsters.push([generatedMonsters[i][0] + 1, parsedMonsStrings]);
             }
 
             parsedMonsters.sort((r1,r2) => {
@@ -79,9 +74,10 @@ export default async function monsterGeneration(level: number, map: number[][]):
  * Randomly choose 2-3 monsters based on level difficulty
  * Look at the monsters' friends and add monsters by 'branching out' from the monsters in the set
  * Assign monsters to room
- * @param monsterPreset
+ * @param monsterPreset The monsters that set to be spawned.
+ * @param eligibleRooms The eligible rooms to be spawned in.
  */
-function generateAllMonsters(monsterPreset: Monster[]) {
+function generateAllMonsters(monsterPreset: Monster[], eligibleRooms: number[]) {
     const generatedMonsters: [string, number][] = [];
 
     //Generate monsters from set
@@ -95,7 +91,7 @@ function generateAllMonsters(monsterPreset: Monster[]) {
         generatedMonsters.push(pair);
     }
 
-    return assignMonstersToRooms(generatedMonsters, monsterPreset);
+    return assignMonstersToRooms(generatedMonsters, monsterPreset, eligibleRooms);
 }
 
 /**
@@ -103,12 +99,12 @@ function generateAllMonsters(monsterPreset: Monster[]) {
  * @param assignableMonsters A 2d array of that contains the monster id and number of those monsters,
  * like this [[id, number of monsters], [id, number of monsters]].
  * @param monsterPreset A matching list of monsters, but in monster interface form
+ * @param eligibleRooms The eligible rooms to be spawned in.
  */
-function assignMonstersToRooms(assignableMonsters: [string, number][], monsterPreset: Monster[]) {
+function assignMonstersToRooms(assignableMonsters: [string, number][], monsterPreset: Monster[], eligibleRooms: number[]) {
     //Notes
     //This only takes a set of monsters and assigns them to the rooms
     //Try to avoid spawning monsters at the start of the map
-    let eligibleRooms = [1, 2, 3, 4, 5, 6, 7, 8, 12]; //todo temporary
     const allMonsters: [string, number][] = [];
     assignableMonsters.forEach(value => allMonsters.push(Object.assign({}, value)));
 
@@ -123,15 +119,32 @@ function assignMonstersToRooms(assignableMonsters: [string, number][], monsterPr
         return total;
     }
 
-    while (eligibleRooms.length > 0 && totalMonsterAmount(allMonsters) > 0) {
+    let totalRoomCount = (allRooms: number[]) : number => {
+        let total = 0;
+        for (let i = 0; i < allRooms.length; i++) {
+            if (allRooms[i] != 0) {
+                total += 1;
+            }
+        }
+        return total;
+    }
+
+    finalOuter:
+    while (totalRoomCount(eligibleRooms) > 0 && totalMonsterAmount(allMonsters) > 0) {
         // Randomly select a monster from the map
         // Randomly select a room
         const initialMonsterInt = getRandomInt(0, allMonsters.length - 1);
-        const chosenRoomNumber = getRandomInt(0, eligibleRooms.length - 1);
-        const chosenRoom = eligibleRooms[chosenRoomNumber];
-        eligibleRooms.splice(chosenRoomNumber, 1);
+        let chosenRoomNumber = -1;
+        let count = 0;
+        while ((chosenRoomNumber === -1 || eligibleRooms[chosenRoomNumber] === 0) && eligibleRooms.length != 0) {
+            count++;
+            if (count === 10000) break finalOuter;
+            chosenRoomNumber = getRandomInt(0, eligibleRooms.length - 1);
+        }
 
-        const roomAndMonsterList: [number, Monster[]] = [chosenRoom, [monsterPreset[initialMonsterInt]]]; // Push an initial random eligible monster first
+        const roomTileNum = eligibleRooms[chosenRoomNumber];
+
+        const roomAndMonsterList: [number, Monster[]] = [chosenRoomNumber, [monsterPreset[initialMonsterInt]]]; // Push an initial random eligible monster first
         allMonsters[initialMonsterInt][1]--;
 
         const currentMonstersInRoom: [number, Monster[]] = roomAndMonsterList;
@@ -188,6 +201,7 @@ function assignMonstersToRooms(assignableMonsters: [string, number][], monsterPr
                 }
             }
         }
+        eligibleRooms[chosenRoomNumber] = 0;
         finalMonsterAssignment.push(currentMonstersInRoom);
     }
 
@@ -227,4 +241,28 @@ function totalLoneliness(currentMonstersInRoom: [number, Monster[]]): number {
         total = +total + +loneliness;
     }
     return total;
+}
+
+/**
+ * Returns an array of numbers, each index being a room and each number being the amount of tiles in that room
+ * if the room is not spawned the number is 0.
+ * @param map The map array as numbers
+ * @param mapRoomRows
+ * @param mapRoomCols
+ * @param roomSize The size of each room (square so length * length)
+ */
+function getRoomsInMapAsArray(map: number[][], mapRoomRows: number, mapRoomCols: number, roomSize: number): number[] {
+    const roomsArray: number[] = new Array(mapRoomRows*mapRoomCols).fill(0);
+
+    for (let row = 0; row < map.length; row++) {
+        for (let col = 0; col < map[row].length; col++) {
+            if (map[row][col] === 21) {
+                const roomCol: number = Math.floor(row / roomSize);
+                const roomRow: number = Math.floor( col / roomSize);
+                roomsArray[(roomRow*mapRoomRows + roomCol)]++;
+            }
+        }
+    }
+
+    return roomsArray;
 }
