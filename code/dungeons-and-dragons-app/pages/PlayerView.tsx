@@ -74,14 +74,14 @@ const PlayerView = () => {
     }
 
     return (
-        <div className="backgroundImage">
+        <div className="backgroundImage" style={{flexDirection:'row'}}>
             <Button id="topButton"
-                    style={{backgroundColor:'white', width: '40px', top: 10, borderRadius:10, position: "absolute" }}
+                    style={{backgroundColor:'white', width: '40px', height:'40px', top: 10, borderRadius:10, position: "fixed" }}
                     onClick={() => {
                 history.push('/home')
             }}>X</Button>
-            <View style={{position:'relative',justifyContent:"center", top:'10%'}}>
-                <Map mapData={map} showFog={true} mapTheme={''} maxWidth={window.innerWidth/2 + window.innerWidth/8} maxHeight={window.innerHeight/2 + window.innerHeight/8}/>
+            <View style={{position:'relative',justifyContent:"center"}}>
+                <Map mapData={map} showFog={true} mapTheme={''} maxWidth={window.innerWidth/45} maxHeight={window.innerHeight/30.2} overlay={false}/>
             </View>
         </div>
     );
