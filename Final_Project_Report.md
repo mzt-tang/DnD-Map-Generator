@@ -1,43 +1,53 @@
 # Final Project Report
 
-**Project _N_:** _Short Project Title_<br>
-**Client:** _Firstname Lastname_<br>
-**Date:** 8 October 2021<br>
-
-_This is not expected to be a long report and volume will not be rewarded! The purpose of the final report is to summarise and document anything within your project and other documentation that is tacit or implicit, and any assumptions or motivations which can't_ easily _be found elsewhere in your hand-over documentation. If you wish to follow the form of the example final report in the textbook, then you are welcome to do so. **This is primarily a client-facing document.**_
-
-_All text in italics in this template should be replaced by your answers (in regular font). This introductory paragraph should be deleted._
+**Project Name:** Dungeon In a Jiffy<br>
+**Client:** Craig Watterson<br>
+**Date:** 12 October 2021<br>
 
 ## Project Objective(s)
 
-_A short statement, 1-3 sentences, of project objective(s); a short abstract of project goals. Simply repeating the original description of the project from ENGR 301, or providing a bland and repetitive description is a waste of everyone's time. What is expected here is a summary of the project objectives as embodied in the_ as-delivered _project._
+The project objectives were to deliver a Dungeons And Dragons underground map generator to our client in order to make preparation for Dungeons and Dragons sessions easier for the client and other Dungeon Masters. In order to do this we needed to create a way of generating underground maps randomly, and to have the maps we generated look visually interesting while not taking too much away from the imagination of the players. The project would need to be able to be seen by the players and Dungeon Master on seperate screens, with the Dungeon Master being able to control the game on their screen, and the players only viewing on their screen.
 
 ## Summary of Project Results
 
-_A statement, summarising the results of the project; what actually resulted from project execution. This should convey to the reader those aspects of the project results which are not obvious from other documents._
+The team was able to deliver a successful product to our client Craig Watterson which performs all the specified tasks from the project requirements. The DnD map generation tool is able to provide the Dungeon Master with all necessary functions such as manipulating fog, generating new levels and display rooms generated from the tool. The product is able to host games concurrently and allow separate games to take place with the ability of working on any device size and operating system.
 
 ## Original and Delivered Scope
 
-_The things that are within scope of the delivered project; the things that the delivered project can do. This should convey to the reader those aspects of the project results which are not obvious from other documents. If the project has a significant Issue backlog on delivery, a summary of the pending features, why these features were not completed and how they could be picked up by others if project work was to resume._
+The original scope was for one theme and one game at a time. More work was delivered in the end than was originally scheduled including our stretch targets of multiple concurrent games and multiple themes/tilesets.
+
+Items that were not delivered include the scaling of monsters for the map level, and rooms being an appropriate size for the size of the monsters they might spawn inside them. These were not delivered because there were technical issues in generating the monsters and not enough time was given to the issue. This could be picked up by modifying the algorithm that generates the monsters to include a difficulty parameter, and including this when generating the monsters.
 
 ## Original and Actual Schedule
 
-_A summary of the original timelines and a summary of deviations from the original plan. This should convey to the reader those aspects of the project results which are not obvious from other documents._
+The group observed that the actual time taken to complete a large portion of the project’s issues/tasks differed greatly from the original time estimates made in Trimester 1. Originally, time estimates were only ever allocated within 1 sprint, with no issues/tasks overflowing into subsequent sprints. However, some issues ended up taking longer than expected, and some features took much less time than expected to implement and add. Additionally, as the team learned more about the technologies used in this project, new issues were occasionally added when needed, and some issues changed drastically or were removed altogether. 
+
+While the above points caused development to deviate greatly from the original estimates, team members consistently took initiative and adjusted to dynamic needs of the project requirements and other team members. Because of this, the project was completed to a satisfactory level by the end of all 6 sprints, including polishing the project and adding a few extra backburner features.
+
+Below is a list of some of the most notable deviations from the original time estimates:
+
+- One of the biggest detachments from the schedule was the delivery of the monster generation, as this was originally planned to be integrated into the project by 26th July. However this was not integrated until 4th October due to technical difficulties and the focus of progression on other features.
+- Similar to the monster generation, the map generation was slowly worked on over ~3-5 sprints. This was because the basic and advanced versions of the map generation algorithm were constantly iterated on and improved, including adding more features and better integration with the Firebase database.
+- As for tasks that took shorter than expected, the task to upload, retrieve, and parse JSON files to manage map information persistence was nullified after the team learned more about how data storage with Google Firebase worked. This was because Firebase automatically handled the JSON parsing, thus making all REST functionalities simple to invoke and use. Therefore, these JSON tasks were already taken care of naturally with Firebase.
 
 ## Delivered Expenditure
 
-_How much was spent, as a single number. If there has been deviation from the original plan then this should be explained in summary. Projects with no expenditure should state “No expenditure” for this section._
+No expenditure.
 
 ## Project Self-Assessment
 
-_A short statement of the team’s assessment of the delivered project, with a focus on the technical aspects. This should convey to the reader those aspects of the project results which are not obvious from other documents._
+The final result of our project differed heavily from when we were first planning it. This was the result of us having little to no knowledge about the frameworks and technologies we would be utilizing during the planning phase. For instance, Google’s online database service “Firebase”. Our original plan involved heavy use of JSON objects stored locally on the device. Furthermore, we believed we needed to implement networking software, to connect the DM device to the Player device. Google’s “Firebase” not only removed the need for any sort of networking implementation, but made the game playable from anywhere with an internet connection. Firebase also made the implementation of our stretch goal “Multiple, concurrent games” extremely simple to implement.
+
+We choose React Expo as our framework, with little prior knowledge. Learning it on the fly, we utilized the framework in a way it wasn’t intended to be used. For instance, Expo is incompatible with HTML tags. This made implementing some other later features impossible without going back to rewrite our entire code (for instance, the player view zoom controls from the DM). React itself is also heavily bloated. The app is only designed to display a dungeons and dragons map, but the size of all the files is over 400MB.
+
+Monster generation requirements as stated originally in the architecture documents were harder to fulfil than expected, with monsters being generated that adjust for the size of the room not implemented in the algorithm due to time constraints (although it is set up to be implemented within the algorithm). This was also true for monster level difficulty generation, where it is almost fully set up for but requires set up on the database side (Firestore) of multiple documents and sets of monsters within the documents.
 
 ## Lessons Learned
 
-_Lessons learned which are of significance, impact and priority to the client. The focus here is on the lessons-learned at the intersection of the technical and management aspects of your project which are relevant to the client. Projects which have encountered significant technical or non-technical issues which will be of particular relevance to the client or the client's organisation should document these in this section._
+To fit the project requirements in developing a web application, our team had to learn a framework, programming language and database API unfamiliar to everyone in the group. This was a significant drawback to the initial development of the product as additional resources were expended to learn these new frameworks and programming languages. Most of our team also had to learn how to interact with a client in development of a product for the first time. This meant that there were some miscommunications with the client when discussing product features, causing some obstacles when implementing the original feature the client intended to implement.
+
+The team believes that the framework “ReactJS” would be the most beneficial framework to continue developing the product in future. This would give added functionalities such as CSS styling, web routing, larger component libraries and easier deployment without the added difficulties of implementing app functionalities natively. The command line interface “React Expo” also wasn’t too beneficial to the development of the product as it bloated our repositories with unuseful files.
 
 ## Procurement Summary
 
-_A description of procurements, naming major suppliers, stating where to find the procurement information in the project documents and flagging any unclosed procurements. Projects with no procurements should state "No procurements" for this section._
-
----
+No procurements.
