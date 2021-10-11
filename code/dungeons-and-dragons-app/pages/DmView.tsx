@@ -211,6 +211,12 @@ const DmView = () => {
                             <Button id="topButton" style={{ backgroundColor: 'white', width: '100px', top: '15%', borderRadius: 10 }} onClick={nextMap}>Next Floor</Button>
                             <Button id="topButton" style={{ backgroundColor: 'white', width: '200px', top: '10px', borderRadius: 10 }} onClick={showRoomNums}>Show Room Numbers</Button>
                         </div>
+                        <div style={{ display: 'flex', flexDirection: "column", backgroundColor: 'white', borderRadius: 10, position: 'relative', left: '-1%', top: '10%', height: '50%', alignItems: 'center', justifyContent: 'center', width:'70%'}}>
+                            <Text> Gamecode: {gamecode}</Text>
+                            <Text>  Theme: {theme}</Text>
+
+                        </div>
+
                     </div>
                     <div id="fogBar" style={{ backgroundColor: 'white', position: "relative", top: '10%', borderRadius: 10, width: '60%', height: '100%' }}>
                         <div style={{ display: 'flex', flex: 0, flexDirection: 'row' }}>
