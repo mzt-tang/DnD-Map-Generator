@@ -29,6 +29,8 @@ import MonsterData from "./MonsterData";
 import ParseURLData from "../utility/ParseURLData";
 import {useHistory} from "react-router-dom";
 
+
+
 const useRowStyles = makeStyles({
     root: {
         '& > *': {
@@ -190,6 +192,7 @@ interface mapProps {
     mapTheme: string,
     maxWidth: number,
     maxHeight: number,
+    overlay: boolean,
 }
 
 export interface roomRows {
@@ -244,8 +247,7 @@ export default function map(props: mapProps) {
         setRowr(parseMonsterData(props.mapData.monsters))
     }, [props.mapData.monsters]);
 
-    const images = makeImageArray(data.map, data.visibility, props.imagePressFunction, props.showFog, data.theme, (window.innerWidth/2+window.innerWidth/16)/widthNum, heightNum);
-
+    const images = makeImageArray(data.map, data.visibility, props.imagePressFunction, props.showFog, data.theme, props.maxWidth, props.maxHeight, props.overlay);
     return (
         <div id="page">
             <div id="left" style={mapStyle(MAP_ROOM_COLS * ROOM_SIZE, MAP_ROOM_ROWS * ROOM_SIZE)}>
@@ -257,10 +259,8 @@ export default function map(props: mapProps) {
                         <div id="map" style={mapStyle(data.roomCols * data.roomSize, data.roomRows * data.roomSize)}>
                             {images}
                         </div>
-
                     </PrismaZoom>
                 </section>
-
             </div>
             <div id="right" style={{
                 position: "absolute",
@@ -270,11 +270,11 @@ export default function map(props: mapProps) {
                 display: "flex",
                 flexDirection: "row"
             }}>
-                <TableContainer component={Paper}>
+                <TableContainer component={Paper} style={{width: window.innerWidth/5,height:window.innerHeight/1.325}}>
                     <Table aria-label="collapsible table">
                         <TableHead>
                             <TableRow>
-                                <TableCell style={{textAlign: 'center'}}>Room</TableCell>
+                                <TableCell style={{textAlign: 'center'}}>Monsters in Rooms</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -285,5 +285,6 @@ export default function map(props: mapProps) {
                     </Table>
                 </TableContainer>
             </div>
-        </div>);
+        </div>
+    );
 }
