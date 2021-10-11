@@ -12,6 +12,8 @@ import {Button, hexToRgb} from '@material-ui/core';
 import {readFromFirebase} from "../utility/FirebaseRW";
 import ParseURLData from "../utility/ParseURLData";
 
+import { useFonts } from 'expo-font';
+
 import TitleFont from "../assets/Fonts/DraconisBold-qZxd6.tff";
 import { Title } from '@material-ui/icons';
 
@@ -21,9 +23,12 @@ let mapDataInitial: MapData = {
 
 //style={{ width: '200px', top: 10, fontSize:16,textAlign:"center",textAlignVertical:"center", padding:'5px'}
 const Hidden = () => {
+    let [fontsLoaded] = useFonts({
+        'Title': require('../assets/Fonts/DraconisBold-qZxd6.ttf'),
+      });
     return (
         <div className="backgroundImage_with_message">
-            <Text style={{color:'#FFFFFF', width:'1000px', fontSize:75, textAlign:"center", textAlignVertical:"center"}}>
+            <Text style={{color:'#FFFFFF', width:'1000px', fontSize:75, textAlign:"center", textAlignVertical:"center", fontFamily:'Title'}}>
                 Map is hidden by DM
             </Text>
         </div>
@@ -58,11 +63,14 @@ const PlayerView = () => {
         });
     },[]);
 
+    let [fontsLoaded] = useFonts({
+        'Title': require('../assets/Fonts/DraconisBold-qZxd6.ttf'),
+      });
 
     if (map == null || map.roomSize == 0 || map.map == undefined) {
         return (
             <div className="backgroundImage_with_message">
-                <Text style={{color:'#FFFFFF', width:'1000px', fontSize:75, textAlign:"center", textAlignVertical:"center"}}>
+                <Text style={{color:'#FFFFFF', width:'1000px', fontSize:75, textAlign:"center", textAlignVertical:"center", fontFamily:'Title'}}>
                     Waiting for map to generate
                 </Text>
             </div>
