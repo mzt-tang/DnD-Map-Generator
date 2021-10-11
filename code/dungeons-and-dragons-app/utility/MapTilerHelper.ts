@@ -116,7 +116,7 @@ export const assignImageNumbers = (map: number[][]): number[][] => {
                 finalMap[i][j] = 22
             } else if (map[i][j] == 4) {
                 finalMap[i][j] = 23
-            }else if (map[i][j] == 5) {
+            } else if (map[i][j] == 5) {
                 finalMap[i][j] = 24;
             } else if (map[i][j] == 6) {
                 finalMap[i][j] = 25;
@@ -133,7 +133,7 @@ export const assignImageNumbers = (map: number[][]): number[][] => {
  * @param map The final map where the number contained in the 2D array is the index of the image to use.
  * @param visibility The 2D array representing the visibility of the map.
  */
-export const makeImageArray = (map: number[][], visibility: number[][], userClick: React.MouseEventHandler<HTMLImageElement>, showFog: boolean, mapTheme: string, width:number, height:number, showOverlay:boolean): JSX.Element[][] => {
+export const makeImageArray = (map: number[][], visibility: number[][], userClick: React.MouseEventHandler<HTMLImageElement>, showFog: boolean, mapTheme: string, width: number, height: number, showOverlay: boolean): JSX.Element[][] => {
 
     //todo update the visibility JSX element when visibility is implemented.
     let imageArray: JSX.Element[][] = [];
@@ -142,7 +142,7 @@ export const makeImageArray = (map: number[][], visibility: number[][], userClic
         let imageRow: JSX.Element[] = [];
         for (let col = 0; col < map[row].length; col++) {
             const id: string = `${row},${col}`;
-            if(row == 0 && col == 0 && showOverlay) {
+            if (row == 0 && col == 0 && showOverlay) {
                 const image: JSX.Element = getImageWithId(id, 27, userClick, mapTheme, width, height)
                 imageRow.push(image)
             } else if (row == 0 && col == 10 && showOverlay) {
@@ -166,11 +166,10 @@ export const makeImageArray = (map: number[][], visibility: number[][], userClic
             } else if (row == 10 && col == 30 && showOverlay) {
                 const image: JSX.Element = getImageWithId(id, 34, userClick, mapTheme, width, height)
                 imageRow.push(image)
-            }
-            else if (row == 20 && col == 0 && showOverlay) {
+            } else if (row == 20 && col == 0 && showOverlay) {
                 const image: JSX.Element = getImageWithId(id, 35, userClick, mapTheme, width, height)
                 imageRow.push(image)
-            }  else if (row == 20 && col == 10 && showOverlay) {
+            } else if (row == 20 && col == 10 && showOverlay) {
                 const image: JSX.Element = getImageWithId(id, 27, userClick, mapTheme, width, height)
                 imageRow.push(image)
             } else if (row == 20 && col == 11 && showOverlay) {
@@ -188,13 +187,11 @@ export const makeImageArray = (map: number[][], visibility: number[][], userClic
             } else if (row == 20 && col == 31 && showOverlay) {
                 const image: JSX.Element = getImageWithId(id, 28, userClick, mapTheme, width, height)
                 imageRow.push(image)
-            }
-            else {
+            } else {
                 if (visibility[row][col] == 0 || !showFog) {
                     const image: JSX.Element = getImageWithId(id, map[row][col], userClick, mapTheme, width, height)
                     imageRow.push(image)
-                }
-                else { // black fog tile
+                } else { // black fog tile
                     const image: JSX.Element = getImageWithId(id, 0, userClick, mapTheme, width, height)
                     imageRow.push(image)
                 }

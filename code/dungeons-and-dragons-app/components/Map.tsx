@@ -227,8 +227,7 @@ export default function map(props: mapProps) {
                 }
                 rooms.push(createData("Room " + monsterData[i][0], monstersInRoom));
             }
-        }
-        else {
+        } else {
             console.log('NO MONSTER DATA FOUND')
         }
         return rooms;
@@ -261,7 +260,8 @@ export default function map(props: mapProps) {
                 display: "flex",
                 flexDirection: "row"
             }}>
-                <TableContainer component={Paper} style={{width: window.innerWidth/5,height:window.innerHeight/1.325}}>
+                <TableContainer component={Paper}
+                                style={{width: window.innerWidth / 5, height: window.innerHeight / 1.325}}>
                     <Table aria-label="collapsible table">
                         <TableHead>
                             <TableRow>

@@ -7,8 +7,8 @@ import Home from "../pages/Home";
 describe('<MainMenu_Home />', () => {
 
     test('Home page renders correctly', () => {
-        const renderedComponent = renderer.create(<Home />).toJSON()
+        const renderedComponent = renderer.create(<Home/>).toJSON()
         expect(renderedComponent).toMatchSnapshot();
     });
-    
+
 });

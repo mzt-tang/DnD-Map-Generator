@@ -53,7 +53,7 @@ export default async function monsterGeneration(level: number, map: number[][], 
                 parsedMonsters.push([generatedMonsters[i][0] + 1, parsedMonsStrings]);
             }
 
-            parsedMonsters.sort((r1,r2) => {
+            parsedMonsters.sort((r1, r2) => {
                 return r1[0] - r2[0];
             })
 
@@ -119,7 +119,7 @@ function assignMonstersToRooms(assignableMonsters: [string, number][], monsterPr
         return total;
     }
 
-    let totalRoomCount = (allRooms: number[]) : number => {
+    let totalRoomCount = (allRooms: number[]): number => {
         let total = 0;
         for (let i = 0; i < allRooms.length; i++) {
             if (allRooms[i] != 0) {
@@ -130,80 +130,80 @@ function assignMonstersToRooms(assignableMonsters: [string, number][], monsterPr
     }
 
     finalOuter:
-    while (totalRoomCount(eligibleRooms) > 0 && totalMonsterAmount(allMonsters) > 0) {
-        // Randomly select a monster from the map
-        // Randomly select a room
-        const initialMonsterInt = getRandomInt(0, allMonsters.length - 1);
-        let chosenRoomNumber = -1;
-        let count = 0;
-        while ((chosenRoomNumber === -1 || eligibleRooms[chosenRoomNumber] === 0) && eligibleRooms.length != 0) {
-            count++;
-            if (count === 10000) break finalOuter;
-            chosenRoomNumber = getRandomInt(0, eligibleRooms.length - 1);
-        }
+        while (totalRoomCount(eligibleRooms) > 0 && totalMonsterAmount(allMonsters) > 0) {
+            // Randomly select a monster from the map
+            // Randomly select a room
+            const initialMonsterInt = getRandomInt(0, allMonsters.length - 1);
+            let chosenRoomNumber = -1;
+            let count = 0;
+            while ((chosenRoomNumber === -1 || eligibleRooms[chosenRoomNumber] === 0) && eligibleRooms.length != 0) {
+                count++;
+                if (count === 10000) break finalOuter;
+                chosenRoomNumber = getRandomInt(0, eligibleRooms.length - 1);
+            }
 
-        const roomTileNum = eligibleRooms[chosenRoomNumber];
+            const roomTileNum = eligibleRooms[chosenRoomNumber];
 
-        const roomAndMonsterList: [number, Monster[]] = [chosenRoomNumber, [monsterPreset[initialMonsterInt]]]; // Push an initial random eligible monster first
-        allMonsters[initialMonsterInt][1]--;
+            const roomAndMonsterList: [number, Monster[]] = [chosenRoomNumber, [monsterPreset[initialMonsterInt]]]; // Push an initial random eligible monster first
+            allMonsters[initialMonsterInt][1]--;
 
-        const currentMonstersInRoom: [number, Monster[]] = roomAndMonsterList;
+            const currentMonstersInRoom: [number, Monster[]] = roomAndMonsterList;
 
-        // A room isn't fully populated unless the number of monsters is
-        // more than the average of the sum of the monsters' loneliness
-        while (currentMonstersInRoom[1].length < (totalLoneliness(currentMonstersInRoom) / currentMonstersInRoom[1].length)) {
-            const eligibleMonsters: Monster[] = [];
+            // A room isn't fully populated unless the number of monsters is
+            // more than the average of the sum of the monsters' loneliness
+            while (currentMonstersInRoom[1].length < (totalLoneliness(currentMonstersInRoom) / currentMonstersInRoom[1].length)) {
+                const eligibleMonsters: Monster[] = [];
 
-            // Iterate and filter through all the monsters that can be in the room.
-            //for all of the monsters in the monster set
-            //if it doesn't exist in all of the existing monsters' friend list
-            //skip to next eligible monster
-            //else add as eligible
-            for (let i = 0; i < allMonsters.length; i++) {
-                if (allMonsters[i][1] < 1) {
-                    continue;
+                // Iterate and filter through all the monsters that can be in the room.
+                //for all of the monsters in the monster set
+                //if it doesn't exist in all of the existing monsters' friend list
+                //skip to next eligible monster
+                //else add as eligible
+                for (let i = 0; i < allMonsters.length; i++) {
+                    if (allMonsters[i][1] < 1) {
+                        continue;
+                    }
+
+                    let eligible: boolean = true;
+
+                    for (let j = 0; j < currentMonstersInRoom[1].length; j++) {
+
+
+                        if (!currentMonstersInRoom[1][j].friends.includes(allMonsters[i][0])) {
+                            eligible = false;
+                            break;
+                        }
+                    }
+
+                    if (eligible) {
+                        const eligibleMon = getMonsterByName(allMonsters[i][0], monsterPreset);
+                        if (eligibleMon == null) {
+                            console.error("Monster in all monsters not from chosen monster preset"); // throw error
+                        } else {
+                            eligibleMonsters.push(monsterPreset[i]);
+                        }
+                    }
                 }
 
-                let eligible: boolean = true;
+                if (eligibleMonsters.length === 0) {
+                    break;
+                }
 
-                for (let j = 0; j < currentMonstersInRoom[1].length; j++) {
+                //Choose and add an eligible monster (given equal chance)
+                const chosenMonster: Monster = eligibleMonsters[getRandomInt(0, eligibleMonsters.length - 1)];
+                currentMonstersInRoom[1].push(chosenMonster);
 
-
-                    if (!currentMonstersInRoom[1][j].friends.includes(allMonsters[i][0])) {
-                        eligible = false;
+                //Remove monster from assignable monsters
+                for (let i = 0; i < allMonsters.length; i++) {
+                    if (allMonsters[i][0] === chosenMonster.name) {
+                        allMonsters[i][1]--;
                         break;
                     }
                 }
-
-                if (eligible) {
-                    const eligibleMon = getMonsterByName(allMonsters[i][0], monsterPreset);
-                    if (eligibleMon == null) {
-                        console.error("Monster in all monsters not from chosen monster preset"); // throw error
-                    } else {
-                        eligibleMonsters.push(monsterPreset[i]);
-                    }
-                }
             }
-
-            if (eligibleMonsters.length === 0) {
-                break;
-            }
-
-            //Choose and add an eligible monster (given equal chance)
-            const chosenMonster: Monster = eligibleMonsters[getRandomInt(0, eligibleMonsters.length - 1)];
-            currentMonstersInRoom[1].push(chosenMonster);
-
-            //Remove monster from assignable monsters
-            for (let i = 0; i < allMonsters.length; i++) {
-                if (allMonsters[i][0] === chosenMonster.name) {
-                    allMonsters[i][1]--;
-                    break;
-                }
-            }
+            eligibleRooms[chosenRoomNumber] = 0;
+            finalMonsterAssignment.push(currentMonstersInRoom);
         }
-        eligibleRooms[chosenRoomNumber] = 0;
-        finalMonsterAssignment.push(currentMonstersInRoom);
-    }
 
     // populate the room
     // if number of monsters <= (the sum of all monsters' loneliness/number of monsters)
@@ -252,14 +252,14 @@ function totalLoneliness(currentMonstersInRoom: [number, Monster[]]): number {
  * @param roomSize The size of each room (square so length * length)
  */
 function getRoomsInMapAsArray(map: number[][], mapRoomRows: number, mapRoomCols: number, roomSize: number): number[] {
-    const roomsArray: number[] = new Array(mapRoomRows*mapRoomCols).fill(0);
+    const roomsArray: number[] = new Array(mapRoomRows * mapRoomCols).fill(0);
 
     for (let row = 0; row < map.length; row++) {
         for (let col = 0; col < map[row].length; col++) {
             if (map[row][col] === 21) {
                 const roomCol: number = Math.floor(row / roomSize);
-                const roomRow: number = Math.floor( col / roomSize);
-                roomsArray[(roomRow*mapRoomRows + roomCol)]++;
+                const roomRow: number = Math.floor(col / roomSize);
+                roomsArray[(roomRow * mapRoomRows + roomCol)]++;
             }
         }
     }

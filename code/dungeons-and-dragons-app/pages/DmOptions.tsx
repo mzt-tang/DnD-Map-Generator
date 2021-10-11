@@ -12,7 +12,7 @@ const DmOptions = () => {
 
     let [fontsLoaded] = useFonts({
         'Title': require('../assets/Fonts/DraconisBold-qZxd6.ttf'),
-      });
+    });
 
     const [theme, setTheme] = useState("Caves");
     const [code, setCode] = useState('')
@@ -28,11 +28,11 @@ const DmOptions = () => {
         <View>
             <div className={"backgroundImage"}>
                 <div className={"dmOptionBox"}>
-                    <Typography variant={"h2"} className={"dmTitle"} style={{fontFamily:'Title'}}>
+                    <Typography variant={"h2"} className={"dmTitle"} style={{fontFamily: 'Title'}}>
                         Dungeon Master Options
                     </Typography>
                     <div className={"dmOptionLeft"}>
-                        <Typography variant={"h4"} className={"dmSubtitle"} style={{fontFamily:'Title'}}>
+                        <Typography variant={"h4"} className={"dmSubtitle"} style={{fontFamily: 'Title'}}>
                             Load Existing Game
                         </Typography>
                         <CodeInput defaultText={""} labelText={"Enter a Game Code Here"} onCodeChange={setCode}/>
@@ -45,7 +45,7 @@ const DmOptions = () => {
                         </div>
                     </div>
                     <div className={"dmOptionRight"}>
-                        <Typography variant={"h4"} className={"dmSubtitle"} style={{fontFamily:'Title'}}>
+                        <Typography variant={"h4"} className={"dmSubtitle"} style={{fontFamily: 'Title'}}>
                             New Game
                         </Typography>
 

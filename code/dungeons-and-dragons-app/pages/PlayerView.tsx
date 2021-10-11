@@ -21,10 +21,17 @@ let mapDataInitial: MapData = {
 const Hidden = () => {
     let [fontsLoaded] = useFonts({
         'Title': require('../assets/Fonts/DraconisBold-qZxd6.ttf'),
-      });
+    });
     return (
         <div className="backgroundImage_with_message">
-            <Text style={{color:'#FFFFFF', width:'1000px', fontSize:75, textAlign:"center", textAlignVertical:"center", fontFamily:'Title'}}>
+            <Text style={{
+                color: '#FFFFFF',
+                width: '1000px',
+                fontSize: 75,
+                textAlign: "center",
+                textAlignVertical: "center",
+                fontFamily: 'Title'
+            }}>
                 Map is hidden by DM
             </Text>
         </div>
@@ -43,30 +50,37 @@ const PlayerView = () => {
     const currentMap = useRef({level: 1})
 
     useEffect(() => {
-        db.database().ref(gamecode + '/currentMap').on('value',mapNum => {
+        db.database().ref(gamecode + '/currentMap').on('value', mapNum => {
             const path = gamecode + '/levels/' + mapNum.val();
             currentMap.current.level = mapNum.val();
             readFromFirebase(path).then(value => setMap(value.val())).catch(e => console.log(e));
         });
 
-        db.database().ref( gamecode + '/levels').on('value',() => {
+        db.database().ref(gamecode + '/levels').on('value', () => {
             const path = gamecode + '/levels/' + currentMap.current.level;
             readFromFirebase(path).then(value => setMap(value.val())).catch(e => console.log(e));
         });
 
-        db.database().ref( gamecode + '/isHidden').on('value',isHidden => {
+        db.database().ref(gamecode + '/isHidden').on('value', isHidden => {
             setMapIsHidden(isHidden.val());
         });
-    },[]);
+    }, []);
 
     let [fontsLoaded] = useFonts({
         'Title': require('../assets/Fonts/DraconisBold-qZxd6.ttf'),
-      });
+    });
 
     if (map == null || map.roomSize == 0 || map.map == undefined) {
         return (
             <div className="backgroundImage_with_message">
-                <Text style={{color:'#FFFFFF', width:'1000px', fontSize:75, textAlign:"center", textAlignVertical:"center", fontFamily:'Title'}}>
+                <Text style={{
+                    color: '#FFFFFF',
+                    width: '1000px',
+                    fontSize: 75,
+                    textAlign: "center",
+                    textAlignVertical: "center",
+                    fontFamily: 'Title'
+                }}>
                     Waiting for map to generate
                 </Text>
             </div>
@@ -78,14 +92,22 @@ const PlayerView = () => {
     }
 
     return (
-        <div className="backgroundImage" style={{flexDirection:'row'}}>
+        <div className="backgroundImage" style={{flexDirection: 'row'}}>
             <Button id="topButton"
-                    style={{backgroundColor:'white', width: '40px', height:'40px', top: 10, borderRadius:10, position: "fixed" }}
+                    style={{
+                        backgroundColor: 'white',
+                        width: '40px',
+                        height: '40px',
+                        top: 10,
+                        borderRadius: 10,
+                        position: "fixed"
+                    }}
                     onClick={() => {
-                history.push('/home')
-            }}>X</Button>
-            <View style={{position:'relative',justifyContent:"center"}}>
-                <Map mapData={map} showFog={true} mapTheme={''} maxWidth={window.innerWidth/45} maxHeight={window.innerHeight/30.2} overlay={false}/>
+                        history.push('/home')
+                    }}>X</Button>
+            <View style={{position: 'relative', justifyContent: "center"}}>
+                <Map mapData={map} showFog={true} mapTheme={''} maxWidth={window.innerWidth / 45}
+                     maxHeight={window.innerHeight / 30.2} overlay={false}/>
             </View>
         </div>
     );

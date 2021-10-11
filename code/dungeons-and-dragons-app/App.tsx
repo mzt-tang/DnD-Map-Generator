@@ -7,14 +7,14 @@ import DmOptions from "./pages/DmOptions";
 import PlayerOptions from "./pages/PlayerOptions";
 
 export default function App() {
-  return (
-      <BrowserRouter>
-        <Route path = "/home" component = {Home} />
-          <Route path = "/" exact={true} component = {Home} />
-          <Route path = "/dmoptions" component = {DmOptions} />
-          <Route path = "/playeroptions" component = {PlayerOptions} />
-          <Route path = "/player" component={PlayerView}/>
-          <Route path = "/dm" component={DmView}/>
-      </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <Route path="/home" component={Home}/>
+            <Route path="/" exact={true} component={Home}/>
+            <Route path="/dmoptions" component={DmOptions}/>
+            <Route path="/playeroptions" component={PlayerOptions}/>
+            <Route path="/player" component={PlayerView}/>
+            <Route path="/dm" component={DmView}/>
+        </BrowserRouter>
+    );
 }

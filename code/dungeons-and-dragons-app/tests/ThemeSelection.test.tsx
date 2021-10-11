@@ -11,8 +11,11 @@ import ThemeSelect from '../components/ThemeSelect';
 
 describe("snaphot testing", () => {
     test("snapshot for theme selection", () => {
-        function onChange() {}
-        const renderedComponent = renderer.create(<ThemeSelect themeList={["Caves", "Dungeon", "Underground Mansion"]} theme={"Caves"} onChange={onChange}/>).toJSON();
+        function onChange() {
+        }
+
+        const renderedComponent = renderer.create(<ThemeSelect themeList={["Caves", "Dungeon", "Underground Mansion"]}
+                                                               theme={"Caves"} onChange={onChange}/>).toJSON();
         expect(renderedComponent).toMatchSnapshot();
     })
 })

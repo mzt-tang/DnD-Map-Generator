@@ -4,7 +4,7 @@
  * @param url
  */
 const parseURLParams = (url: string) => {
-    const list : string[] = url.split("/");
+    const list: string[] = url.split("/");
     return list[2];
 }
 

@@ -24,7 +24,7 @@ let curMap: number;
 
 const DmView = () => {
 
-    const { state: { code, theme } = { code: 'code', theme: 'theme' } } = useLocation<{ code: string, theme: string }>()
+    const {state: {code, theme} = {code: 'code', theme: 'theme'}} = useLocation<{ code: string, theme: string }>()
     const history = useHistory();
     let gamecode: string = ParseURLData(history.location.pathname) as string;
 
@@ -82,10 +82,10 @@ const DmView = () => {
         const newMap = await MapGen({theme, level})
         writeToFirebase('/' + gamecode + '/levels/' + (totalLevels + 1), newMap);
         setTotalLevels(value => {
-            setLevel(value + 1);
-            setPlayerLevel(value + 1);
-            return value + 1;
-        }
+                setLevel(value + 1);
+                setPlayerLevel(value + 1);
+                return value + 1;
+            }
         );
         setMapData(newMap);
     };
@@ -183,57 +183,120 @@ const DmView = () => {
     return (
         <ScrollView>
             <div id='dmView' className="backgroundImage">
-                <div id="topBar" style={{ width: window.innerWidth }}>
-                    <Button id="topButton" style={{ backgroundColor: 'white', width: '40px', height: '40px', top: '15%', borderRadius: 10 }} onClick={() => {
+                <div id="topBar" style={{width: window.innerWidth}}>
+                    <Button id="topButton" style={{
+                        backgroundColor: 'white',
+                        width: '40px',
+                        height: '40px',
+                        top: '15%',
+                        borderRadius: 10
+                    }} onClick={() => {
                         history.push('/home')
                     }}>X</Button>
 
-                    <div style={{ display: 'flex', flexDirection: "column", backgroundColor: 'white', borderRadius: 10, position: 'relative', left: '-1%', top: '10%', height: '50%', alignItems: 'center', justifyContent: 'center' }}>
-                        <Text style={{ width: '200px', fontSize: 16, textAlign: "center", textAlignVertical: "center" }}>{'Current Floor: ' + level}</Text>
-                        <Text style={{ width: '200px', fontSize: 16, textAlign: "center", textAlignVertical: "center" }}>{'Total Floors: ' + totalLevels}</Text>
+                    <div style={{
+                        display: 'flex',
+                        flexDirection: "column",
+                        backgroundColor: 'white',
+                        borderRadius: 10,
+                        position: 'relative',
+                        left: '-1%',
+                        top: '10%',
+                        height: '50%',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    }}>
+                        <Text style={{
+                            width: '200px',
+                            fontSize: 16,
+                            textAlign: "center",
+                            textAlignVertical: "center"
+                        }}>{'Current Floor: ' + level}</Text>
+                        <Text style={{
+                            width: '200px',
+                            fontSize: 16,
+                            textAlign: "center",
+                            textAlignVertical: "center"
+                        }}>{'Total Floors: ' + totalLevels}</Text>
                     </div>
-                    <div style={{ display: 'flex', flexDirection: 'column' }}>
-                        <div style={{ display: 'flex', flexDirection: 'row' }}>
-                            <Button id="topButton" style={{ backgroundColor: 'white', width: '10%', top: '15%', borderRadius: 10 }} onClick={generateMap}>New Floor</Button>
-                            <Button id="topButton" style={{ backgroundColor: 'white', width: '100px', top: '15%', borderRadius: 10 }} onClick={previousMap}>Previous Floor</Button>
-                            <Button id="topButton" style={{ backgroundColor: 'white', width: '100px', top: '15%', borderRadius: 10 }} onClick={nextMap}>Next Floor</Button>
-                            <Button id="topButton" style={{ backgroundColor: 'white', width: '200px', top: '10px', borderRadius: 10 }} onClick={showRoomNums}>Show Room Numbers</Button>
+                    <div style={{display: 'flex', flexDirection: 'column'}}>
+                        <div style={{display: 'flex', flexDirection: 'row'}}>
+                            <Button id="topButton"
+                                    style={{backgroundColor: 'white', width: '10%', top: '15%', borderRadius: 10}}
+                                    onClick={generateMap}>New Floor</Button>
+                            <Button id="topButton"
+                                    style={{backgroundColor: 'white', width: '100px', top: '15%', borderRadius: 10}}
+                                    onClick={previousMap}>Previous Floor</Button>
+                            <Button id="topButton"
+                                    style={{backgroundColor: 'white', width: '100px', top: '15%', borderRadius: 10}}
+                                    onClick={nextMap}>Next Floor</Button>
+                            <Button id="topButton"
+                                    style={{backgroundColor: 'white', width: '200px', top: '10px', borderRadius: 10}}
+                                    onClick={showRoomNums}>Show Room Numbers</Button>
                         </div>
-                        <div style={{ display: 'flex', flexDirection: "column", backgroundColor: 'white', borderRadius: 10, position: 'relative', left: '-1%', top: '10%', height: '50%', alignItems: 'center', justifyContent: 'center', width:'70%'}}>
+                        <div style={{
+                            display: 'flex',
+                            flexDirection: "column",
+                            backgroundColor: 'white',
+                            borderRadius: 10,
+                            position: 'relative',
+                            left: '-1%',
+                            top: '10%',
+                            height: '50%',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            width: '70%'
+                        }}>
                             <Text> Gamecode: {gamecode}</Text>
-                            <Text>  Theme: {theme}</Text>
+                            <Text> Theme: {theme}</Text>
 
                         </div>
 
                     </div>
-                    <div id="fogBar" style={{ backgroundColor: 'white', position: "relative", top: '10%', borderRadius: 10, width: '60%', height: '100%' }}>
-                        <div style={{ display: 'flex', flex: 0, flexDirection: 'row' }}>
-                            <p style={{ position: 'relative', backgroundColor: 'white', fontFamily: 'Arial', left: '2%', width: '20%' }}>{"FOG Controls:  "}</p>
-                            <RadioGroup row={true} aria-label="fog" name="fog controls" value={addingFog} style={{ backgroundColor: 'white' }}
-                                onChange={handleAddingFogChange}>
-                                <FormControlLabel value={true} control={<Radio />} label="add" />
-                                <FormControlLabel value={false} control={<Radio />} label="remove" />
+                    <div id="fogBar" style={{
+                        backgroundColor: 'white',
+                        position: "relative",
+                        top: '10%',
+                        borderRadius: 10,
+                        width: '60%',
+                        height: '100%'
+                    }}>
+                        <div style={{display: 'flex', flex: 0, flexDirection: 'row'}}>
+                            <p style={{
+                                position: 'relative',
+                                backgroundColor: 'white',
+                                fontFamily: 'Arial',
+                                left: '2%',
+                                width: '20%'
+                            }}>{"FOG Controls:  "}</p>
+                            <RadioGroup row={true} aria-label="fog" name="fog controls" value={addingFog}
+                                        style={{backgroundColor: 'white'}}
+                                        onChange={handleAddingFogChange}>
+                                <FormControlLabel value={true} control={<Radio/>} label="add"/>
+                                <FormControlLabel value={false} control={<Radio/>} label="remove"/>
 
                             </RadioGroup>
                             <FormControlLabel
-                                style={{ position: 'relative', left: '2%' }}
-                                control={<Switch checked={mapIsHidden} onChange={handleHideOrShowMap} name={'hideMap'} />}
-                                label={'Hide Player\'s Map'} />
+                                style={{position: 'relative', left: '2%'}}
+                                control={<Switch checked={mapIsHidden} onChange={handleHideOrShowMap}
+                                                 name={'hideMap'}/>}
+                                label={'Hide Player\'s Map'}/>
                         </div>
 
-                        <div id="controls" style={{ display: 'flex', flexDirection: 'row' }}>
+                        <div id="controls" style={{display: 'flex', flexDirection: 'row'}}>
                             <FormControlLabel
-                                style={{ position: 'relative', left: '2%' }}
-                                control={<Switch checked={showFog} onChange={handleShowingFogChange} name={'showFog'} />}
-                                label={'Show Fog'} />
-                            <FormControlLabel control={<Switch checked={adjustingFog} onChange={handleAdjustingFogChange}
-                                name={'adjustFog'} />} label={'Add/Remove Fog'} />
+                                style={{position: 'relative', left: '2%'}}
+                                control={<Switch checked={showFog} onChange={handleShowingFogChange} name={'showFog'}/>}
+                                label={'Show Fog'}/>
+                            <FormControlLabel
+                                control={<Switch checked={adjustingFog} onChange={handleAdjustingFogChange}
+                                                 name={'adjustFog'}/>} label={'Add/Remove Fog'}/>
 
-                            <Typography id="discrete-slider" gutterBottom style={{ marginRight: '2%' }}>
+                            <Typography id="discrete-slider" gutterBottom style={{marginRight: '2%'}}>
                                 Adjustment Size
                             </Typography>
                             <Slider
-                                style={{ width: '20%' }}
+                                style={{width: '20%'}}
                                 defaultValue={1}
                                 getAriaValueText={fogAdjustmentValue}
                                 aria-labelledby="discrete-slider"
@@ -248,12 +311,13 @@ const DmView = () => {
                     </div>
                 </div>
                 <div id='route' style={{
-                    top:"2%",
+                    top: "2%",
                     backgroundColor: hexToRgb("#AAAABB"),
                     position: "relative",
                     alignSelf: "center",
                 }}>
-                    <Map mapTheme='Cave' mapData={mapData} imagePressFunction={clickMapTileHandler} showFog={showFog} maxWidth={window.innerWidth / 70} maxHeight={window.innerHeight / 40} overlay={overlay} />
+                    <Map mapTheme='Cave' mapData={mapData} imagePressFunction={clickMapTileHandler} showFog={showFog}
+                         maxWidth={window.innerWidth / 70} maxHeight={window.innerHeight / 40} overlay={overlay}/>
                 </div>
             </div>
         </ScrollView>

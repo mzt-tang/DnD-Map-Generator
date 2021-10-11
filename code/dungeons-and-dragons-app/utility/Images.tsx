@@ -67,49 +67,125 @@ import React, {MouseEventHandler} from "react";
 
 import {Text} from "react-native";
 
-export const getImageWithId = (id : string, index : number, userClicked: MouseEventHandler<HTMLImageElement>,theme:string, width:number, height:number) : JSX.Element  => {
-    switch (index){
-        case 0:  return <img className="grid_img" src={Image1} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 1:  return <img className="grid_img" src={Image2} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 2:  return <img className="grid_img" src={theme == "Dungeon" ? Image26 : Image3} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 3:  return <img className="grid_img" src={theme == "Dungeon" ? Image27 : Image4} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 4:  return <img className="grid_img" src={theme == "Dungeon" ? Image28 : Image5} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 5:  return <img className="grid_img" src={theme == "Dungeon" ? Image29 : Image6} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 6:  return <img className="grid_img" src={theme == "Dungeon" ? Image30 : Image7} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 7:  return <img className="grid_img" src={theme == "Dungeon" ? Image31 : Image8} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 8:  return <img className="grid_img" src={theme == "Dungeon" ? Image32 : Image9} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 9:  return <img className="grid_img" src={theme == "Dungeon" ? Image33 : Image10} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 10: return <img className="grid_img" src={theme == "Dungeon" ? Image34 : Image11} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 11: return <img className="grid_img" src={theme == "Dungeon" ? Image35 : Image12} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 12: return <img className="grid_img" src={theme == "Dungeon" ? Image36 : Image13} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 13: return <img className="grid_img" src={theme == "Dungeon" ? Image37 : Image14} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 14: return <img className="grid_img" src={theme == "Dungeon" ? Image38 : Image15} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 15: return <img className="grid_img" src={theme == "Dungeon" ? Image39 : Image16} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 16: return <img className="grid_img" src={theme == "Dungeon" ? Image40 : Image17} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 17: return <img className="grid_img" src={theme == "Dungeon" ? Image41 : Image18} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 18: return <img className="grid_img" src={theme == "Dungeon" ? Image42 : Image19} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 19: return <img className="grid_img" src={theme == "Dungeon" ? Image43 : Image20} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 20: return <img className="grid_img" src={Image21} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 21: return <img className="grid_img" src={theme == "Caves" ? Image22 : theme == "Underground Mansion" ? Image23 : Image24} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 22: return <img className="grid_img" src={theme == "Caves" ? Image46 : theme == "Underground Mansion" ? Image44 : Image48} style={{width:width, height:height}} />
-        case 23: return <img className="grid_img" src={theme == "Caves" ? Image47 : theme == "Underground Mansion" ? Image45 : Image49} style={{width:width, height:height}} />
-        case 24: return <img className="grid_img" src={theme == "Caves" ? Image50 : theme == "Underground Mansion" ? Image52 : Image54} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 25: return <img className="grid_img" src={theme == "Caves" ? Image51 : theme == "Underground Mansion" ? Image53 : Image54} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 26: return <img className="grid_img" src={Overlay0} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 27: return <img className="grid_img" src={Overlay1} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 28: return <img className="grid_img" src={Overlay2} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 29: return <img className="grid_img" src={Overlay3} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 30: return <img className="grid_img" src={Overlay4} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 31: return <img className="grid_img" src={Overlay5} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 32: return <img className="grid_img" src={Overlay6} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 33: return <img className="grid_img" src={Overlay7} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 34: return <img className="grid_img" src={Overlay8} id={id} onClick={userClicked} style={{width:width, height:height}}/>
-        case 35: return <img className="grid_img" src={Overlay9} id={id} onClick={userClicked} style={{width:width, height:height}}/>
+export const getImageWithId = (id: string, index: number, userClicked: MouseEventHandler<HTMLImageElement>, theme: string, width: number, height: number): JSX.Element => {
+    switch (index) {
+        case 0:
+            return <img className="grid_img" src={Image1} id={id} onClick={userClicked}
+                        style={{width: width, height: height}}/>
+        case 1:
+            return <img className="grid_img" src={Image2} id={id} onClick={userClicked}
+                        style={{width: width, height: height}}/>
+        case 2:
+            return <img className="grid_img" src={theme == "Dungeon" ? Image26 : Image3} id={id} onClick={userClicked}
+                        style={{width: width, height: height}}/>
+        case 3:
+            return <img className="grid_img" src={theme == "Dungeon" ? Image27 : Image4} id={id} onClick={userClicked}
+                        style={{width: width, height: height}}/>
+        case 4:
+            return <img className="grid_img" src={theme == "Dungeon" ? Image28 : Image5} id={id} onClick={userClicked}
+                        style={{width: width, height: height}}/>
+        case 5:
+            return <img className="grid_img" src={theme == "Dungeon" ? Image29 : Image6} id={id} onClick={userClicked}
+                        style={{width: width, height: height}}/>
+        case 6:
+            return <img className="grid_img" src={theme == "Dungeon" ? Image30 : Image7} id={id} onClick={userClicked}
+                        style={{width: width, height: height}}/>
+        case 7:
+            return <img className="grid_img" src={theme == "Dungeon" ? Image31 : Image8} id={id} onClick={userClicked}
+                        style={{width: width, height: height}}/>
+        case 8:
+            return <img className="grid_img" src={theme == "Dungeon" ? Image32 : Image9} id={id} onClick={userClicked}
+                        style={{width: width, height: height}}/>
+        case 9:
+            return <img className="grid_img" src={theme == "Dungeon" ? Image33 : Image10} id={id} onClick={userClicked}
+                        style={{width: width, height: height}}/>
+        case 10:
+            return <img className="grid_img" src={theme == "Dungeon" ? Image34 : Image11} id={id} onClick={userClicked}
+                        style={{width: width, height: height}}/>
+        case 11:
+            return <img className="grid_img" src={theme == "Dungeon" ? Image35 : Image12} id={id} onClick={userClicked}
+                        style={{width: width, height: height}}/>
+        case 12:
+            return <img className="grid_img" src={theme == "Dungeon" ? Image36 : Image13} id={id} onClick={userClicked}
+                        style={{width: width, height: height}}/>
+        case 13:
+            return <img className="grid_img" src={theme == "Dungeon" ? Image37 : Image14} id={id} onClick={userClicked}
+                        style={{width: width, height: height}}/>
+        case 14:
+            return <img className="grid_img" src={theme == "Dungeon" ? Image38 : Image15} id={id} onClick={userClicked}
+                        style={{width: width, height: height}}/>
+        case 15:
+            return <img className="grid_img" src={theme == "Dungeon" ? Image39 : Image16} id={id} onClick={userClicked}
+                        style={{width: width, height: height}}/>
+        case 16:
+            return <img className="grid_img" src={theme == "Dungeon" ? Image40 : Image17} id={id} onClick={userClicked}
+                        style={{width: width, height: height}}/>
+        case 17:
+            return <img className="grid_img" src={theme == "Dungeon" ? Image41 : Image18} id={id} onClick={userClicked}
+                        style={{width: width, height: height}}/>
+        case 18:
+            return <img className="grid_img" src={theme == "Dungeon" ? Image42 : Image19} id={id} onClick={userClicked}
+                        style={{width: width, height: height}}/>
+        case 19:
+            return <img className="grid_img" src={theme == "Dungeon" ? Image43 : Image20} id={id} onClick={userClicked}
+                        style={{width: width, height: height}}/>
+        case 20:
+            return <img className="grid_img" src={Image21} id={id} onClick={userClicked}
+                        style={{width: width, height: height}}/>
+        case 21:
+            return <img className="grid_img"
+                        src={theme == "Caves" ? Image22 : theme == "Underground Mansion" ? Image23 : Image24} id={id}
+                        onClick={userClicked} style={{width: width, height: height}}/>
+        case 22:
+            return <img className="grid_img"
+                        src={theme == "Caves" ? Image46 : theme == "Underground Mansion" ? Image44 : Image48}
+                        style={{width: width, height: height}}/>
+        case 23:
+            return <img className="grid_img"
+                        src={theme == "Caves" ? Image47 : theme == "Underground Mansion" ? Image45 : Image49}
+                        style={{width: width, height: height}}/>
+        case 24:
+            return <img className="grid_img"
+                        src={theme == "Caves" ? Image50 : theme == "Underground Mansion" ? Image52 : Image54} id={id}
+                        onClick={userClicked} style={{width: width, height: height}}/>
+        case 25:
+            return <img className="grid_img"
+                        src={theme == "Caves" ? Image51 : theme == "Underground Mansion" ? Image53 : Image54} id={id}
+                        onClick={userClicked} style={{width: width, height: height}}/>
+        case 26:
+            return <img className="grid_img" src={Overlay0} id={id} onClick={userClicked}
+                        style={{width: width, height: height}}/>
+        case 27:
+            return <img className="grid_img" src={Overlay1} id={id} onClick={userClicked}
+                        style={{width: width, height: height}}/>
+        case 28:
+            return <img className="grid_img" src={Overlay2} id={id} onClick={userClicked}
+                        style={{width: width, height: height}}/>
+        case 29:
+            return <img className="grid_img" src={Overlay3} id={id} onClick={userClicked}
+                        style={{width: width, height: height}}/>
+        case 30:
+            return <img className="grid_img" src={Overlay4} id={id} onClick={userClicked}
+                        style={{width: width, height: height}}/>
+        case 31:
+            return <img className="grid_img" src={Overlay5} id={id} onClick={userClicked}
+                        style={{width: width, height: height}}/>
+        case 32:
+            return <img className="grid_img" src={Overlay6} id={id} onClick={userClicked}
+                        style={{width: width, height: height}}/>
+        case 33:
+            return <img className="grid_img" src={Overlay7} id={id} onClick={userClicked}
+                        style={{width: width, height: height}}/>
+        case 34:
+            return <img className="grid_img" src={Overlay8} id={id} onClick={userClicked}
+                        style={{width: width, height: height}}/>
+        case 35:
+            return <img className="grid_img" src={Overlay9} id={id} onClick={userClicked}
+                        style={{width: width, height: height}}/>
 
 
-
-
-        default: return <Text>Error</Text>
+        default:
+            return <Text>Error</Text>
     }
 }
 

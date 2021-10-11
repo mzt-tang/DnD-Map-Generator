@@ -25,7 +25,7 @@ describe('<App />', () => {
      * ROOM GENERATION TESTS
      */
     test('corner entrance not allowed.', () => {
-        const entrances:number[][] = [[0,0], [4,0]];
+        const entrances: number[][] = [[0, 0], [4, 0]];
         try {
             const roomArray = roomGen(10, 10, entrances, 0.2, false);
             fail();
@@ -35,7 +35,7 @@ describe('<App />', () => {
     });
 
     test('entrances must be on at the edge.', () => {
-        const entrances:number[][] = [[5,6], [4,0]];
+        const entrances: number[][] = [[5, 6], [4, 0]];
         try {
             const roomArray = roomGen(10, 10, entrances, 0.2, false);
             fail();
@@ -45,7 +45,7 @@ describe('<App />', () => {
     });
 
     test('There must be at least 1 entrance', () => {
-        const entrances:number[][] = [];
+        const entrances: number[][] = [];
         try {
             const roomArray = roomGen(10, 10, entrances, 0.2, false);
             fail();
@@ -55,7 +55,7 @@ describe('<App />', () => {
     });
 
     test('Probability must be between 0 and 1', () => {
-        const entrances:number[][] = [];
+        const entrances: number[][] = [];
         try {
             const roomArray = roomGen(10, 10, entrances, -0.1, false);
             fail();
@@ -65,7 +65,7 @@ describe('<App />', () => {
     });
 
     test('Probability must be between 0 and 1', () => {
-        const entrances:number[][] = [];
+        const entrances: number[][] = [];
         try {
             const roomArray = roomGen(10, 10, entrances, 1.1, false);
             fail();
@@ -75,7 +75,7 @@ describe('<App />', () => {
     });
 
     test('Cols must be positive', () => {
-        const entrances:number[][] = [];
+        const entrances: number[][] = [];
         try {
             const roomArray = roomGen(10, 0, entrances, 1.1, false);
             fail();
@@ -85,7 +85,7 @@ describe('<App />', () => {
     });
 
     test('Rows must be positive', () => {
-        const entrances:number[][] = [];
+        const entrances: number[][] = [];
         try {
             const roomArray = roomGen(0, 10, entrances, 1.1, false);
             fail();

@@ -6,8 +6,8 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import {useFonts} from 'expo-font';
 
 interface Props {
-    buttonString : string
-    buttonRoute : string
+    buttonString: string
+    buttonRoute: string
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -35,30 +35,31 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-const SmallMenuButton = (props : Props) => {
+const SmallMenuButton = (props: Props) => {
     const classes = useStyles();
 
     let [fontsLoaded] = useFonts({
         'Title': require('../assets/Fonts/DraconisBold-qZxd6.ttf'),
-      });
+    });
 
     // Props Initialisations
-    const buttonString : string = props.buttonString;
-    const buttonRoute : string = props.buttonRoute;
+    const buttonString: string = props.buttonString;
+    const buttonRoute: string = props.buttonRoute;
 
     //Other Variable Initialisations
     const history = useHistory();
 
     return (
         <div className={"SmallMenuButton"}>
-        <Button variant="outlined" size="small" color="primary" startIcon={<ArrowBackIosIcon/>} className={classes.smallBackButton} onClick={() => {
-            history.push(buttonRoute)
-        }}>
+            <Button variant="outlined" size="small" color="primary" startIcon={<ArrowBackIosIcon/>}
+                    className={classes.smallBackButton} onClick={() => {
+                history.push(buttonRoute)
+            }}>
 
-            <Typography variant={"button"} className={classes.buttonText} style={{fontFamily:'Title'}}>
-                {buttonString}
-            </Typography>
-        </Button>
+                <Typography variant={"button"} className={classes.buttonText} style={{fontFamily: 'Title'}}>
+                    {buttonString}
+                </Typography>
+            </Button>
         </div>
     );
 }

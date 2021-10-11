@@ -10,12 +10,11 @@ interface Props {
     buttonString: string
     buttonRoute: string
     buttonProp?: string
-
-    code(): string;
-
     creatingNewGame: boolean,
     disabled?: boolean
     onclick?: Function
+
+    code(): string;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -45,7 +44,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const SmallMenuButton = (props: Props) => {
     let [fontsLoaded] = useFonts({
         'Title': require('../assets/Fonts/DraconisBold-qZxd6.ttf'),
-      });
+    });
     const classes = useStyles();
 
     // Props Initialisations
@@ -72,7 +71,7 @@ const SmallMenuButton = (props: Props) => {
                         : alert("The GameCode \"" + props.code() + "\" is not valid. Please enter a valid GameCode.");
                     if (props.onclick) props.onclick(false);
                 }}>
-                <Typography variant={"button"} className={classes.buttonText} style={{fontFamily:'Title'}}>
+                <Typography variant={"button"} className={classes.buttonText} style={{fontFamily: 'Title'}}>
                     {buttonString}
                 </Typography>
             </Button>

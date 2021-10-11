@@ -22,15 +22,15 @@ const PlayerOptions = () => {
 
     let [fontsLoaded] = useFonts({
         'Title': require('../assets/Fonts/DraconisBold-qZxd6.ttf'),
-      });
+    });
 
-    const activityIndicator = <ActivityIndicator size={60} color="#00ff00" style={{padding:10}}/>;
+    const activityIndicator = <ActivityIndicator size={60} color="#00ff00" style={{padding: 10}}/>;
 
     return (
         <View>
             <div className={"backgroundImage"}>
                 <div className={"playerOptionBox"}>
-                    <Typography className={classes.headerTextStyle} variant={"h2"} style={{fontFamily:'title'}}>
+                    <Typography className={classes.headerTextStyle} variant={"h2"} style={{fontFamily: 'title'}}>
                         Player Options
                     </Typography>
                     <CodeInput defaultText={""} labelText={"Enter a Game Code Here"} onCodeChange={setCode}/>

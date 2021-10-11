@@ -6,10 +6,10 @@ import {useFonts} from 'expo-font';
 
 // We establish Props as our "Parameters" for the Button
 interface Props {
-    buttonString : string
-    buttonRoute : string
+    buttonString: string
+    buttonRoute: string
     buttonProps: string
-    leftAndRightPadding : number
+    leftAndRightPadding: number
 }
 
 const useStyles = makeStyles<Theme, Props>((theme: Theme) =>
@@ -41,17 +41,17 @@ const useStyles = makeStyles<Theme, Props>((theme: Theme) =>
     }),
 );
 
-const LargeButton = (props : Props) => {
+const LargeButton = (props: Props) => {
     let [fontsLoaded] = useFonts({
         'Title': require('../assets/Fonts/DraconisBold-qZxd6.ttf'),
-      });
+    });
     const classes = useStyles(props);
     const {largeButton, buttonText} = useStyles(props);
 
     // Props Initialisations
-    const buttonString : string = props.buttonString;
-    const buttonRoute : string = props.buttonRoute;
-    const buttonProps : string = props.buttonProps;
+    const buttonString: string = props.buttonString;
+    const buttonRoute: string = props.buttonRoute;
+    const buttonProps: string = props.buttonProps;
 
     //Other Variable Initialisations
     const history = useHistory();
@@ -64,7 +64,7 @@ const LargeButton = (props : Props) => {
             });
         }}>
 
-            <Typography variant={"h4"} className={buttonText} style={{fontFamily:'Title'}}>
+            <Typography variant={"h4"} className={buttonText} style={{fontFamily: 'Title'}}>
                 {buttonString}
             </Typography>
         </Button>

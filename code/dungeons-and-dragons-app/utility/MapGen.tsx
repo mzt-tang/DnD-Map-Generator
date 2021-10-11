@@ -17,6 +17,7 @@ const DOUBLE_DOORS = false;
 interface mapGenProps {
     theme: string
 }
+
 /**
  * Returns a map data object containing all the information needed for a level.
  */
@@ -262,6 +263,7 @@ export default async function map(props: { level: number; theme: string }): Prom
         }
         allRooms[i] = roomGen(roomSize, roomSize, roomEntrances, roomGrowProbability, true);
     }
+
     // checks if the generated exit room isn't too close to the entrance
     function checkIfRoomIsForbidden(index: number, forbiddenExitRooms: number[]) {
         for (let i = 0; i < forbiddenExitRooms.length; i++) {
@@ -277,6 +279,7 @@ export default async function map(props: { level: number; theme: string }): Prom
     let forbiddenExitRooms: number[] = []
     let entranceIndex = 0;
     let exitIndex = 0;
+
     function findEntranceRoom() {
         let foundRoom: boolean = false
         while (foundRoom == false) {
@@ -355,11 +358,11 @@ export default async function map(props: { level: number; theme: string }): Prom
     findExitRoom(forbiddenExitRooms);
 
 
-    let entranceRoomY:number = Math.floor(entranceIndex/mapRoomCols) * 10;
-    let entranceRoomX = ((entranceIndex)%mapRoomCols)*10;
+    let entranceRoomY: number = Math.floor(entranceIndex / mapRoomCols) * 10;
+    let entranceRoomX = ((entranceIndex) % mapRoomCols) * 10;
     // Write over the tiles of the first room, hard coded to set them all to 0.
-    for (let row = entranceRoomX; row < roomSize+entranceRoomX; row++) {
-        for (let col = entranceRoomY; col < roomSize+entranceRoomY; col++) {
+    for (let row = entranceRoomX; row < roomSize + entranceRoomX; row++) {
+        for (let col = entranceRoomY; col < roomSize + entranceRoomY; col++) {
             mapVisibility[col][row] = 0;
         }
     }
@@ -367,11 +370,11 @@ export default async function map(props: { level: number; theme: string }): Prom
     /**
      * Randomly changes floor tile to a decorative tile
      */
-    for(let i = 0; i < allRooms.length; i++) {
-        for(let row = 0; row < allRooms[i].length; row++) {
-            for(let col = 0; col < allRooms[i][row].length; col++) {
-                if(allRooms[i][row][col] == 1) {
-                    if(Math.random() < 0.05) {
+    for (let i = 0; i < allRooms.length; i++) {
+        for (let row = 0; row < allRooms[i].length; row++) {
+            for (let col = 0; col < allRooms[i][row].length; col++) {
+                if (allRooms[i][row][col] == 1) {
+                    if (Math.random() < 0.05) {
                         allRooms[i][row][col] = Math.random() < 0.5 ? 5 : 6;
 
                     }

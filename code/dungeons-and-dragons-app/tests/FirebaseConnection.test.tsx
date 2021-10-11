@@ -33,12 +33,12 @@ describe('<FirebaseConnection />', () => {
 
     test('Retrieves monster collection', () => {
         try {
-            let monsterlist : any[] = [];
+            let monsterlist: any[] = [];
             const ref = db.firestore().collection("monsters");
 
             async function fetchData() {
                 ref.onSnapshot((querySnapshot) => {
-                    const monsters : any[] = [];
+                    const monsters: any[] = [];
                     querySnapshot.forEach((doc) => {
                         monsters.push(doc.data());
                     });
@@ -65,19 +65,20 @@ describe('<FirebaseConnection />', () => {
     // });
 
     test('can filter data', () => {
-            let monsterlist : any[] = [];
-            const ref = db.firestore().collection("monsters").where('faction', '==', 'Fiend');
+        let monsterlist: any[] = [];
+        const ref = db.firestore().collection("monsters").where('faction', '==', 'Fiend');
 
-            async function fetchData() {
-                ref.onSnapshot((querySnapshot) => {
-                    const monsters : any[] = [];
-                    querySnapshot.forEach((doc) => {
-                        monsters.push(doc.data());
-                    });
-                    monsterlist = monsters
-                })
-            }
-            fetchData();
-            expect(monsterlist.includes('Barbed Devil') && !monsterlist.includes('Aboleth'))
+        async function fetchData() {
+            ref.onSnapshot((querySnapshot) => {
+                const monsters: any[] = [];
+                querySnapshot.forEach((doc) => {
+                    monsters.push(doc.data());
+                });
+                monsterlist = monsters
+            })
+        }
+
+        fetchData();
+        expect(monsterlist.includes('Barbed Devil') && !monsterlist.includes('Aboleth'))
     })
 });
