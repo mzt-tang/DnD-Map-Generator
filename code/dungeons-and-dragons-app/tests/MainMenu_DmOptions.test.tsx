@@ -8,7 +8,7 @@ import genRandomCode from "../pages/DmOptions";
 describe('<MainMenu_DmOptions />', () => {
 
     test('Dm options page renders correctly', () => {
-        const renderedComponent = renderer.create(<DmOptions />).toJSON()
+        const renderedComponent = renderer.create(<DmOptions/>).toJSON()
         expect(renderedComponent).toMatchSnapshot();
     });
 

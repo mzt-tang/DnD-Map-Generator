@@ -1,7 +1,4 @@
-import {db} from '.././firebaseConfig';
-
-
-
+import {db} from '../firebaseConfig';
 
 
 export const writeToFirebase = (path: string, object: Object) => {

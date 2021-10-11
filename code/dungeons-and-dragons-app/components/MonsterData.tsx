@@ -1,16 +1,15 @@
 import React from "react";
-import {View, Text} from "react-native";
+import {Text, View} from "react-native";
 import {MonsterInfo} from "./Map";
 
 
-
-const MonsterData = (props : MonsterInfo | undefined) => {
-    if(props === undefined || props.monster === undefined){
+const MonsterData = (props: MonsterInfo | undefined) => {
+    if (props === undefined || props.monster === undefined) {
         return <View><Text>Waiting for monster data</Text></View>
     }
 
     return (
-        <View style={{backgroundColor:'#ffffff', alignItems:"center"}}>
+        <View style={{backgroundColor: '#ffffff', alignItems: "center"}}>
             <table>
                 <tbody>
                 <tr>

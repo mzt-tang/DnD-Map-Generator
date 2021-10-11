@@ -1,11 +1,11 @@
 import React from 'react';
 import TextField from "@material-ui/core/TextField";
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 
 // We establish Props as our "Parameters" for the Button
 interface Props {
-    defaultText : string
-    labelText : string
+    defaultText: string
+    labelText: string
 
     onCodeChange(value: string): void;
 }
@@ -20,11 +20,11 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-const CodeInput = (props : Props) => {
+const CodeInput = (props: Props) => {
     const classes = useStyles();
 
-    const defaultText : string = props.defaultText;
-    const labelText : string = props.labelText;
+    const defaultText: string = props.defaultText;
+    const labelText: string = props.labelText;
 
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
         props.onCodeChange(event.target.value as string);
@@ -41,7 +41,7 @@ const CodeInput = (props : Props) => {
             fullWidth
             variant="outlined"
             InputLabelProps={{
-                style: { color: '#403940' },
+                style: {color: '#403940'},
             }}
             onChange={handleChange}
         />

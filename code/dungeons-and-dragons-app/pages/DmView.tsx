@@ -1,25 +1,15 @@
-import { Text } from 'react-native';
-import { styled, Typography } from "@material-ui/core";
-import { readFromFirebase, writeToFirebase } from "../utility/FirebaseRW";
+import {ScrollView, Text} from 'react-native';
+// will this change
+import {Button, Grid, hexToRgb, Slider, Typography} from "@material-ui/core";
+import {readFromFirebase, writeToFirebase} from "../utility/FirebaseRW";
 import '../styles/style.css'
 import Map from '../components/Map';
-import '../styles/style.css'
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
-import backgroundIm from "../assets/Menu Images/Underdark.jpg";
-
-import {
-    Button,
-    hexToRgb,
-    Slider
-} from "@material-ui/core";
-
 import React, {MouseEventHandler, useEffect, useState} from 'react';
-
-import { Grid } from "@material-ui/core";
 import MapGen from '../utility/MapGen';
 import MapData from "../interfaces/MapData";
 import {useHistory, useLocation} from "react-router-dom";
@@ -34,9 +24,7 @@ let curMap: number;
 
 const DmView = () => {
 
-    const { state: { code,theme } = { code:'code',theme:'theme' } } = useLocation<{ code: string, theme: string }>()
-
-
+    const {state: {code, theme} = {code: 'code', theme: 'theme'}} = useLocation<{ code: string, theme: string }>()
     const history = useHistory();
     let gamecode: string = ParseURLData(history.location.pathname) as string;
 
@@ -47,20 +35,22 @@ const DmView = () => {
     const [adjustingFog, setAdjustingFog] = React.useState(true);
     const [addingFog, setAddingFog] = React.useState(true);
     const [fogAdjustSize, setFogAdjustSize] = React.useState(1);
+    const [mapIsHidden, setMapIsHidden] = React.useState(true);
 
     const [mapData, setMapData] = useState(mapDataInitial);
     const [level, setLevel] = useState(0);
     const [totalLevels, setTotalLevels] = useState(0);
+    const [overlay, setOverlay] = useState(false);
 
     useEffect(() => {
         readFromFirebase(gamecode + '/levels').then(value => {
-            if (value.exists() && !isObjectEmpty(value.val())){
-                setTotalLevels(value.val().length-1);
+            if (value.exists() && !isObjectEmpty(value.val())) {
+                setTotalLevels(value.val().length - 1);
             }
         });
 
-        readFromFirebase( gamecode + '/levels/1').then(value => {
-            if (value.exists() && !isObjectEmpty(value.val())){
+        readFromFirebase(gamecode + '/levels/1').then(value => {
+            if (value.exists() && !isObjectEmpty(value.val())) {
                 setMapData(value.val() as MapData);
                 setLevel(1);
                 setPlayerLevel(1);
@@ -68,51 +58,65 @@ const DmView = () => {
                 generateMap();
             }
         });
+
+        readFromFirebase(gamecode + '/isHidden').then(value => {
+            if (value.exists()) {
+                setMapIsHidden(value.val());
+            } else {
+                writeToFirebase('/' + gamecode + '/isHidden', true);
+            }
+        });
+
+
     }, []);
 
-    const isObjectEmpty = (obj : Object) : boolean => {
+    const isObjectEmpty = (obj: Object): boolean => {
         return Object.keys(obj).length === 0;
     }
 
-    const setPlayerLevel = (level : number) => {
-        writeToFirebase('/' + gamecode + '/currentMap',level);
+    const setPlayerLevel = (level: number) => {
+        writeToFirebase('/' + gamecode + '/currentMap', level);
     }
 
-    const generateMap = () => {
-        const newMap = MapGen({theme})
-        writeToFirebase('/'+ gamecode+'/levels/'+(totalLevels+1),newMap);
+    const generateMap = async () => {
+        const newMap = await MapGen({theme, level})
+        writeToFirebase('/' + gamecode + '/levels/' + (totalLevels + 1), newMap);
         setTotalLevels(value => {
-            setLevel(value+1);
-            setPlayerLevel(value+1);
-           return value+1;
-        }
+                setLevel(value + 1);
+                setPlayerLevel(value + 1);
+                return value + 1;
+            }
         );
         setMapData(newMap);
     };
 
+    const showRoomNums = () => {
+        setOverlay(!overlay);
+    }
+
     const nextMap = () => {
-        if (level === totalLevels){
-            alert('final level, generate more levels');
+        if (level === totalLevels) {
+            alert('Final floor, generate more floors');
         } else {
-            const path = '/' + gamecode + '/levels/' + (level+1);
+            const path = '/' + gamecode + '/levels/' + (level + 1);
             readFromFirebase(path).then(value => setMapData(value.val() as MapData));
             setLevel(value => {
-                setPlayerLevel(value+1);
-                return value+1
+                setPlayerLevel(value + 1);
+                return value + 1
             });
 
         }
     }
 
     const previousMap = () => {
-        if (level <= 1){
-            alert('first level');
+        if (level <= 1) {
+            alert('First floor');
         } else {
-            const path = '/' + gamecode + '/levels/' + (level-1);
+            const path = '/' + gamecode + '/levels/' + (level - 1);
             readFromFirebase(path).then(value => setMapData(value.val() as MapData));
             setLevel(value => {
-                setPlayerLevel(value-1);
-                return value-1
+                setPlayerLevel(value - 1);
+                return value - 1
             });
         }
     }
@@ -123,10 +127,6 @@ const DmView = () => {
                 <Button onClick={generateMap}>Update Map</Button>
             </Grid>
         )
-    }
-
-    const clickVisibilityHandler: MouseEventHandler<HTMLImageElement> = (event: React.MouseEvent<HTMLImageElement>) => {
-        console.log(event.currentTarget.id);
     }
 
     const clickMapTileHandler: MouseEventHandler<HTMLImageElement> = (event: React.MouseEvent<HTMLImageElement>) => {
@@ -156,7 +156,7 @@ const DmView = () => {
             visibility: newVisibility
         };
 
-        writeToFirebase('/'+ gamecode+ '/levels/' + level + '/visibility',newVisibility);
+        writeToFirebase('/' + gamecode + '/levels/' + level + '/visibility', newVisibility);
         setMapData(newMapData);
     }
 
@@ -176,67 +176,151 @@ const DmView = () => {
         return `${fogAdjustSize} x ${fogAdjustSize}`
     }
 
+    const handleHideOrShowMap = (event: React.ChangeEvent<HTMLInputElement>) => {
+        writeToFirebase('/' + gamecode + '/isHidden', event.target.checked);
+        setMapIsHidden(event.target.checked);
+    }
     return (
-        <div id='dmView' className="backgroundImage">
-            <div id="topBar">
-                <Button id="topButton" style={{backgroundColor:'white', width: '40px', top: 10, borderRadius:10 }} onClick={() => {
-                    history.push('/home')
-                }}>X</Button>
+        <ScrollView>
+            <div id='dmView' className="backgroundImage">
+                <div id="topBar" style={{width: window.innerWidth}}>
+                    <Button id="topButton" style={{
+                        backgroundColor: 'white',
+                        width: '40px',
+                        height: '40px',
+                        top: '15%',
+                        borderRadius: 10
+                    }} onClick={() => {
+                        history.push('/home')
+                    }}>X</Button>
 
-                <div style={{flexDirection:"column", backgroundColor: 'white', borderRadius: 10, position:'relative', left:'-1%', top:'25%'}}>
-                    <Text style={{ width: '200px', top: 10, fontSize:16,textAlign:"center",textAlignVertical:"center", padding:'5px'}}>{'Current Level: '  + level}</Text>
-                    <Text style={{ width: '200px', top: 10, fontSize:16,textAlign:"center",textAlignVertical:"center", padding:'5px'}}>{'Total Levels: '  + totalLevels}</Text>
-                </div>
-                <Button id="topButton" style={{backgroundColor:'white', width: '200px', top: 10 , borderRadius:10}} onClick={generateMap}>New Level</Button>
+                    <div style={{
+                        display: 'flex',
+                        flexDirection: "column",
+                        backgroundColor: 'white',
+                        borderRadius: 10,
+                        position: 'relative',
+                        left: '-1%',
+                        top: '10%',
+                        height: '50%',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    }}>
+                        <Text style={{
+                            width: '200px',
+                            fontSize: 16,
+                            textAlign: "center",
+                            textAlignVertical: "center"
+                        }}>{'Current Floor: ' + level}</Text>
+                        <Text style={{
+                            width: '200px',
+                            fontSize: 16,
+                            textAlign: "center",
+                            textAlignVertical: "center"
+                        }}>{'Total Floors: ' + totalLevels}</Text>
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'column'}}>
+                        <div style={{display: 'flex', flexDirection: 'row'}}>
+                            <Button id="topButton"
+                                    style={{backgroundColor: 'white', width: '10%', top: '15%', borderRadius: 10}}
+                                    onClick={generateMap}>New Floor</Button>
+                            <Button id="topButton"
+                                    style={{backgroundColor: 'white', width: '100px', top: '15%', borderRadius: 10}}
+                                    onClick={previousMap}>Previous Floor</Button>
+                            <Button id="topButton"
+                                    style={{backgroundColor: 'white', width: '100px', top: '15%', borderRadius: 10}}
+                                    onClick={nextMap}>Next Floor</Button>
+                            <Button id="topButton"
+                                    style={{backgroundColor: 'white', width: '200px', top: '10px', borderRadius: 10}}
+                                    onClick={showRoomNums}>Show Room Numbers</Button>
+                        </div>
+                        <div style={{
+                            display: 'flex',
+                            flexDirection: "column",
+                            backgroundColor: 'white',
+                            borderRadius: 10,
+                            position: 'relative',
+                            left: '-1%',
+                            top: '10%',
+                            height: '50%',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            width: '70%'
+                        }}>
+                            <Text> Gamecode: {gamecode}</Text>
+                            <Text> Theme: {theme}</Text>
 
-                <Button id="topButton" style={{backgroundColor:'white', width: '100px', top: '10px', borderRadius:10 }} onClick={previousMap}>Previous Level</Button>
-                <Button id="topButton" style={{backgroundColor:'white', width: '100px', top: '10px', borderRadius:10 }} onClick={nextMap}>Next Level</Button>
+                        </div>
 
+                    </div>
+                    <div id="fogBar" style={{
+                        backgroundColor: 'white',
+                        position: "relative",
+                        top: '10%',
+                        borderRadius: 10,
+                        width: '60%',
+                        height: '100%'
+                    }}>
+                        <div style={{display: 'flex', flex: 0, flexDirection: 'row'}}>
+                            <p style={{
+                                position: 'relative',
+                                backgroundColor: 'white',
+                                fontFamily: 'Arial',
+                                left: '2%',
+                                width: '20%'
+                            }}>{"FOG Controls:  "}</p>
+                            <RadioGroup row={true} aria-label="fog" name="fog controls" value={addingFog}
+                                        style={{backgroundColor: 'white'}}
+                                        onChange={handleAddingFogChange}>
+                                <FormControlLabel value={true} control={<Radio/>} label="add"/>
+                                <FormControlLabel value={false} control={<Radio/>} label="remove"/>
 
-                <div id="topButton" style={{backgroundColor:'white', position: "absolute", left: "900px", top: 10, borderRadius:10, width:'30%', height:'10%' }}>
-                    <p style={{position:'relative', backgroundColor:'white', fontFamily: 'Arial', left:'2%', width:'20%'}}>FOG Controls</p>
-                    <FormControlLabel
-                        style={{position:'relative',backgroundColor:'white', left:'2%'}}
-                        control={<Switch checked={showFog} onChange={handleShowingFogChange} name={'showFog'} />}
-                        label={'Show Fog'} />
-                    <FormControlLabel style={{backgroundColor:'white'}} control={<Switch checked={adjustingFog} onChange={handleAdjustingFogChange}
-                        name={'adjustFog'} />} label={'Add/Remove Fog'} />
-                </div>
-            </div>
-                <div id="topButton" style={{ position: "absolute", backgroundColor:'white', left: "1020px", top: 10 }}>
-                    <RadioGroup row={true} aria-label="fog" name="fog controls" value={addingFog} style={{backgroundColor:'white'}}
-                        onChange={handleAddingFogChange}>
-                        <FormControlLabel value={true} control={<Radio />} label="add" />
-                        <FormControlLabel value={false} control={<Radio />} label="remove" />
-                    </RadioGroup>
-                </div>
-                <div id="topButton" style={{ backgroundColor:'white', position: "absolute", left: "1250px", top: '20px' }}>
-                    <Typography id="discrete-slider" gutterBottom>
-                        Adjustment Size
-                    </Typography>
-                    <Slider
-                        style={{backgroundColor:'white'}}
-                        defaultValue={1}
-                        getAriaValueText={fogAdjustmentValue}
-                        aria-labelledby="discrete-slider"
-                        valueLabelDisplay="auto"
-                        step={1}
-                        marks
-                        min={1}
-                        max={10}
-                        onChange={(event: any, newValue: number | number[]) => setFogAdjustSize(newValue as number)}
-                    />
+                            </RadioGroup>
+                            <FormControlLabel
+                                style={{position: 'relative', left: '2%'}}
+                                control={<Switch checked={mapIsHidden} onChange={handleHideOrShowMap}
+                                                 name={'hideMap'}/>}
+                                label={'Hide Player\'s Map'}/>
+                        </div>
+
+                        <div id="controls" style={{display: 'flex', flexDirection: 'row'}}>
+                            <FormControlLabel
+                                style={{position: 'relative', left: '2%'}}
+                                control={<Switch checked={showFog} onChange={handleShowingFogChange} name={'showFog'}/>}
+                                label={'Show Fog'}/>
+                            <FormControlLabel
+                                control={<Switch checked={adjustingFog} onChange={handleAdjustingFogChange}
+                                                 name={'adjustFog'}/>} label={'Add/Remove Fog'}/>
+
+                            <Typography id="discrete-slider" gutterBottom style={{marginRight: '2%'}}>
+                                Adjustment Size
+                            </Typography>
+                            <Slider
+                                style={{width: '20%'}}
+                                defaultValue={1}
+                                getAriaValueText={fogAdjustmentValue}
+                                aria-labelledby="discrete-slider"
+                                valueLabelDisplay="auto"
+                                step={1}
+                                marks
+                                min={1}
+                                max={10}
+                                onChange={(event: any, newValue: number | number[]) => setFogAdjustSize(newValue as number)}
+                            />
+                        </div>
+                    </div>
                 </div>
                 <div id='route' style={{
+                    top: "2%",
                     backgroundColor: hexToRgb("#AAAABB"),
-                    position: "absolute",
-                    top: 110,
+                    position: "relative",
                     alignSelf: "center",
-                    right: "35%",
                 }}>
-                    <Map mapTheme='Cave' mapData={mapData} imagePressFunction={clickMapTileHandler} showFog={showFog} />
+                    <Map mapTheme='Cave' mapData={mapData} imagePressFunction={clickMapTileHandler} showFog={showFog}
+                         maxWidth={window.innerWidth / 70} maxHeight={window.innerHeight / 40} overlay={overlay}/>
                 </div>
             </div>
+        </ScrollView>
     )
 }
 

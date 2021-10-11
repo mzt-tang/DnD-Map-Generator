@@ -2,8 +2,8 @@ const EMPTY = 0;
 const ROOM_TILE = 1;
 const ENTRANCE = 2;
 
- export class RoomGenerationError extends Error {
-    constructor(message : string) {
+export class RoomGenerationError extends Error {
+    constructor(message: string) {
         super(message);
         this.name = "RoomGenerationError";
     }
@@ -45,12 +45,12 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
         //Checks entrance isn't a corner entrance and is on the edge.
         let isCornerTile = (row == 0 || row == rowSize - 1) && (col == 0 || col == colSize - 1);
         if (isCornerTile) throw new RoomGenerationError("Entrances cannot be corner tiles");
-        if (!checkEdgeTile(row,col)) throw new RoomGenerationError("Entrances must be edge tiles");
+        if (!checkEdgeTile(row, col)) throw new RoomGenerationError("Entrances must be edge tiles");
 
         room[row][col] = ENTRANCE;
     }
 
-    if (singleEntrance){
+    if (singleEntrance) {
         handleSingleEntrance()
     } else {
         // pick randomly from a selection of entrance connection methods here
@@ -62,7 +62,6 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
     }
 
     spreadRoomTiles();
-
     return room;
 
     /**
@@ -177,7 +176,7 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
 
             growHorizontal(1, col, col != 1, coveredEntrances, numEntrances);
         } else {
-            for (let i = row; i < rowSize - 1 ; i++) {
+            for (let i = row; i < rowSize - 1; i++) {
                 if (i != row && room[i][col] == ROOM_TILE) {
                     coveredEntrances++
                     if (coveredEntrances == numEntrances) {
@@ -216,7 +215,7 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
 
             growVertical(row, 1, row != 1, coveredEntrances, numEntrances);
         } else {
-            for (let i = col; i < colSize - 1 ; i++) {
+            for (let i = col; i < colSize - 1; i++) {
                 if (i != col && room[row][i] == ROOM_TILE) {
                     coveredEntrances++
                     if (coveredEntrances == numEntrances) {
@@ -237,7 +236,7 @@ export function roomGen(rowSize: number, colSize: number, entrances: number[][],
      * @param entranceCol col of the entrance
      * @param isColumnEdge true if it is a col edge, false otherwise.
      */
-    function IterateFirstRoomTile(entranceRow: number, entranceCol: number, isColumnEdge: boolean) : number {
+    function IterateFirstRoomTile(entranceRow: number, entranceCol: number, isColumnEdge: boolean): number {
         let enRow = entranceRow;
         let enCol = entranceCol;
 

@@ -1,18 +1,20 @@
 import {Button, Typography} from '@material-ui/core';
 import React from 'react';
-import { useEffect, useState } from 'react';
-import { useHistory } from "react-router-dom";
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import {db} from "../firebaseConfig";
+import {useHistory} from "react-router-dom";
+import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 
 import ValidateGameCode from "../utility/ValidateGameCode";
+import {useFonts} from 'expo-font';
 
 interface Props {
-    buttonString : string
-    buttonRoute : string
-    buttonProp : string
+    buttonString: string
+    buttonRoute: string
+    buttonProp?: string
+    creatingNewGame: boolean,
+    disabled?: boolean
+    onclick?: Function
+
     code(): string;
-    creatingNewGame : boolean
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -39,31 +41,37 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-const SmallMenuButton = (props : Props) => {
+const SmallMenuButton = (props: Props) => {
+    let [fontsLoaded] = useFonts({
+        'Title': require('../assets/Fonts/DraconisBold-qZxd6.ttf'),
+    });
     const classes = useStyles();
 
     // Props Initialisations
-    const buttonString : string = props.buttonString;
-    const buttonRoute : string = props.buttonRoute;
-    const buttonProp : string = props.buttonProp;
+    const buttonString: string = props.buttonString;
+    const buttonRoute: string = props.buttonRoute;
+    const buttonProp: string | undefined = props.buttonProp;
 
     //Other Variable Initialisations
     let history = useHistory();
 
     return (
         <div className={"SmallMenuButton"}>
-            <Button variant="outlined" size="small" color="primary" className={classes.smallMenuButton} onClick={async() => {
-                await ValidateGameCode(props.code(), props.creatingNewGame) ? // Need to first check if a game with this gamecode exists
-                    history.push({
-                        pathname: buttonRoute+"/"+props.code(),
-                        state: {
-                            code: "gamecode",
-                            theme: buttonProp,
-                        } //data parsed between pages
-                    })
-                : alert("The GameCode \"" + props.code() + "\" is not valid. Please enter a valid GameCode.") // placeholder, should ideally send a custom error message component
-            }}>
-                <Typography variant={"button"} className={classes.buttonText} >
+            <Button variant="outlined" size="small" color="primary" className={classes.smallMenuButton} onClick={
+                async () => {
+                    if (props.onclick) props.onclick(true);
+                    await ValidateGameCode(props.code(), props.creatingNewGame) ? // Need to first check if a game with this gamecode exists
+                        history.push({
+                            pathname: buttonRoute + "/" + props.code(),
+                            state: {
+                                code: "gamecode",
+                                theme: buttonProp,
+                            } //data parsed between pages
+                        })
+                        : alert("The GameCode \"" + props.code() + "\" is not valid. Please enter a valid GameCode.");
+                    if (props.onclick) props.onclick(false);
+                }}>
+                <Typography variant={"button"} className={classes.buttonText} style={{fontFamily: 'Title'}}>
                     {buttonString}
                 </Typography>
             </Button>

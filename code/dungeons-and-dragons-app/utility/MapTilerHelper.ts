@@ -1,4 +1,4 @@
-import images, { getImageWithId } from '../utility/Images'
+import {getImageWithId} from '../utility/Images'
 
 /**
  * Takes in the basic generated map and generates the final map tiles to use as image indexes
@@ -116,6 +116,10 @@ export const assignImageNumbers = (map: number[][]): number[][] => {
                 finalMap[i][j] = 22
             } else if (map[i][j] == 4) {
                 finalMap[i][j] = 23
+            } else if (map[i][j] == 5) {
+                finalMap[i][j] = 24;
+            } else if (map[i][j] == 6) {
+                finalMap[i][j] = 25;
             } else {
                 finalMap[i][j] = 21;
             }
@@ -129,7 +133,7 @@ export const assignImageNumbers = (map: number[][]): number[][] => {
  * @param map The final map where the number contained in the 2D array is the index of the image to use.
  * @param visibility The 2D array representing the visibility of the map.
  */
-export const makeImageArray = (map: number[][], visibility: number[][], userClick: React.MouseEventHandler<HTMLImageElement>, showFog: boolean, mapTheme: string): JSX.Element[][] => {
+export const makeImageArray = (map: number[][], visibility: number[][], userClick: React.MouseEventHandler<HTMLImageElement>, showFog: boolean, mapTheme: string, width: number, height: number, showOverlay: boolean): JSX.Element[][] => {
 
     //todo update the visibility JSX element when visibility is implemented.
     let imageArray: JSX.Element[][] = [];
@@ -138,14 +142,61 @@ export const makeImageArray = (map: number[][], visibility: number[][], userClic
         let imageRow: JSX.Element[] = [];
         for (let col = 0; col < map[row].length; col++) {
             const id: string = `${row},${col}`;
-            if (visibility[row][col] == 0 || !showFog) {
-                const image: JSX.Element = getImageWithId(id, map[row][col], userClick, mapTheme)
+            if (row == 0 && col == 0 && showOverlay) {
+                const image: JSX.Element = getImageWithId(id, 27, userClick, mapTheme, width, height)
                 imageRow.push(image)
-            }
-            else { // black fog tile
-                const image: JSX.Element = getImageWithId(id, 0, userClick, mapTheme)
+            } else if (row == 0 && col == 10 && showOverlay) {
+                const image: JSX.Element = getImageWithId(id, 28, userClick, mapTheme, width, height)
                 imageRow.push(image)
+            } else if (row == 0 && col == 20 && showOverlay) {
+                const image: JSX.Element = getImageWithId(id, 29, userClick, mapTheme, width, height)
+                imageRow.push(image)
+            } else if (row == 0 && col == 30 && showOverlay) {
+                const image: JSX.Element = getImageWithId(id, 30, userClick, mapTheme, width, height)
+                imageRow.push(image)
+            } else if (row == 10 && col == 0 && showOverlay) {
+                const image: JSX.Element = getImageWithId(id, 31, userClick, mapTheme, width, height)
+                imageRow.push(image)
+            } else if (row == 10 && col == 10 && showOverlay) {
+                const image: JSX.Element = getImageWithId(id, 32, userClick, mapTheme, width, height)
+                imageRow.push(image)
+            } else if (row == 10 && col == 20 && showOverlay) {
+                const image: JSX.Element = getImageWithId(id, 33, userClick, mapTheme, width, height)
+                imageRow.push(image)
+            } else if (row == 10 && col == 30 && showOverlay) {
+                const image: JSX.Element = getImageWithId(id, 34, userClick, mapTheme, width, height)
+                imageRow.push(image)
+            } else if (row == 20 && col == 0 && showOverlay) {
+                const image: JSX.Element = getImageWithId(id, 35, userClick, mapTheme, width, height)
+                imageRow.push(image)
+            } else if (row == 20 && col == 10 && showOverlay) {
+                const image: JSX.Element = getImageWithId(id, 27, userClick, mapTheme, width, height)
+                imageRow.push(image)
+            } else if (row == 20 && col == 11 && showOverlay) {
+                const image: JSX.Element = getImageWithId(id, 26, userClick, mapTheme, width, height)
+                imageRow.push(image)
+            } else if (row == 20 && col == 20 && showOverlay) {
+                const image: JSX.Element = getImageWithId(id, 27, userClick, mapTheme, width, height)
+                imageRow.push(image)
+            } else if (row == 20 && col == 21 && showOverlay) {
+                const image: JSX.Element = getImageWithId(id, 27, userClick, mapTheme, width, height)
+                imageRow.push(image)
+            } else if (row == 20 && col == 30 && showOverlay) {
+                const image: JSX.Element = getImageWithId(id, 27, userClick, mapTheme, width, height)
+                imageRow.push(image)
+            } else if (row == 20 && col == 31 && showOverlay) {
+                const image: JSX.Element = getImageWithId(id, 28, userClick, mapTheme, width, height)
+                imageRow.push(image)
+            } else {
+                if (visibility[row][col] == 0 || !showFog) {
+                    const image: JSX.Element = getImageWithId(id, map[row][col], userClick, mapTheme, width, height)
+                    imageRow.push(image)
+                } else { // black fog tile
+                    const image: JSX.Element = getImageWithId(id, 0, userClick, mapTheme, width, height)
+                    imageRow.push(image)
+                }
             }
+
 
         }
         imageArray.push(imageRow);
@@ -153,4 +204,3 @@ export const makeImageArray = (map: number[][], visibility: number[][], userClic
 
     return imageArray;
 }
-

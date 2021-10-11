@@ -25,7 +25,7 @@ describe('<App />', () => {
      * ROOM GENERATION TESTS
      */
     test('corner entrance not allowed.', () => {
-        const entrances:number[][] = [[0,0], [4,0]];
+        const entrances: number[][] = [[0, 0], [4, 0]];
         try {
             const roomArray = roomGen(10, 10, entrances, 0.2, false);
             console.assert(false);
@@ -35,7 +35,7 @@ describe('<App />', () => {
     });
 
     test('entrances must be on at the edge.', () => {
-        const entrances:number[][] = [[5,6], [4,0]];
+        const entrances: number[][] = [[5, 6], [4, 0]];
         try {
             const roomArray = roomGen(10, 10, entrances, 0.2, false);
             console.assert(false);
@@ -45,7 +45,7 @@ describe('<App />', () => {
     });
 
     test('There must be at least 1 entrance', () => {
-        const entrances:number[][] = [];
+        const entrances: number[][] = [];
         try {
             const roomArray = roomGen(10, 10, entrances, 0.2, false);
             console.assert(false);

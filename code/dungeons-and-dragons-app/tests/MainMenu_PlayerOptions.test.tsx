@@ -7,7 +7,7 @@ import PlayerOptions from "../pages/PlayerOptions";
 describe('<MainMenu_PlayerOptions />', () => {
 
     test('Player options page renders correctly', () => {
-        const renderedComponent = renderer.create(<PlayerOptions />).toJSON()
+        const renderedComponent = renderer.create(<PlayerOptions/>).toJSON()
         expect(renderedComponent).toMatchSnapshot();
     });
 

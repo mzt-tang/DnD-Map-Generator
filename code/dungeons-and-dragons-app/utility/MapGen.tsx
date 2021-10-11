@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import { roomGen } from "./roomGen";
-import { assignImageNumbers } from './MapTilerHelper';
+import {roomGen} from "./roomGen";
+import {assignImageNumbers} from './MapTilerHelper';
 import MapData from "../interfaces/MapData";
-
+import monsterGeneration from "./MonsterGen";
 
 const roomSize = 10;
 const mapRoomRows = 3;
@@ -18,10 +17,11 @@ const DOUBLE_DOORS = false;
 interface mapGenProps {
     theme: string
 }
+
 /**
  * Returns a map data object containing all the information needed for a level.
  */
-export default function map(props: mapGenProps): MapData {
+export default async function map(props: { level: number; theme: string }): Promise<MapData> {
 
     let allRooms: number[][][] = []; // holds all the rooms making up the map in order.
 
@@ -31,13 +31,12 @@ export default function map(props: mapGenProps): MapData {
         }
     }
 
-
     // create a 2D array rows * cols filled with the value 10.
     let mapGrid: number[][] = Array.from(Array(mapRoomRows * roomSize), _ => Array(mapRoomCols * roomSize).fill(10));
 
     //======================INITIAL MAP FOG SETTING======================//
     //vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv//
-    // create a 2D array of rows * cols, filled with the value startingFog for visiblity.    
+    // create a 2D array of rows * cols, filled with the value startingFog for visiblity.
     // 0:visible;   1:fog of war;
     let mapVisibility: number[][] = Array.from(
         Array(mapRoomRows * roomSize), _ => Array(mapRoomCols * roomSize).fill(1)
@@ -264,6 +263,7 @@ export default function map(props: mapGenProps): MapData {
         }
         allRooms[i] = roomGen(roomSize, roomSize, roomEntrances, roomGrowProbability, true);
     }
+
     // checks if the generated exit room isn't too close to the entrance
     function checkIfRoomIsForbidden(index: number, forbiddenExitRooms: number[]) {
         for (let i = 0; i < forbiddenExitRooms.length; i++) {
@@ -279,12 +279,12 @@ export default function map(props: mapGenProps): MapData {
     let forbiddenExitRooms: number[] = []
     let entranceIndex = 0;
     let exitIndex = 0;
+
     function findEntranceRoom() {
         let foundRoom: boolean = false
         while (foundRoom == false) {
             let index = Math.floor(Math.random() * allRooms.length)
             for (let i = 0; i < allRooms[index].length; i++) {
-                console.log(allRooms[index])
                 for (let j = 0; j < allRooms[index][i].length; j++) {
                     if (allRooms[index][i][j] == 1) {
                         foundRoom = true;
@@ -318,7 +318,6 @@ export default function map(props: mapGenProps): MapData {
             let index = Math.floor(Math.random() * allRooms.length)
             if (checkIfRoomIsForbidden(index, forbiddenExitRooms)) {
                 for (let i = 0; i < allRooms[index].length; i++) {
-                    console.log(allRooms[index])
                     for (let j = 0; j < allRooms[index][i].length; j++) {
                         if (allRooms[index][i][j] == 1) {
                             foundRoom = true;
@@ -357,17 +356,34 @@ export default function map(props: mapGenProps): MapData {
 
     findEntranceRoom();
     findExitRoom(forbiddenExitRooms);
-    addRooms();
 
-    let entranceRoomY:number = Math.floor(entranceIndex/mapRoomCols) * 10;
-    let entranceRoomX = ((entranceIndex)%mapRoomCols)*10;
-    console.log(entranceIndex+ "    " + entranceRoomX + "   " +entranceRoomY)
+
+    let entranceRoomY: number = Math.floor(entranceIndex / mapRoomCols) * 10;
+    let entranceRoomX = ((entranceIndex) % mapRoomCols) * 10;
     // Write over the tiles of the first room, hard coded to set them all to 0.
-    for (let row = entranceRoomX; row < roomSize+entranceRoomX; row++) {
-        for (let col = entranceRoomY; col < roomSize+entranceRoomY; col++) {
+    for (let row = entranceRoomX; row < roomSize + entranceRoomX; row++) {
+        for (let col = entranceRoomY; col < roomSize + entranceRoomY; col++) {
             mapVisibility[col][row] = 0;
         }
     }
+
+    /**
+     * Randomly changes floor tile to a decorative tile
+     */
+    for (let i = 0; i < allRooms.length; i++) {
+        for (let row = 0; row < allRooms[i].length; row++) {
+            for (let col = 0; col < allRooms[i][row].length; col++) {
+                if (allRooms[i][row][col] == 1) {
+                    if (Math.random() < 0.05) {
+                        allRooms[i][row][col] = Math.random() < 0.5 ? 5 : 6;
+
+                    }
+                }
+            }
+        }
+    }
+
+    addRooms();
 
     /**
      * Iterates through all the rooms, finds their coordinates on the main map, and calls addRoom
@@ -460,9 +476,11 @@ export default function map(props: mapGenProps): MapData {
 
     const finalMap = assignImageNumbers(mapGrid);
 
+    const monsters = await monsterGeneration(props.level, finalMap, mapRoomRows, mapRoomCols, roomSize);
+
     const mapData: MapData = {
         map: finalMap,
-        monsters: [],
+        monsters: monsters,
         roomCols: mapRoomCols,
         roomRows: mapRoomRows,
         roomSize: roomSize,
