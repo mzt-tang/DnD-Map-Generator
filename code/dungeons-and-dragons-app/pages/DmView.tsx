@@ -17,7 +17,7 @@ import ParseURLData from "../utility/ParseURLData";
 
 
 let mapDataInitial: MapData = {
-    map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: [], roomNum: 1, theme: "Caves"
+    map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: [], roomNum: 1, theme: "Loading"
 };
 
 let curMap: number;
@@ -66,8 +66,6 @@ const DmView = () => {
                 writeToFirebase('/' + gamecode + '/isHidden', true);
             }
         });
-
-
     }, []);
 
     const isObjectEmpty = (obj: Object): boolean => {
@@ -248,7 +246,7 @@ const DmView = () => {
                             width: '70%'
                         }}>
                             <Text> Gamecode: {gamecode}</Text>
-                            <Text> Theme: {theme}</Text>
+                            <Text> Theme: {mapData.theme}</Text>
 
                         </div>
 
