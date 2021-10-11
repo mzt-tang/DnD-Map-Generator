@@ -2,8 +2,6 @@
 stages:
   - Build
   - Test
-  - Deploy
-
 # Uses the node docker image for JS applications
 image: node:alpine
 
@@ -35,17 +33,3 @@ unit_testing:
     - npm i jest-expo --save-dev
     - npx jest --ci
   allow_failure: false
-
-deploy:
-  stage: Deploy
-  tags:
-    - shell
-  script:
-    - echo "Deployment stage 1/1"
-    - npm i -g firebase-tools
-    - npm install
-    - firebase deploy --only functions --token $FIREBASE_TOKEN
-  only:
-    refs:
-      - master
-  allow_failure: true
