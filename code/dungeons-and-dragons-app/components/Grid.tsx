@@ -34,10 +34,6 @@ const Grid = (props: GridOtherProps) => {
         })
         rows.push(row)
     })
-    // const divStyle = {
-    //     grid-template-rows: "repeat(16,max-content)",
-    //     grid-template-columns: "repeat(13,max-content)"
-    // }
     return (
         <div className="grid-display" style={mapStyle(props.width, props.height)}>{rows}</div>
     );
