@@ -4,10 +4,9 @@
 // To install the jest test library: "yarn add jest-expo" or "npm install jest-expo"
 // To run all tests: "npx jest --ci"
 
-import { isJSXFragment } from '@babel/types';
 import React from 'react';
 
-import { assignImageNumbers } from "../utility/MapTilerHelper";
+import {assignImageNumbers} from "../utility/MapTilerHelper";
 
 
 describe('<MapTilerHelper />', () => {

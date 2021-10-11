@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Paper from '@material-ui/core/Paper';
-import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
-import { Pressable, Text } from 'react-native';
-import { Typography, Radio, RadioGroup } from "@material-ui/core";
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import {Radio, RadioGroup} from "@material-ui/core";
+import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
 
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+
 // We establish Props as our "Parameters" for the Button
 interface Props {
     themeList: string[],

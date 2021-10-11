@@ -1,6 +1,6 @@
 import React from 'react';
 import TextField from "@material-ui/core/TextField";
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 
 // We establish Props as our "Parameters" for the Button
 interface Props {

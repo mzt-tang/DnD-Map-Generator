@@ -1,8 +1,8 @@
 import {Button, Typography} from '@material-ui/core';
 import React from 'react';
-import { useHistory } from "react-router-dom";
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { useFonts } from 'expo-font';
+import {useHistory} from "react-router-dom";
+import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
+import {useFonts} from 'expo-font';
 
 // We establish Props as our "Parameters" for the Button
 interface Props {
@@ -51,7 +51,7 @@ const LargeButton = (props : Props) => {
     // Props Initialisations
     const buttonString : string = props.buttonString;
     const buttonRoute : string = props.buttonRoute;
-    const buttonProps : string = props.buttonProps; 
+    const buttonProps : string = props.buttonProps;
 
     //Other Variable Initialisations
     const history = useHistory();

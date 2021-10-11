@@ -63,7 +63,7 @@ import Overlay7 from "../assets/Overlay/overlay7.png"
 import Overlay8 from "../assets/Overlay/overlay8.png"
 import Overlay9 from "../assets/Overlay/overlay9.png"
 
- import React, {MouseEventHandler} from "react";
+import React, {MouseEventHandler} from "react";
 
 import {Text} from "react-native";
 

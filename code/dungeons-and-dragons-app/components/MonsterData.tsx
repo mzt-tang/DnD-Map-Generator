@@ -1,7 +1,6 @@
 import React from "react";
-import {View, Text} from "react-native";
+import {Text, View} from "react-native";
 import {MonsterInfo} from "./Map";
-
 
 
 const MonsterData = (props : MonsterInfo | undefined) => {

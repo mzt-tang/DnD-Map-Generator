@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {View} from "react-native";
 import LargeButton from "../components/LargeButton";
 import {Typography} from "@material-ui/core";
-import { useFonts } from 'expo-font';
+import {useFonts} from 'expo-font';
 
 const Home = () => {
     let [fontsLoaded] = useFonts({

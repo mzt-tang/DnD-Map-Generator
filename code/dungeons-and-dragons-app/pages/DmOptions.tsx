@@ -1,12 +1,12 @@
-import {View, Pressable, Text, ActivityIndicator} from "react-native";
+import {ActivityIndicator, View} from "react-native";
 import React, {useState} from "react";
-import {Typography, Radio} from "@material-ui/core";
+import {Typography} from "@material-ui/core";
 import ThemeSelect from "../components/ThemeSelect";
 import CodeInput from "../components/CodeInput";
 import SmallMenuButton from "../components/SmallMenuButton";
 import SmallBackButton from "../components/SmallBackButton";
 import GenRandomCode from "../utility/GenRandomCode";
-import { useFonts } from 'expo-font';
+import {useFonts} from 'expo-font';
 
 const DmOptions = () => {
 

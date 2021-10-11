@@ -6,7 +6,7 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import ThemeSelect  from '../components/ThemeSelect';
+import ThemeSelect from '../components/ThemeSelect';
 
 
 describe("snaphot testing", () => {

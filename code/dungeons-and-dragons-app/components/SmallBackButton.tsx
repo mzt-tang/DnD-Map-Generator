@@ -1,9 +1,9 @@
 import {Button, Typography} from '@material-ui/core';
 import React from 'react';
-import { useHistory } from "react-router-dom";
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import {useHistory} from "react-router-dom";
+import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import { useFonts } from 'expo-font';
+import {useFonts} from 'expo-font';
 
 interface Props {
     buttonString : string

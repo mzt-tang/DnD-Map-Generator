@@ -4,7 +4,7 @@ import {useHistory} from "react-router-dom";
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 
 import ValidateGameCode from "../utility/ValidateGameCode";
-import { useFonts } from 'expo-font';
+import {useFonts} from 'expo-font';
 
 interface Props {
     buttonString: string

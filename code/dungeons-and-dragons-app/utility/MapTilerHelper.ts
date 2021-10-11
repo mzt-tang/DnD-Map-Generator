@@ -1,4 +1,4 @@
-import { getImageWithId } from '../utility/Images'
+import {getImageWithId} from '../utility/Images'
 
 /**
  * Takes in the basic generated map and generates the final map tiles to use as image indexes
@@ -166,7 +166,7 @@ export const makeImageArray = (map: number[][], visibility: number[][], userClic
             } else if (row == 10 && col == 30 && showOverlay) {
                 const image: JSX.Element = getImageWithId(id, 34, userClick, mapTheme, width, height)
                 imageRow.push(image)
-            } 
+            }
             else if (row == 20 && col == 0 && showOverlay) {
                 const image: JSX.Element = getImageWithId(id, 35, userClick, mapTheme, width, height)
                 imageRow.push(image)
@@ -188,7 +188,7 @@ export const makeImageArray = (map: number[][], visibility: number[][], userClic
             } else if (row == 20 && col == 31 && showOverlay) {
                 const image: JSX.Element = getImageWithId(id, 28, userClick, mapTheme, width, height)
                 imageRow.push(image)
-            } 
+            }
             else {
                 if (visibility[row][col] == 0 || !showFog) {
                     const image: JSX.Element = getImageWithId(id, map[row][col], userClick, mapTheme, width, height)

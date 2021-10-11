@@ -1,30 +1,18 @@
-import { ScrollView, Text } from 'react-native';
-import { styled, Table, TableCell, Typography } from "@material-ui/core";
-import { readFromFirebase, writeToFirebase } from "../utility/FirebaseRW";
+import {ScrollView, Text} from 'react-native';
+// will this change
+import {Button, Grid, hexToRgb, Slider, Typography} from "@material-ui/core";
+import {readFromFirebase, writeToFirebase} from "../utility/FirebaseRW";
 import '../styles/style.css'
 import Map from '../components/Map';
-import '../styles/style.css'
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
-import backgroundIm from "../assets/Menu Images/Underdark.jpg";
-
-// will this change
-
-import {
-    Button,
-    hexToRgb,
-    Slider
-} from "@material-ui/core";
-
-import React, { MouseEventHandler, useEffect, useState } from 'react';
-
-import { Grid } from "@material-ui/core";
+import React, {MouseEventHandler, useEffect, useState} from 'react';
 import MapGen from '../utility/MapGen';
 import MapData from "../interfaces/MapData";
-import { useHistory, useLocation } from "react-router-dom";
+import {useHistory, useLocation} from "react-router-dom";
 import ParseURLData from "../utility/ParseURLData";
 
 

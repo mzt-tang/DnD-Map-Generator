@@ -4,7 +4,7 @@
 // To install the jest test library: "yarn add jest-expo" or "npm install jest-expo"
 // To run all tests: "npx jest --ci"
 
-import React, {useState} from 'react';
+import React from 'react';
 import {db} from "../firebaseConfig";
 
 
@@ -59,7 +59,7 @@ describe('<FirebaseConnection />', () => {
     //         const [mapData, setMapData] = useState([]);
     //         dbRefObject.get().then(value => setMapData(value.val()))
     //         console.assert(mapData != null);
-    //     } catch (error) {            
+    //     } catch (error) {
     //         console.error("Couldn't retrieve game collections");
     //     }
     // });

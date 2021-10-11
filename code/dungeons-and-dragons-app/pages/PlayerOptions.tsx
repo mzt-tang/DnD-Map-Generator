@@ -5,7 +5,7 @@ import SmallBackButton from "../components/SmallBackButton"
 import CodeInput from "../components/CodeInput";
 import {Typography} from "@material-ui/core";
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
-import { useFonts } from 'expo-font';
+import {useFonts} from 'expo-font';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({

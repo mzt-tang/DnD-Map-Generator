@@ -1,21 +1,17 @@
-import React, {useEffect, useState, MouseEventHandler, useMemo, useRef} from 'react';
-import {View, Text} from 'react-native';
-import { useHistory } from "react-router-dom";
+import React, {useEffect, useRef, useState} from 'react';
+import {Text, View} from 'react-native';
+import {useHistory} from "react-router-dom";
 import {db} from "../firebaseConfig";
-import firebase from 'firebase';
 
 import '../styles/style.css'
 
 import Map from "../components/Map";
 import MapData from "../interfaces/MapData";
-import {Button, hexToRgb} from '@material-ui/core';
+import {Button} from '@material-ui/core';
 import {readFromFirebase} from "../utility/FirebaseRW";
 import ParseURLData from "../utility/ParseURLData";
 
-import { useFonts } from 'expo-font';
-
-import TitleFont from "../assets/Fonts/DraconisBold-qZxd6.tff";
-import { Title } from '@material-ui/icons';
+import {useFonts} from 'expo-font';
 
 let mapDataInitial: MapData = {
     map: [], monsters: [], roomCols: 0, roomRows: 0, roomSize: 0, visibility: [], roomNum: 1, theme: "Caves"

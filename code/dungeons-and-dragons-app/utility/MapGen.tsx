@@ -1,5 +1,5 @@
-import { roomGen } from "./roomGen";
-import { assignImageNumbers } from './MapTilerHelper';
+import {roomGen} from "./roomGen";
+import {assignImageNumbers} from './MapTilerHelper';
 import MapData from "../interfaces/MapData";
 import monsterGeneration from "./MonsterGen";
 

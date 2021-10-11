@@ -1,9 +1,5 @@
-import {db} from '../firebaseConfig';
-import {roomGen} from "../utility/roomGen";
-import React, {useContext, useEffect, useState} from "react";
-
-import firebase from 'firebase';
-import {Alert, Button, Modal, Text, View} from 'react-native';
+import React, {useEffect, useState} from "react";
+import {Button, Modal, View} from 'react-native';
 
 import PrismaZoom from 'react-prismazoom'
 
@@ -23,12 +19,7 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import MapData from "../interfaces/MapData";
 import {makeImageArray} from '../utility/MapTilerHelper'
 
-import Image4 from '../assets/Tile Images/floor_w.png';
-
 import MonsterData from "./MonsterData";
-import ParseURLData from "../utility/ParseURLData";
-import {useHistory} from "react-router-dom";
-
 
 
 const useRowStyles = makeStyles({

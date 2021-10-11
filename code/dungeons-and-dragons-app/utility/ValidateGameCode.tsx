@@ -1,6 +1,5 @@
 import React from 'react';
 import {readFromFirebase} from '../utility/FirebaseRW'
-import {db} from "../firebaseConfig";
 
 /**
  * Checks whether a game with a matching Game code exists in the Firebase Realtime Database
