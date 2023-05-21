@@ -22,10 +22,7 @@ This project is a map generation tool for our client at the university. This pro
  - Patrick Laing, laingpatr@myvuw.ac.nz
 
 ## Client
-**Craig Watterson** <br>
-Victoria University of Wellington, Cotton Building, Room 253 <br>
-**Phone:** +64 4 886 5333 <br>
-**Email:** craig.watterson@vuw.ac.nz
+**Redacted** <br>
 
 ## Hand Over Document
 ### How to set up the Project
