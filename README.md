@@ -22,7 +22,7 @@ This project is a map generation tool for our client at the university. This pro
  - Patrick Laing, laingpatr@myvuw.ac.nz
 
 ## Client
-**Redacted** <br>
+~~**Redacted**~~ <br>
 
 ## Hand Over Document
 ### How to set up the Project
